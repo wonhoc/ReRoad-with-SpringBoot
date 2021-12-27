@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org/">
+<head>
+<meta charset="UTF-8">
+<style>
+#logo{
+	width: 100px;
+	height: 60px;
+	float:left;
+}
+.ReRoad{
+	font-size: 30px;
+
+}
+#bar{
+width: 100%;
+height: 20px;
+background-color: teal;
+}
+
+#loginBtn{
+	margin-left: 800px;
+	margin-bottom: 20px;
+}
+#road{
+	float:left;
+}
+</style>
+</head>
+
+	<div th:fragment="headerFragment">
+		<div class="container">
+		<div class="header">
+			<div class="header_logo">
+					<a th:href="@{/}">
+						<img id="logo" src="/images/mainLogo.png" />
+					</a>
+				</div>
+		</div>
+			<a th:href="@{/loginForm}">
+				<button class="" id="loginBtn">로그인/회원가입</button>
+			</a>
+		<div id ="bar"></div>
+	</div>
+</div>
+</html>

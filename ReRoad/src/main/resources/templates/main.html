@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="layout/defaultLayout">
+<th:block layout:fragment="css">
+	<link rel="stylesheet" th:href="@{/css/main.css}">
+</th:block>
+<th:block layout:fragment="script">
+	<script th:src="@{/js/movie/main.js}"></script>
+</th:block>
+<head>
+
+</head>
+<section layout:fragment="content">
+
+	<div class="container">
+		<img src="/images/메인페이지버스.png" alt="image" id="mainImage">
+
+	<table>
+		<tr>
+			<td><img src="/images/tavleReview.jpg" alt="image" class="content"></td>
+			<td class="empty"></td>
+			<td><img src="/images/tavlePlanner.jpg" alt="image" class="content"></td>
+			<td class="empty"></td>
+			<td><img src="/images/notice.jpg" alt="image" class="content"></td>
+		</tr>
+		<tr>
+			<td>여행리뷰</td>
+			<td></td>
+			<td>공지사항</td>
+			<td></td>
+			<td>여행일정 플래너</td>
+		</tr>
+	</table>
+
+e
+	</div>
+</section>
+</html>

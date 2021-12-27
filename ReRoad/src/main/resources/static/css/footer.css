@@ -1,0 +1,25 @@
+@charset "UTF-8";
+
+.footer{
+	display: flex;
+}
+
+.footer_title {
+	margin: 0 2em;
+	font-size: 30px;
+}
+
+.footer_text {
+	margin: 0;
+	font-size: 14px;
+}
+
+.footer_emogi {
+	margin: 0 2em;
+}
+
+.footer_icon {
+	color: #b1b1b1;
+	font-size: 30px;
+	cursor: pointer;
+}

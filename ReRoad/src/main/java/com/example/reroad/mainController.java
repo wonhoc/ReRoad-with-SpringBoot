@@ -1,4 +1,4 @@
-package com.example.springreroad;
+package com.example.reroad;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

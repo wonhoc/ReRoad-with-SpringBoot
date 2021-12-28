@@ -17,6 +17,13 @@ public class UserDaoImpl implements UserDao{
     public UserVo getUserByID(String username) {
         return this.sqlSession.selectOne("Member.getUserById", username);
     }
+
+    // 로그인 후 아이디로 회원 정보 반환(ID, NickName, Role)
+    @Override
+    public UserVo getUserInfo(String username) {
+        return this.sqlSession.selectOne("Member.getInfoFromDB", username);
+    };
+    
     // 회원 가입
     @Override
     public void insertUser(Map map) {

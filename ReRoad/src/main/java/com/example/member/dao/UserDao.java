@@ -8,4 +8,5 @@ public interface UserDao {
     UserVo getUserByID(String username);
     void insertUser(Map map);
     void deleteUser(String userId);
+    UserVo getUserInfo(String username);
 }

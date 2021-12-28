@@ -1,4 +1,4 @@
-package com.example.springreroad;
+package com.example.reroad;
 
 
 import lombok.extern.slf4j.Slf4j;

@@ -1,4 +1,4 @@
-package com.example.springreroad;
+package com.example.reroad;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;

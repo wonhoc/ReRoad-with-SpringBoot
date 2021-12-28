@@ -17,19 +17,29 @@
         <h1>Test</h1>
         <h2>권한 확인 테스트 페이지</h2>
         <li>UserName: <span th:text="${username}"></span> </li>
+        <li>UserNick : <span th:text="${session.loginUser.userNick}"></span></li>
         <li>Authorities : <span th:text="${userRole}"></span></li>
 
         <h5 sec:authorize="isAuthenticated()">
             <a th:href="@{/member}">Member 페이지로 이동</a>
         </h5>
+        <h5 sec:authorize="hasRole('ROLE_MANAGER')">
+            <a th:href="@{/manager}"> Manager 전용 페이지로 이동</a>
+        </h5>
 
         <h5 sec:authorize="hasRole('ROLE_ADMIN')">
             <a th:href="@{/admin}"> Admin 전용 페이지로 이동</a>
         </h5>
+
         <form>
             <button type="submit" class="btn btn-primary">로그아웃</button>
             <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
         </form>
+
+
+
+
+
     </section>
 </main>
 <footer th:insert="fragments/footer.html"></footer>

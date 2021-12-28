@@ -32,17 +32,13 @@
         WHERE userId = #{userId}
     </select>
 
-    <!--회원가입 [임시] -->
-    <insert id="insertUser" parameterType="hashMap">
-        INSERT INTO user_info(userId, userPwd, userNick, role)
-        VALUES (#{userId}, #{userPwd}, #{userNick}, #{role})
+    <!--회원가입 -->
+    <insert id="inputUser" parameterType="hashMap">
+        INSERT INTO user_info(userId, userPwd, userNick, role, joinDate )
+        VALUES (#{userId}, #{userPwd}, #{userNick}, #{role}, NOW() )
 
     </insert>
-    <!--탈퇴 [임시] -->
-    <delete id="testDelete" parameterType="string">
-        DELETE FROM user_info
-        WHERE userId = #{userId}
-    </delete>
+
 
 </mapper>
 

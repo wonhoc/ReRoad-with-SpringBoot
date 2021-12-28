@@ -39,17 +39,8 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    @Transactional
     public void registUser(Map map, String userId) {
-        try {
-            //this.userDao.deleteUser(userId);
-            //System.out.println("Delete 실행됨");
-            this.userDao.insertUser(map);
-            System.out.println("Insert 실행됨");
-            System.out.println("Service Transaction: "+ TransactionSynchronizationManager.getCurrentTransactionName());
-        } catch (Exception e) {
-            throw new RuntimeException("롤백 가자!");
-        }
+        this.userDao.insertUser(map);
     }
 
 

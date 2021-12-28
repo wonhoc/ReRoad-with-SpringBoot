@@ -10,18 +10,11 @@
 <!--    <script th:src="@{/js/member/loginForm.js}"></script>-->
 <!--</th:block>-->
 <head>
-    <!--구글 폰트 적용 -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700;900&display=swap" rel="stylesheet">
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>로그인 페이지</title>
 </head>
-<body>
-<header th:insert="fragments/header.html"></header>
-<main>
     <section layout:fragment="content">
 
         <div class="loginContainer">
@@ -60,10 +53,5 @@
             </form>
         </div>
 
-
-
     </section>
-</main>
-<footer th:insert="fragments/footer.html"></footer>
-</body>
 </html>

@@ -12,6 +12,10 @@ public class UserVo {
     private String userPwd;
     private String userNick;
     private String role;
+    private String photoOrigin;
+    private String photoSys;
+    private String joinDate;
+    private String exitTytpe;
 
 
 }

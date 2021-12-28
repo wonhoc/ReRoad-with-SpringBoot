@@ -26,13 +26,7 @@ public class UserDaoImpl implements UserDao{
     
     // 회원 가입
     @Override
-    public void insertUser(Map map) {
-        this.sqlSession.selectOne("Member.insertUser", map);
-    }
-    // 회원 탈퇴[Test]
-    @Override
-    public void deleteUser(String userId) {
-        this.sqlSession.delete("Member.testDelete", userId);
-    }
+    public void insertUser(Map map) { this.sqlSession.selectOne("Member.inputUser", map);}
+    ;
 
 }

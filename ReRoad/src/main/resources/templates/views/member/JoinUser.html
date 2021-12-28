@@ -1,10 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" lang="ko"
+      layout:decorate="~{layout/defaultLayout}" >
+<th:block layout:fragment="css">
+    <link rel="stylesheet" th:href="@{css/member/joinUserForm.css}">
+</th:block>
+<th:block layout:fragment="script">
+    <script th:src="@{/js/member/joinUserForm.js}"></script>
+</th:block>
+    <section layout:fragment="content">
+        <div class="joinUserContainer">
+            <div class="welcome_join_Text">
+                <h1 class="joinText">회원가입</h1>
+                <div class = "title_devide"></div>
+                <div class="welcome_join">
+                    이메일을 입력하세요.<br>
+                    이메일은 로그인 시 아이디로 사용되며 변경 하실 수 없습니다.
+                </div>
+            </div>
+            <div class="inputEmailAndNum">
+                <label class = "idcss" for="userName">ID(Email)</label>
+                <input class="form-control" type="text" id="username" name="username" placeholder="example@email.com" />
+                <div id="checkDbId"></div>
+                <button id="sendVeriNum" type="button" class="btn btn-primary btn-lg btn-block">인증번호발송</button>
+                <label class = "pwcss" for="veriNumber">인증번호</label>
+                <input class="form-control" type="text" id="veriNumber" name="veriNumber" placeholder="인증번호를 입력하세요" />
+                <div id="checkVeriNumber"></div>
+                <button class="btn btn-primary btn-lg btn-block"> 다음 </button>
 
-</body>
+
+                <div class="inputVeriNumber"></div>
+            </div>
+
+
+
+
+
+
+        </div>
+
+    </section>
 </html>

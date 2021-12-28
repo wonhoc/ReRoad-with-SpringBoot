@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
+
+/*회원가입 화면 폼 디자인 */
+.joinUserContainer {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 5em;
+    background-color: RGB(242,242,242);
+    border-radius: 15px;
+    height: 40em;
+    width: 35em;
+}
+/*회원가입 + 상세 설명 Div */
+.welcome_join_Text {
+    margin-left: 1.5em;
+}
+/*'회원가입' 글자 스타일 */
+.joinText {
+    padding-top: 1.5em;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 900;
+}
+/*'회원가입' 하단 구분선 */
+.title_devide {
+    width: 35%;
+    height: 5px;
+    background-color: #414141;
+    margin-top: -0.5em;
+}
+/*구분선 하단 설명글 */
+.welcome_join {
+    font-family: 'Noto Sans KR', sans-serif;
+    color:RGB(1,121,122);
+    font-weight: 500;
+    font-size: small;
+    padding-bottom: 3em;
+}
+/* 이메일, 인증번호 입력 전체 Div */
+.inputEmailAndNum {
+    margin-top: 2em;
+    margin-left: 1em;
+    margin-right: 1em;
+}
+/* ID, 인증번호 텍스트 디자인*/
+.idcss,.pwcss {
+    font-family: 'Noto Sans KR', sans-serif;
+    padding-top: 1em;
+    font-weight: 700;
+    font-size: large;
+}
+/* 아이디, 인증번호 입력창 디자인 */
+.form-control {
+    margin-top: 0.3em;
+    margin-bottom: 1em;
+}
+/*이메일 체크 결과 출력부 */
+.checkDbId {
+    width: auto;
+    height: 2em;
+
+}
+
+/* 인증번호 발송 버튼 디자인 */
+.btn-primary {
+    background-color: RGB(1,121,122);
+    border-color: RGB(1,121,122);
+    font-weight: bolder;
+}
+/*인증번호발송 버튼 마우스 오버 시 디자인 */
+.btn-primary:hover {
+    background-color: #27B8B9;
+    border-color: #27B8B9;
+}
+.btn-primary:active {
+    background-color: RGB(1,121,122);
+    border-color: RGB(1,121,122);
+    font-weight: bolder;
+}

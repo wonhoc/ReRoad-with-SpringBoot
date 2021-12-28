@@ -8,10 +8,11 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
 
-@Controller()
+@Controller
 public class UserController {
     @Autowired
     private UserService userService;
@@ -41,4 +42,9 @@ public class UserController {
 
     @GetMapping("/admin")
     public String forAdmin() { return "views/member/admin"; }
+
+    @GetMapping("/joinUser")
+    public String forJoin() { return "views/member/joinuser";}
+
+
 }

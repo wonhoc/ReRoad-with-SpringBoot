@@ -2,6 +2,7 @@
 
 .footer{
 	display: flex;
+
 }
 
 .footer_title {
@@ -25,4 +26,8 @@
 }
 .footer{
 	align-content: center;
+}
+#whole{
+	margin-top: 60px;
+	margin-left: 40%;
 }

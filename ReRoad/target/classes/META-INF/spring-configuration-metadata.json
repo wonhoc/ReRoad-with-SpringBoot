@@ -3,7 +3,7 @@
     {
       "name": "spring.datasource.hikari",
       "type": "com.zaxxer.hikari.HikariConfig",
-      "sourceType": "com.example.springreroad.DatabaseConfiguration",
+      "sourceType": "com.example.reroad.DatabaseConfiguration",
       "sourceMethod": "hikariConfig()"
     }
   ],

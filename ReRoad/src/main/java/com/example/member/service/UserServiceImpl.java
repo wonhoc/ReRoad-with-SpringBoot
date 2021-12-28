@@ -32,6 +32,11 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         UserDetails user = new User(username, password, roles);
         return user;
     }
+    // 로그인 후 아이디로 회원 정보 반환(ID, NickName, Role)
+    @Override
+    public UserVo getInfo(String username) {
+        return this.userDao.getUserInfo(username);
+    }
 
     @Override
     @Transactional

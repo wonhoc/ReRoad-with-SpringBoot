@@ -14,7 +14,9 @@
 }
 /*로그인 화면 폼의 상단 여백 */
 .form-signin-heading{
-    padding-top: 2em;
+    padding-top: 1.5em;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 900;
 }
 
 .welcome_login {
@@ -29,9 +31,9 @@
 }
 /* 로그인 하단 텍스트 디자인*/
 .welcome_text {
-    font-family: "Noto Sans Korean";
+    font-family: 'Noto Sans KR', sans-serif;
     color:RGB(1,121,122);
-    font-weight: bold;
+    font-weight: 300;
     font-size: small;
     padding-bottom: 3em;
 }

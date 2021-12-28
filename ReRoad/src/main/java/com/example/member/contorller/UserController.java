@@ -43,5 +43,8 @@ public class UserController {
     @GetMapping("/admin")
     public String forAdmin() { return "views/member/admin"; }
 
+    @GetMapping("/joinUser")
+    public String forJoin() { return "views/member/joinuser";}
+
 
 }

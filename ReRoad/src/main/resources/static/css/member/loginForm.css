@@ -6,7 +6,7 @@
     padding-left: 15px;
     margin-right: auto;
     margin-left: auto;
-    margin-top: 10em;
+    margin-top: 5em;
     background-color: RGB(242,242,242);
     border-radius: 15px;
     height: 40em;
@@ -28,6 +28,7 @@
     width: 30%;
     height: 5px;
     background-color: #414141;
+    margin-top: -0.5em;
 }
 /* 로그인 하단 텍스트 디자인*/
 .welcome_text {

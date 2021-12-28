@@ -10,6 +10,35 @@
     <script th:src="@{/js/member/joinUserForm.js}"></script>
 </th:block>
     <section layout:fragment="content">
+        <div class="joinUserContainer">
+            <div class="welcome_join_Text">
+                <h1 class="joinText">회원가입</h1>
+                <div class = "title_devide"></div>
+                <div class="welcome_join">
+                    이메일을 입력하세요.<br>
+                    이메일은 로그인 시 아이디로 사용되며 변경 하실 수 없습니다.
+                </div>
+            </div>
+            <div class="inputEmailAndNum">
+                <label class = "idcss" for="userName">ID(Email)</label>
+                <input class="form-control" type="text" id="username" name="username" placeholder="example@email.com" />
+                <div id="checkDbId"></div>
+                <button id="sendVeriNum" type="button" class="btn btn-primary btn-lg btn-block">인증번호발송</button>
+                <label class = "pwcss" for="veriNumber">인증번호</label>
+                <input class="form-control" type="text" id="veriNumber" name="veriNumber" placeholder="인증번호를 입력하세요" />
+                <div id="checkVeriNumber"></div>
+                <button class="btn btn-primary btn-lg btn-block"> 다음 </button>
+
+
+                <div class="inputVeriNumber"></div>
+            </div>
+
+
+
+
+
+
+        </div>
 
     </section>
 </html>

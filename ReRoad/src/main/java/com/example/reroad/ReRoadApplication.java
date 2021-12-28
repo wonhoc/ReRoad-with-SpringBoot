@@ -14,8 +14,8 @@ public class ReRoadApplication extends SpringBootServletInitializer {
         SpringApplication.run(ReRoadApplication.class, args);
     }
 
-    @Override
-    protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
+   @Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder builder){
         return builder.sources(ReRoadApplication.class);
-    }
+   }
 }

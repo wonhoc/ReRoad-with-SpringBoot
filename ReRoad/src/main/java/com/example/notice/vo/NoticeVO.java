@@ -1,5 +1,6 @@
 package com.example.notice.vo;
 
+import com.example.common.FileVO;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -16,5 +17,5 @@ public class NoticeVO {
     private int hitCount;
     private String writeDate;
 
-    private List<NoticeFileVO> noticeFileList = new ArrayList<>();
+    private List<FileVO> noticeFileList = new ArrayList<>();
 }

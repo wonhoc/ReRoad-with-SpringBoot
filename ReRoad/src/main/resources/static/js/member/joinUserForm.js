@@ -2,11 +2,13 @@ $(document).ready(function() {
 
     var clickCount = false;
 
-    var token = $("meta[name='_csrf']").attr("content");
-    var header = $("meta[name='_csrf_header']").attr("content");
+    // var token = $("meta[name='_csrf']").attr("content");
+    // var header = $("meta[name='_csrf_header']").attr("content");
     var resultVerify = "";
 
-
+    // 버튼 기본 비활성화
+     $('#sendVeriNum').attr("disabled", true);
+     $('#nextButton').attr("disabled", true);
 
     //아이디 중복 체크
     $('#username').bind('focusout', function() {
@@ -14,7 +16,7 @@ $(document).ready(function() {
         if(userId == "") {
             $('#checkDbId').text('아이디는 필수 입력 항목입니다.');
             $('#checkDbId').css('color', 'red');
-            $('#sendVeriNum').attr("disabled", true);
+
         } else {
             idchkProcess('/checkId',userId);
         }
@@ -28,9 +30,9 @@ $(document).ready(function() {
                 data: {
                     userId: userId
                 },
-                beforeSend: function(xhr){
-                    xhr.setRequestHeader(header,token);
-                },
+                // beforeSend: function(xhr){
+                //     xhr.setRequestHeader(header,token);
+                // },
                 success: function (data) {
                     resolve(data);
                 },
@@ -47,7 +49,7 @@ $(document).ready(function() {
             if(result == 'false') {
                 $('#checkDbId').text('사용할 수 없는 아이디입니다.');
                 $('#checkDbId').css('color','red');
-                $('#sendVeriNum').attr("disabled", true);
+
             } else if(result == 'true') {
                 $('#checkDbId').text('사용 가능한 아이디입니다.');
                 $('#checkDbId').css('color','RGB(1,121,122)');
@@ -80,9 +82,9 @@ $(document).ready(function() {
                     data: {
                         mail: mail
                     },
-                    beforeSend: function (xhr) {
-                        xhr.setRequestHeader(header, token);
-                    },
+                    // beforeSend: function (xhr) {
+                    //     xhr.setRequestHeader(header, token);
+                    // },
                     success: function (data) {
                         alert("인증 번호가 전송되었습니다.메일을 확인하고 인증번호를 입력하세요.")
                         console.log("Data : " + data)
@@ -99,10 +101,6 @@ $(document).ready(function() {
         ));
     }
 
-
-
-
-
     // 인증 번호 검증
     $('#veriNumber').bind('keyup', function() {
         const inputNum = $('#veriNumber').val();
@@ -114,9 +112,13 @@ $(document).ready(function() {
         } else {
             $('#checkVeriNumber').text("인증번호가 일치하지 않습니다.");
             $('#checkVeriNumber').css('color','red');
-            $('#nextButton').attr("disabled", true);
+
         }
     })
+    //다음 버튼 클릭 시 회원 가입 다음 단계로 넘어감
+    $('nextButton').
+
+
 
 
 

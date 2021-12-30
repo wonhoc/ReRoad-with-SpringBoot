@@ -1,12 +1,13 @@
 package com.example.member.service;
 
+
 import com.example.member.vo.MailVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
-@Service
+@Service("MailService")
 public class MailServiceImpl implements MailService{
     @Autowired
     private JavaMailSender javamailSender;

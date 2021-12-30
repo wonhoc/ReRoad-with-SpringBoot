@@ -10,14 +10,13 @@
     <script th:src="@{/js/member/joinUserForm.js}"></script>
 </th:block>
 <head>
-    <meta name="_csrf" th:content="${_csrf.token}"/>
-    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+<!--    <meta name="_csrf" th:content="${_csrf.token}"/>-->
+<!--    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>-->
 </head>
 
 <section layout:fragment="content">
     <form class="form-signin" action="/joinUserRequest" method="POST">
         <div class="joinUserContainer">
-
             <div class="welcome_join_Text">
                 <h1 class="joinText">회원가입</h1>
                 <div class = "title_devide"></div>
@@ -34,12 +33,14 @@
                 <label class = "pwcss" for="veriNumber">인증번호</label>
                 <input class="form-control" type="text" id="veriNumber" name="veriNumber" placeholder="인증번호를 입력하세요" />
                 <div id="checkVeriNumber"></div>
-                <button id="nextButton" class="btn btn-primary btn-lg btn-block"> 다음 </button>
-                <!--                    <input type="hidden" id="verifyNum" th:value="${session.verifyCode}">-->
+                <button id="nextButton" type="button" class="btn btn-primary btn-lg btn-block"> 다음 </button>
 
             </div>
         </div>
     </form>
+
+
+
 
 
 </section>

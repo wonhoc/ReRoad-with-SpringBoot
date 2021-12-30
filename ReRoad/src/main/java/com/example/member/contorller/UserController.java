@@ -78,7 +78,7 @@ public class UserController {
 
     //인증 메일 발송
     @PostMapping("/verifyEmail")
-    public @ResponseBody String sendEmail(@RequestParam("mail") String email, HttpSession session) {
+    public @ResponseBody String sendEmail(@RequestParam("mail") String email) {
         String key="";
         Random random = new Random();
         for(int i = 0; i<3; i++) {
@@ -87,7 +87,6 @@ public class UserController {
         }
         int numIndex = random.nextInt(9999)+1000;
         key += numIndex;
-        //session.setAttribute("verifyCode", key);
         MailVo mail = new MailVo();
         mail.setAddress(email);
         mail.setTitle("ReRoad 회원 가입을 위한 인증 메일입니다.");

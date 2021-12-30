@@ -5,6 +5,9 @@
 <configuration>
 	<typeAliases>
 		<typeAlias type="com.example.member.vo.UserVo" alias="UserVo" />
+		<typeAlias type="com.example.notice.vo.NoticeVO" alias="noticeVO"/>
+		<typeAlias type="com.example.notice.vo.NoticeSearchVO" alias="noticeSearchVO"/>
+		<typeAlias type="com.example.notice.vo.NoticeFileVO" alias="noticeFileVO"/>
 	</typeAliases>
 </configuration>
 

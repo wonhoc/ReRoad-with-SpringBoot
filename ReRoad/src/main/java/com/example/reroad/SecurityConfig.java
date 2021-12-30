@@ -20,6 +20,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     //페이지 권한 관리
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+
+        http.csrf().disable();
+
         log.info("security config...");
         //Root 페이지 : 모든 권한 접속 가능
         http.authorizeHttpRequests().antMatchers("/").permitAll();

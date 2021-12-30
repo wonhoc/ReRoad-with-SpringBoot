@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/defaultLayout}">
+<th:block layout:fragment="css">
+    <link rel="stylesheet" th:href="@{/css/notice/noticeWrite.css}">
+</th:block>
+<th:block layout:fragment="script">
+    <script th:src="@{/js/notice/noticeWrite.js}"></script>
+</th:block>
+
+<head>
+
+
+
+
+</head>
+<section layout:fragment="content">
+    <div>
+
+        <form name="form" id="form" role="form" method="post" th:action="@{/writenotice}" enctype="multipart/form-data">
+
+            <div class="mb-3">
+                <h3 class="text-title">공지사항 작성 폼</h3>
+                <input type="text" class="form-control" name="noticeTitle" id="noticeTitle">
+            </div>
+
+            <div class="mb-3">
+                <input type="text" class="form-control" name="noticeContent" id="noticeContent" style="height: 300px;">
+            </div>
+
+                  <div class="fileBox">
+                    <div class="form_imgBtn">
+                      <label for="noticeFileInput">파일 첨부</label>
+                        <input type="file" class="form-fileInput" id="noticeFileInput" name="noticeFileInput" multiple>
+                    </div>
+                  </div>
+            <div>
+                <div id="Isvalid"></div>
+                <button type="submit" class="btn btn-sm btn-primary" id="saveBtn">작성</button>
+                <a class="btn btn-default waves-effect waves-light" th:href="@{/noticelist}">목록</a>
+            </div>
+        </form>
+    </div>
+</section>
+</html>

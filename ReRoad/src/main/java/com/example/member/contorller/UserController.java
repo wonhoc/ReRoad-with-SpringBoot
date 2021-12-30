@@ -1,6 +1,8 @@
 package com.example.member.contorller;
 
+import com.example.member.service.MailService;
 import com.example.member.service.UserService;
+import com.example.member.vo.MailVo;
 import com.example.member.vo.UserVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -13,6 +15,7 @@ import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 @Controller
 public class UserController {
@@ -21,6 +24,9 @@ public class UserController {
 
     @Autowired
     public HttpSession session;
+
+    @Autowired
+    public MailService mailService;
 
     //로그인 폼
     @GetMapping("/loginForm")
@@ -47,6 +53,52 @@ public class UserController {
 
     @GetMapping("/joinUser")
     public String forJoin() { return "views/member/joinuser";}
+
+    // 회원 가입 과정에서 아이디 중복 체크
+    @RequestMapping(value="/checkId", method = RequestMethod.POST)
+    public @ResponseBody String checkIdAjax(@RequestParam("userId") String requestId) {
+        String inputId = requestId.trim();
+        int checkNum = this.userService.checkId(requestId);
+        String checkResult = "";
+        // 중복된 아이디는 1 = 가입 불가
+        // 없는 아이디는 0 = 가입 가능
+        if (checkNum == 1) {
+            checkResult = "false";
+        } else if (checkNum == 0) {
+            checkResult = "true";
+        }
+        return checkResult;
+    }
+
+    //회원가입
+    @RequestMapping(value="/joinUserRequest", method = RequestMethod.POST)
+    public @ResponseBody void joinUserRequest() {
+
+    }
+
+    //인증 메일 발송
+    @PostMapping("/verifyEmail")
+    public @ResponseBody String sendEmail(@RequestParam("mail") String email) {
+        String key="";
+        Random random = new Random();
+        for(int i = 0; i<3; i++) {
+            int index = random.nextInt(25)+65;
+            key += (char)index;
+        }
+        int numIndex = random.nextInt(9999)+1000;
+        key += numIndex;
+        MailVo mail = new MailVo();
+        mail.setAddress(email);
+        mail.setTitle("ReRoad 회원 가입을 위한 인증 메일입니다.");
+        mail.setMessage("인증 번호는 "+ key + "입니다.");
+
+        this.mailService.sendMail(mail);
+        System.out.println("Controller Key : "+key);
+
+        return key;
+
+    }
+
 
     // 관리자의 사용자 정보 조회
     @GetMapping("/admin/listUser")

@@ -45,6 +45,13 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         this.userDao.insertUser(map);
     }
 
+    //아이디 중복 검사
+    @Override
+    public int checkId(String userId) {
+        return this.userDao.existId(userId);
+    }
+
+
     @Override
     public List<UserVo> retrieveUserList() {
         return this.userDao.selectUserList();

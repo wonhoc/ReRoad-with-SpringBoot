@@ -2,12 +2,12 @@ package com.example.board.service;
 
 import com.example.board.dao.BoardDao;
 import com.example.board.vo.BoardVo;
-import com.example.common.SearchVO;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Map;
+
 
 @Service
 public class BoardServiceImpl implements BoardService{

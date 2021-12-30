@@ -1,10 +1,7 @@
 package com.example.board.dao;
 
 import com.example.board.vo.BoardVo;
-import com.example.common.SearchVO;
-
 import java.util.List;
-import java.util.Map;
 
 public interface BoardDao {
 

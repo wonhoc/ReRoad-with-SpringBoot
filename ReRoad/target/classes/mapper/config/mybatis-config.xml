@@ -6,6 +6,8 @@
 	<typeAliases>
 		<typeAlias type="com.example.member.vo.UserVo" alias="UserVo" />
 		<typeAlias type="com.example.board.vo.BoardVo" alias="BoardVo" />
-	</typeAliases>
+		<typeAlias type="com.example.member.vo.MailVo" alias="MailVo" />
+ 	</typeAliases>
+
 </configuration>
 

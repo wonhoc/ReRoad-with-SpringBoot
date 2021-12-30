@@ -5,6 +5,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Map;
 
 @Repository
@@ -28,5 +29,17 @@ public class UserDaoImpl implements UserDao{
     @Override
     public void insertUser(Map map) { this.sqlSession.selectOne("Member.inputUser", map);}
     ;
+
+    //회원정보조회
+    @Override
+    public List<UserVo> selectUserList() {
+        return this.sqlSession.selectList("Member.selectAll");
+    }
+
+    //회원강제탈퇴시 회원 삭제
+    @Override
+    public void deleteUserForce(String userId) {
+        this.sqlSession.delete("Member.deleteUserForce", userId);
+    }
 
 }

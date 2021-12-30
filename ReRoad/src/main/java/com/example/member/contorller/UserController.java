@@ -7,10 +7,12 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Controller
 public class UserController {
@@ -45,6 +47,36 @@ public class UserController {
 
     @GetMapping("/joinUser")
     public String forJoin() { return "views/member/joinuser";}
+
+    // 관리자의 사용자 정보 조회
+    @GetMapping("/admin/listUser")
+    public String listUser(Model model) {
+        List<UserVo> users = this.userService.retrieveUserList();
+        model.addAttribute("userList", users);
+        return "views/member/listUser";
+    }
+
+
+    // 사용자 정보 조회 ajax
+    @GetMapping("/admin/getList")
+    public @ResponseBody List<UserVo> userList() {
+        List<UserVo> users = this.userService.retrieveUserList();
+        return users;
+    }
+
+
+    // 선택회원 강제 탈퇴
+    @RequestMapping(value = "/admin/deleteUserList", method = RequestMethod.POST)
+    public @ResponseBody Map<String, Object> userListDelete(@RequestBody String[] valueArr, Model model) {
+        int size = valueArr.length;
+        for (int i = 0; i<size; i++){
+            this.userService.removeUserForce(valueArr[i]);
+        }
+        Map<String, Object> map = new HashMap<String, Object>();
+        List<UserVo> users = this.userService.retrieveUserList();
+        map.put("userList", users);
+        return map;
+    }
 
 
 }

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Member">
+
+    <!-- Security 로그인 ResultMap -->
+    <resultMap id="loginMap" type="UserVo">
+        <id property="userId" javaType="string" jdbcType="VARCHAR" column="userId" />
+        <id property="userPwd" javaType="string" jdbcType="VARCHAR"  column="userPwd" />
+        <id property="role" javaType="string" jdbcType="VARCHAR" column="role" />
+    </resultMap>
+
+    <!-- Security 로그인 -->
+    <select id="getUserById" parameterType="string" resultType="UserVo" resultMap="loginMap">
+        SELECT userId, userPwd, userNick, role
+        FROM user_info
+        WHERE userId = #{userId}
+
+    </select>
+    <!-- 회원 정보의 ResultMap -->
+    <resultMap id="infoMap" type="UserVo">
+        <id property="userId" javaType="string" jdbcType="VARCHAR" column="userId" />
+        <id property="userNick" javaType="string" jdbcType="VARCHAR"  column="userNick" />
+        <id property="role" javaType="string" jdbcType="VARCHAR" column="role" />
+    </resultMap>
+
+    <!-- 아이디를 통해 회원 정보 반환, 필요한 회원 정보가 있다면 추가할 것. -->
+    <select id="getInfoFromDB" parameterType="string" resultType="UserVo" resultMap="infoMap">
+        SELECT userId, userNick, role
+        FROM user_info
+        WHERE userId = #{userId}
+    </select>
+
+    <!--회원가입 -->
+    <insert id="inputUser" parameterType="hashMap">
+        INSERT INTO user_info(userId, userPwd, userNick, role, joinDate )
+        VALUES (#{userId}, #{userPwd}, #{userNick}, #{role}, NOW() )
+
+    </insert>
+
+
+</mapper>
+

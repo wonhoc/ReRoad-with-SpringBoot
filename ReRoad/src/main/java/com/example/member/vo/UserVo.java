@@ -15,7 +15,7 @@ public class UserVo {
     private String photoOrigin;
     private String photoSys;
     private String joinDate;
-    private String exitTytpe;
+    private String exitType;
 
 
 }

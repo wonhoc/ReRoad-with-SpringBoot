@@ -78,3 +78,13 @@
     border-color: RGB(1,121,122);
     font-weight: bolder;
 }
+
+.btn.btn-primary[disabled] {
+    background-color: #5e5e5e;
+    border-color: #5e5e5e;
+}
+.btn.btn-primary:enabled {
+    background-color: RGB(1,121,122);
+    border-color: RGB(1,121,122);
+    font-weight: bolder;
+}

@@ -9,6 +9,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 public class NoticeVO {
+
     private int noticeNo;
     private String userId;
     private String noticeTitle;

@@ -39,6 +39,26 @@
 
     </insert>
 
+    <!-- 관리자가 회원의 상세정보를 조회한다 -->
+    <resultMap type="UserVo" id="userResultMap">
+        <id column="userId" jdbcType="VARCHAR" javaType="string" property="userId"/>
+        <result column="userNick" jdbcType="VARCHAR" javaType="string" property="userNick"/>
+    </resultMap>
+    <select id="selectAll" resultMap="userResultMap" statementType="CALLABLE">
+        SELECT u.userId, u.userNick,(SELECT COUNT(*) FROM report re WHERE re.userId = u.userId )
+            as reportCount FROM user_info u;
+    </select>
+
+    <!-- 회원 강제탈퇴-->
+    <delete id="deleteUserForce" statementType="CALLABLE" parameterType="string">
+        { call sp_user_deleteForce(#{userid}) }
+    </delete>
+
+    <!-- 회원 자진탈퇴-->
+    <delete id="deleteUser" statementType="CALLABLE" parameterType="string">
+        { call sp_user_delete(#{userid}) }
+    </delete>
+
 
 </mapper>
 

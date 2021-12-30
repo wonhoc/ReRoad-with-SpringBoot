@@ -9,11 +9,13 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.TransactionSynchronizationManager;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -41,6 +43,17 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     public void registUser(Map map, String userId) {
         this.userDao.insertUser(map);
+    }
+
+    @Override
+    public List<UserVo> retrieveUserList() {
+        return this.userDao.selectUserList();
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED)
+    public void removeUserForce(String userId) {
+        this.userDao.deleteUserForce(userId);
     }
 
 

@@ -21,6 +21,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         log.info("security config...");
+        http.csrf().disable();
         //Root 페이지 : 모든 권한 접속 가능
         http.authorizeHttpRequests().antMatchers("/").permitAll();
         http.authorizeHttpRequests().antMatchers("/member/**").authenticated();

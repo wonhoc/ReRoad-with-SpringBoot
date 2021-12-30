@@ -5,6 +5,13 @@
 <configuration>
 	<typeAliases>
 		<typeAlias type="com.example.member.vo.UserVo" alias="UserVo" />
+
+		<typeAlias type="com.example.board.vo.BoardVO" alias="boardVO"/>
+		<typeAlias type="com.example.board.vo.RecomVO" alias="recomVO"/>
+		<typeAlias type="com.example.board.vo.ReportVO" alias="reportVO"/>
+		<typeAlias type="com.example.board.vo.CommentVO" alias="commentVO"/>
+		<typeAlias type="com.example.board.vo.BoardFileVO" alias="boardFileVO"/>
+
 	</typeAliases>
 </configuration>
 

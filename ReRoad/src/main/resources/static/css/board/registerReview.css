@@ -1,0 +1,19 @@
+.btn-primary {
+    background-color: RGB(1,121,122);
+    border-color: RGB(1,121,122);
+    font-weight: bolder;
+}
+/*로그인 버튼 마우스 오버 시 디자인 */
+.btn-primary:hover {
+    background-color: #27B8B9;
+    border-color: #27B8B9;
+}
+#boardContent{
+    height: 300px;
+    margin-top: 20px;
+    width: 700px;
+}
+#boardTitle{
+    margin-top: 80px;
+    width: 700px;
+}

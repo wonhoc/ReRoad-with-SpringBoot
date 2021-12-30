@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout/defaultLayout">
+<th:block layout:fragment="css">
+    <link rel="stylesheet" th:href="@{/css/review/registerReview.css}">
+</th:block>
+<th:block layout:fragment="script">
+    <script th:src="@{/js/review/reviewRegister.js}"></script>
+</th:block>
+<head>
+
+</head>
+<section layout:fragment="content">
+
+    <div class="container">
+
+        <form name="form" id="form" role="form" method="post" th:action="@{/fileUpload}"
+              enctype="multipart/form-data">
+
+            <input type="text" class="form-control" name="boardTitle" id="boardTitle" placeholder="제목을 입력해주세요">
+
+            <div class="mb-3">
+                <input type="text" class="form-control" name="boardContent" id="boardContent"
+                       placeholder="내용을 입력해주세요">
+            </div>
+
+            <div class="mb-3">
+                <label for="boardFileInput">파일</label> <input type="file" class="form-fileInput" id="boardFileInput" name="boardFileInput" multiple>
+            </div>
+
+            <button  type="button" class="btn btn-sm btn-primary" id="saveBtn">글쓰기</button>
+
+        </form>
+    </div>
+
+</section>
+</html>

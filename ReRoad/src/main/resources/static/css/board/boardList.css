@@ -1,0 +1,38 @@
+@charset "UTF-8";
+
+.cardBox {
+    align-content: center;
+    display: flex;
+    flex-flow: wrap;
+    margin-left: 2.5em;
+}
+
+#board {
+    border: 1px solid teal;
+    box-shadow: 3px 3px 5px 0px rgb(99 99 99 / 52%);
+    width: 400px;
+}
+
+.images{
+    width: 20px;
+    height: 20px;
+}
+.cardThumnail{
+    height: 10em;
+    width: 15em;
+}
+#boardTitle{
+font-size: 25px;
+}
+
+#keyfield{
+    width:100px; height: 40px; float:left;
+}
+
+#keyword{
+    height: 40px; width: 700px; float:left;
+}
+#searchBtn{
+    background-color: #27B8B9;
+    border-color: #27B8B9;
+}

@@ -4,5 +4,53 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="Board">
 
-</mapper>
+    <!-- 게시글 리스트 -->
+    <resultMap id="resultMapSelectList" type="boardVO">
+        <result property="userNick" javaType="string" column="userNick" jdbcType="VARCHAR" />
+        <result property="boardTitle" javaType="string" column="boardTitle" jdbcType="VARCHAR" />
+        <result property="boardWdate" javaType="string" column="boardWdate" jdbcType="VARCHAR" />
+        <result property="commentCount" javaType="int" column="commentCount" jdbcType="INTEGER" />
+    </resultMap>
 
+    <!-- 게시글 작성 -->
+    <parameterMap type="boardVO" id="boardCreateMap">
+        <parameter property="userId" javaType="string" jdbcType="VARCHAR" mode="IN" />
+        <parameter property="boardTitle" javaType="string" jdbcType="VARCHAR" mode="IN" />
+        <parameter property="boardContent" javaType="string" jdbcType="VARCHAR" mode="IN" />
+    </parameterMap>
+
+    <!-- 파일등록 -->
+    <parameterMap type="boardFileVO" id="boardFileCreateMap">
+        <parameter property="boardfileOrigin" javaType="string" jdbcType="VARCHAR" mode="IN" />
+        <parameter property="boardfileSys" javaType="string" jdbcType="VARCHAR" mode="IN" />
+        <parameter property="boardfileSize" javaType="long" jdbcType="INTEGER" mode="IN" />
+        <parameter property="boardNo" javaType="int" jdbcType="TINYINT" mode="IN" />
+    </parameterMap>
+
+
+
+    <!-- 게시글 작성 -->
+    <insert id="insertBoardCall" parameterType="BoardVo"
+            statementType="CALLABLE" parameterMap="boardCreateMap">
+        {call sp_write_board(?,?,?) }
+    </insert>
+
+    <!-- 게시글파일등록 -->
+    <insert id="insertBoardFileCall" parameterType="BoardFileVo"
+            statementType="CALLABLE" parameterMap="boardFileCreateMap">
+        {call sp_insert_boardfile(?,?,?,?) }
+    </insert>
+
+    <!-- 라스트 아이디 -->
+    <select id="lastId" resultType="int" statementType="CALLABLE">
+        { call sp_lastId() }
+    </select>
+
+    <!-- 게시글 리스트 -->
+    <select id="selectCardBoardList" statementType="STATEMENT" resultMap="resultMapSelectList">
+        SELECT b.boardNo, b.boardTitle,b.boardContent, u.userNick, DATE_FORMAT(b.boardWdate, '%Y-%m-%d') as boardWdate, b.boardCount
+        FROM board as b left join user_info as u using(userId)
+        ORDER BY b.boardWdate DESC;
+    </select>
+
+</mapper>

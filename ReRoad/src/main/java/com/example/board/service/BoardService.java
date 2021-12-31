@@ -1,6 +1,7 @@
 package com.example.board.service;
 
 import com.example.board.vo.BoardVo;
+import com.example.board.vo.CommentVo;
 
 
 import java.util.List;
@@ -21,6 +22,9 @@ public interface BoardService {
     //게시글 상세보기
     BoardVo retrieveDetail(int boardNo);
 
+    //댓글
     List retrieveComList(int boardNo);
+    void registerComment(CommentVo comment);
+    void modifyComment(CommentVo comment);
 
 }

@@ -41,7 +41,7 @@
 
     <!-- 댓글 -->
     <!-- 댓글 조회 -->
-    <parameterMap type="commentVO" id="commmentList">
+    <parameterMap type="commentVO" id="paramMapCommentList">
         <parameter property="boardNo" javaType="int" jdbcType="INTEGER" mode="IN" />
     </parameterMap>
 
@@ -50,6 +50,16 @@
         <parameter property="boardNo" javaType="int" jdbcType="INTEGER" mode="IN" />
         <parameter property="userId" javaType="string" jdbcType="VARCHAR" mode="IN" />
         <parameter property="comContent" javaType="string" jdbcType="VARCHAR" mode="IN" />
+
+    </parameterMap>
+
+
+    <!-- 댓글작성 -->
+    <parameterMap type="commentVO" id="commentModifyMap">
+        <parameter property="boardNo" javaType="int" jdbcType="INTEGER" mode="IN" />
+        <parameter property="userId" javaType="string" jdbcType="VARCHAR" mode="IN" />
+        <parameter property="comContent" javaType="string" jdbcType="VARCHAR" mode="IN" />
+        <parameter property="comNo" javaType="int" jdbcType="INTEGER" mode="IN" />
     </parameterMap>
 
 
@@ -97,5 +107,9 @@
         {call sp_write_comment(?,?,?) }
     </insert>
 
+    <!-- 댓글 수정 -->
+    <update id="commentUpdate" statementType="CALLABLE" parameterType="commentVO" parameterMap="commentModifyMap">
+        { call sp_comment_modify(?, ?)}
+    </update>
 </mapper>
 

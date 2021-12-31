@@ -12,8 +12,8 @@ $(document).ready(function() {
 
     //아이디 중복 체크
 
-
 <<<<<<< HEAD
+
 
     $('#username').bind('focusout', function() {
         const userId = $('#username').val();
@@ -139,6 +139,7 @@ $(document).ready(function() {
                 ));
             }
 
+
             // 인증 번호 검증
             $('#veriNumber').bind('keyup', function () {
                 const inputNum = $('#veriNumber').val();
@@ -151,7 +152,6 @@ $(document).ready(function() {
                     $('#checkVeriNumber').text("인증번호가 일치하지 않습니다.");
                     $('#checkVeriNumber').css('color', 'red');
 
-
                 }
             })
 
@@ -161,10 +161,6 @@ $(document).ready(function() {
                 $('#joinFormTwo').show();
 
             })
- 
+
 })
 
-<<<<<<< HEAD
-    })
-=======
->>>>>>> d8c965a11a4c829ae895a9aa5650008e07004dce

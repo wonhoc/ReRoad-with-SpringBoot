@@ -1,6 +1,8 @@
 package com.example.board.dao;
 
 import com.example.board.vo.BoardVo;
+import com.example.board.vo.CommentVo;
+
 import java.util.List;
 import java.util.Map;
 
@@ -19,4 +21,7 @@ public interface BoardDao {
 
     //댓글
     List selectComList(int boardNo);
+    void insertCom(CommentVo comment);
+    void updateCom(CommentVo comment);
+
 }

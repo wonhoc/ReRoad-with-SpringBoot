@@ -65,4 +65,14 @@ public class BoardDaoImpl implements BoardDao {
         List<CommentVo> list = this.sqlSession.selectList("Board.commmentList",boardNo);
         return list;
     }
+
+    @Override
+    public void insertCom(CommentVo comment) {
+        this.sqlSession.insert("Board.commmentInsert", comment);
+    }
+
+    @Override
+    public void updateCom(CommentVo comment) {
+        this.sqlSession.update("Board.commentUpdate", comment);
+    }
 }

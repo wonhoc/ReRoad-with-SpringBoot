@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+
       layout:decorate="layout/defaultLayout">
 <th:block layout:fragment="css">
     <link rel="stylesheet" th:href="@{/css/board/detailBoard.css}">
@@ -13,6 +14,8 @@
 
 </head>
 <section layout:fragment="content">
+
+    <input type="hidden" th:value="${board.boardNo}" id="boardNo">
 
     <div class="container">
 
@@ -33,9 +36,58 @@
             </tr>
         </table>
 
-        <table>
+        <button type="button" class="btn btn-success" id="recomBtn">추천</button>
+        <button type="button" class="btn btn-warning" id="reportBtn">신고</button>
 
+
+
+        <table id="listComment">
+            <thead>
+            <tr>
+                <td align="center" width="100px;" class="comW">작성자</td>
+                <td align="center" width="100px;" class="comWda">날짜</td>
+                <td align="center" width="400px;" class="comCt">내용</td>
+                <td></td>
+                <td></td>
+            </tr>
+            </thead>
+            <tbody th:each="comment : ${commentList}" th:id="${comment.comNo}">
+            <tr>
+                <td th:text="${comment.comNo}"></td>
+                <td  th:text="${comment.userNick}"></td>
+                <td  th:text="${comment.comWdate}"></td>
+                <td  class="comContent" th:text="${comment.comContent}"></td>
+                <td ><button id="updateComBtn" class="modifyComReqBtn" type="button">수정</button></td>
+                <td><button id="removeBtn">삭제</button></td>
+            </tr>
+            </tbody>
         </table>
+
+
+        <div id="addComment">
+            <div>
+                <textarea id="comContent" rows="5" cols="50"
+                              placeholder="댓글을 입력해주세요 ."></textarea>
+            </div>
+            <button id="addComBtn">댓글 달기</button>
+            <div id="resultCom">
+
+            </div>
+        </div>
+        <div id="modifyComment" style="display: none;">
+            <div>
+                <input type="hidden" id="comNo">
+                <textarea id="modifyComContent" rows="5" cols="50"
+                          placeholder="댓글을 입력해주세오 ."></textarea>
+            </div>
+
+            <div>
+                <button id="cancel">취소</button>
+                <button id="modifyComBtn">수정하기</button>
+            </div>
+        </div>
+
+
 
     </div>
 </section>

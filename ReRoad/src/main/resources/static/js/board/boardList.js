@@ -14,12 +14,11 @@ $(document).ready(function() {
             }),
             success: function (data) {
                 let boardList = data.results;
+
                 $('#html').html("");
                 let str = "";
 
-
                 for (let i = 0; i< boardList.length ; i++){
-
                     str +='<table id="boardTable">' +
                                 '<tr>' +
                                     '<td rowSpan="2" colSpan="2"><img height="210px;" width="210px;" className="thumnail" src="/images/board/king.png"></td>' +

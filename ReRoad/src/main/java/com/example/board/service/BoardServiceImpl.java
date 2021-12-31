@@ -59,4 +59,14 @@ public class BoardServiceImpl implements BoardService{
         return list;
 
     }
+
+    @Override
+    public void registerComment(CommentVo comment) {
+        this.boardDao.insertCom(comment);
+    }
+
+    @Override
+    public void modifyComment(CommentVo comment) {
+        this.boardDao.updateCom(comment);
+    }
 }

@@ -1,12 +1,15 @@
 package com.example.board.controller;
 
 import com.example.board.service.BoardService;
-
 import com.example.board.vo.BoardVo;
+import com.example.board.vo.CommentVo;
 import com.example.common.SearchVO;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import org.springframework.web.bind.annotation.*;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -38,8 +41,34 @@ public class BoardRestController {
         }
 
         map.put("results",list);
-
         return map;
     }
+
+    @PostMapping("/createComment")
+    public Map createComment(@RequestBody CommentVo comment, @AuthenticationPrincipal User principal){
+        HashMap<String, Object> map = new HashMap<String, Object>();
+        int boardNo = comment.getBoardNo();
+        comment.setUserId(principal.getUsername());
+
+        this.boardService.registerComment(comment);
+        List<CommentVo> list = this.boardService.retrieveComList(boardNo);
+
+        map.put("results",list);
+        return map;
+    }
+
+    @PostMapping("/modityComment")
+    public Map updateComment(@RequestBody CommentVo comment, @AuthenticationPrincipal User principal){
+        HashMap<String, Object> map = new HashMap<String, Object>();
+        int boardNo = comment.getBoardNo();
+        comment.setUserId(principal.getUsername());
+
+        System.out.println("commentgetComNo : "+comment.getComNo());
+        this.boardService.modifyComment(comment);
+        List<CommentVo> list = this.boardService.retrieveComList(boardNo);
+        map.put("results",list);
+        return map;
+    }
+
 
 }

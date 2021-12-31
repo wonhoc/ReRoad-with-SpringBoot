@@ -25,7 +25,6 @@
     </resultMap>
 
 
-
     <!--게시글 상세조회 -->
     <parameterMap type="int" id="paramMapSelectDetail">
         <parameter property="boardNo" javaType="int" jdbcType="INTEGER" mode="IN" />
@@ -36,6 +35,17 @@
     <parameterMap type="string" id="searchparam">
         <parameter property="keyfield" javaType="string" jdbcType="VARCHAR" mode="IN" />
     </parameterMap>
+
+
+
+
+    <!-- 추천 -->
+    <!-- 추천등록 -->
+    <parameterMap id="parameterRecomMap" type="RecomVo">
+        <parameter property="boardNo" javaType="int" jdbcType="INTEGER" mode="IN" />
+        <parameter property="userId" javaType="string" jdbcType="VARCHAR" mode="IN" />
+    </parameterMap>
+
 
 
 
@@ -54,14 +64,17 @@
     </parameterMap>
 
 
-    <!-- 댓글작성 -->
+    <!-- 댓글수정 -->
     <parameterMap type="commentVO" id="commentModifyMap">
-        <parameter property="boardNo" javaType="int" jdbcType="INTEGER" mode="IN" />
-        <parameter property="userId" javaType="string" jdbcType="VARCHAR" mode="IN" />
         <parameter property="comContent" javaType="string" jdbcType="VARCHAR" mode="IN" />
         <parameter property="comNo" javaType="int" jdbcType="INTEGER" mode="IN" />
     </parameterMap>
 
+
+    <!-- 댓글 삭제 -->
+    <parameterMap type="int" id="commentDeleteMap">
+        <parameter property="comNo" javaType="int" jdbcType="INTEGER" mode="IN" />
+    </parameterMap>
 
     <!-- 게시글 목록 -->
     <!-- 게시글 목록조회 -->
@@ -95,6 +108,10 @@
         { call sp_board_detail(?) }
     </select>
 
+    <update id="boardUphit" statementType="CALLABLE" parameterMap ="paramMapCommentList" parameterType="int">
+        { call sp_board_uphit(?) }
+    </update>
+
 
     <!-- 댓글 -->
     <!-- 댓글 조회 -->
@@ -110,6 +127,16 @@
     <!-- 댓글 수정 -->
     <update id="commentUpdate" statementType="CALLABLE" parameterType="commentVO" parameterMap="commentModifyMap">
         { call sp_comment_modify(?, ?)}
+    </update>
+
+    <!-- 댓글 삭재 -->
+    <update id="commentDelete" statementType="CALLABLE" parameterType="int" parameterMap="commentDeleteMap">
+        { call sp_comment_delete(?)}
+    </update>
+
+    <!-- 추천등록 -->
+    <update id="recomUpdate" statementType="CALLABLE" parameterType="RecomVo" parameterMap="parameterRecomMap">
+        { call sp_board_recomUpdate(?, ?) }
     </update>
 </mapper>
 

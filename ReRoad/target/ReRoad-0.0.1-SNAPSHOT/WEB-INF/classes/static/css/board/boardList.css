@@ -1,0 +1,22 @@
+.boardImg{
+    width: 20px;
+    height: 20px;
+}
+.thumnail{
+    height: 210px;
+    width: 210px;
+}
+#boardTable{
+    float : left;
+    border: 2px solid teal;
+    margin-left: 50px;
+    margin-bottom: 30px;
+    width: 420px;
+    height: 300px;
+}
+.btn-primary {
+    background-color: RGB(1,121,122);
+    border-color: RGB(1,121,122);
+    font-weight: bolder;
+}
+

@@ -8,6 +8,8 @@
 		<typeAlias type="com.example.board.vo.BoardVo" alias="BoardVo" />
 		<typeAlias type="com.example.member.vo.MailVo" alias="MailVo" />
 		<typeAlias type="com.example.board.vo.CommentVo" alias="CommentVo" />
+		<typeAlias type="com.example.board.vo.RecomVo" alias="RecomVo" />
+
  	</typeAliases>
 
 </configuration>

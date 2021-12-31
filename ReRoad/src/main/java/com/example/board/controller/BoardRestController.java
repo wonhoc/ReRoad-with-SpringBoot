@@ -7,10 +7,9 @@ import com.example.common.SearchVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.User;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -65,6 +64,19 @@ public class BoardRestController {
 
         System.out.println("commentgetComNo : "+comment.getComNo());
         this.boardService.modifyComment(comment);
+        List<CommentVo> list = this.boardService.retrieveComList(boardNo);
+        map.put("results",list);
+        return map;
+    }
+
+    @PostMapping("/removeComment")
+    public Map deleteComment(@RequestBody CommentVo comment, @AuthenticationPrincipal User principal){
+        HashMap<String, Object> map = new HashMap<String, Object>();
+        int boardNo = comment.getBoardNo();
+        comment.setUserId(principal.getUsername());
+        System.out.println("commentgetComNo : "+comment.getComNo());
+
+        this.boardService.removeComment(comment.getComNo());
         List<CommentVo> list = this.boardService.retrieveComList(boardNo);
         map.put("results",list);
         return map;

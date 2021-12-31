@@ -46,9 +46,8 @@ public class BoardController {
     @GetMapping("/detailBoard/{boardNo}")
 
     public String boardDetail(@PathVariable int boardNo, Model model, @AuthenticationPrincipal User principal){
-
+        this.boardService.updateUphit(boardNo);
         BoardVo board = boardService.retrieveDetail(boardNo);
-
         List<CommentVo> comlist = this.boardService.retrieveComList(boardNo);
 
         System.out.println("comlist : " + comlist);

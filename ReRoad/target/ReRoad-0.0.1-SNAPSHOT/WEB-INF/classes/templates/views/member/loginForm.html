@@ -15,43 +15,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>로그인 페이지</title>
 </head>
-    <section layout:fragment="content">
+<section layout:fragment="content">
 
-        <div class="loginContainer">
-            <div class="welcome_login">
-                    <h1 class="form-signin-heading">로그인</h1>
-                <div class = "title_devide"></div>
-                <div class="welcome_text">
-                    여행의 시작, ReRoad와 함께하세요.<br>
-                    로그인하시면 보다 다양한 서비스를 누리실 수 있습니다.
+    <div class="loginContainer">
+        <div class="welcome_login">
+            <h1 class="form-signin-heading">로그인</h1>
+            <div class = "title_devide"></div>
+            <div class="welcome_text">
+                여행의 시작, ReRoad와 함께하세요.<br>
+                로그인하시면 보다 다양한 서비스를 누리실 수 있습니다.
 
-                </div>
             </div>
-
-            <form class="form_signin" method="POST">
-                <div class="inputidpwd">
-                    <label class = "idcss" for="userName">ID</label>
-                    <input class="form-control" type="text" id="username" name="username" placeholder="Example01@email.com"/>
-
-
-                    <label class= "pwcss" for="password">Password</label>
-                    <input class="form-control" type="password" id="password" name="password" placeholder="Input Password"/>
-                </div>
-
-                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
-                <button type="submit" class="btn btn-primary btn-lg btn-block">로그인</button>
-                <div class="join_devide"/>
-                <div class="snslogin"></div>
-
-                <div class="otherSelect" th:align="right">
-                    아이디가 없다면 <strong><a th:href ="@{/joinUser}">회원가입</a></strong><br>
-                    비밀번호를 잊어버렸다면 <strong><a href="">비밀번호 찾기</a></strong>
-
-                </div>
-
-
-            </form>
         </div>
 
-    </section>
+        <form class="form_signin" method="POST">
+            <div class="inputidpwd">
+                <label class = "idcss" for="userName">ID</label>
+                <input class="form-control" type="text" id="username" name="username" placeholder="Example01@email.com"/>
+
+
+                <label class= "pwcss" for="password">Password</label>
+                <input class="form-control" type="password" id="password" name="password" placeholder="Input Password"/>
+            </div>
+
+<!--            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>-->
+            <button type="submit" class="btn btn-primary btn-lg btn-block">로그인</button>
+            <div class="join_devide"/>
+            <div class="snslogin"></div>
+
+            <div class="otherSelect" th:align="right">
+                아이디가 없다면 <strong><a th:href ="@{/joinUser}">회원가입</a></strong><br>
+                비밀번호를 잊어버렸다면 <strong><a href="">비밀번호 찾기</a></strong>
+
+            </div>
+
+
+
+        </form>
+    </div>
+
+</section>
 </html>

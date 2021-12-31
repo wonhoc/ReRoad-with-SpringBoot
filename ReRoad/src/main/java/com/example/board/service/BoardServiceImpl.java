@@ -4,6 +4,7 @@ import com.example.board.dao.BoardDao;
 import com.example.board.vo.BoardVo;
 
 import com.example.board.vo.CommentVo;
+import com.example.board.vo.RecomVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +21,11 @@ public class BoardServiceImpl implements BoardService{
     @Override
     public List<BoardVo> retrieveList() {
         return this.boardDao.readAll();
+    }
+
+    @Override
+    public void updateUphit(int boardNo) {
+        this.boardDao.upHit(boardNo);
     }
 
     @Override
@@ -68,5 +74,15 @@ public class BoardServiceImpl implements BoardService{
     @Override
     public void modifyComment(CommentVo comment) {
         this.boardDao.updateCom(comment);
+    }
+
+    @Override
+    public void removeComment(int comNo) {
+        this.boardDao.deleteCom(comNo);
+    }
+
+    @Override
+    public void registerRecom(RecomVo recom) {
+        this.boardDao.insertRecom(recom);
     }
 }

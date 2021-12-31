@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout/defaultLayout">
+<th:block layout:fragment="css">
+    <link rel="stylesheet" th:href="@{/css/member/deleteUser.css}">
+</th:block>
+<head>
+</head>
+<section layout:fragment="content">
+    <div class="container">
+    <section class="exit">
+        <div class="exit_title_box">
+            <h1 class="exit_title">회원탈퇴</h1>
+            <div class="exit_devide"></div>
+            <h3 class="exit_notice">★정말로 탈퇴하시겠습니까?</h3>
+        </div>
+
+        <form
+                action="/member/deleteUser"
+                method="POST"
+        >
+            <div class="exit_text_box">
+                <p class="exit_text">
+                    지금 탈퇴하시면 기존의 작성한 게시글, 댓글 등 회원님의 카페 관련 활동내역들이 삭제됩니다.
+                    탈퇴 후 재가입은 7일 이후에 가능합니다. <br />
+                    정말 탈퇴하시겠습니까?
+                </p>
+            </div>
+            <div class="btn_box">
+                <button class="exit_btn" type="submit">확인</button>
+            </div>
+        </form>
+    </section>
+    </div>
+</section>
+
+</html>

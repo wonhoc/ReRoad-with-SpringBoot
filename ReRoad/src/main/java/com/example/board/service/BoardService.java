@@ -2,6 +2,7 @@ package com.example.board.service;
 
 import com.example.board.vo.BoardVo;
 import com.example.board.vo.CommentVo;
+import com.example.board.vo.RecomVo;
 
 
 import java.util.List;
@@ -12,6 +13,7 @@ public interface BoardService {
 
     //게시글 목록보기
     List<BoardVo> retrieveList();
+    void updateUphit(int boardNo);
 
     //게시글 검색
     List retrieveSearchWhole(String keyword);
@@ -26,5 +28,9 @@ public interface BoardService {
     List retrieveComList(int boardNo);
     void registerComment(CommentVo comment);
     void modifyComment(CommentVo comment);
+    void removeComment(int comNo);
+
+    //추천
+    void registerRecom(RecomVo recom);
 
 }

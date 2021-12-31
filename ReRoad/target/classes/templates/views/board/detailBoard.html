@@ -28,7 +28,7 @@
             </thead>
             <tr id="tablebody">
                 <td>작성일자 <span th:text="${board.boardWdate}"></span></td>
-                <td><img class="images" src="/images/board/view.png">조회수<span th:text="${board.boardContent}"></span></td>
+                <td><img class="images" src="/images/board/view.png">조회수<span th:text="${board.boardCount}"></span></td>
                 <td><img class="images" src="/images/board/commentCount.png">추천수<span th:text="${board.recomCount}"></span></td>
             </tr>
             <tr>
@@ -53,12 +53,12 @@
             </thead>
             <tbody th:each="comment : ${commentList}" th:id="${comment.comNo}">
             <tr>
-                <td th:text="${comment.comNo}"></td>
+
                 <td  th:text="${comment.userNick}"></td>
                 <td  th:text="${comment.comWdate}"></td>
                 <td  class="comContent" th:text="${comment.comContent}"></td>
                 <td ><button id="updateComBtn" class="modifyComReqBtn" type="button">수정</button></td>
-                <td><button id="removeBtn">삭제</button></td>
+                <td><button class="removeBtn">삭제</button></td>
             </tr>
             </tbody>
         </table>

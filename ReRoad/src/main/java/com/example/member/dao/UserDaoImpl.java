@@ -25,8 +25,6 @@ public class UserDaoImpl implements UserDao {
         return this.sqlSession.selectOne("Member.getInfoFromDB", username);
     }
 
-    ;
-
     // 회원 가입
     @Override
 

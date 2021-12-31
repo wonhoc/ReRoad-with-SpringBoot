@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 
 @Service
@@ -22,22 +23,32 @@ public class BoardServiceImpl implements BoardService{
 
     @Override
     public List retrieveSearchWhole(String keyword) {
-        return this.boardDao.selectSearchWhole(keyword);
+       List<BoardVo> list = this.boardDao.selectSearchWhole(keyword);
+       return list;
     }
 
     @Override
     public List retrieveSearchTitle(String keyword) {
         List<BoardVo> list = this.boardDao.selectSearchTitle(keyword);
         return list;
+
     }
 
     @Override
     public List retrieveSearchContent(String keyword) {
-       return  this.boardDao.selectSearchContent(keyword);
+        List<BoardVo> list = this.boardDao.selectSearchContent(keyword);
+        return list;
     }
 
     @Override
     public List retrieveSearchUserNick(String keyword) {
-        return this.boardDao.selectSearchUserNick(keyword);
+        List<BoardVo> list = this.boardDao.selectSearchUserNick(keyword);
+        return list;
+    }
+
+    @Override
+    public BoardVo retrieveDetail(int boardNo) {
+        BoardVo board = this.boardDao.selectDetailBoard(boardNo);
+        return board;
     }
 }

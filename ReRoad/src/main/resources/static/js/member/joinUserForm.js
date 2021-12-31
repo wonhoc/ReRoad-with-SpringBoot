@@ -128,6 +128,7 @@ $(document).ready(function() {
 
         }
     })
+
     //
     $('#nextButton').click(function () {
         $('#joinFormOne').hide();

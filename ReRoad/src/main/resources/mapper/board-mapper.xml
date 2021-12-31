@@ -25,6 +25,7 @@
     </resultMap>
 
 
+
     <!--게시글 상세조회 -->
     <parameterMap type="int" id="paramMapSelectDetail">
         <parameter property="boardNo" javaType="int" jdbcType="INTEGER" mode="IN" />
@@ -35,6 +36,7 @@
     <parameterMap type="string" id="searchparam">
         <parameter property="keyfield" javaType="string" jdbcType="VARCHAR" mode="IN" />
     </parameterMap>
+
 
 
     <!-- 댓글 -->
@@ -77,6 +79,7 @@
     <select id="boardDetail" statementType="CALLABLE" resultMap="resultMapSelectList" parameterType="int" parameterMap="paramMapSelectDetail">
         { call sp_board_detail(?) }
     </select>
+
 
 
     <!-- 댓글 작성 -->

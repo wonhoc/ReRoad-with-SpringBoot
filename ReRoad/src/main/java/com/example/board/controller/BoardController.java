@@ -33,10 +33,12 @@ public class BoardController {
     }
 
     @GetMapping("/detailBoard/{boardNo}")
+
     public String boardDetail(@PathVariable int boardNo, Model model){
         System.out.println(boardNo);
         BoardVo board = boardService.retrieveDetail(boardNo);
         System.out.println(board);
+
         model.addAttribute("board", board);
 
         return "views/board/detailBoard";

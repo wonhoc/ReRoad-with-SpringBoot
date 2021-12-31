@@ -11,4 +11,6 @@ public interface UserDao {
     UserVo getUserInfo(String username);
     List<UserVo> selectUserList();
     void deleteUserForce(String userId);
+    String confirmPwd(String userId);
+    void deleteUser(String userId);
 }

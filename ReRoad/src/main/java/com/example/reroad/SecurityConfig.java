@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 @Slf4j
 @EnableWebSecurity
@@ -20,6 +21,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     //페이지 권한 관리
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+
+        //http.csrf();
+//        CookieCsrfTokenRepository cookieCsrfTokenRepository = CookieCsrfTokenRepository.withHttpOnlyFalse();
+//        cookieCsrfTokenRepository.setCookieName("XSRF-TOKEN");
+//        http.csrf().csrfTokenRepository(cookieCsrfTokenRepository);
+
+        http.csrf().disable();
+
         log.info("security config...");
         //Root 페이지 : 모든 권한 접속 가능
         http.authorizeHttpRequests().antMatchers("/").permitAll();
@@ -36,6 +45,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.userDetailsService((UserDetailsService) userService);
 
     }
+
 
     @Bean
     public PasswordEncoder passwordEncoder() {

@@ -11,4 +11,6 @@ public interface UserService {
 
     List<UserVo> retrieveUserList();
     void removeUserForce(String userId);
+    String checkPwd(String userId);
+    void removeUser(String userId);
 }

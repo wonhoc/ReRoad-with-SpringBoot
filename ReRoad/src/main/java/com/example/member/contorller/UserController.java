@@ -3,8 +3,12 @@ package com.example.member.contorller;
 import com.example.member.service.UserService;
 import com.example.member.vo.UserVo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +22,8 @@ import java.util.Map;
 public class UserController {
     @Autowired
     private UserService userService;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Autowired
     public HttpSession session;
@@ -78,5 +84,52 @@ public class UserController {
         return map;
     }
 
+    //비밀번호 일치 확인 후 삭제 페이지 이동
+    @PostMapping("/pwdCheck")
+    public String pwdCheck(Authentication authentication, @RequestParam String userPwd) {
+        UserDetails userDetails = (UserDetails)authentication.getPrincipal();
+        String userId = userDetails.getUsername();
 
+        String checkPwd = this.userService.checkPwd(userId);
+
+        boolean result = passwordEncoder.matches(userPwd, checkPwd);
+
+        if (result) {
+            return "views/member/deleteUser";
+        } else {
+            return "views/member/pwdCheckFail";
+        }
+    }
+
+    //비밀번호 일치하지 않을 시 경고창 띄워주기
+    @GetMapping("/pwdCheckFail")
+    public String loginFailOne() {
+        return "views/member/pwdCheckFail";
+    }
+
+    @GetMapping("/deleteUser")
+    public String deleteUser() {
+        return "views/member/deleteUser";
+    }
+
+    @GetMapping("/exitUser")
+    public String exitUser() {
+        return "views/member/pwdCheck";
+    }
+
+
+    //회원 자진 탈퇴 시 회원정보 삭제
+    @PostMapping("/deleteUser")
+    public String deleteUser(Authentication authentication, HttpSession session){
+        UserDetails userDetails = (UserDetails)authentication.getPrincipal();
+        String userId = userDetails.getUsername();
+
+        this.userService.removeUser(userId);
+
+        session.invalidate();
+
+        System.out.println(userId);
+
+        return "redirect:/main";
+    }
 }

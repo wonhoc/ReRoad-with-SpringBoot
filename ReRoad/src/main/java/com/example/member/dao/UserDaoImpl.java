@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 @Repository
-public class UserDaoImpl implements UserDao{
+public class UserDaoImpl implements UserDao {
     @Autowired
     private SqlSession sqlSession;
 
@@ -23,11 +23,16 @@ public class UserDaoImpl implements UserDao{
     @Override
     public UserVo getUserInfo(String username) {
         return this.sqlSession.selectOne("Member.getInfoFromDB", username);
-    };
-    
+    }
+
+    ;
+
     // 회원 가입
     @Override
-    public void insertUser(Map map) { this.sqlSession.selectOne("Member.inputUser", map);}
+    public void insertUser(Map map) {
+        this.sqlSession.selectOne("Member.inputUser", map);
+    }
+
     ;
 
     //회원정보조회
@@ -42,4 +47,16 @@ public class UserDaoImpl implements UserDao{
         this.sqlSession.delete("Member.deleteUserForce", userId);
     }
 
+    //비밀번호 일치확인
+    @Override
+    public String confirmPwd(String userId) {
+        return this.sqlSession.selectOne("Member.selectPwd", userId);
+    }
+
+    //회원자진탈퇴시 회원 삭제
+    @Override
+    public void deleteUser(String userId) {
+        this.sqlSession.delete("Member.deleteUser", userId);
+
+    }
 }

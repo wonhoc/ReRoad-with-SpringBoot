@@ -1,17 +1,17 @@
 $(document).ready(function() {
     //아이디 중복 체크
-    $('username').bind('focusout', function() {
-       const userId = $('#userId').val();
-       if(userId == "") {
-           $('#checkDbId').text('아이디는 필수 입력 항목입니다.');
-           $('#checkDbId').css('color', 'red');
-           $('#sendVeriNum').attr("disabled", true);
-       } else {
-           idchkProcess('/checkId',userId);
-       }
+    $('username').bind('focusout', function () {
+        const userId = $('#userId').val();
+        if (userId == "") {
+            $('#checkDbId').text('아이디는 필수 입력 항목입니다.');
+            $('#checkDbId').css('color', 'red');
+            $('#sendVeriNum').attr("disabled", true);
+        } else {
+            idchkProcess('/checkId', userId);
+        }
     });
 
-    const getIdAjax = function(url,userId) {
+    const getIdAjax = function (url, userId) {
         return new Promise((resolve, reject) => {
             $.ajax({
                 url: url,
@@ -22,7 +22,7 @@ $(document).ready(function() {
                 success: function (data) {
                     resolve(data);
                 },
-                error : function (e) {
+                error: function (e) {
                     reject(e);
                 }
             });
@@ -32,19 +32,19 @@ $(document).ready(function() {
     async function idchkProcess(url, userId) {
         try {
             const result = await getIdAjax(url, userId);
-            if(result == 'true') {
+            if (result == 'true') {
                 $('#checkDbId').text('사용할 수 없는 아이디입니다.');
-                $('#checkDbId').css('color','red');
+                $('#checkDbId').css('color', 'red');
                 $('#sendVeriNum').attr("disabled", true);
-            } else if(result == 'false') {
+            } else if (result == 'false') {
                 $('#checkDbId').text('사용 가능한 아이디입니다.');
-                $('#checkDbId').css('color','RGB(242,242,242)');
+                $('#checkDbId').css('color', 'RGB(242,242,242)');
                 $('#sendVeriNum').attr("disabled", false);
             }
-        } catch(error) {
+        } catch (error) {
 
         }
 
     }
 
-}
+});

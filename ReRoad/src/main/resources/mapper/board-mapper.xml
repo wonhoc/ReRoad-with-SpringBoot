@@ -40,6 +40,11 @@
 
 
     <!-- 댓글 -->
+    <!-- 댓글 조회 -->
+    <parameterMap type="commentVO" id="commmentList">
+        <parameter property="boardNo" javaType="int" jdbcType="INTEGER" mode="IN" />
+    </parameterMap>
+
     <!-- 댓글작성 -->
     <parameterMap type="commentVO" id="commentCreateMap">
         <parameter property="boardNo" javaType="int" jdbcType="INTEGER" mode="IN" />
@@ -81,6 +86,11 @@
     </select>
 
 
+    <!-- 댓글 -->
+    <!-- 댓글 조회 -->
+    <select id="commmentList" resultMap="resultMapComList" statementType="CALLABLE" parameterMap="paramMapCommentList" parameterType="int" >
+        {call sp_comment_list(?) }
+    </select>
 
     <!-- 댓글 작성 -->
     <insert id="commmentInsert" parameterType="commentVO" statementType="CALLABLE" parameterMap="commentCreateMap">

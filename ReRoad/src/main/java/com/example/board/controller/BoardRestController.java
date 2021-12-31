@@ -39,7 +39,7 @@ public class BoardRestController {
 
         map.put("results",list);
 
-        System.out.println(map);
         return map;
     }
+
 }

@@ -12,14 +12,7 @@ $(document).ready(function() {
 
     //아이디 중복 체크
 
-    $('username').bind('focusout', function () {
-        const userId = $('#userId').val();
-        if (userId == "") {
-            $('#checkDbId').text('아이디는 필수 입력 항목입니다.');
-            $('#checkDbId').css('color', 'red');
-            $('#sendVeriNum').attr("disabled", true);
-        } else {
-            idchkProcess('/checkId', userId);
+
 
     $('#username').bind('focusout', function() {
         const userId = $('#username').val();

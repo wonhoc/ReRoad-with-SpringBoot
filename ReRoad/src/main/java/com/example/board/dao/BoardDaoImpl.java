@@ -2,6 +2,7 @@ package com.example.board.dao;
 
 import com.example.board.vo.BoardVo;
 
+import com.example.board.vo.CommentVo;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -57,5 +58,11 @@ public class BoardDaoImpl implements BoardDao {
 
         return board;
 
+    }
+
+    @Override
+    public List selectComList(int boardNo) {
+        List<CommentVo> list = this.sqlSession.selectList("Board.commmentList",boardNo);
+        return list;
     }
 }

@@ -2,6 +2,7 @@ package com.example.board.controller;
 
 import com.example.board.service.BoardService;
 import com.example.board.vo.BoardVo;
+import com.example.board.vo.CommentVo;
 import com.example.member.vo.UserVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -34,13 +35,18 @@ public class BoardController {
 
     @GetMapping("/detailBoard/{boardNo}")
 
-    public String boardDetail(@PathVariable int boardNo, Model model){
-        System.out.println(boardNo);
+    public String boardDetail(@PathVariable int boardNo, Model model,Authentication authentication, HttpSession session){
+        UserDetails userDetails = (UserDetails)authentication.getPrincipal();
+        String userId = userDetails.getUsername();
+
+
         BoardVo board = boardService.retrieveDetail(boardNo);
+        board.setUserId(userId);
+
+        List<CommentVo> comlist = this.boardService.retrieveComList(boardNo);
         System.out.println(board);
-
         model.addAttribute("board", board);
-
+        model.addAttribute("commentList", comlist);
         return "views/board/detailBoard";
     }
 }

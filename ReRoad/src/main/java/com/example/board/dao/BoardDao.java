@@ -17,5 +17,6 @@ public interface BoardDao {
     //게시글 상세조회
     BoardVo selectDetailBoard(int boardNo);
 
-
+    //댓글
+    List selectComList(int boardNo);
 }

@@ -78,3 +78,21 @@
     border-color: RGB(1,121,122);
     font-weight: bolder;
 }
+/* 버튼 비활성 화 시 색상 */
+.btn.btn-primary[disabled] {
+    background-color: #5e5e5e;
+    border-color: #5e5e5e;
+}
+/*버튼 비활성화 시 마우스 오버 색상 */
+.btn.btn-primary[disabled]:hover {
+    background-color:#cbcbcb ;
+    border-color: #cbcbcb ;
+
+}
+#joinFormTwo {
+    display: none;
+    height: 50em;
+    animation-duration: 5s;
+}
+
+

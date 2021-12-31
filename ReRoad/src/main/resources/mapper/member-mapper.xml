@@ -39,6 +39,18 @@
 
     </insert>
 
+    <!-- 회원 가입 과정에서 아이디 중복 체크 -->
+    <select id="checkId" parameterType="string" resultType="int">
+        SELECT COUNT(*) + (
+            SELECT COUNT(*)
+            FROM exit_user
+            WHERE userId=#{userId}
+        )
+        FROM user_info
+        WHERE userId = #{userId}
+    </select>
+
+
     <!-- 관리자가 회원의 상세정보를 조회한다 -->
     <resultMap type="UserVo" id="userResultMap">
         <id column="userId" jdbcType="VARCHAR" javaType="string" property="userId"/>

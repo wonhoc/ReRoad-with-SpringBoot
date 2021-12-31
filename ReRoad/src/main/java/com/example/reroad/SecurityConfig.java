@@ -31,6 +31,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         log.info("security config...");
         http.csrf().disable();
+
         //Root 페이지 : 모든 권한 접속 가능
         http.authorizeHttpRequests().antMatchers("/").permitAll();
         http.authorizeHttpRequests().antMatchers("/member/**").authenticated();
@@ -41,9 +42,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.formLogin().loginPage("/loginForm").defaultSuccessUrl("/loginSuccess", true);
 
         http.exceptionHandling().accessDeniedPage("/accessDenied");
-        http.logout().logoutUrl("/loginSuccess").invalidateHttpSession(true).logoutSuccessUrl("/loginForm");
+        http.logout().logoutUrl("/logout").invalidateHttpSession(true).logoutSuccessUrl("/loginForm");
 
         http.userDetailsService((UserDetailsService) userService);
+
+
 
     }
 

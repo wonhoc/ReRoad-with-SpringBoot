@@ -89,5 +89,10 @@
     border-color: #cbcbcb ;
 
 }
+#joinFormTwo {
+    display: none;
+    height: 50em;
+    animation-duration: 5s;
+}
 
 

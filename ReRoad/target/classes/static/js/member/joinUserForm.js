@@ -14,6 +14,7 @@ $(document).ready(function() {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
     $('#username').bind('focusout', function() {
@@ -45,6 +46,8 @@ $(document).ready(function() {
                 error: function (e) {
                     reject(e);
 =======
+=======
+>>>>>>> 3793d26fd2e8367e73ddfc545fca634a3b9bfe95
 =======
 >>>>>>> 3793d26fd2e8367e73ddfc545fca634a3b9bfe95
            $('#username').bind('focusout', function () {

@@ -65,7 +65,7 @@ public class UserController {
     @RequestMapping(value="/checkId", method = RequestMethod.POST)
     public @ResponseBody String checkIdAjax(@RequestParam("userId") String requestId) {
         String inputId = requestId.trim();
-        int checkNum = this.userService.checkId(requestId);
+        int checkNum = this.userService.checkId(inputId);
         String checkResult = "";
         // 중복된 아이디는 1 = 가입 불가
         // 없는 아이디는 0 = 가입 가능
@@ -75,6 +75,22 @@ public class UserController {
             checkResult = "true";
         }
         return checkResult;
+    }
+
+    // 회원 가입 과정에서 닉네임 중복 체크
+    @RequestMapping(value="/checkNick", method = RequestMethod.POST)
+    public @ResponseBody String checkNickAjax(@RequestParam("userNick") String requestNick) {
+        String inputNick = requestNick.trim();
+        int checkNick = this.userService.checkNick(inputNick);
+        String nickResult = "";
+        // 중복된 닉네임은 1 = 가입 불가
+        // 없는 닉네임은 0 = 가입 가능
+        if (checkNick == 1) {
+            nickResult = "false";
+        } else if (checkNick == 0) {
+            nickResult = "true";
+        }
+        return nickResult;
     }
 
     //회원가입

@@ -51,6 +51,11 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         return this.userDao.existId(userId);
     }
 
+    //닉네임 중복 검사
+    @Override
+    public int checkNick(String userNick) {return this.userDao.existNick(userNick);};
+
+
 
     @Override
     public List<UserVo> retrieveUserList() {

@@ -12,44 +12,6 @@ $(document).ready(function() {
 
     //아이디 중복 체크
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-
-    $('#username').bind('focusout', function() {
-        const userId = $('#username').val();
-        if(userId == "") {
-            $('#checkDbId').text('아이디는 필수 입력 항목입니다.');
-            $('#checkDbId').css('color', 'red');
-
-        } else {
-            idchkProcess('/checkId',userId);
-
-        }
-    });
-
-    const getIdAjax = function (url, userId) {
-        return new Promise((resolve, reject) => {
-            $.ajax({
-                url: url,
-                method: 'POST',
-                data: {
-                    userId: userId
-                },
-                // beforeSend: function(xhr){
-                //     xhr.setRequestHeader(header,token);
-                // },
-                success: function (data) {
-                    resolve(data);
-                },
-                error: function (e) {
-                    reject(e);
-=======
-=======
->>>>>>> 3793d26fd2e8367e73ddfc545fca634a3b9bfe95
-=======
->>>>>>> 3793d26fd2e8367e73ddfc545fca634a3b9bfe95
            $('#username').bind('focusout', function () {
                 const userId = $('#username').val();
                 if (userId == "") {

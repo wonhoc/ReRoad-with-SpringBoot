@@ -106,6 +106,7 @@ $(document).ready(function() {
                 ));
             }
 
+
             // 인증 번호 검증
             $('#veriNumber').bind('keyup', function () {
                 const inputNum = $('#veriNumber').val();

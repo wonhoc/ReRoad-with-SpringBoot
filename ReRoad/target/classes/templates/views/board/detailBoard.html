@@ -15,17 +15,22 @@
 <section layout:fragment="content">
 
     <div class="container">
-        <table>
+
+        <table id="table">
+            <thead>
             <tr>
-                <td  th:text="${board.boardTitle}"></td>
+                <td id="boardTitle" colspan="2"  th:text="${board.boardTitle}"></td>
                 <td  th:text="${board.userNick}"></td>
             </tr>
-            <tr>
+            </thead>
+            <tr id="tablebody">
                 <td>작성일자 <span th:text="${board.boardWdate}"></span></td>
-                <td><img class="images" src="/images/board/view.png"><span th:text="${board.boardContent}"></span></td>
-                <td><img class="images" src="/images/board/commentCount.png">조회수<span th:text="${board.boardContent}"></span></td>
+                <td><img class="images" src="/images/board/view.png">조회수<span th:text="${board.boardContent}"></span></td>
+                <td><img class="images" src="/images/board/commentCount.png">추천수<span th:text="${board.recomCount}"></span></td>
             </tr>
-
+            <tr>
+                <td height="300px;" th:text="${board.boardContent}"></td>
+            </tr>
         </table>
 
     </div>

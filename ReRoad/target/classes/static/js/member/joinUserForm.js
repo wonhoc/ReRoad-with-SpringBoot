@@ -12,6 +12,7 @@ $(document).ready(function() {
 
     //아이디 중복 체크
 
+
            $('#username').bind('focusout', function () {
                 const userId = $('#username').val();
                 if (userId == "") {
@@ -117,6 +118,7 @@ $(document).ready(function() {
                 } else {
                     $('#checkVeriNumber').text("인증번호가 일치하지 않습니다.");
                     $('#checkVeriNumber').css('color', 'red');
+
 
                 }
             })

@@ -25,7 +25,6 @@
     </resultMap>
 
 
-
     <!--게시글 상세조회 -->
     <parameterMap type="int" id="paramMapSelectDetail">
         <parameter property="boardNo" javaType="int" jdbcType="INTEGER" mode="IN" />
@@ -36,6 +35,17 @@
     <parameterMap type="string" id="searchparam">
         <parameter property="keyfield" javaType="string" jdbcType="VARCHAR" mode="IN" />
     </parameterMap>
+
+
+
+
+    <!-- 추천 -->
+    <!-- 추천등록 -->
+    <parameterMap id="parameterRecomMap" type="RecomVo">
+        <parameter property="boardNo" javaType="int" jdbcType="INTEGER" mode="IN" />
+        <parameter property="userId" javaType="string" jdbcType="VARCHAR" mode="IN" />
+    </parameterMap>
+
 
 
 
@@ -124,7 +134,9 @@
         { call sp_comment_delete(?)}
     </update>
 
-
-
+    <!-- 추천등록 -->
+    <update id="recomUpdate" statementType="CALLABLE" parameterType="RecomVo" parameterMap="parameterRecomMap">
+        { call sp_board_recomUpdate(?, ?) }
+    </update>
 </mapper>
 

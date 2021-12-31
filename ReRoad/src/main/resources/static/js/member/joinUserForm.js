@@ -122,10 +122,10 @@ $(document).ready(function() {
                 }
             })
 
-            //
+            //다음 버튼 클릭 시 회원 가입 다음 단계로 이동
             $('#nextButton').click(function () {
-                $('#joinFormOne').hide();
-                $('#joinFormTwo').show();
+                $('#joinFormOne').fadeOut();
+                $('#joinFormTwo').fadeIn();
 
             })
 

@@ -9,7 +9,8 @@
 <head>
 </head>
 <section layout:fragment="content">
-    <section>
+    <div class="container">
+    <section class="exit">
         <div class="exit_title_box">
             <h1 class="exit_title">회원탈퇴</h1>
             <div class="exit_devide"></div>
@@ -17,7 +18,7 @@
         </div>
 
         <form
-                action="/deleteUser"
+                action="/member/deleteUser"
                 method="POST"
         >
             <div class="exit_text_box">
@@ -32,7 +33,7 @@
             </div>
         </form>
     </section>
-
+    </div>
 </section>
 
 </html>

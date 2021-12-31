@@ -1,5 +1,8 @@
-section {
+.exit {
     width: 100%;
+    padding: 2em;
+    margin: auto;
+
 }
 
 .exit_devide {
@@ -16,26 +19,27 @@ section {
     border: 2px solid black;
     border-radius: 20px;
     padding: 1em;
-    width: 30%;
+    width: 65%;
     margin: auto;
 }
 .exit_btn {
-    cursor: pointer;
-    height: 3.5rem;
-    font-size: 22px;
+    height: 3rem;
+    margin: 0;
+    font-size: 18px;
     color: #454545;
     background-color: #fdfdfd;
     border: 2px solid #454545;
     border-radius: 0.25em;
     transition: all 150ms ease-in;
+    cursor : pointer;
 }
 .exit_btn:hover {
     background-color: #e2e2e2;
 }
 .exit_title_box {
-    margin: 3em 45em;
+    margin: 5em 12em;
 }
 .btn_box {
     text-align: end;
-    margin: 3em 60em;
+    margin: 2em;
 }

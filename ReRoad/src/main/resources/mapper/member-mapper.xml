@@ -58,7 +58,7 @@
     </resultMap>
     <select id="selectAll" resultMap="userResultMap" statementType="CALLABLE">
         SELECT u.userId, u.userNick,(SELECT COUNT(*) FROM report re WHERE re.userId = u.userId )
-            as reportCount FROM user_info u;
+            as reportCount FROM user_info u WHERE role = 'ROLE_MEMBER';
     </select>
 
     <!-- 회원 강제탈퇴-->

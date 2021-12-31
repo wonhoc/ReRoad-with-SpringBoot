@@ -13,6 +13,7 @@ $(document).ready(function() {
     //아이디 중복 체크
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
     $('#username').bind('focusout', function() {
@@ -44,6 +45,8 @@ $(document).ready(function() {
                 error: function (e) {
                     reject(e);
 =======
+=======
+>>>>>>> 3793d26fd2e8367e73ddfc545fca634a3b9bfe95
            $('#username').bind('focusout', function () {
                 const userId = $('#username').val();
                 if (userId == "") {
@@ -53,7 +56,6 @@ $(document).ready(function() {
                 } else {
                     idchkProcess('/checkId', userId);
 
->>>>>>> d8c965a11a4c829ae895a9aa5650008e07004dce
                 }
             });
 

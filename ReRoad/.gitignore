@@ -12,6 +12,7 @@
 .idea/**/usage.statistics.xml
 .idea/**/dictionaries
 .idea/**/shelf
+.idea/workspace.xml
 
 # AWS User-specific
 .idea/**/aws.xml
@@ -29,7 +30,6 @@
 .idea/**/dynamic.xml
 .idea/**/uiDesigner.xml
 .idea/**/dbnavigator.xml
-.idea/**/workspace.xml
 # Gradle
 .idea/**/gradle.xml
 .idea/**/libraries

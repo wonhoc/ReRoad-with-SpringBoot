@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 @Repository
@@ -46,5 +48,12 @@ public class BoardDaoImpl implements BoardDao {
     public List selectSearchContent(String keyword) {
         List<BoardVo> list = this.sqlSession.selectList("Board.searchContent",keyword);
         return list;
+    }
+
+    @Override
+    public BoardVo selectDetailBoard(int boardNo) {
+        BoardVo board = this.sqlSession.selectOne("Board.boardDetail", boardNo);
+
+        return null;
     }
 }

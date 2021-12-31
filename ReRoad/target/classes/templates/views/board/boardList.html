@@ -21,7 +21,7 @@
                 <div class="container-fluid">
                     <div class="collapse navbar-collapse"
                          id="bs-example-navbar-collapse-1">
-                        <form>
+
                             <select name="keyfield" id="keyfield">
                                 <option value="all">전체</option>
                                 <option value="boardTitle">제목</option>
@@ -32,7 +32,7 @@
                             <button class="btn btn-primary" type="submit" id="searchBtn">
                                 <i class="fas fa-search"></i>
                             </button>
-                        </form>
+
                     </div>
                 </div>
             </nav>
@@ -45,10 +45,11 @@
 
         </table>
 
+        <div id="html" >
         <table id="boardTable" th:if="${boardList != null}" th:each="board : ${boardList}">
             <tr>
                 <td rowspan="2" colspan="2"><img class="thumnail" src="/images/board/king.png"></td>
-                <td colspan="3" th:text="${board.boardTitle}"><a th:href="@{/detailBoard/{boardNo}(boardNo=${board.boardNo})}"></a></td>
+                <td colspan="3"><a th:href="@{/detailBoard/{boardNo}(boardNo=${board.boardNo})}"><p th:text="${board.boardTitle}"></p></a></td>
             </tr>
             <tr>
                 <td><img class="boardImg" src="/images/board/user.png"><span th:text="${board.userNick}"></span></td>
@@ -59,7 +60,7 @@
                 <td height="50px;" colspan="5" th:text="${board.boardContent}"></td>
             </tr>
         </table>
-
+        </div>
     </div>
 </section>
 </html>

@@ -1,0 +1,18 @@
+.images{
+    width: 30px;
+    height: 30px;
+}
+#boardTitle{
+    font-size: 60px;
+
+}
+#table{
+    margin-top: 80px;
+    margin-left: 80px;
+    width: 800px;
+    border: 2px solid teal;
+}
+#tablebody{
+    background-color: saddlebrown;
+    color: white;
+}

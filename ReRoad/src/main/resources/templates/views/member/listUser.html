@@ -8,12 +8,12 @@
 </th:block>
 
 <head>
-    <meta name="_csrf" th:content="${_csrf.token}"/>
-    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+<!--    <meta name="_csrf" th:content="${_csrf.token}"/>-->
+<!--    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>-->
 
     <script>
-        var token = $("meta[name='_csrf']").attr("content");
-        var header = $("meta[name='_csrf_header']").attr("content");
+        // var token = $("meta[name='_csrf']").attr("content");
+        // var header = $("meta[name='_csrf_header']").attr("content");
 
         $(document).ready(function () {
             $.ajax({
@@ -130,13 +130,13 @@
                     console.log("valueArr " + JSON.stringify(valueArr));
 
                     $.ajax({
-                        url : "http://localhost:8080/admin/deleteUserList",
+                        url : "/admin/deleteUserList",
                         method : "post",
                         dataType: "json",
                         data: JSON.stringify(valueArr),
-                        beforeSend: function(xhr){
-                            xhr.setRequestHeader(header,token);
-                        },
+                        // beforeSend: function(xhr){
+                        //     xhr.setRequestHeader(header,token);
+                        // },
                         contentType: "application/json",
                         success: function (data) {
                             update(data.userList);

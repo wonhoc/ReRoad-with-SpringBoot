@@ -71,6 +71,12 @@
         { call sp_user_delete(#{userid}) }
     </delete>
 
+    <!-- 비밀번호일치 확인 -->
+    <select id="selectPwd" parameterType="string" resultType="string">
+        SELECT userPwd
+        FROM user_info
+        WHERE userId = #{userId}
+    </select>
 
 </mapper>
 

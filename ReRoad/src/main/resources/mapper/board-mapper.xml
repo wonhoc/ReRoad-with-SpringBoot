@@ -15,7 +15,14 @@
         <result property="boardNo" javaType="int" column="boardNo" jdbcType="INTEGER" />
     </resultMap>
 
-
+    <!-- 댓글조회 -->
+    <resultMap type="commentVO" id="resultMapComList">
+        <result property="comNo" javaType="int" column="comNo"  jdbcType="INTEGER" />
+        <result property="boardNo" javaType="int" column="boardNo" jdbcType="INTEGER" />
+        <result property="userNick" javaType="string" column="userNick" jdbcType="VARCHAR" />
+        <result property="comContent" javaType="string" column="comContent" jdbcType="VARCHAR" />
+        <result property="comWdate" javaType="string" column="comWdate" jdbcType="VARCHAR" />
+    </resultMap>
 
 
     <!--게시글 상세조회 -->
@@ -30,9 +37,16 @@
     </parameterMap>
 
 
+    <!-- 댓글 -->
+    <!-- 댓글작성 -->
+    <parameterMap type="commentVO" id="commentCreateMap">
+        <parameter property="boardNo" javaType="int" jdbcType="INTEGER" mode="IN" />
+        <parameter property="userId" javaType="string" jdbcType="VARCHAR" mode="IN" />
+        <parameter property="comContent" javaType="string" jdbcType="VARCHAR" mode="IN" />
+    </parameterMap>
 
 
-    <!-- 게시글 목록조회 -->
+    <!-- 게시글 목록 -->
     <!-- 게시글 목록조회 -->
     <select id="selectList" statementType="CALLABLE" resultMap="resultMapSelectList">
         { call sp_board_list() }
@@ -63,6 +77,12 @@
     <select id="boardDetail" statementType="CALLABLE" resultMap="resultMapSelectList" parameterType="int" parameterMap="paramMapSelectDetail">
         { call sp_board_detail(?) }
     </select>
+
+
+    <!-- 댓글 작성 -->
+    <insert id="commmentInsert" parameterType="commentVO" statementType="CALLABLE" parameterMap="commentCreateMap">
+        {call sp_write_comment(?,?,?) }
+    </insert>
 
 </mapper>
 

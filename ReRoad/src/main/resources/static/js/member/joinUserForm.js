@@ -7,10 +7,20 @@ $(document).ready(function() {
     var resultVerify = "";
 
     // 버튼 기본 비활성화
-     $('#sendVeriNum').attr("disabled", true);
-     $('#nextButton').attr("disabled", true);
+    $('#sendVeriNum').attr("disabled", true);
+    $('#nextButton').attr("disabled", true);
 
     //아이디 중복 체크
+
+    $('username').bind('focusout', function () {
+        const userId = $('#userId').val();
+        if (userId == "") {
+            $('#checkDbId').text('아이디는 필수 입력 항목입니다.');
+            $('#checkDbId').css('color', 'red');
+            $('#sendVeriNum').attr("disabled", true);
+        } else {
+            idchkProcess('/checkId', userId);
+
     $('#username').bind('focusout', function() {
         const userId = $('#username').val();
         if(userId == "") {
@@ -19,10 +29,11 @@ $(document).ready(function() {
 
         } else {
             idchkProcess('/checkId',userId);
+
         }
     });
 
-    const getIdAjax = function(url,userId) {
+    const getIdAjax = function (url, userId) {
         return new Promise((resolve, reject) => {
             $.ajax({
                 url: url,
@@ -36,7 +47,7 @@ $(document).ready(function() {
                 success: function (data) {
                     resolve(data);
                 },
-                error : function (e) {
+                error: function (e) {
                     reject(e);
                 }
             });
@@ -46,6 +57,7 @@ $(document).ready(function() {
     async function idchkProcess(url, userId) {
         try {
             const result = await getIdAjax(url, userId);
+
             if(result == 'false') {
                 $('#checkDbId').text('사용할 수 없는 아이디입니다.');
                 $('#checkDbId').css('color','red');
@@ -53,9 +65,10 @@ $(document).ready(function() {
             } else if(result == 'true') {
                 $('#checkDbId').text('사용 가능한 아이디입니다.');
                 $('#checkDbId').css('color','RGB(1,121,122)');
+
                 $('#sendVeriNum').attr("disabled", false);
             }
-        } catch(error) {
+        } catch (error) {
 
         }
 
@@ -116,5 +129,12 @@ $(document).ready(function() {
         }
     })
 
+
 });
 
+    //
+    $('#nextButton').click(function () {
+        $('#joinFormOne').hide();
+        $('#joinFormTwo').show();
+
+    })

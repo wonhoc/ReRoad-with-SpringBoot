@@ -1,0 +1,70 @@
+#pagination-div{
+    text-align: center;
+}
+.list_table {
+    margin: auto;
+    width: 50%;
+
+}
+
+.list_devide {
+    width: 40%;
+    height: 4px;
+    background-color: black;
+}
+
+.list_title_box {
+    margin: 5em 17em;
+}
+
+.list_title {
+    font-size: 36px;
+    font-weight: bolder;
+    margin: 0.3em 0;
+    padding-left: 0.2em;
+
+}
+.list_notice{
+    padding-left: 0.3em;
+}
+
+.list_devide_dot {
+    margin-left: 10%;
+    border: 1px dotted black;
+    width: 80%;
+}
+
+#paging {
+    text-align: center;
+    margin: 5em;
+}
+
+.table_head {
+    font-size: 24px;
+}
+
+.table_body {
+    font-size: 20px;
+}
+
+th {
+    border-bottom: 1px dotted;
+    padding: 0.5em 0;
+}
+
+td {
+    padding: 0.5em 0;
+    text-align: center;
+}
+th {
+    text-align: center;
+}
+.btn-outline-info {
+    margin : 3em 70em;
+}
+
+input[type=checkbox] {
+
+    transform : scale(1.5);
+
+}

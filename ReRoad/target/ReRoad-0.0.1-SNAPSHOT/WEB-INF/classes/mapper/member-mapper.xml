@@ -39,6 +39,44 @@
 
     </insert>
 
+    <!-- 회원 가입 과정에서 아이디 중복 체크 -->
+    <select id="checkId" parameterType="string" resultType="int">
+        SELECT COUNT(*) + (
+            SELECT COUNT(*)
+            FROM exit_user
+            WHERE userId=#{userId}
+        )
+        FROM user_info
+        WHERE userId = #{userId}
+    </select>
+
+
+    <!-- 관리자가 회원의 상세정보를 조회한다 -->
+    <resultMap type="UserVo" id="userResultMap">
+        <id column="userId" jdbcType="VARCHAR" javaType="string" property="userId"/>
+        <result column="userNick" jdbcType="VARCHAR" javaType="string" property="userNick"/>
+    </resultMap>
+    <select id="selectAll" resultMap="userResultMap" statementType="CALLABLE">
+        SELECT u.userId, u.userNick,(SELECT COUNT(*) FROM report re WHERE re.userId = u.userId )
+            as reportCount FROM user_info u WHERE role = 'ROLE_MEMBER';
+    </select>
+
+    <!-- 회원 강제탈퇴-->
+    <delete id="deleteUserForce" statementType="CALLABLE" parameterType="string">
+        { call sp_user_deleteForce(#{userid}) }
+    </delete>
+
+    <!-- 회원 자진탈퇴-->
+    <delete id="deleteUser" statementType="CALLABLE" parameterType="string">
+        { call sp_user_delete(#{userid}) }
+    </delete>
+
+    <!-- 비밀번호일치 확인 -->
+    <select id="selectPwd" parameterType="string" resultType="string">
+        SELECT userPwd
+        FROM user_info
+        WHERE userId = #{userId}
+    </select>
 
 </mapper>
 

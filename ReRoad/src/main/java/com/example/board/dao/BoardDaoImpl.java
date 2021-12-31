@@ -54,6 +54,8 @@ public class BoardDaoImpl implements BoardDao {
     public BoardVo selectDetailBoard(int boardNo) {
         BoardVo board = this.sqlSession.selectOne("Board.boardDetail", boardNo);
 
-        return null;
+
+        return board;
+
     }
 }

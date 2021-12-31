@@ -7,6 +7,7 @@
 		<typeAlias type="com.example.member.vo.UserVo" alias="UserVo" />
 		<typeAlias type="com.example.board.vo.BoardVo" alias="BoardVo" />
 		<typeAlias type="com.example.member.vo.MailVo" alias="MailVo" />
+		<typeAlias type="com.example.board.vo.CommentVo" alias="CommentVo" />
  	</typeAliases>
 
 </configuration>

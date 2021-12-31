@@ -25,8 +25,6 @@ public class UserDaoImpl implements UserDao {
         return this.sqlSession.selectOne("Member.getInfoFromDB", username);
     }
 
-    ;
-
     // 회원 가입
     @Override
 
@@ -34,7 +32,7 @@ public class UserDaoImpl implements UserDao {
         this.sqlSession.selectOne("Member.inputUser", map);
     }
 
-    ;
+
 
 
     //아이디 중복 체크

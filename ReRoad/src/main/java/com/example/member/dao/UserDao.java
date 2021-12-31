@@ -10,6 +10,7 @@ public interface UserDao {
     void insertUser(Map map);
     UserVo getUserInfo(String username);
     int existId(String userId);
+    int existNick(String userNick);
     List<UserVo> selectUserList();
     void deleteUserForce(String userId);
     String confirmPwd(String userId);

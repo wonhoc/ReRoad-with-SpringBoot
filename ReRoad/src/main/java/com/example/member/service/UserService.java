@@ -9,6 +9,7 @@ public interface UserService {
     void registUser(Map map, String userId);
     UserVo getInfo(String username);
     int checkId(String isId);
+    int checkNick(String isNick);
 
     List<UserVo> retrieveUserList();
     void removeUserForce(String userId);

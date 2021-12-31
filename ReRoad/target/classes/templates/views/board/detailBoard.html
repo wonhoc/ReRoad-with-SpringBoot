@@ -17,17 +17,15 @@
     <div class="container">
         <table>
             <tr>
-                <td rowspan="2">작성일</td>
-                <td>조회수</td>
-                <td>조회소</td>
-                <td>추천</td>
+                <td  th:text="${board.boardTitle}"></td>
+                <td  th:text="${board.userNick}"></td>
             </tr>
             <tr>
-                <td>조회수</td>
-                <td>조회수</td>
-                <td>추천</td>
+                <td>작성일자 <span th:text="${board.boardWdate}"></span></td>
+                <td><img class="images" src="/images/board/view.png"><span th:text="${board.boardContent}"></span></td>
+                <td><img class="images" src="/images/board/commentCount.png">조회수<span th:text="${board.boardContent}"></span></td>
             </tr>
-            
+
         </table>
 
     </div>

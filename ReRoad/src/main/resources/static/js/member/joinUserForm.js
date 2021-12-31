@@ -7,8 +7,8 @@ $(document).ready(function() {
     var resultVerify = "";
 
     // 버튼 기본 비활성화
-     $('#sendVeriNum').attr("disabled", true);
-     $('#nextButton').attr("disabled", true);
+    $('#sendVeriNum').attr("disabled", true);
+    $('#nextButton').attr("disabled", true);
 
     //아이디 중복 체크
     $('#username').bind('focusout', function() {
@@ -115,15 +115,12 @@ $(document).ready(function() {
 
         }
     })
-    //다음 버튼 클릭 시 회원 가입 다음 단계로 넘어감
-    $('nextButton').
+    //
+    $('#nextButton').click(function () {
+        $('#joinFormOne').hide();
+        $('#joinFormTwo').show();
 
+    })
 
-
-
-
-<<<<<<< HEAD
-});
-=======
 })
->>>>>>> 28a56c2cb4356f6aa1a3a8259a10bf283a968c3d
+

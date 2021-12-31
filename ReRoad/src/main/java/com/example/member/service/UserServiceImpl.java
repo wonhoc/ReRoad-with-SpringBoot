@@ -63,5 +63,16 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         this.userDao.deleteUserForce(userId);
     }
 
+    //비밀번호 일치 확인
+    @Override
+    public String checkPwd(String userId) {
+        return this.userDao.confirmPwd(userId);
+    }
 
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED)
+    public void removeUser(String userId) {
+        this.userDao.deleteUser(userId);
+    }
 }

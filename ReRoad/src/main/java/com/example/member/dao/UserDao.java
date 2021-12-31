@@ -12,4 +12,6 @@ public interface UserDao {
     int existId(String userId);
     List<UserVo> selectUserList();
     void deleteUserForce(String userId);
+    String confirmPwd(String userId);
+    void deleteUser(String userId);
 }

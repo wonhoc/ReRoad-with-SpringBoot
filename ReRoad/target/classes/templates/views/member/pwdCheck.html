@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout/defaultLayout">
+<th:block layout:fragment="css">
+    <link rel="stylesheet" th:href="@{/css/member/pwdCheck.css}">
+</th:block>
+
+
+<head>
+<!--    <meta name="_csrf" th:content="${_csrf.token}"/>-->
+<!--    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>-->
+</head>
+<script>
+    // var token = $("meta[name='_csrf']").attr("content");
+    // var header = $("meta[name='_csrf_header']").attr("content");
+</script>
+<section layout:fragment="content">
+    <section class="pwd">
+        <h1 class="pwd_title">Password 입력</h1>
+        <div class="pwd_divide"></div>
+        <h3 class="pwd_notice">
+            개인정보 보호를 위해 비밀번호를 다시 한번 입력해주세요.
+        </h3>
+        <form action="/pwdCheck" method="POST">
+<!--            <input type="hidden" name="XSRF-TOKEN" value="ef292f61-148b-4d32-b105-55cce1978b8f" />-->
+            <div class="pwdInput_box">
+                <input
+                        class="pwd_input"
+                        type="password"
+                        name="userPwd"
+                        id="userPwd"
+                />
+            </div>
+            <div class="pwdBtn_box">
+                <button class="pwd_btn" type="submit">확인</button>
+            </div>
+
+        </form>
+    </section>
+</section>
+
+</html>

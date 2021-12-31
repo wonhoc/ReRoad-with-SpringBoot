@@ -1,0 +1,41 @@
+section {
+    width: 100%;
+}
+
+.exit_devide {
+    width: 20%;
+    height: 4px;
+    background-color: black;
+}
+.exit_text {
+    margin: 0.25em;
+    font-weight: 600;
+    font-size: 20px;
+}
+.exit_text_box {
+    border: 2px solid black;
+    border-radius: 20px;
+    padding: 1em;
+    width: 30%;
+    margin: auto;
+}
+.exit_btn {
+    cursor: pointer;
+    height: 3.5rem;
+    font-size: 22px;
+    color: #454545;
+    background-color: #fdfdfd;
+    border: 2px solid #454545;
+    border-radius: 0.25em;
+    transition: all 150ms ease-in;
+}
+.exit_btn:hover {
+    background-color: #e2e2e2;
+}
+.exit_title_box {
+    margin: 3em 45em;
+}
+.btn_box {
+    text-align: end;
+    margin: 3em 60em;
+}

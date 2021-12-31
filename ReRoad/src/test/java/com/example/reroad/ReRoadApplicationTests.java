@@ -29,9 +29,9 @@ class ReRoadApplicationTests {
 
 //        try {
 //            Map<String, String> map = new HashMap<String, String>();
-//            map.put("userId", "member9645445");
+//            map.put("userId", "member999");
 //            map.put("userPwd", encoder.encode("asdf1234"));
-//            map.put("userNick", "나는멤버56353545");
+//            map.put("userNick", "나는멤버999");
 //            map.put("role", "ROLE_MEMBER");
 //            this.userService.registUser(map, "mgdee");
 //        } catch (Exception e) {

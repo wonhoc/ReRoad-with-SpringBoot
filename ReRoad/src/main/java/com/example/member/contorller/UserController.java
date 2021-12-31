@@ -7,6 +7,7 @@ import com.example.member.vo.UserVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -137,7 +138,7 @@ public class UserController {
     }
 
     //비밀번호 일치 확인 후 삭제 페이지 이동
-    @PostMapping("/pwdCheck")
+    @PostMapping("/member/pwdCheck")
     public String pwdCheck(Authentication authentication, @RequestParam String userPwd) {
         UserDetails userDetails = (UserDetails)authentication.getPrincipal();
         String userId = userDetails.getUsername();
@@ -159,29 +160,29 @@ public class UserController {
         return "views/member/pwdCheckFail";
     }
 
-    @GetMapping("/deleteUser")
+    @GetMapping("/member/deleteUser")
     public String deleteUser() {
         return "views/member/deleteUser";
     }
 
-    @GetMapping("/exitUser")
+    @GetMapping("/member/exitUser")
     public String exitUser() {
         return "views/member/pwdCheck";
     }
 
 
     //회원 자진 탈퇴 시 회원정보 삭제
-    @PostMapping("/deleteUser")
+    @PostMapping("/member/deleteUser")
     public String deleteUser(Authentication authentication, HttpSession session){
         UserDetails userDetails = (UserDetails)authentication.getPrincipal();
         String userId = userDetails.getUsername();
 
         this.userService.removeUser(userId);
 
+        session.getAttribute("loginUser");
+        session.removeAttribute("loginUser");
         session.invalidate();
 
-        System.out.println(userId);
-
-        return "redirect:/main";
+        return "redirect:/";
     }
 }

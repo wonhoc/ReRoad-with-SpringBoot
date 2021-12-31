@@ -21,4 +21,6 @@ public interface BoardService {
     //게시글 상세보기
     BoardVo retrieveDetail(int boardNo);
 
+    List retrieveComList(int boardNo);
+
 }

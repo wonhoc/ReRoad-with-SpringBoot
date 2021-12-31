@@ -3,6 +3,7 @@ package com.example.board.service;
 import com.example.board.dao.BoardDao;
 import com.example.board.vo.BoardVo;
 
+import com.example.board.vo.CommentVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -50,5 +51,12 @@ public class BoardServiceImpl implements BoardService{
     public BoardVo retrieveDetail(int boardNo) {
         BoardVo board = this.boardDao.selectDetailBoard(boardNo);
         return board;
+    }
+
+    @Override
+    public List retrieveComList(int boardNo) {
+        List<CommentVo> list = this.boardDao.selectComList(boardNo);
+        return list;
+
     }
 }

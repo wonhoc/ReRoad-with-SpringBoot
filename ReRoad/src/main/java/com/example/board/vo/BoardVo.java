@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -22,5 +23,5 @@ public class BoardVo {
 
 
     private FileVO boardfile = new FileVO();
-    private ArrayList<CommentVo> commentList = new ArrayList<CommentVo>();
+    private List<CommentVo> commentList = new ArrayList<CommentVo>();
 }

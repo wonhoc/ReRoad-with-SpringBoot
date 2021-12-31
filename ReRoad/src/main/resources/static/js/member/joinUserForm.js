@@ -211,6 +211,7 @@ $(document).ready(function() {
 
                 }
             }
+            //입력항 항목 최종 유효성 체크
 
 
 })

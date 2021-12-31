@@ -14,7 +14,6 @@ $(document).ready(function() {
 
            $('#username').bind('focusout', function () {
                 const userId = $('#username').val();
-                $('#verifiedMail').val(userId);
                 if (userId == "") {
                     $('#checkDbId').text('아이디는 필수 입력 항목입니다.');
                     $('#checkDbId').css('color', 'red');
@@ -107,6 +106,7 @@ $(document).ready(function() {
                 ));
             }
 
+
             // 인증 번호 검증
             $('#veriNumber').bind('keyup', function () {
                 const inputNum = $('#veriNumber').val();
@@ -122,10 +122,10 @@ $(document).ready(function() {
                 }
             })
 
-            //다음 버튼 클릭 시 회원 가입 다음 단계로 이동
+            //
             $('#nextButton').click(function () {
-                $('#joinFormOne').hide('normal').fadeOut();
-                $('#joinFormTwo').show('slow').fadeIn();
+                $('#joinFormOne').hide();
+                $('#joinFormTwo').show();
 
             })
 

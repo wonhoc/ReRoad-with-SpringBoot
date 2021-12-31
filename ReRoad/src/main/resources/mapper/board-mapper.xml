@@ -41,7 +41,7 @@
 
     <!-- 댓글 -->
     <!-- 댓글 조회 -->
-    <parameterMap type="commentVO" id="commmentList">
+    <parameterMap type="commentVO" id="paramMapCommentList">
         <parameter property="boardNo" javaType="int" jdbcType="INTEGER" mode="IN" />
     </parameterMap>
 

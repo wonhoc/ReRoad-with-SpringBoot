@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
+/* 기본 틀 */
+.successContainer {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 5em;
+    background-color: RGB(242,242,242);
+    border-radius: 15px;
+    height: 40em;
+    width: 35em;
+}
+
+/* 환영합니다 */
+.joinText {
+    padding-top: 1.5em;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 900;
+}
+/*'환영합니다' 하단 구분선 */
+.title_devide {
+    width: 40%;
+    height: 5px;
+    background-color: #414141;
+    margin-top: -0.5em;
+}
+/*구분선 하단 설명글 */
+.welcome_join {
+    font-family: 'Noto Sans KR', sans-serif;
+    color:RGB(1,121,122);
+    font-weight: 500;
+    font-size: small;
+    padding-bottom: 3em;
+}
+
+/* 가운데 공백 */
+#emptyDiv {
+    height: 50%;
+}
+/* 버튼 디자인 */
+.btn-primary {
+    background-color: RGB(1,121,122);
+    border-color: RGB(1,121,122);
+    font-weight: bolder;
+}
+/*버튼 마우스 오버 시 디자인 */
+.btn-primary:hover {
+    background-color: #27B8B9;
+    border-color: #27B8B9;
+}
+/* 버튼 활성화 시 디자인 */
+.btn-primary:active {
+    background-color: RGB(1,121,122);
+    border-color: RGB(1,121,122);
+    font-weight: bolder;
+}

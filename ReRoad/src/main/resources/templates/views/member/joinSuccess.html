@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" lang="ko"
+      layout:decorate="~{layout/defaultLayout}" >
+<th:block layout:fragment="css">
+    <link rel="stylesheet" th:href="@{css/member/joinSuccess.css}">
+</th:block>
+<head>
+
+</head>
+<section layout:fragment="content">
+
+    <div id = "joinSuccessDiv" class="successContainer">
+        <h1 class="joinText">환영합니다</h1>
+        <div class = "title_devide"></div>
+        <div class= "welcome_join">
+            회원가입이 정상적으로 완료되었습니다.<br>
+            로그인 화면에서 아이디/패스워드를 입력 후 로그인하시기 바랍니다.
+        </div>
+        <div id = "emptyDiv"></div>
+        <a href="/loginForm">
+            <button type="button" class="btn btn-primary btn-lg btn-block"> 로그인 화면으로 </button>
+        </a>
+
+
+
+    </div>
+
+</section>
+</html>

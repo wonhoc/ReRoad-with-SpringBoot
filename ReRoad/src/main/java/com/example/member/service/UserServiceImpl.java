@@ -41,7 +41,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public void registUser(Map map, String userId) {
+    public void registUser(Map map) {
         this.userDao.insertUser(map);
     }
 

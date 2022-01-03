@@ -28,7 +28,7 @@ $(document).ready(function() {
                     }
 
                 }
-            });
+           });
 
             const getIdAjax = function (url, userId) {
                 return new Promise((resolve, reject) => {
@@ -64,6 +64,7 @@ $(document).ready(function() {
                         $('#checkDbId').css('color', 'RGB(1,121,122)');
 
                         $('#sendVeriNum').attr("disabled", false);
+
                     }
                 } catch (error) {
 
@@ -155,7 +156,7 @@ $(document).ready(function() {
             $('#inputPwd2').bind('keyup', function () {
                 var firstPwd = document.getElementById('inputPwd').value;
                 var secondPwd = document.getElementById('inputPwd2').value;
-                if(firstPwd != secondPwd) {
+                if(firstPwd !== secondPwd) {
                     $('#checkPwdOneMore').text("비밀번호가 일치하지 않습니다. 다시 입력해주세요.");
                     $('#checkPwdOneMore').css('color', 'red');
                 } else {
@@ -206,12 +207,30 @@ $(document).ready(function() {
                     } else if (result == 'true') {
                         $('#checkNick').text("사용 가능한 닉네임입니다.");
                         $('#checkNick').css('color', 'RGB(1,121,122)');
+
                     }
                 } catch (error) {
 
                 }
             }
 
+            //입력한 데이터 최종 유효성 체크
+            $('#joinButton').on('click', function() {
+                if($('#username').val() == "" || $('#username').val() == null ||
+                    $('#inputPwd').val()== "" ||  $('#inputPwd').val() == null ||
+                    $('#inputPwd2').val()== "" || $('#inputPwd2').val() == null ||
+                    $('#inputNick').val() == "" || $('#inputNick').val() == null) {
+                    alert("필수 항목이 입력되지 않았습니다. 다시 확인해주세요.")
+                } else {
+                    $('#joinUserForm').submit();
+                }
+            })
 
-})
+
+
+
+
+
+
+    })
 

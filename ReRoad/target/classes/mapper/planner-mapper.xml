@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Planner">
+
+    <!-- 플랜 목록 조회 -->
+    <resultMap type="planVO" id="resultMapPlanList">
+        <result property="planNo" javaType="int" column="planNo" jdbcType="INTEGER"/>
+        <result property="travelTitle" javaType="string" column="travelTitle" jdbcType="VARCHAR" />
+        <result property="spot" javaType="string" column="spot" jdbcType="VARCHAR" />
+        <result property="startDate" javaType="string" column="sDate" jdbcType="VARCHAR" />
+        <result property="arriveDate" javaType="string" column="aDate" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <!-- 플랜 상세 조회 -->
+    <resultMap type="planVO" id="resultMapPlan">
+        <result property="planNo" javaType="int" column="planNo" jdbcType="INTEGER"/>
+        <result property="travelTitle" javaType="string" column="travelTitle" jdbcType="VARCHAR" />
+        <result property="spot" javaType="string" column="spot" jdbcType="VARCHAR" />
+        <result property="memo" javaType="string" column="memo" jdbcType="VARCHAR" />
+        <result property="startDate" javaType="string" column="sDate" jdbcType="VARCHAR" />
+        <result property="arriveDate" javaType="string" column="aDate" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <!-- 체크리스트 조회 -->
+    <resultMap id="resultMapChk" type="chkVO">
+        <result property="checkListNo" javaType="int" column="checkListNo" jdbcType="INTEGER" />
+        <result property="checkListContent" javaType="string" column="checkListContent" jdbcType="VARCHAR" />
+        <result property="ready" javaType="int" column="ready" jdbcType="INTEGER" />
+        <result property="planNo" javaType="int" column="planNo" jdbcType="INTEGER" />
+    </resultMap>
+    <!-- ............................................................................................................. -->
+
+    <!-- 작성자 파라미터 -->
+    <parameterMap type="String" id="IdParameter">
+        <parameter property="userId" javaType="String"
+                   jdbcType="VARCHAR" mode="IN" />
+    </parameterMap>
+
+    <!-- 플랜번호 파라미터 -->
+    <parameterMap type="int" id="planNoParameter">
+        <parameter property="planNo" javaType="int"
+                   jdbcType="INTEGER" mode="IN" />
+    </parameterMap>
+
+    <!-- 플랜VO 파라미터(planNo 미포함) -->
+    <parameterMap id="PlanVOParam" type="planVO">
+        <parameter property="userId" javaType="String"
+                   jdbcType="VARCHAR" mode="IN" />
+        <parameter property="travelTitle" javaType="String"
+                   jdbcType="VARCHAR" mode="IN" />
+        <parameter property="spot" javaType="String"
+                   jdbcType="VARCHAR" mode="IN" />
+        <parameter property="memo" javaType="String"
+                   jdbcType="VARCHAR" mode="IN" />
+        <parameter property="startDate" javaType="String"
+                   jdbcType="VARCHAR" mode="IN" />
+        <parameter property="arriveDate" javaType="String"
+                   jdbcType="VARCHAR" mode="IN" />
+    </parameterMap>
+
+    <!-- 플랜VO 파라미터(planNo 포함) -->
+    <parameterMap id="PlanAndNoParam" type="planVO">
+        <parameter property="planNo" javaType="int"
+                   jdbcType="INTEGER" mode="IN" />
+        <parameter property="travelTitle" javaType="String"
+                   jdbcType="VARCHAR" mode="IN" />
+        <parameter property="spot" javaType="String"
+                   jdbcType="VARCHAR" mode="IN" />
+        <parameter property="memo" javaType="String"
+                   jdbcType="VARCHAR" mode="IN" />
+        <parameter property="startDate" javaType="String"
+                   jdbcType="VARCHAR" mode="IN" />
+        <parameter property="arriveDate" javaType="String"
+                   jdbcType="VARCHAR" mode="IN" />
+    </parameterMap>
+
+    <!-- 체크리스트VO 파라미터 -->
+    <parameterMap id="ChkListParam" type="chkVO">
+        <parameter property="checkListContent" javaType="String"
+                   jdbcType="VARCHAR" mode="IN" />
+        <parameter property="ready" javaType="int"
+                   jdbcType="INTEGER" mode="IN" />
+        <parameter property="planNo" javaType="int"
+                   jdbcType="INTEGER" mode="IN"/>
+    </parameterMap>
+    <!-- ******************************************************************* -->
+    <!-- 플랜 목록조회 -->
+    <select id="selectPlanList" statementType="CALLABLE" parameterMap="IdParameter" resultMap="resultMapPlanList">
+        { call sp_list_planner(?) }
+    </select>
+
+    <!-- 플랜 상세조회 -->
+    <select id="selectPlan" statementType="CALLABLE" parameterMap="planNoParameter" resultMap="resultMapPlan">
+        { call sp_detail_planner(?) }
+    </select>
+
+    <!-- 플랜 작성 -->
+    <insert id="insertPlan" statementType="CALLABLE" parameterMap="PlanVOParam">
+        { call sp_insert_planner(?,?,?,?,?,?) }
+    </insert>
+
+    <!-- 플랜 last Id -->
+    <select id="lastIdPlan" resultType="int">
+        select MAX(planNo)
+        from planner
+    </select>
+
+    <!-- 체크리스트 등록 -->
+    <insert id="insertChkList" statementType="CALLABLE" parameterMap="ChkListParam">
+        { call sp_insert_chkList(?,?,?) }
+    </insert>
+
+    <!-- 체크리스트 조회 -->
+    <select id="selectChkList" statementType="CALLABLE" parameterMap="planNoParameter" resultMap="resultMapChk">
+        { call sp_select_chkList(?) }
+    </select>
+
+    <!-- 체크리스트 삭제 -->
+    <delete id="deleteChk" statementType="CALLABLE" parameterMap="planNoParameter">
+        { call sp_delete_chkList(?)}
+    </delete>
+
+    <!-- 플랜 수정 -->
+    <update id="updatePlan" statementType="CALLABLE" parameterMap="PlanAndNoParam">
+        { call sp_update_plan(?,?,?,?,?,?) }
+    </update>
+
+    <!-- 플랜 삭제 -->
+    <delete id="deletePlan" statementType="CALLABLE" parameterMap="planNoParameter">
+        { call sp_delete_plan(?) }
+    </delete>
+</mapper>
+

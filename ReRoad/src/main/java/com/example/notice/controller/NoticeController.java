@@ -10,6 +10,8 @@ import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -88,7 +90,7 @@ public class NoticeController {
 
     // 공지글 수정
     // 수정폼불러오기
-    @GetMapping("/modifyform/{noticeNo}")
+    @GetMapping("/noticemodifyform/{noticeNo}")
     public String noticeModifyForm(@PathVariable int noticeNo, @RequestPart(value = "boardFileInput",
             required = false) MultipartFile boardFileSys,
                                   Model model, HttpServletRequest request) {
@@ -142,9 +144,7 @@ public class NoticeController {
     // 공지글 작성
     // 작성폼불러오기
     @GetMapping("/noticewriteform")
-    public String noticeWriteForm( @RequestPart(value = "boardFileInput",
-            required = false) MultipartFile boardFileSys,
-                                   Model model, HttpServletRequest request) {
+    public String noticeWriteForm( ) {
 
        return "views/notice/noticeWriteForm";
     }
@@ -153,14 +153,14 @@ public class NoticeController {
     @PostMapping("/writenotice")
     public String noticeWrite(@RequestParam("noticeContent") String noticeContent,
                                @RequestParam("noticeTitle") String noticeTitle,
+                              @AuthenticationPrincipal User principal,
                               @RequestPart(value = "noticeFileInput", required = false) List<MultipartFile> files,
                                Model model, HttpServletRequest request) {
 
         NoticeVO newNotice = new NoticeVO();
         newNotice.setNoticeTitle(noticeTitle);
         newNotice.setNoticeContent(noticeContent);
-        //아이디 임시 설정
-        newNotice.setUserId("admin123");
+        newNotice.setUserId( principal.getUsername());
 
 
 

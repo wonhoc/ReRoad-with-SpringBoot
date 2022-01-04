@@ -11,6 +11,8 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.client.userinfo.OAuth2UserService;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,6 +21,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -155,6 +158,14 @@ public class UserController {
     @PostMapping("/accessDenied")
     public void deniedMessage() {
 
+    }
+    @GetMapping ("/oauthLogin")
+    public String oauthLogin(Authentication authentication, @AuthenticationPrincipal OAuth2User user) {
+        System.out.println("authentication : " + authentication.getDetails());
+        System.out.println(user.getName());
+        System.out.println(user.getAuthorities());
+
+        return "views/member/joinSuccess";
     }
 
 

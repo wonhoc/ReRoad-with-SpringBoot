@@ -15,20 +15,23 @@
 </head>
 
 <section layout:fragment="content">
-    <form class="form-signin" action="/joinUserRequest" id= "joinUserForm" method="POST">
+    <form class="form-signin" action="/joinUserRequest" id= "joinUserForm"  method="POST" modelAttribute="UserVo">
         <div id = "joinFormOne"class="joinUserContainer">
             <div class="welcome_join_Text">
-                <h1 class="joinText">회원가입</h1>
+                <h1 class="joinText1">회원가입</h1>
                 <div class = "title_devide"></div>
                 <div class="welcome_join">
                     이메일을 입력하세요.<br>
                     이메일은 로그인 시 아이디로 사용되며 변경 하실 수 없습니다.
                 </div>
             </div>
+            <div class = AlertDiv id="AlertDiv" th:each= "error: ${bindError}">
+                <span class="reLoginAlert" th:text="${error.value}"></span>
+            </div>
             <div class="inputEmailAndNum">
-                <label class = "idcss" for="userName">ID(Email)</label>
-                <input class="form-control" type="text" id="username" name="username" placeholder="example@email.com" />
-                <div id="checkDbId"></div>
+                <label class = "idcss" for="userId">ID(Email)</label>
+                <input class="form-control" type="text" id="userId" name="userId" placeholder="example@email.com" />
+                <div id="checkDbId" ></div>
                 <button id="sendVeriNum" type="button" class="btn btn-primary btn-lg btn-block">인증번호발송</button>
                 <label class = "pwcss" for="veriNumber">인증번호</label>
                 <input class="form-control" type="text" id="veriNumber" name="veriNumber" placeholder="인증번호를 입력하세요" />
@@ -40,8 +43,8 @@
         </div>
         <div id = "joinFormTwo" class="joinUserContainer" >
             <div class="welcome_join_text">
-                <div class="joinText">
-                    <h1 class="joinText">회원가입</h1>
+                <div class="joinText2">
+                    <h1 class="joinText2">회원가입</h1>
                     <div class = "title_devide"></div>
                     <div class="footer_title"></div>
                     <div class="welcome_join">
@@ -52,14 +55,14 @@
                 <div class="inputAnotherInfo">
                     <label class = "idcss" >ID(Email)</label>
                     <input class="form-control" id="verifiedMail" disabled>
-                    <label class="idcss" for="inputPwd">Password</label>
-                    <input class="form-control" type="password" id="inputPwd" name="inputPwd">
+                    <label class="idcss" for="userPwd">Password</label>
+                    <input class="form-control" type="password" id="userPwd" name="useerPwd">
                     <div id="checkPwdformat"></div>
-                    <label class="idcss" for="inputPwd">Password 재입력</label>
-                    <input class="form-control" type="password" id="inputPwd2" name="inputPwd2">
+                    <label class="idcss" for="reInputPwd">Password 재입력</label>
+                    <input class="form-control" type="password" id="reInputPwd" name="reInputPwd">
                     <div id="checkPwdOneMore"></div>
-                    <label class="idcss" for="checkNick">NickName</label>
-                    <input class="form-control" type="text" id="inputNick" name="inputNick">
+                    <label class="idcss" for="userNick">NickName</label>
+                    <input class="form-control" type="text" id="userNick" name="useerNick">
                     <div id="checkNick"></div>
                     <button class="btn btn-primary btn-lg btn-block" type="button" id="joinButton" name="joinButton">회원가입</button>
 

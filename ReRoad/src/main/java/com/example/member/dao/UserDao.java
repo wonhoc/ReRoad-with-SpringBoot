@@ -7,7 +7,7 @@ import java.util.Map;
 
 public interface UserDao {
     UserVo getUserByID(String username);
-    void insertUser(Map map);
+    void insertUser(UserVo user);
     UserVo getUserInfo(String username);
     int existId(String userId);
     int existNick(String userNick);

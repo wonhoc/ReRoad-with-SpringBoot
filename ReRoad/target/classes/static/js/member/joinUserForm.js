@@ -12,8 +12,8 @@ $(document).ready(function() {
 
             //아이디 중복, 유효성 체크
 
-           $('#username').bind('keyup', function () {
-               const userId = $('#username').val();
+           $('#userId').bind('keyup', function () {
+               const userId = $('#userId').val();
                var idRule = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
                $('#verifiedMail').val(userId);
                 if (userId == "") {
@@ -82,7 +82,7 @@ $(document).ready(function() {
 
             //인증번호 발송 Ajax
             $('#sendVeriNum').click(function () {
-                const mail = $('#username').val();
+                const mail = $('#userId').val();
                 verifyAjax('/verifyEmail', mail);
             })
 
@@ -137,9 +137,9 @@ $(document).ready(function() {
             })
 
            // 비밀번호 길이, 유효성(영문, 특수, 숫자 포함 규칙) 검증
-            $('#inputPwd').bind('keyup', function() {
+            $('#userPwd').bind('keyup', function() {
                 var pwdRule = /^(?=.*[a-zA-z])(?=.*[!@#$%^&*+=-])(?=.*[0-9]).{10,30}$/;
-                var pass1 = $('#inputPwd').val();
+                var pass1 = $('#userPwd').val();
 
                 if(pass1.length <10 || pass1.length > 20) {
                     $('#checkPwdformat').text("비밀번호는 10~20자 사이로 입력해야 합니다.");
@@ -153,9 +153,9 @@ $(document).ready(function() {
                 }
             })
             // 비밀번호 재입력 확인
-            $('#inputPwd2').bind('keyup', function () {
-                var firstPwd = document.getElementById('inputPwd').value;
-                var secondPwd = document.getElementById('inputPwd2').value;
+            $('#reInputPwd').bind('keyup', function () {
+                var firstPwd = document.getElementById('userPwd').value;
+                var secondPwd = document.getElementById('reInputPwd').value;
                 if(firstPwd !== secondPwd) {
                     $('#checkPwdOneMore').text("비밀번호가 일치하지 않습니다. 다시 입력해주세요.");
                     $('#checkPwdOneMore').css('color', 'red');
@@ -166,8 +166,8 @@ $(document).ready(function() {
 
             })
             //닉네임 중복 체크
-            $('#inputNick').bind('keyup', function() {
-                const comeNick = $('#inputNick').val();
+            $('#userNick').bind('keyup', function() {
+                const comeNick = $('#userNick').val();
                 if(comeNick == "") {
                     $('#checkNick').text("닉네임은 필수 입력 항목입니다.")
                     $('#checkNick').css('color','red');
@@ -215,22 +215,16 @@ $(document).ready(function() {
             }
 
             //입력한 데이터 최종 유효성 체크
-            $('#joinButton').on('click', function() {
-                if($('#username').val() == "" || $('#username').val() == null ||
-                    $('#inputPwd').val()== "" ||  $('#inputPwd').val() == null ||
-                    $('#inputPwd2').val()== "" || $('#inputPwd2').val() == null ||
-                    $('#inputNick').val() == "" || $('#inputNick').val() == null) {
-                    alert("필수 항목이 입력되지 않았습니다. 다시 확인해주세요.")
-                } else {
+                $('#joinButton').on('click', function() {
+                if($('#userId').val() == "" || $('#userId').val() == null ||
+                    $('#userPwd').val()== "" ||  $('#userPwd').val() == null ||
+                    $('#reInputPwd').val()== "" || $('#reInputPwd').val() == null ||
+                    $('#userNick').val() == "" || $('#userNick').val() == null) {
+                    alert("입력되지 않은 항목이 있습니다. 다시 확인해주세요.")
+                    } else {
                     $('#joinUserForm').submit();
-                }
-            })
-
-
-
-
-
-
+                    }
+                })
 
     })
 

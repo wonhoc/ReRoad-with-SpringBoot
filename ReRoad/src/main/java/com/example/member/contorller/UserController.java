@@ -4,24 +4,27 @@ import com.example.member.service.MailService;
 import com.example.member.service.UserService;
 import com.example.member.vo.MailVo;
 import com.example.member.vo.UserVo;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+@Slf4j
 @Controller
 public class UserController {
     @Autowired
@@ -57,7 +60,7 @@ public class UserController {
 
     //로그인이 실패했을 경우
     @GetMapping("/loginFail")
-    public String forFailer() { return "views/member/loginForm";}
+    public String forFailer() {return "views/member/loginForm";}
 
     @GetMapping("/admin")
     public String forAdmin() { return "views/member/admin"; }
@@ -99,16 +102,33 @@ public class UserController {
 
     //회원가입
     @RequestMapping(value="/joinUserRequest", method = RequestMethod.POST)
-    public String joinUserRequest(@RequestParam ("username") String username,
-          @RequestParam ("inputPwd") String password, @RequestParam ("inputNick") String userNick) {
-        Map<String, Object> map = new HashMap<String, Object>();
-        map.put("userId", username);
-        map.put("userPwd", passwordEncoder.encode(password));
-        map.put("userNick", userNick);
-        map.put("role", "ROLE_MEMBER");
-        this.userService.registUser(map);
-        return "views/member/joinSuccess";
+    public String joinUserRequest(@Valid @ModelAttribute UserVo user, BindingResult bindingResult, Model model) {
+        //DB 유효성 체크 결과 에러가 발생할 경우 가입폼으로 돌아감
+        if (bindingResult.hasErrors()) {
+              Map<String, String> map = new HashMap<>();
+              for (FieldError error: bindingResult.getFieldErrors()) {
+                  String validKey = String.format("valid_%s", error.getField());
+                  System.out.println(validKey);
+                  map.put(validKey, error.getDefaultMessage());
+
+
+                  System.out.println(map.get("valid_userPwd").toString());
+              }
+              model.addAttribute("bindError", map);
+              return "views/member/JoinUser";
+        } else {
+            // 에러가 없을 경우 Password 암호화 후 DB에 등록
+            UserVo verifyUser = new UserVo();
+            verifyUser.setUserId(user.getUserId());
+            verifyUser.setUserPwd(passwordEncoder.encode(user.getUserPwd()));
+            verifyUser.setUserNick(user.getUserNick());
+            verifyUser.setRole("ROLE_MEMBER");
+
+            this.userService.registUser(verifyUser);
+            return "views/member/joinSuccess";
+        }
     }
+
 
     //인증 메일 발송
     @PostMapping("/verifyEmail")

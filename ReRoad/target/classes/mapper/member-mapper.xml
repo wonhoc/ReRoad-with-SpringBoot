@@ -33,7 +33,7 @@
     </select>
 
     <!--회원가입 -->
-    <insert id="inputUser" parameterType="hashMap">
+    <insert id="inputUser" parameterType="UserVo">
         INSERT INTO user_info(userId, userPwd, userNick, role, joinDate )
         VALUES (#{userId}, #{userPwd}, #{userNick}, #{role}, NOW() )
 

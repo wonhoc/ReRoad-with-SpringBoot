@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+
+      layout:decorate="layout/defaultLayout">
+<th:block layout:fragment="css">
+    <link rel="stylesheet" th:href="@{/css/board/detailBoard.css}">
+</th:block>
+<th:block layout:fragment="script">
+    <script th:src="@{/js/board/detailBoard.js}"></script>
+</th:block>
+<head>
+
+</head>
+<section layout:fragment="content">
+
+
+    <input type="hidden" th:value="${board.userId}" id="userId">
+    <div class="container">
+
+        <form th:action="@{/deleteBoard/{boardNo}(boardNo=${board.boardNo})}" method="post">
+            <input type="hidden" name="boardNo" th:value="${board.boardNo}" id="boardNo">
+            <button id="deleteBtn" class="btn-primary">삭제</button>
+            <a class="btn btn-default waves-effect waves-light" th:href="@{/modifyBoardForm/{boardNo}(boardNo=${boardNo})}">수정</a>
+
+        <table id="table">
+            <thead>
+            <tr>
+                <td id="boardTitle" colspan="2"  th:text="${board.boardTitle}"></td>
+                <td  th:text="${board.userNick}"></td>
+            </tr>
+            </thead>
+            <tr id="tablebody">
+                <td>작성일자 <span th:text="${board.boardWdate}"></span></td>
+                <td><img class="images" src="/images/board/view.png">조회수<span th:text="${board.boardCount}"></span></td>
+                <td><img class="images" src="/images/board/commentCount.png">추천수<span id="recomCount"><span th:text="${board.recomCount}" /></span></td>
+            </tr>
+            <tr>
+                <td height="300px;" th:text="${board.boardContent}"></td>
+            </tr>
+        </table>
+        </form>
+        <button type="button" class="btn btn-success" id="recomBtn">추천</button>
+        <button type="button" class="btn btn-warning" id="reportBtn">신고</button>
+
+
+
+        <table id="listComment">
+            <thead>
+            <tr>
+                <td align="center" width="100px;" class="comW">작성자</td>
+                <td align="center" width="100px;" class="comWda">날짜</td>
+                <td align="center" width="400px;" class="comCt">내용</td>
+                <td></td>
+                <td></td>
+            </tr>
+            </thead>
+            <tbody th:each="comment : ${commentList}" th:id="${comment.comNo}">
+            <tr>
+
+                <td  th:text="${comment.userNick}"></td>
+                <td  th:text="${comment.comWdate}"></td>
+                <td  class="comContent" th:text="${comment.comContent}"></td>
+                <td ><button id="updateComBtn" class="modifyComReqBtn" type="button">수정</button></td>
+                <td><button class="removeBtn">삭제</button></td>
+            </tr>
+            </tbody>
+        </table>
+
+
+        <div id="addComment">
+            <div>
+                <textarea id="comContent" rows="5" cols="50"
+                              placeholder="댓글을 입력해주세요 ."></textarea>
+            </div>
+            <button id="addComBtn">댓글 달기</button>
+            <div id="resultCom">
+
+            </div>
+        </div>
+        <div id="modifyComment" style="display: none;">
+            <div>
+                <input type="hidden" id="comNo">
+                <textarea id="modifyComContent" rows="5" cols="50"
+                          placeholder="댓글을 입력해주세오 ."></textarea>
+            </div>
+
+            <div>
+                <button id="cancel">취소</button>
+                <button id="modifyComBtn">수정하기</button>
+            </div>
+        </div>
+
+
+
+    </div>
+</section>
+</html>

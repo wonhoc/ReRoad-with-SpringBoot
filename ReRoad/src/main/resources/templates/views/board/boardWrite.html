@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+
+      layout:decorate="layout/defaultLayout">
+<th:block layout:fragment="css">
+    <link rel="stylesheet" th:href="@{/css/board/boardWrite.css}">
+</th:block>
+<th:block layout:fragment="script">
+    <script th:src="@{/js/board/boardWrite.js}"></script>
+</th:block>
+<head>
+
+</head>
+<section layout:fragment="content">
+    <div class="container">
+        <form name="form" id="form" role="form" method="post" th:action="@{/boardWrite}" enctype="multipart/form-data">
+        <form id="addForm">
+            <div style="display: inline;">
+                <label for="fileList">
+                    <p>이미지 추가</p>
+                    <img src="/images/board/poto.png" style="width:100px; height:100px; cursor: pointer;">
+                </label>
+                <input type="file" class="form-fileInput" name="fileList" id="fileList" onchange="previewImage(this,'View_area')" style="display: none;" multiple>
+                <span id='View_area'
+                      style='position:relative; color: black; border: 0px solid black;'>
+                </span>
+            </div>
+
+            <div class="mb-3">
+                <input type="text" class="form-control" name="boardTitle" id="boardTitle">
+            </div>
+
+            <div class="mb-3">
+                <input type="text" class="form-control" name="boardContent" id="boardContent" style="height: 300px;">
+            </div>
+
+            <div>
+                <button type="submit" class="btn btn-sm btn-primary" id="saveBtn">글 작성</button>
+                <a class="btn btn-default waves-effect waves-light" th:href="@{/boardList}">목록</a>
+            </div>
+
+        </form>
+
+
+    </div>
+</section>
+</html>

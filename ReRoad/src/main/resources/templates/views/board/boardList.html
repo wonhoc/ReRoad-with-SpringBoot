@@ -49,7 +49,9 @@
         <div id="html" >
         <table id="boardTable" th:if="${boardList != null}" th:each="board : ${boardList}">
             <tr>
-                <td rowspan="2" colspan="2"><img class="thumnail" src="/images/board/king.png"></td>
+                <td rowspan="2" colspan="2"><a th:href="@{/detailBoard/{boardNo}(boardNo=${board.boardNo})}">
+                                                <img th:if="${#lists.size(board.boardFiles) >= 1}" class="thumnail" th:src="@{'/upload/'+${board.boardFiles[0].systemFileName}}">
+                    <img th:if="${#lists.size(board.boardFiles) == 0}" class="thumnail" src="/images/board/king.png"></a></td>
                 <td colspan="3"><a th:href="@{/detailBoard/{boardNo}(boardNo=${board.boardNo})}"><p th:text="${board.boardTitle}"></p></a></td>
             </tr>
             <tr>
@@ -61,6 +63,7 @@
                 <td height="50px;" colspan="5" th:text="${board.boardContent}"></td>
             </tr>
         </table>
+            <button type="button" class="btn btn-primary" id="writeBtn">글쓰기 </button>
         </div>
     </div>
 </section>

@@ -11,9 +11,20 @@
         <result property="boardTitle" javaType="string" column="boardTitle" jdbcType="VARCHAR" />
         <result property="boardWdate" javaType="string" column="boardWdate" jdbcType="VARCHAR" />
         <result property="commentCount" javaType="int" column="commentCount" jdbcType="INTEGER" />
+        <result property="recomCount" javaType="int" column="recomCount" jdbcType="INTEGER" />
         <result property="boardContent" javaType="string" column="boardContent" jdbcType="VARCHAR"/>
         <result property="boardNo" javaType="int" column="boardNo" jdbcType="INTEGER" />
     </resultMap>
+
+
+    <resultMap id="resultMapFileList" type="BoardFileVo">
+        <result property="fileNo" javaType="int" column="fileNo" jdbcType="INTEGER" />
+        <result property="originalFileName" javaType="string" column="originalFileName" jdbcType="VARCHAR" />
+        <result property="systemFileName" javaType="string" column="systemFileName" jdbcType="VARCHAR" />
+        <result property="fileSize" javaType="int" column="fileSize" jdbcType="INTEGER" />
+        <result property="boardNo" javaType="int" column="boardNo" jdbcType="INTEGER" />
+    </resultMap>
+
 
     <!-- 댓글조회 -->
     <resultMap type="commentVO" id="resultMapComList">
@@ -26,10 +37,51 @@
 
 
 
+    <!-- 추천 -->
+    <resultMap id="resultMapRecom" type="RecomVo">
+        <result property="recomNo" javaType="int" column="recomNo"  jdbcType="INTEGER"/>
+        <result property="userId" javaType="string" column="userId"  jdbcType="VARCHAR"/>
+        <result property="boardNo" javaType="int" column="boardNo"  jdbcType="INTEGER"/>
+    </resultMap>
+
+
+    <!-- 신고 -->
+    <resultMap id="resultMapReport" type="ReportVo">
+        <result property="userId" javaType="string" column="userId"  jdbcType="VARCHAR"/>
+        <result property="repoter" javaType="string" column="repoter"  jdbcType="VARCHAR"/>
+        <result property="boardNo" javaType="int" column="boardNo"  jdbcType="INTEGER"/>
+    </resultMap>
+
+
+
     <!--게시글 상세조회 -->
     <parameterMap type="int" id="paramMapSelectDetail">
         <parameter property="boardNo" javaType="int" jdbcType="INTEGER" mode="IN" />
     </parameterMap>
+
+    <!-- 게시글 작성 -->
+    <parameterMap type="BoardVo" id="paramMapInsertBoard">
+        <parameter property="userId" javaType="string" jdbcType="VARCHAR" mode="IN" />
+        <parameter property="boardTitle" javaType="string" jdbcType="VARCHAR" mode="IN" />
+        <parameter property="boardContent" javaType="string" jdbcType="VARCHAR" mode="IN" />
+    </parameterMap>
+
+    <!-- 파일 -->
+    <parameterMap type="BoardFileVo" id="paramMapBoardFile">
+        <parameter property="originalFileName" javaType="String" jdbcType="VARCHAR" mode="IN" />
+        <parameter property="systemFileName" javaType="String"  jdbcType="VARCHAR" mode="IN" />
+        <parameter property="fileSize" javaType="long" jdbcType="INTEGER" mode="IN" />
+        <parameter property="boardNo" javaType="int"  jdbcType="INTEGER" mode="IN" />
+    </parameterMap>
+
+
+    <!--게시글 수정 -->
+    <parameterMap type="BoardVo" id="paramMapUpdateboard">
+        <parameter property="boardNo" javaType="int" jdbcType="INTEGER" mode="IN" />
+        <parameter property="boardTitle" javaType="string" jdbcType="VARCHAR" mode="IN" />
+        <parameter property="boardContent" javaType="string" jdbcType="VARCHAR" mode="IN" />
+    </parameterMap>
+
 
 
     <!-- 게시글 검색 -->
@@ -38,6 +90,29 @@
     </parameterMap>
 
 
+
+    <!-- 추천 -->
+    <!-- 추천 -->
+    <parameterMap id="parameterRecomMap" type="RecomVo">
+        <parameter property="boardNo" javaType="int" jdbcType="INTEGER" mode="IN" />
+        <parameter property="userId" javaType="string" jdbcType="VARCHAR" mode="IN" />
+    </parameterMap>
+
+
+
+    <!-- 신고 -->
+    <!-- 신고작성 -->
+    <parameterMap id="parameterReportMap" type="ReportVo">
+        <parameter property="boardNo" javaType="int" jdbcType="INTEGER" mode="IN" />
+        <parameter property="userId" javaType="string" jdbcType="VARCHAR" mode="IN" />
+        <parameter property="repoter" javaType="string" jdbcType="VARCHAR" mode="IN" />
+    </parameterMap>
+
+    <!-- 신고조회 -->
+    <parameterMap id="parameterReportUpdate" type="ReportVo">
+        <parameter property="boardNo" javaType="int" jdbcType="INTEGER" mode="IN" />
+        <parameter property="repoter" javaType="string" jdbcType="VARCHAR" mode="IN" />
+    </parameterMap>
 
     <!-- 댓글 -->
     <!-- 댓글 조회 -->
@@ -50,17 +125,21 @@
         <parameter property="boardNo" javaType="int" jdbcType="INTEGER" mode="IN" />
         <parameter property="userId" javaType="string" jdbcType="VARCHAR" mode="IN" />
         <parameter property="comContent" javaType="string" jdbcType="VARCHAR" mode="IN" />
-
     </parameterMap>
 
-
-    <!-- 댓글작성 -->
+    <!-- 댓글수정 -->
     <parameterMap type="commentVO" id="commentModifyMap">
-        <parameter property="boardNo" javaType="int" jdbcType="INTEGER" mode="IN" />
-        <parameter property="userId" javaType="string" jdbcType="VARCHAR" mode="IN" />
         <parameter property="comContent" javaType="string" jdbcType="VARCHAR" mode="IN" />
         <parameter property="comNo" javaType="int" jdbcType="INTEGER" mode="IN" />
     </parameterMap>
+
+
+    <!-- 댓글 삭제 -->
+    <parameterMap type="int" id="commentDeleteMap">
+        <parameter property="comNo" javaType="int" jdbcType="INTEGER" mode="IN" />
+    </parameterMap>
+
+
 
 
     <!-- 게시글 목록 -->
@@ -95,6 +174,47 @@
         { call sp_board_detail(?) }
     </select>
 
+    <!-- 게시글 조회수 -->
+    <update id="boardUphit" statementType="CALLABLE" parameterMap ="paramMapCommentList" parameterType="int">
+        { call sp_board_uphit(?) }
+    </update>
+
+    <!-- 게시글 작성 -->
+    <insert id="boardWrite" statementType="CALLABLE" parameterMap="paramMapInsertBoard" parameterType="BoardVo">
+        { CALL sp_board_boardwrite(?, ?, ?) }
+    </insert>
+
+    <!-- 게시글 삭제 -->
+    <select id="boardDelete" statementType="CALLABLE" parameterType="int" parameterMap="paramMapSelectDetail">
+        { call sp_board_boardDelete(?) }
+    </select>
+
+    <!-- 게시글 수정 -->
+    <select id="boardModify" statementType="CALLABLE" resultMap="resultMapSelectList" parameterType="BoardVo" parameterMap="paramMapUpdateboard">
+        { call sp_board_boardModify(?,?,?)}
+    </select>
+
+
+    <!-- 파일 -->
+    <!-- 파일등록 -->
+    <insert id="boardFileInsert" statementType="CALLABLE" parameterMap="paramMapBoardFile" parameterType="BoardVo" >
+        { call sp_board_boardFileInsert(?, ?, ?, ?) }
+    </insert>
+
+    <!-- 파일조회 -->
+    <select id="boardFileSelect" statementType="CALLABLE" parameterType="int"  parameterMap="paramMapSelectDetail" resultMap="resultMapFileList">
+        { call sp_board_boardFileSelect(?) }
+    </select>
+
+    <!-- 썸네일 -->
+    <select id="boardFileThumnail" statementType="CALLABLE"  resultMap="resultMapFileList">
+        { call sp_board_boardThumnailSelect() }
+    </select>
+
+    <!-- 라스트아이디 -->
+    <select id="lastId" statementType="CALLABLE" resultType="int">
+        { call sp_lastId() }
+    </select>
 
     <!-- 댓글 -->
     <!-- 댓글 조회 -->
@@ -111,5 +231,43 @@
     <update id="commentUpdate" statementType="CALLABLE" parameterType="commentVO" parameterMap="commentModifyMap">
         { call sp_comment_modify(?, ?)}
     </update>
+
+    <!-- 댓글 삭재 -->
+    <update id="commentDelete" statementType="CALLABLE" parameterType="int" parameterMap="commentDeleteMap">
+        { call sp_comment_delete(?)}
+    </update>
+
+
+    <!-- 추천 -->
+    <!-- 추천등록 -->
+    <update id="recomUpdate" statementType="CALLABLE" parameterType="RecomVo" parameterMap="parameterRecomMap">
+        { call sp_board_recomUpdate(?, ?) }
+    </update>
+
+    <!-- 추천조회 -->
+    <select id="recomSelect" resultMap="resultMapRecom" statementType="CALLABLE" parameterType="RecomVo" parameterMap="parameterRecomMap">
+        { call sp_board_recomSelect(?, ?) }
+    </select>
+
+    <!-- 추천취소 -->
+    <delete id="recomDelete" statementType="CALLABLE" parameterType="int" parameterMap="parameterRecomMap">
+        { call sp_board_recomDeletet(?,?) }
+    </delete>
+
+    <!-- 추천 수 -->
+    <select id="recomCount" statementType="CALLABLE" parameterType="int" parameterMap="paramMapSelectDetail" resultType="int">
+        { call sp_board_recomCount(?) }
+    </select>
+
+    <!-- 신고 -->
+    <!-- 신고 -->
+    <select id="reportUpdate" statementType="CALLABLE" parameterType="ReportVo" parameterMap="parameterReportMap">
+        { call sp_board_reportUpdate(?, ?, ?) }
+    </select>
+
+    <!-- 신고조회 -->
+    <select id="reportSelect" statementType="CALLABLE" parameterType="ReportVo" parameterMap="parameterReportUpdate" resultMap="resultMapReport">
+        { call sp_board_reportSelect(?, ?) }
+    </select>
 </mapper>
 

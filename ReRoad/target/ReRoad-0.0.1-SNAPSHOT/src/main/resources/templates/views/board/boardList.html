@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+
+      layout:decorate="layout/defaultLayout">
+<th:block layout:fragment="css">
+    <link rel="stylesheet" th:href="@{/css/board/boardList.css}">
+</th:block>
+<th:block layout:fragment="script">
+    <script th:src="@{/js/board/boardList.js}"></script>
+</th:block>
+<head>
+
+</head>
+<section layout:fragment="content">
+
+    <div class="container">
+
+
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <div class="collapse navbar-collapse"
+                         id="bs-example-navbar-collapse-1">
+
+                            <select name="keyfield" id="keyfield">
+                                <option value="all">전체</option>
+                                <option value="boardTitle">제목</option>
+                                <option value="userNick">작성자</option>
+                                <option value="boardContent">내용</option>
+                            </select>
+                            <input type="search" name="keyword" id="keyword" class="form-control" style="width: 300px; display: inline-block;">
+                            <button class="btn btn-primary" type="submit" id="searchBtn">
+                                <i class="fas fa-search"></i>
+                            </button>
+
+                    </div>
+                </div>
+            </nav>
+
+        <table th:if="${boardList==null}">
+
+          <tr>
+              <td>등록된 글이 없습니다.</td>
+          </tr>
+
+        </table>
+
+        <div id="html" >
+        <table id="boardTable" th:if="${boardList != null}" th:each="board : ${boardList}">
+            <tr>
+                <td rowspan="2" colspan="2"><a th:href="@{/detailBoard/{boardNo}(boardNo=${board.boardNo})}">
+                                                <img th:if="${#lists.size(board.boardFiles) >= 1}" class="thumnail" th:src="@{'C:\\upload/'+${board.boardFiles[0].systemFileName}}">
+                    <img th:if="${#lists.size(board.boardFiles) == 0}" class="thumnail" src="/images/board/king.png"></a></td>
+                <td colspan="3"><a th:href="@{/detailBoard/{boardNo}(boardNo=${board.boardNo})}"><p th:text="${board.boardTitle}"></p></a></td>
+            </tr>
+            <tr>
+                <td><img class="boardImg" src="/images/board/user.png"><span th:text="${board.userNick}"></span></td>
+                <td><img class="boardImg" src="/images/board/view.png"><span th:text="${board.boardCount}"></span></td>
+                <td><img class="boardImg" src="/images/board/commentCount.png"><span th:text="${board.boardCount}"></span></td>
+            </tr>
+            <tr>
+                <td height="50px;" colspan="5" th:text="${board.boardContent}"></td>
+            </tr>
+        </table>
+        </div>
+    </div>
+</section>
+</html>

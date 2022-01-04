@@ -15,11 +15,21 @@
 </head>
 <section layout:fragment="content">
 
-    <input type="hidden" th:value="${board.boardNo}" id="boardNo">
-
+    <input type="hidden" th:value="${username}" id="username">
+    <input type="hidden" th:value="${board.userId}" id="userId">
     <div class="container">
 
+        <form th:action="@{/deleteBoard/{boardNo}(boardNo=${board.boardNo})}" method="post">
+            <input type="hidden" name="boardNo" th:value="${board.boardNo}" id="boardNo">
+            <button id="deleteBtn" class="btn-primary">삭제</button>
+            <a class="btn btn-default waves-effect waves-light" th:href="@{/modifyBoardForm/{boardNo}(boardNo=${boardNo})}">수정</a>
+
         <table id="table">
+
+            <tr th:if="${#lists.size(board.boardFiles) >= 1}">
+                <td  th:each="boardfile : ${board.boardFiles}" ><img class="fileimage" th:src="@{'/upload/'+${boardfile.systemFileName}}"></td>
+            </tr>
+
             <thead>
             <tr>
                 <td id="boardTitle" colspan="2"  th:text="${board.boardTitle}"></td>
@@ -28,14 +38,14 @@
             </thead>
             <tr id="tablebody">
                 <td>작성일자 <span th:text="${board.boardWdate}"></span></td>
-                <td><img class="images" src="/images/board/view.png">조회수<span th:text="${board.boardContent}"></span></td>
-                <td><img class="images" src="/images/board/commentCount.png">추천수<span th:text="${board.recomCount}"></span></td>
+                <td><img class="images" src="/images/board/view.png">조회수<span th:text="${board.boardCount}"></span></td>
+                <td><img class="images" src="/images/board/commentCount.png">추천수<span id="recomCount"><span th:text="${board.recomCount}" /></span></td>
             </tr>
             <tr>
                 <td height="300px;" th:text="${board.boardContent}"></td>
             </tr>
         </table>
-
+        </form>
         <button type="button" class="btn btn-success" id="recomBtn">추천</button>
         <button type="button" class="btn btn-warning" id="reportBtn">신고</button>
 
@@ -53,12 +63,11 @@
             </thead>
             <tbody th:each="comment : ${commentList}" th:id="${comment.comNo}">
             <tr>
-                <td th:text="${comment.comNo}"></td>
                 <td  th:text="${comment.userNick}"></td>
                 <td  th:text="${comment.comWdate}"></td>
                 <td  class="comContent" th:text="${comment.comContent}"></td>
                 <td ><button id="updateComBtn" class="modifyComReqBtn" type="button">수정</button></td>
-                <td><button id="removeBtn">삭제</button></td>
+                <td><button class="removeBtn">삭제</button></td>
             </tr>
             </tbody>
         </table>

@@ -26,5 +26,8 @@ public class UserVo {
     private String joinDate;
     private String exitType;
 
+    private String provider;
+    private String providerId;
+
 
 }

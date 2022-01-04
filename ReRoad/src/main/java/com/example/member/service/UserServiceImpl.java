@@ -2,6 +2,7 @@ package com.example.member.service;
 
 import com.example.member.dao.UserDao;
 import com.example.member.vo.UserVo;
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;

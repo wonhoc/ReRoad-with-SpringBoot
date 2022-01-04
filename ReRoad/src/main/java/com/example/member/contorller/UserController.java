@@ -6,6 +6,8 @@ import com.example.member.vo.MailVo;
 import com.example.member.vo.UserVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Primary;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.User;
@@ -32,6 +34,7 @@ import java.util.Random;
 public class UserController {
     @Autowired
     private UserService userService;
+
     @Autowired
     private PasswordEncoder passwordEncoder;
 
@@ -159,15 +162,6 @@ public class UserController {
     public void deniedMessage() {
 
     }
-    @GetMapping ("/oauthLogin")
-    public String oauthLogin(Authentication authentication, @AuthenticationPrincipal OAuth2User user) {
-        System.out.println("authentication : " + authentication.getDetails());
-        System.out.println(user.getName());
-        System.out.println(user.getAuthorities());
-
-        return "views/member/joinSuccess";
-    }
-
 
     // 관리자의 사용자 정보 조회
     @GetMapping("/admin/listUser")

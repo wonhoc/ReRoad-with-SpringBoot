@@ -1,4 +1,4 @@
-package com.example.reroad;
+package com.example.member.oauth;
 
 import com.example.member.service.UserService;
 import lombok.extern.slf4j.Slf4j;
@@ -20,6 +20,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     //Spring Security Login - For Binding UserDetail Interface
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private PrincipalOauth2UserService principalOauth2UserService;
+
     //페이지 권한 관리
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -47,6 +51,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutUrl("/logout")
                 .invalidateHttpSession(true)
                 .logoutSuccessUrl("/");
+        http.oauth2Login()
+                .loginPage("/loginForm")
+                .defaultSuccessUrl("/views/member/joinSuccess")
+                .userInfoEndpoint()
+                .userService(principalOauth2UserService);
 
         http.userDetailsService((UserDetailsService) userService);
 
@@ -61,11 +70,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public PasswordEncoder passwordEncoder() {
         return PasswordEncoderFactories.createDelegatingPasswordEncoder();
     }
-
-
-
-
-
-
 
 }

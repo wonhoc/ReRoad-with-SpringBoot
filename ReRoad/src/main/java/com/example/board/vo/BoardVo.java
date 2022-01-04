@@ -22,6 +22,6 @@ public class BoardVo {
     private String userNick;
 
 
-    private FileVO boardfile = new FileVO();
-    private List<CommentVo> commentList = new ArrayList<CommentVo>();
+    private final FileVO boardfile = new FileVO();
+    private final List<CommentVo> commentList = new ArrayList<CommentVo>();
 }

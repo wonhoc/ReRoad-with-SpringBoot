@@ -67,17 +67,21 @@ public class UserController {
         return "views/member/loginSuccess";
     }
 
+    //로그인이 실패했을 경우
+    @GetMapping("/loginFail")
+    public String forFailer() { return "views/member/loginForm";}
+
     @GetMapping("/admin")
     public String forAdmin() { return "views/member/admin"; }
 
     @GetMapping("/joinUser")
-    public String forJoin() { return "views/member/joinuser";}
+    public String forJoin() { return "views/member/JoinUser";}
 
     // 회원 가입 과정에서 아이디 중복 체크
     @RequestMapping(value="/checkId", method = RequestMethod.POST)
     public @ResponseBody String checkIdAjax(@RequestParam("userId") String requestId) {
         String inputId = requestId.trim();
-        int checkNum = this.userService.checkId(requestId);
+        int checkNum = this.userService.checkId(inputId);
         String checkResult = "";
         // 중복된 아이디는 1 = 가입 불가
         // 없는 아이디는 0 = 가입 가능
@@ -89,10 +93,33 @@ public class UserController {
         return checkResult;
     }
 
+    // 회원 가입 과정에서 닉네임 중복 체크
+    @RequestMapping(value="/checkNick", method = RequestMethod.POST)
+    public @ResponseBody String checkNickAjax(@RequestParam("userNick") String requestNick) {
+        String inputNick = requestNick.trim();
+        int checkNick = this.userService.checkNick(inputNick);
+        String nickResult = "";
+        // 중복된 닉네임은 1 = 가입 불가
+        // 없는 닉네임은 0 = 가입 가능
+        if (checkNick == 1) {
+            nickResult = "false";
+        } else if (checkNick == 0) {
+            nickResult = "true";
+        }
+        return nickResult;
+    }
+
     //회원가입
     @RequestMapping(value="/joinUserRequest", method = RequestMethod.POST)
-    public @ResponseBody void joinUserRequest() {
-
+    public String joinUserRequest(@RequestParam ("username") String username,
+          @RequestParam ("inputPwd") String password, @RequestParam ("inputNick") String userNick) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("userId", username);
+        map.put("userPwd", passwordEncoder.encode(password));
+        map.put("userNick", userNick);
+        map.put("role", "ROLE_MEMBER");
+        this.userService.registUser(map);
+        return "views/member/joinSuccess";
     }
 
     //인증 메일 발송
@@ -112,9 +139,13 @@ public class UserController {
         mail.setMessage("인증 번호는 "+ key + "입니다.");
 
         this.mailService.sendMail(mail);
-        System.out.println("Controller Key : "+key);
-
         return key;
+    }
+
+
+    // 권한이 없는 경로로 접근했을 경우
+    @PostMapping("/accessDenied")
+    public void deniedMessage() {
 
     }
 

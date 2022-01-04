@@ -48,7 +48,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
 
     @Override
-    public void registUser(Map map, String userId) {
+    public void registUser(Map map) {
         this.userDao.insertUser(map);
     }
 
@@ -61,7 +61,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     //닉네임 중복 검사
     @Override
     public int checkNick(String userNick) {return this.userDao.existNick(userNick);};
-
 
     @Override
     public List<UserVo> retrieveUserList() {

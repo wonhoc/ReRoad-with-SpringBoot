@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/defaultLayout}">
+<th:block layout:fragment="script">
+    <script th:src="@{/js/planner/planList.js}"></script>
+</th:block>
+
+<head>
+
+    <style>
+        .paging-div {
+            padding: 15px 0 5px 10px;
+            display: table;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+        #pagination-div{
+            text-align: center;
+        }
+        #pagination-div{
+            text-align: center;
+        }
+        #pagination-div2{
+            text-align: center;
+        }
+        thead{
+            text-align: center;
+        }
+
+        #UK{
+            width: 150px;
+            line-height: 3.5em;
+        }
+        #thead{
+            background-color: burlywood;
+
+        }
+]        #wdate,#bc,#rc,#cc,span{
+            line-height: 3.5em;
+        }
+        .navBox {
+            margin-top: 1em;
+        }
+
+    </style>
+ </head>
+<section class="container" layout:fragment="content">
+    <h3>여행 일정 플래너</h3>
+    <div id="external-table">
+        <table id="table" class="table table-hover">
+            <thead>
+                <th>여행이름</th>
+                <th>여행지</th>
+                <th>여행기간</th>
+            </thead>
+            <tbody id="planList">
+
+            </tbody>
+        </table>
+        <div id="paging">
+            <div id="pagination-div">
+                <div id="page-content"></div>
+            </div>
+        </div>
+            <a class="btn btn-primary waves-effect waves-light"
+               th:href="@{/planwriteform}">일정짜기</a>
+
+    </div>
+
+</section>
+</html>

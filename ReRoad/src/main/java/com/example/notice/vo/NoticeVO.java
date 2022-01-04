@@ -17,5 +17,5 @@ public class NoticeVO {
     private int hitCount;
     private String writeDate;
 
-    private List<FileVO> noticeFileList = new ArrayList<>();
+    private  List<FileVO> noticeFileList = new ArrayList<>();
 }

@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Notice">
+
+    <!-- 공지 목록 조회 -->
+    <resultMap type="noticeVO" id="resultMapNoticeList">
+        <result property="noticeTitle" javaType="string" column="noticeTitle" jdbcType="VARCHAR" />
+        <result property="hitCount" javaType="int" column="hitCount" jdbcType="INTEGER" />
+        <result property="writeDate" javaType="string" column="wDate" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <!-- 공지글 상세 조회 -->
+    <resultMap type="noticeVO" id="resultMapNotice">
+        <result property="noticeTitle" javaType="string" column="noticeTitle" jdbcType="VARCHAR" />
+        <result property="hitCount" javaType="int" column="hitCount" jdbcType="INTEGER" />
+        <result property="writeDate" javaType="string" column="wDate" jdbcType="VARCHAR" />
+        <result property="noticeContent" javaType="string" column="noticeContent" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <!-- 공지 파일 조회 -->
+    <resultMap type="fileVO" id="resultMapNoticeFiles">
+        <result property="fileNo" javaType="int" column="fileNo" jdbcType="INTEGER" />
+        <result property="noticeNo" javaType="int" column="noticeNo" jdbcType="INTEGER" />
+        <result property="fileOrigin" javaType="string" column="fileOrigin" jdbcType="VARCHAR" />
+        <result property="fileSys" javaType="string" column="fileSys" jdbcType="VARCHAR" />
+        <result property="fileSize" javaType="long" column="fileSize" jdbcType="INTEGER" />
+    </resultMap>
+    <!-- ............................................................................................................. -->
+
+    <parameterMap type="noticeVO" id="noticeNoParameter">
+        <parameter property="noticeNo" javaType="int"
+                   jdbcType="INTEGER" mode="IN" />
+    </parameterMap>
+
+    <!-- 공지사항 수정 -->
+    <parameterMap type="noticeVO" id="noticeModifyParameter">
+        <parameter property="noticeNo" javaType="int"
+                   jdbcType="INTEGER" mode="IN" />
+        <parameter property="noticeTitle" javaType="String"
+                   jdbcType="VARCHAR" mode="IN" />
+        <parameter property="noticeContent" javaType="String"
+                   jdbcType="VARCHAR" mode="IN" />
+    </parameterMap>
+
+    <!-- 공지사항 작성 -->
+    <parameterMap type="noticeVO" id="noticeinsertParameter">
+        <parameter property="userId" javaType="String"
+                   jdbcType="VARCHAR" mode="IN" />
+        <parameter property="noticeTitle" javaType="String"
+                   jdbcType="VARCHAR" mode="IN" />
+        <parameter property="noticeContent" javaType="String"
+                   jdbcType="VARCHAR" mode="IN" />
+    </parameterMap>
+
+    <!-- 공지 파일 등록 -->
+    <parameterMap type="fileVO" id="noticeFileParameter">
+        <parameter property="noticeNo" javaType="int"
+                   jdbcType="INTEGER" mode="IN" />
+        <parameter property="fileOrigin" javaType="String"
+                   jdbcType="VARCHAR" mode="IN" />
+        <parameter property="fileSys" javaType="String"
+                   jdbcType="VARCHAR" mode="IN" />
+        <parameter property="fileSize" javaType="long"
+                   jdbcType="INTEGER" mode="IN" />
+    </parameterMap>
+
+    <!-- 공지 검색 -->
+    <parameterMap type="searchVO" id="searchNoticeParameter">
+        <parameter property="keyfield" javaType="String"
+                   jdbcType="VARCHAR" mode="IN" />
+        <parameter property="keyword" javaType="String"
+                   jdbcType="VARCHAR" mode="IN" />
+    </parameterMap>
+
+    <!-- 공지 파일 조회 -->
+    <parameterMap type="int" id="noticeFileNoParameter">
+        <parameter property="fileNo" javaType="int"
+                   jdbcType="INTEGER" mode="IN" />
+    </parameterMap>
+    <!-- ******************************************************************* -->
+    <!-- 공지 목록조회 -->
+    <select id="selectNoticeList" statementType="CALLABLE" resultMap="resultMapNoticeList">
+        { call sp_list_notice() }
+    </select>
+
+    <!-- 공지 상세조회 -->
+    <select id="selectNotice" statementType="CALLABLE" resultMap="resultMapNotice"
+            parameterMap="noticeNoParameter">
+        { call sp_detail_notice(?) }
+    </select>
+
+    <!-- 공지 파일 조회 -->
+    <select id="selectNoticeFiles" statementType="CALLABLE" resultMap="resultMapNoticeFiles"
+            parameterMap="noticeNoParameter">
+        { call sp_select_noticeFiles(?) }
+    </select>
+
+    <!-- 공지 파일 1개만 조회 -->
+    <select id="selectNoticeFile" statementType="CALLABLE" resultMap="resultMapNoticeFiles"
+            parameterMap="noticeFileNoParameter">
+        { call sp_select_noticeFile(?) }
+    </select>
+
+    <!-- 공지 삭제 -->
+    <delete id="deleteNotice" statementType="CALLABLE" parameterMap="noticeNoParameter">
+        { call sp_delete_notice(?) }
+    </delete>
+
+    <!-- 공지 수정 -->
+    <update id="updateNotice" statementType="CALLABLE" parameterMap="noticeModifyParameter">
+        { call sp_update_notice(?,?,?) }
+    </update>
+
+    <!-- 공지 작성 -->
+    <insert id="insertNotice" statementType="CALLABLE" parameterMap="noticeinsertParameter">
+        { call sp_insert_notice(?, ?, ?) }
+    </insert>
+
+    <!-- 공지 파일 등록 -->
+    <insert id="insertNoticeFile" statementType="CALLABLE" parameterMap="noticeFileParameter">
+        { call sp_insert_noticeFile(?,?,?,?) }
+    </insert>
+
+    <!-- lastID -->
+    <select id="lastID" resultType="int">
+        select MAX(noticeNo)
+        from notice
+    </select>
+    <!-- 공지 조회수 업데이트 -->
+    <update id="upHitCount" statementType="CALLABLE" parameterMap="noticeNoParameter">
+        { call sp_upHitCount_notice(?) }
+    </update>
+
+    <!-- 공지 전체 검색 -->
+    <select id="searchAllNotice" statementType="CALLABLE" parameterMap="searchNoticeParameter" resultMap="resultMapNoticeList">
+        { call sp_searchAll_notice(?,?) }
+    </select>
+
+    <!-- 공지 제목 검색 -->
+    <select id="searchTitleNotice" statementType="CALLABLE" parameterMap="searchNoticeParameter" resultMap="resultMapNoticeList">
+        { call sp_searchTitle_notice(?,?) }
+    </select>
+
+    <!-- 공지 내용 검색 -->
+    <select id="searchContentNotice" statementType="CALLABLE" parameterMap="searchNoticeParameter" resultMap="resultMapNoticeList">
+        { call sp_searchContent_notice(?,?) }
+    </select>
+
+    <delete id="deleteOnlyFile" statementType="CALLABLE" parameterMap="noticeFileNoParameter">
+        { call sp_deleteOnly_noticeFile(?) }
+    </delete>
+
+
+    <delete id="deleteNoticeFiles" statementType="CALLABLE" parameterMap="noticeNoParameter">
+        { call sp_delete_noticeFiles(?) }
+    </delete>
+</mapper>
+

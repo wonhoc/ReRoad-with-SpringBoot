@@ -15,7 +15,7 @@
 </head>
 
 <section layout:fragment="content">
-    <form class="form-signin" action="/joinUserRequest" method="POST">
+    <form class="form-signin" action="/joinUserRequest" id= "joinUserForm" method="POST">
         <div id = "joinFormOne"class="joinUserContainer">
             <div class="welcome_join_Text">
                 <h1 class="joinText">회원가입</h1>
@@ -42,32 +42,30 @@
             <div class="welcome_join_text">
                 <div class="joinText">
                     <h1 class="joinText">회원가입</h1>
+                    <div class = "title_devide"></div>
                     <div class="footer_title"></div>
                     <div class="welcome_join">
                         회원 가입에 필요한 추가 정보를 입력하세요.<br>
                         회원 가입 버튼을 누르면 가입 절차가 완료됩니다.
-
-
-
-
-
                     </div>
+                </div>
+                <div class="inputAnotherInfo">
+                    <label class = "idcss" >ID(Email)</label>
+                    <input class="form-control" id="verifiedMail" disabled>
+                    <label class="idcss" for="inputPwd">Password</label>
+                    <input class="form-control" type="password" id="inputPwd" name="inputPwd">
+                    <div id="checkPwdformat"></div>
+                    <label class="idcss" for="inputPwd">Password 재입력</label>
+                    <input class="form-control" type="password" id="inputPwd2" name="inputPwd2">
+                    <div id="checkPwdOneMore"></div>
+                    <label class="idcss" for="checkNick">NickName</label>
+                    <input class="form-control" type="text" id="inputNick" name="inputNick">
+                    <div id="checkNick"></div>
+                    <button class="btn btn-primary btn-lg btn-block" type="button" id="joinButton" name="joinButton">회원가입</button>
 
                 </div>
-
             </div>
-
-
-
         </div>
-
-
-
     </form>
-
-
-
-
-
 </section>
 </html>

@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Slf4j
 @EnableWebSecurity
@@ -23,27 +24,26 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-        //http.csrf();
-//        CookieCsrfTokenRepository cookieCsrfTokenRepository = CookieCsrfTokenRepository.withHttpOnlyFalse();
-//        cookieCsrfTokenRepository.setCookieName("XSRF-TOKEN");
-//        http.csrf().csrfTokenRepository(cookieCsrfTokenRepository);
-
         http.csrf().disable();
 
-        log.info("security config...");
-        http.csrf().disable();
+        //권한 설정
+        http.authorizeHttpRequests()
+                .antMatchers("/", "/loginForm","joinUser","/forgetPw").permitAll() //모든 사용자 권한으로 접근 가능
+                .antMatchers("/member/**").authenticated() //회원 권한의 사용자일 경우 접속 가능한 경로
+                .antMatchers("/admin/**").hasRole("ADMIN"); //ADMIN 권한의 사용자일 경우 접속 가능한 경로
 
-        //Root 페이지 : 모든 권한 접속 가능
-        http.authorizeHttpRequests().antMatchers("/").permitAll();
-        http.authorizeHttpRequests().antMatchers("/member/**").authenticated();
-        //http.authorizeHttpRequests().antMatchers("/manager/**").hasRole("MANAGER");
-        //ADMIN 권한 테스트
-        http.authorizeHttpRequests().antMatchers("/admin/**").hasRole("ADMIN");
-        //로그인
-        http.formLogin().loginPage("/loginForm").defaultSuccessUrl("/loginSuccess", true);
+        //로그인 관련 설정
+        http.formLogin()
+                .loginPage("/loginForm") // 로그인 폼 경로
+                .defaultSuccessUrl("/loginSuccess", true) // 로그인 성공 시 이동할 URL
+                .failureUrl("/loginFail"); // 로그인 실패 시 이동 URL
 
+        //권한이 없는 경로로 접근했을 경우
         http.exceptionHandling().accessDeniedPage("/accessDenied");
-        http.logout().logoutUrl("/logout").invalidateHttpSession(true).logoutSuccessUrl("/loginForm");
+        //로그아웃
+        http.logout()
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .logoutUrl("/logout").invalidateHttpSession(true).logoutSuccessUrl("/loginForm");
 
 
         http.userDetailsService((UserDetailsService) userService);

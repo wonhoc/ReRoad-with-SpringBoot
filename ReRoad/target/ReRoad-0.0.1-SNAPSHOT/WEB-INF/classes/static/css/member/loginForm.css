@@ -53,6 +53,7 @@
     padding: 3px;
 }
 
+
 .input {
     width: 500px;
     height: 200px;
@@ -60,16 +61,24 @@
 
 }
 /* 로그인 버튼 디자인 */
-.btn-primary {
+.btn {
     background-color: RGB(1,121,122);
     border-color: RGB(1,121,122);
     font-weight: bolder;
 }
 /*로그인 버튼 마우스 오버 시 디자인 */
-.btn-primary:hover {
+.btn.btn-primary:hover {
     background-color: #27B8B9;
     border-color: #27B8B9;
 }
+
+
+/* 잘못된 입력으로 비활성화 되는 경우 */
+btn-primary.disabled:disabled {
+    background-color: #5e5e5e;
+    border-color: #5e5e5e;
+}
+
 .inputidpwd {
     padding-bottom: 2em;
 }

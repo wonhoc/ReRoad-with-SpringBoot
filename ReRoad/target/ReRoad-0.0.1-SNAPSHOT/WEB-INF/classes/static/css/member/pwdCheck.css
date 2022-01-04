@@ -1,0 +1,45 @@
+.pwd {
+    width: 40%;
+    padding: 5em;
+    margin: auto;
+}
+.pwd_title {
+    margin: 0.3em 0;
+    font-size: 40px;
+}
+.pwd_divide {
+    width: 40%;
+    height: 3px;
+    background-color: black;
+}
+.pwd_notice {
+    font-size: 24px;
+}
+
+.pwdInput_box {
+    margin: 3em;
+    text-align: center;
+}
+.pwd_input {
+    width: 30rem;
+    height: 3rem;
+    border: 2px solid;
+    border-radius: 0.25em;
+}
+.pwdBtn_box {
+    text-align: end;
+}
+.pwd_btn {
+    height: 3rem;
+    margin: 0 0.3em;
+    font-size: 18px;
+    color: #454545;
+    background-color: #fdfdfd;
+    border: 2px solid #454545;
+    border-radius: 0.25em;
+    transition: all 150ms ease-in;
+    cursor : pointer;
+}
+.pwd_btn:hover {
+    background-color: #e2e2e2;
+}

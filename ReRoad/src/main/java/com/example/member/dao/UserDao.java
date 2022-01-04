@@ -14,4 +14,7 @@ public interface UserDao {
     void deleteUserForce(String userId);
     String confirmPwd(String userId);
     void deleteUser(String userId);
+    UserVo selectUser(String userId);
+    void update(UserVo user);
+    int existNick(String userNick);
 }

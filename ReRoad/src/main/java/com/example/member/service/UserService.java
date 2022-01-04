@@ -14,4 +14,8 @@ public interface UserService {
     void removeUserForce(String userId);
     String checkPwd(String userId);
     void removeUser(String userId);
+
+    UserVo retrieveUser(String userId);
+    void modifyUser(UserVo user);
+    int checkNick(String isNick);
 }

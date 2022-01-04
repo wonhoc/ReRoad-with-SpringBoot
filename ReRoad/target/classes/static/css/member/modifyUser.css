@@ -1,0 +1,114 @@
+content {
+    width: 100%;
+}
+
+.join_box {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+}
+
+.join_right {
+    width: 30em;
+}
+
+
+.join_title {
+    font-weight: bolder;
+    margin: 0.3em 0;
+}
+
+.join_notice {
+    padding: 3em 0 2em 5em;
+}
+
+.join_devide {
+    width: 30%;
+    height: 4px;
+    background-color: black;
+}
+
+.join_text {
+    font-size: 20px;
+    margin: 0.25em;
+}
+
+.input_section {
+    display: flex;
+    align-items: center;
+}
+
+.input_title {
+    font-size: 25px;
+    margin-right: 1em;
+    width: 10em;
+    margin-bottom: 1em;
+}
+
+.input_info {
+    width: 15em;
+}
+
+.input_select {
+    display: flex;
+}
+
+.input_profile {
+    display: flex;
+    align-items: center;
+    margin-bottom: 3em;
+}
+
+
+#profilePhoto {
+    outline: none;
+}
+
+.form_imgBtn label {
+    margin-top: 1em;
+    display: inline-block;
+    padding: 0.5em 0.75em;
+    color: #404040;
+    font-size: inherit;
+    line-height: normal;
+    vertical-align: middle;
+    background-color: #fdfdfd;
+    cursor: pointer;
+    border: 1px solid #626262;
+    border-radius: 0.25em;
+}
+
+.form_imgBtn input[type="file"] {
+    /* 파일 필드 숨기기 */
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+#img {
+    border-radius: 50%;
+    width: 8rem;
+    height: 8rem;
+    border: 1px solid;
+    margin-right: 2.5em;
+}
+
+.btn_box {
+    display: flex;
+    flex-direction: unset;
+    justify-content: flex-end;
+    align-items: end;
+    margin-top: 25em;
+    text-align: center;
+}
+
+.submitBtn {
+    width: 3em;
+    height: 2em;
+    padding: 0.25em;
+}

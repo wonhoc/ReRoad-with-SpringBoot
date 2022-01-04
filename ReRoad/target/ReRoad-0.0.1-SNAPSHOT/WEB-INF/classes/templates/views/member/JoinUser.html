@@ -9,8 +9,14 @@
 <th:block layout:fragment="script">
     <script th:src="@{/js/member/joinUserForm.js}"></script>
 </th:block>
-    <section layout:fragment="content">
-        <div class="joinUserContainer">
+<head>
+<!--    <meta name="_csrf" th:content="${_csrf.token}"/>-->
+<!--    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>-->
+</head>
+
+<section layout:fragment="content">
+    <form class="form-signin" action="/joinUserRequest" method="POST">
+        <div id = "joinFormOne"class="joinUserContainer">
             <div class="welcome_join_Text">
                 <h1 class="joinText">회원가입</h1>
                 <div class = "title_devide"></div>
@@ -27,18 +33,41 @@
                 <label class = "pwcss" for="veriNumber">인증번호</label>
                 <input class="form-control" type="text" id="veriNumber" name="veriNumber" placeholder="인증번호를 입력하세요" />
                 <div id="checkVeriNumber"></div>
-                <button class="btn btn-primary btn-lg btn-block"> 다음 </button>
+                <button id="nextButton" type="button" class="btn btn-primary btn-lg btn-block"> 다음 </button>
 
 
-                <div class="inputVeriNumber"></div>
             </div>
+        </div>
+        <div id = "joinFormTwo" class="joinUserContainer" >
+            <div class="welcome_join_text">
+                <div class="joinText">
+                    <h1 class="joinText">회원가입</h1>
+                    <div class="footer_title"></div>
+                    <div class="welcome_join">
+                        회원 가입에 필요한 추가 정보를 입력하세요.<br>
+                        회원 가입 버튼을 누르면 가입 절차가 완료됩니다.
 
 
 
+
+
+                    </div>
+
+                </div>
+
+            </div>
 
 
 
         </div>
 
-    </section>
+
+
+    </form>
+
+
+
+
+
+</section>
 </html>

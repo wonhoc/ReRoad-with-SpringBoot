@@ -67,4 +67,24 @@ public class UserDaoImpl implements UserDao {
         this.sqlSession.delete("Member.deleteUser", userId);
 
     }
+
+    //회원정보상세조회
+    @Override
+    public UserVo selectUser(String userId) {
+        return this.sqlSession.selectOne("Member.selectOne", userId);
+
+    }
+
+    //회원정보수정
+    @Override
+    public void update(UserVo user) {
+        this.sqlSession.update("Member.update", user);
+
+    }
+
+    // 닉네임 중복 체크
+    @Override
+    public int existNick(String userNick) {
+        return this.sqlSession.selectOne("Member.checkNick", userNick);
+    }
 }

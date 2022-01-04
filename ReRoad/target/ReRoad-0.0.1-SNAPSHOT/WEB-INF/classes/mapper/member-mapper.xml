@@ -39,6 +39,77 @@
 
     </insert>
 
+    <!-- 회원 가입 과정에서 아이디 중복 체크 -->
+    <select id="checkId" parameterType="string" resultType="int">
+        SELECT COUNT(*) + (
+            SELECT COUNT(*)
+            FROM exit_user
+            WHERE userId=#{userId}
+        )
+        FROM user_info
+        WHERE userId = #{userId}
+    </select>
 
+
+    <!-- 관리자가 회원의 상세정보를 조회한다 -->
+    <resultMap type="UserVo" id="userResultMap">
+        <id column="userId" jdbcType="VARCHAR" javaType="string" property="userId"/>
+        <result column="userNick" jdbcType="VARCHAR" javaType="string" property="userNick"/>
+    </resultMap>
+    <select id="selectAll" resultMap="userResultMap" statementType="CALLABLE">
+        SELECT u.userId, u.userNick,(SELECT COUNT(*) FROM report re WHERE re.userId = u.userId )
+            as reportCount FROM user_info u WHERE role = 'ROLE_MEMBER';
+    </select>
+
+    <!-- 회원 강제탈퇴-->
+    <delete id="deleteUserForce" statementType="CALLABLE" parameterType="string">
+        { call sp_user_deleteForce(#{userid}) }
+    </delete>
+
+    <!-- 회원 자진탈퇴-->
+    <delete id="deleteUser" statementType="CALLABLE" parameterType="string">
+        { call sp_user_delete(#{userid}) }
+    </delete>
+
+    <!-- 비밀번호일치 확인 -->
+    <select id="selectPwd" parameterType="string" resultType="string">
+        SELECT userPwd
+        FROM user_info
+        WHERE userId = #{userId}
+    </select>
+
+    <!-- 회원정보를 상세조회한다 -->
+    <resultMap type="UserVo" id="userOneResultMap">
+        <id property="userId" javaType="string" column="userId"
+            jdbcType="VARCHAR" />
+        <result property="userNick" javaType="string" column="userNick"
+                jdbcType="VARCHAR" />
+        <result property="photoOrigin" javaType="string"
+                column="photoOrigin" jdbcType="VARCHAR" />
+        <result property="photoSys" javaType="string" column="photoSys"
+                jdbcType="VARCHAR" />
+    </resultMap>
+    <select id="selectOne" statementType="CALLABLE"
+            resultMap="userOneResultMap" parameterType="string">
+        SELECT userId, userNick, photoOrigin, photoSys
+        FROM user_info
+        WHERE userId = #{userId};
+    </select>
+
+    <!-- 회원정보를 변경한다 -->
+    <update id="update" parameterType="UserVo" >
+        UPDATE user_info
+        SET
+            userPwd = #{userPwd}, userNick = #{userNick},
+            photoOrigin = #{photoOrigin}, photoSys = #{photoSys}
+        WHERE userId = #{userId}
+    </update>
+
+    <!--  닉네임 중복 검사 -->
+    <select id="checkNick" parameterType="string" resultType="int">
+        SELECT COUNT(*)
+        FROM user_info
+        WHERE userNick = #{userNick}
+    </select>
 </mapper>
 

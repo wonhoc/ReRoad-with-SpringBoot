@@ -21,6 +21,7 @@ import org.springframework.web.util.UriUtils;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 import java.net.MalformedURLException;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -47,8 +48,8 @@ public class NoticeController {
 
     }
     // 공지글 상세보기
-    @GetMapping("/noticedetail")
-    public String detailnotice(int noticeNo, Model model, HttpServletRequest request, HttpServletResponse response) {
+    @GetMapping("/noticedetail/{noticeNo}")
+    public String detailnotice(@PathVariable  int noticeNo, Model model, HttpServletRequest request, HttpServletResponse response) {
 
         Cookie[] cookies = request.getCookies();
 
@@ -91,9 +92,7 @@ public class NoticeController {
     // 공지글 수정
     // 수정폼불러오기
     @GetMapping("/noticemodifyform/{noticeNo}")
-    public String noticeModifyForm(@PathVariable int noticeNo, @RequestPart(value = "boardFileInput",
-            required = false) MultipartFile boardFileSys,
-                                  Model model, HttpServletRequest request) {
+    public String noticeModifyForm(@PathVariable int noticeNo, Model model) {
 
         NoticeVO notice = this.noticeService.retrieveNotice(noticeNo);
         notice.setNoticeNo(noticeNo);
@@ -103,20 +102,18 @@ public class NoticeController {
 
     //게시글 수정
     @PostMapping("/modifynotice")
-    public String noticeModify(@RequestParam("noticeContent") String noticeContent,
-                              @RequestParam("noticeTitle") String noticeTitle,
-                              @RequestParam("noticeNo") int noticeNo,
+    public String noticeModify( @RequestParam("noticeContent") String noticeContent,
+                               @RequestParam("noticeTitle") String noticeTitle,
+                               @RequestParam("noticeNo") int noticeNo,
                                @RequestPart(value = "noticeFileInput", required = false) List<MultipartFile> files,
-
-                              Model model, HttpServletRequest request) {
+                               HttpServletRequest request) {
 
         NoticeVO newNotice = new NoticeVO();
-      //  newNotice.setUserId("admin123");
+
         newNotice.setNoticeTitle(noticeTitle);
         newNotice.setNoticeContent(noticeContent);
         newNotice.setNoticeNo(noticeNo);
         System.out.println(noticeNo);
-        NoticeVO originNotice = this.noticeService.retrieveNotice(noticeNo);
 
         List<FileVO> noticeFileVO = new ArrayList<FileVO>();
 

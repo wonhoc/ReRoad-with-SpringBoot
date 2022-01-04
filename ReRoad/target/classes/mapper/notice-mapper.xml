@@ -27,6 +27,14 @@
         <result property="fileSys" javaType="string" column="fileSys" jdbcType="VARCHAR" />
         <result property="fileSize" javaType="long" column="fileSize" jdbcType="INTEGER" />
     </resultMap>
+    
+    <!-- 공지 최근 5개글 조회(메인에 띄울) -->
+    <resultMap id="resultMapLastNotices" type="noticeVO">
+        <result property="noticeNo" javaType="int" column="noticeNo" jdbcType="INTEGER" />
+        <result property="noticeTitle" javaType="String" column="noticeTitle" jdbcType="VARCHAR" />
+        <result property="writeDate" javaType="String" column="wDate" jdbcType="VARCHAR" />
+        <result property="hitCount" javaType="int" column="hitCount" jdbcType="INTEGER" />
+    </resultMap>
     <!-- ............................................................................................................. -->
 
     <parameterMap type="noticeVO" id="noticeNoParameter">
@@ -156,5 +164,10 @@
     <delete id="deleteNoticeFiles" statementType="CALLABLE" parameterMap="noticeNoParameter">
         { call sp_delete_noticeFiles(?) }
     </delete>
+
+    <!-- 메인용 최근 공지글 5개 -->
+    <select id="selectLastNotices" statementType="CALLABLE" resultMap="resultMapLastNotices">
+        { call sp_notice_main() }
+    </select>
 </mapper>
 

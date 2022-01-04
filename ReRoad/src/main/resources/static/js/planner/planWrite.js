@@ -103,7 +103,8 @@ $(document).ready(function () {
         const startDate = $('#startDate').val();
         const arriveDate = $('#arriveDate').val();
         const memo = $('#memo').val();
-        const chkCnt = $("input[name='checkListContent']").length;
+        const item = $("input[name='checkListContent']").val();
+        const chkCnt = $("input[name='checkListContent']").length+1;
         var regex = / /gi;
 
         if (travelTitle == "" || travelTitle.replace(regex, '') == "" || travelTitle == null) {
@@ -126,12 +127,10 @@ $(document).ready(function () {
             $('#Isvalid').text('여행 메모를 입력하세요!');
             $('#Isvalid').css('color', 'red');
             $('#saveBtn').attr("disabled", true);
-        }
-        else {
-            for(var i=1; i<chkCnt; i++) {
-                $(input[name='value']").eq(index).val()
-
-            }
+        }  else if (item == "" || item.replace(regex, '') == "" || item == null) {
+            $('#Isvalid').text('체크리스트를 입력하세요!');
+            $('#Isvalid').css('color', 'red');
+            $('#saveBtn').attr("disabled", true);
         }
     });
 })

@@ -91,4 +91,9 @@ public class NoticeDaoImpl implements NoticeDao{
         return this.sqlSession.selectOne("selectNoticeFile", fileNo);
     }
 
+    @Override
+    public List<NoticeVO> selectLastNotices() {
+        return this.sqlSession.selectList("selectLastNotices");
+    }
+
 }

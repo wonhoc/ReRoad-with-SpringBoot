@@ -22,4 +22,6 @@ public interface NoticeService {
 
     FileVO retrieveNoticeFile(int fileNo);
     void removeOnlyNoticeFile(int fileNo);
+
+    List<NoticeVO> retrieveLastNotices();
 }

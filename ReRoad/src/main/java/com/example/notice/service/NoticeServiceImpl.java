@@ -86,4 +86,9 @@ public class NoticeServiceImpl implements NoticeService{
     public void removeOnlyNoticeFile(int fileNo) {
         this.noticeDao.deleteOnlyNoticeFile(fileNo);
     }
+
+    @Override
+    public List<NoticeVO> retrieveLastNotices() {
+        return this.noticeDao.selectLastNotices();
+    }
 }

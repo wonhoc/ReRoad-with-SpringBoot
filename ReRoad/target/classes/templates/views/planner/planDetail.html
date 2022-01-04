@@ -51,7 +51,7 @@
 </head>
 <section class="container" layout:fragment="content">
     <div id="plandiv">
-        <form th:action="@{/plandelete/{planNo}(planNo=${plan.planNo})}"
+        <form th:action="@{/member/plandelete/{planNo}(planNo=${plan.planNo})}"
               method="post">
             <a class="btn btn-default waves-effect waves-light"
                th:href="@{/member/planlist}">목록</a>
@@ -94,11 +94,9 @@
                     <td colspan="3">체크리스트 없음</td>
                 </tr>
             </table>
-
-
             <div>
                 <a class="btn btn-default waves-effect waves-light"
-                   th:href="@{/planmodifyform/{planNo}(planNo=${plan.planNo})}">수정</a>
+                   th:href="@{/member/planmodifyform/{planNo}(planNo=${plan.planNo})}">수정</a>
                 <button type="submit"
                         class="btn btn-danger waves-effect waves-light">삭제
                 </button>

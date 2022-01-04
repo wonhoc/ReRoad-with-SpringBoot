@@ -17,6 +17,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"
             integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css"
           integrity="sha512-aOG0c6nPNzGk+5zjwyJaoRUgCdOrfSDhmMID2u4+OIslr0GjpLKo7Xm0Ao3xmpM4T8AmIouRkqwj1nrdVsLKEQ=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
@@ -46,6 +47,7 @@
             changeYear: true,
             showButtonPanel: true,
             yearRange: 'c-99:c+99',
+            minDate: 0
         });
         $(function () {
             $('#startDate').datepicker();
@@ -78,7 +80,7 @@
 
             //아이템 내용
             var addCol_content = addRow.insertCell();
-            addCol_content.innerHTML = "<input type='text' name='checkListContent' placeholder='아이템 입력..'>";
+            addCol_content.innerHTML = "<input type='text' name='checkListContent' placeholder='아이템 입력..' maxlength='10'>";
 
             //준비여부
             var addCol_radio = addRow.insertCell();
@@ -99,19 +101,80 @@
                 }
             }
         }
+        //동적으로 생성된 체크리스트를 위한 유효성 검사 코드
+        $(function () {
+            $("#form").validate({
+                errorElement: "label",
+                errorPlacement: function(error, element) {
+                    error.insertAfter('#Isvalid');
+                    error.css("color", "red");
+                },
+                //규칙
+                rules: {
+                    checkListContent: {
+                        required: true,
+                        spaceCheck: true
+                    }
+                },
+                //규칙체크 실패시 출력될 메시지
+                messages: {
+
+                    checkListContent: {
+                        required: "체크리스트를 올바르게 입력 후 다시 시도하세요",
+                        spaceCheck: "체크리스트에 공백은 입력 불가합니다."
+                    }
+                }
+
+            });
+
+
+            $.validator.addMethod(
+                "spaceCheck", //validate명
+
+                function (value, element) {
+                    var regex = / /gi;
+                    //검사하는 name태그의 value 중 공백이 없으면 true, 있으면 false리턴
+                    if ($(element).val().indexOf(" ")==-1) return true;
+                    else return false;
+                    //false 리턴 시 messages에 선언된 내용들 띄워줌
+
+
+                }
+            );
+
+
+            //확장판 name 처리
+            $.extend($.validator.prototype, {
+                checkForm: function () {
+                    this.prepareForm();
+                    for (var i = 0, elements = (this.currentElements = this.elements()); elements[i]; i++) {
+                        if (this.findByName(elements[i].name).length != undefined && this.findByName(elements[i].name).length > 1) {
+                            for (var cnt = 0; cnt < this.findByName(elements[i].name).length; cnt++) {
+                                this.check(this.findByName(elements[i].name)[cnt]);
+                            }
+                        } else {
+                            this.check(elements[i]);
+                        }
+                    }
+                    return this.valid();
+                }
+            });
+
+
+        });
     </script>
 </head>
 <section layout:fragment="content">
     <div>
-        <form name="form" id="form" role="form" method="post" th:action="@{/modifyplan}">
+        <form name="form" id="form" role="form" method="post" th:action="@{/member/modifyplan}">
             <input type="hidden" name="planNo" id="planNo" th:value="${plan.planNo}">
             <div class="mb-3">
                 <h3 class="text-title">여행일정 플랜 수정</h3>
                 <label for="travelTitle">여행 이름</label>
                 <input type="text" class="form-control" name="travelTitle" id="travelTitle"
-                       th:value="${plan.travelTitle}">
+                       th:value="${plan.travelTitle}" maxlength="10">
                 <label for="spot">여행지</label>
-                <input type="text" class="form-control" name="spot" id="spot" th:value="${plan.spot}">
+                <input type="text" class="form-control" name="spot" id="spot" th:value="${plan.spot}" maxlength="16">
                 <label for="startDate">여행기간</label>
                 <input type="text" class="datepicker" name="startDate" id="startDate" th:value="${plan.startDate}">
                 &nbsp; ~ &nbsp;
@@ -160,6 +223,7 @@
 
             <div>
                 <div id="Isvalid"></div>
+                <br>
                 <button type="submit" class="btn btn-sm btn-primary" id="saveBtn">저장</button>
                 <a class="btn btn-default waves-effect waves-light" th:href="@{/member/planlist}">목록</a>
             </div>

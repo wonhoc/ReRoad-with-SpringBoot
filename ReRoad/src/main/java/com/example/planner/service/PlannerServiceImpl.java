@@ -7,6 +7,8 @@ import com.example.planner.vo.PlannerVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -29,6 +31,7 @@ public class PlannerServiceImpl implements PlannerService{
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED)
     public void createPlan(PlannerVO plan) {
         this.plannerDao.insertPlan(plan);
         int no = this.plannerDao.lastIdPlanner();
@@ -39,6 +42,7 @@ public class PlannerServiceImpl implements PlannerService{
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED)
     public void modifyPlan(PlannerVO plan) {
         this.plannerDao.deleteCheckList(plan.getPlanNo());
         this.plannerDao.updatePlan(plan);
@@ -49,6 +53,7 @@ public class PlannerServiceImpl implements PlannerService{
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED)
     public void removePlan(int planNo) {
         this.plannerDao.deleteCheckList(planNo);
         this.plannerDao.deletePlan(planNo);

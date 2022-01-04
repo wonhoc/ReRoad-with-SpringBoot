@@ -52,7 +52,7 @@ $(document).ready(function () {
 
                             //html += '<p each="board : ${list}">';
                             //<td><a href='view.html?userid=" + userid + "'>" + userid + "</a></td>
-                            html += '<td><a href= "/plandetail?planNo=' + data[i].planNo + '">' + data[i].travelTitle + '</a></td>';
+                            html += '<td><a href= "/member/plandetail?planNo=' + data[i].planNo + '">' + data[i].travelTitle + '</a></td>';
 
                             html += '<td id="spot">' + data[i].spot + '</td>';
                             html += '<td id="startDate">' + data[i].startDate + '</td>';
@@ -63,7 +63,6 @@ $(document).ready(function () {
                         //}
                         $("#planList").empty();
                         $("tbody").html(html);
-
                     }
                 });
             }

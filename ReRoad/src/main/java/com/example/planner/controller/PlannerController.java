@@ -34,7 +34,7 @@ public class PlannerController {
     }
 
     // 플래너 상세보기
-    @GetMapping("/plandetail")
+    @GetMapping("/member/plandetail")
     public String detailplan(int planNo, Model model) {
 
         PlannerVO plan = this.plannerService.retrievePlan(planNo);
@@ -45,14 +45,14 @@ public class PlannerController {
 
     // 플랜 작성
     // 작성폼불러오기
-    @GetMapping("/planwriteform")
+    @GetMapping("/member/planwriteform")
     public String noticeWriteForm( ) {
 
         return "views/planner/planWriteForm";
     }
 
     //게시글 작성
-    @PostMapping("/writeplan")
+    @PostMapping("/member/writeplan")
     public String planWrite(@RequestParam("travelTitle") String travelTitle, @RequestParam("spot") String spot,
                               @AuthenticationPrincipal User principal, @RequestParam("startDate") String startDate,
                               @RequestParam("arriveDate") String arriveDate, @RequestParam("memo") String memo,
@@ -90,7 +90,7 @@ public class PlannerController {
 
     //플랜 수정
     //수정 폼으로 이동
-    @GetMapping("/planmodifyform/{planNo}")
+    @GetMapping("/member/planmodifyform/{planNo}")
     public String planModifyForm(@PathVariable int planNo,Model model) {
 
         PlannerVO plan = this.plannerService.retrievePlan(planNo);
@@ -100,7 +100,7 @@ public class PlannerController {
     }
 
     //플래너 수정
-    @PostMapping("/modifyplan")
+    @PostMapping("/member/modifyplan")
     public String planModify(@RequestParam("planNo") int planNo,@RequestParam("travelTitle") String travelTitle,
                              @RequestParam("spot") String spot, @RequestParam("startDate") String startDate,
                              @RequestParam("arriveDate") String arriveDate, @RequestParam("memo") String memo,
@@ -133,7 +133,7 @@ public class PlannerController {
     }
 
     //플래너 삭제
-    @PostMapping("/plandelete/{planNo}")
+    @PostMapping("/member/plandelete/{planNo}")
     public String deletePlan(@PathVariable int planNo) {
         this.plannerService.removePlan(planNo);
         return "redirect:/member/planlist";

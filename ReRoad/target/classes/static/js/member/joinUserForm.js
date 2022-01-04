@@ -10,12 +10,14 @@ $(document).ready(function() {
     $('#sendVeriNum').attr("disabled", true);
     $('#nextButton').attr("disabled", true);
 
+
             //아이디 중복, 유효성 체크
 
            $('#username').bind('keyup', function () {
                const userId = $('#username').val();
                var idRule = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
                $('#verifiedMail').val(userId);
+
                 if (userId == "") {
                     $('#checkDbId').text('아이디는 필수 입력 항목입니다.');
                     $('#checkDbId').css('color', 'red');

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout/defaultLayout">
+<th:block layout:fragment="css">
+    <link rel="stylesheet" th:href="@{/css/member/modifyUser.css}">
+</th:block>
+<th:block layout:fragment="script">
+    <script th:src="@{/js/member/modifyUser.js}"></script>
+</th:block>
+<head>
+</head>
+<section layout:fragment="content">
+    <div class="container">
+        <div class="join_notice">
+            <h1 class="join_title">회원 정보 수정</h1>
+            <div class="join_devide"></div>
+            <p class="join_text">회원정보를 수정할 수 있습니다.</p>
+        </div>
+
+        <form action="/member/modifyUser" method="POST" enctype="multipart/form-data" id="inputModifyData">
+            <div class="join_box" >
+                <div class="join_left">
+                    <div class="input_section">
+                        <label class="input_title">ID</label>
+                        <input class="form-control input_info" type="text" name="userId" id="userId"
+                               th:value="${user.userId}" readonly>
+
+                    </div>
+                    <div id="resultId"></div>
+                    <div class="input_section">
+                        <label class="input_title" for="userPwd">Password</label>
+                        <input class="form-control input_info" type="password" name="userPwd"
+                               id="userPwd">
+                    </div>
+                    <div id="checkPwdformat"></div>
+                    <div class="input_section">
+                        <label class="input_title" for="reInputPwd">Password 확인</label>
+                        <input class="form-control input_info" type="password" name="reInputPwd"
+                               id="reInputPwd">
+                    </div>
+                    <div id="checkPwdOneMore"></div>
+                    <div class="input_section">
+                        <label class="input_title" for="userNick">닉네임 설정</label>
+                        <input class="form-control input_info" type="text" name="userNick" id="userNick"
+                               th:value="${user.userNick}">
+
+                    </div>
+                    <div id="checkNick"></div>
+
+                    <div class="input_section">
+                        <label class="input_title">프로필 사진 설정</label>
+                    <img id="img" th:src="@{'/upload/' + ${user.photoSys}}">
+                    <!-- <img id="img" th:src="${'upload/' + user.photoSys}"> -->
+                    <div class="form_imgBtn">
+                        <label for="photo">이미지 등록</label> <input type="file"
+                                                                    class="form_imgInput" id="photo" name="photo"/>
+                    </div>
+                </div>
+                </div>
+                    <div class="btn_box">
+                        <button class="cancleBtn" type="button" onclick="history.back()">취소</button>
+                        <button class="submitBtn" type="submit" id="isSubmitBtn">확인</button>
+                    </div>
+                </div>
+        </form>
+</div>
+
+</section>
+
+</html>

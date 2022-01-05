@@ -40,7 +40,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         //로그인 관련 설정
         http.formLogin()
                 .loginPage("/loginForm") // 로그인 폼 경로
-                .defaultSuccessUrl("/loginSuccess", true) // 로그인 성공 시 이동할 URL
+                .defaultSuccessUrl("/loginOk", true) // 로그인 성공 시 이동할 URL
                 .failureUrl("/loginFail"); // 로그인 실패 시 이동 URL
 
         //권한이 없는 경로로 접근했을 경우
@@ -51,9 +51,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutUrl("/logout")
                 .invalidateHttpSession(true)
                 .logoutSuccessUrl("/");
+        //OAuth2 인증
         http.oauth2Login()
                 .loginPage("/loginForm")
-                .defaultSuccessUrl("/views/member/joinSuccess")
+                .defaultSuccessUrl("/")
                 .userInfoEndpoint()
                 .userService(principalOauth2UserService);
 

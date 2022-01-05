@@ -52,7 +52,11 @@ background-color: teal;
 					<!--session에 로그인한 유저의 권한이 Member라면 -->
 					<div th:if="${session.loginUser.role == 'ROLE_MEMBER'}">
 						일반 회원 계정입니다.<br>
-						<span th:text="${session.loginUser.userNick}" />
+						<span th:text="${session.loginUser.userNick}" /><br>
+						<a href="/logout">
+							<button type="button">로그아웃</button>
+						</a>
+
 
 					</div>
 					<div th:if="${session.loginUser.role == 'ROLE_ADMIN'}">

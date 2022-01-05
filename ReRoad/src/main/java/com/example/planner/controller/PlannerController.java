@@ -30,18 +30,24 @@ public class PlannerController {
 
     // 플래너 상세보기
     @GetMapping("/member/plandetail")
-    public String detailplan(int planNo, Model model) {
+    public String detailplan(int planNo, Model model, @AuthenticationPrincipal User principal) {
+        //자신 외 다른 유저의 글 조회 방지
+        String nowUser = principal.getUsername();
+        String writeUser = this.plannerService.retrievePlan(planNo).getUserId();
 
-        PlannerVO plan = this.plannerService.retrievePlan(planNo);
-        model.addAttribute("plan", plan);
+        if (nowUser.equals(writeUser)) {
+            PlannerVO plan = this.plannerService.retrievePlan(planNo);
+            model.addAttribute("plan", plan);
 
-        return "views/planner/planDetail";
+            return "views/planner/planDetail";
+        } else return "redirect:/member/planlist";
+
     }
 
     // 플랜 작성
     // 작성폼불러오기
     @GetMapping("/member/planwriteform")
-    public String noticeWriteForm( ) {
+    public String noticeWriteForm() {
 
         return "views/planner/planWriteForm";
     }
@@ -65,8 +71,8 @@ public class PlannerController {
 
         for (int i = 0; i < ready.length; i++) {
             CheckListVO checkListVO = new CheckListVO();
-            String isNull = checkListContents[i].replaceAll("/ /gi","");
-            if (isNull != "" || !isNull.isEmpty() ) {
+            String isNull = checkListContents[i].replaceAll("/ /gi", "");
+            if (isNull != "" || !isNull.isEmpty()) {
                 checkListVO.setCheckListContent(checkListContents[i]);
 
                 checkListVO.setReady(ready[i]);
@@ -84,22 +90,23 @@ public class PlannerController {
     //플랜 수정
     //수정 폼으로 이동
     @GetMapping("/member/planmodifyform/{planNo}")
-    public String planModifyForm(@PathVariable int planNo,Model model,@AuthenticationPrincipal User principal) {
+    public String planModifyForm(@PathVariable int planNo, Model model, @AuthenticationPrincipal User principal) {
+        //다른 유저의 글 수정 방지
         String nowUser = principal.getUsername();
         String writeUser = this.plannerService.retrievePlan(planNo).getUserId();
-        if(nowUser == writeUser) {
+
+        if (nowUser.equals(writeUser)) {
             PlannerVO plan = this.plannerService.retrievePlan(planNo);
             plan.setPlanNo(planNo);
             model.addAttribute("plan", plan);
             return "views/planner/planModifyForm";
-        }
-        else
+        } else
             return "redirect:/member/planlist";
     }
 
     //플래너 수정
     @PostMapping("/member/modifyplan")
-    public String planModify(@RequestParam("planNo") int planNo,@Valid PlannerVO plan,
+    public String planModify(@RequestParam("planNo") int planNo, @Valid PlannerVO plan,
                              @RequestParam(value = "checkListContent", required = false) String[] checkListContents,
                              @RequestParam(value = "ready", required = false) int[] ready) {
 

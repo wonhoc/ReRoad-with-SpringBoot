@@ -94,7 +94,7 @@ public class NoticeController {
 
     // 공지글 수정
     // 수정폼불러오기
-    @GetMapping("/noticemodifyform/{noticeNo}")
+    @GetMapping("/admin/noticemodifyform/{noticeNo}")
     public String noticeModifyForm(@PathVariable int noticeNo, Model model) {
 
         NoticeVO notice = this.noticeService.retrieveNotice(noticeNo);
@@ -104,7 +104,7 @@ public class NoticeController {
     }
 
     //게시글 수정
-    @PostMapping("/modifynotice")
+    @PostMapping("/admin/modifynotice")
     public String noticeModify(@Valid NoticeVO notice,@RequestParam int noticeNo,
                                @RequestPart(value = "noticeFileInput", required = false) List<MultipartFile> files,
                                HttpServletRequest request) {
@@ -140,14 +140,14 @@ public class NoticeController {
 
     // 공지글 작성
     // 작성폼불러오기
-    @GetMapping("/noticewriteform")
+    @GetMapping("/admin/noticewriteform")
     public String noticeWriteForm( ) {
 
         return "views/notice/noticeWriteForm";
     }
 
     //게시글 작성
-    @PostMapping("/writenotice")
+    @PostMapping("/admin/writenotice")
     public String noticeWrite(@Valid NoticeVO notice,
                               @AuthenticationPrincipal User principal,
                               @RequestPart(value = "noticeFileInput", required = false) List<MultipartFile> files,

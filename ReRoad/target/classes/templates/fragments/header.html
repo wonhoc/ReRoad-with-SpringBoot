@@ -23,6 +23,10 @@ background-color: teal;
 #loginBtn{
 	margin-top: 20px;
 	margin-left: 800px;
+	background-color: teal;
+	border-color: teal;
+	font-weight: bolder;
+
 
 }
 #road{
@@ -44,7 +48,7 @@ background-color: teal;
 				<!--session에 로그인 유저 정보가 없다면 -->
 				<div th:if="${session.loginUser == null}">
 					<a th:href="@{/loginForm}">
-						<button class="" id="loginBtn">로그인/회원가입</button>
+						<button class="btn btn-primary" id="loginBtn">로그인/회원가입</button>
 					</a>
 				</div>
 				<!--session에 로그인 유저 정보가 있다면 -->
@@ -52,12 +56,19 @@ background-color: teal;
 					<!--session에 로그인한 유저의 권한이 Member라면 -->
 					<div th:if="${session.loginUser.role == 'ROLE_MEMBER'}">
 						일반 회원 계정입니다.<br>
-						<span th:text="${session.loginUser.userNick}" />
+						<span th:text="${session.loginUser.userNick}" /><br>
+						<a href="/logout">
+							<button type="button">로그아웃</button>
+						</a>
+
 
 					</div>
 					<div th:if="${session.loginUser.role == 'ROLE_ADMIN'}">
-							관리자 계정입니다.<br>
-							<span th:text="${session.loginUser.userNick}" />
+						관리자 계정입니다.<br>
+						<span th:text="${session.loginUser.userNick}" /><br>
+						<a href="/logout">
+							<button type="button">로그아웃</button>
+						</a>
 					</div>
 				</div>
 			</div>

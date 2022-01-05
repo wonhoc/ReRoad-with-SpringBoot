@@ -2,41 +2,99 @@ $(document).ready(function () {
     const saveBtn = document.getElementById('saveBtn');
 
     //공지글 제목 유효성 체크
-    $('#noticeTitle').bind('focusout', function() {
+    $('#noticeTitle').bind('focusout', function () {
         const noticeTitle = $('#noticeTitle').val();
         var regex = / /gi;
 
-        if(noticeTitle == "" ||  noticeTitle.replace(regex, '') == "") {
+        if (noticeTitle == "" || noticeTitle.replace(regex, '') == "") {
             $('#Isvalid').text('제목을 입력하세요');
             $('#Isvalid').css('color', 'red');
-            $('#saveBtn').attr("disabled",true);
-        }  else {
+            $('#saveBtn').attr("disabled", true);
+        } else {
             $('#Isvalid').css('color', 'white');
-            $('#saveBtn').attr("disabled",false);
-        };
+            $('#saveBtn').attr("disabled", false);
+        }
+        ;
     });
 //공지글 제목 클릭시 다시 버튼 활성화
-    $('#noticeTitle').bind('click', function() {
-        $('#saveBtn').attr("disabled",false);
+    $('#noticeTitle').bind('click', function () {
+        $('#saveBtn').attr("disabled", false);
 
     });
     //공지글 본문 유효성 체크
-    $('#noticeContent').bind('focusout', function() {
+    $('#noticeContent').bind('focusout', function () {
         const noticeContent = $('#noticeContent').val();
         var regex = / /gi;
-        if(noticeContent == "" || noticeContent.replace(regex, '') == "") {
+        if (noticeContent == "" || noticeContent.replace(regex, '') == "") {
             $('#Isvalid').text('본문을 입력하세요');
             $('#Isvalid').css('color', 'red');
-            $('#saveBtn').attr("disabled",true);
-        }  else {
+            $('#saveBtn').attr("disabled", true);
+        } else {
             $('#Isvalid').css('color', 'white');
-            $('#saveBtn').attr("disabled",false);
-        };
+            $('#saveBtn').attr("disabled", false);
+        }
+        ;
     });
 
     //공지글 본문
-    $('#noticeContent').bind('click', function() {
-            $('#saveBtn').attr("disabled",false);
+    $('#noticeContent').bind('click', function () {
+        $('#saveBtn').attr("disabled", false);
 
     });
+
+    //파일 이름 띄우기
+    $("input[type=file]").change(function () {
+        $('#file_name').empty();
+        $('#saveBtn').attr("disabled",false);
+        var fileInput = document.getElementById("noticeFileInput");
+        var files = fileInput.files;
+        var file=null;
+        let html = "<ul>";
+        if(files.length==1){
+            if(files[0].size>41943040){
+                const sizeErr = '파일크기 초과!(최대 40MB)';
+                html += "<li id='fileName["+i+"]'>"+file.name+sizeErr+"</li>";
+                $('#fileName[i]').css('color', 'red');
+                $('#saveBtn').attr("disabled", true);
+            }
+        } else {
+            for (var i = 0; i < files.length; i++) {
+                file = files[i];
+                if (file.size > 100)  //파일이 40MB이상이면
+                {
+                    const sizeErr = '파일크기 초과!(최대 40MB)';
+                    html += "<li id='fileName[" + i + "]'>" + file.name + sizeErr + "</li>";
+                    $('#fileName[i]').css('color', 'red');
+                    $('#saveBtn').attr("disabled", true);
+                } else {
+                    html += "<li id='fileName[" + i + "]'>" + file.name + "</li>";
+                    $('#fileName[i]').css('color', 'blue');
+                }
+                $("#file_name").html(html);
+            }
+        }
+    });
+
+    //저장 버튼 눌렀을 시  최종 유효성 검증
+    $('#saveBtn').bind('click', function () {
+        const noticeTitle = $('#noticeTitle').val();
+        const noticeContent = $('#noticeContent').val();
+        var regex = / /gi;
+        var $fileUpload = $("input[type='file']");
+
+        if (noticeTitle == "" || noticeTitle.replace(regex, '') == "") {
+            $('#Isvalid').text('제목을 입력하세요');
+            $('#Isvalid').css('color', 'red');
+            $('#saveBtn').attr("disabled", true);
+        } else if (noticeContent == "" || noticeContent.replace(regex, '') == "") {
+            $('#Isvalid').text('본문을 입력하세요');
+            $('#Isvalid').css('color', 'red');
+            $('#saveBtn').attr("disabled", true);
+        } else if (parseInt($fileUpload.get(0).files.length)>5){
+            $('#Isvalid').text('파일은 최대 5개까지만 첨부 가능합니다.');
+            $('#Isvalid').css('color', 'red');
+            $('#saveBtn').attr("disabled", true);
+        }
+    });
+
 })

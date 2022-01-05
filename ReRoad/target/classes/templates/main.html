@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="layout/defaultLayout">
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="layout/defaultLayout">
 <th:block layout:fragment="css">
 	<link rel="stylesheet" th:href="@{/css/main.css}">
 </th:block>
 <th:block layout:fragment="script">
+
 	<script th:src="@{/js/main.js}"></script>
+
 </th:block>
 <head>
 </head>
 <section layout:fragment="content">
-
 	<div class="container">
+
 	
 		<div id="mainwrapper">
 			<img src="/images/메인페이지버스.png" alt="image" id="mainImage">
@@ -82,33 +84,34 @@
 			<td class="menu">공지사항</td>
 		</tr>
 	</table>
+
 		<table>
-		<tr>
-			<td><img src="images/main/main서울.jpg" alt="image" class="domestic"></td>
-			<td class="tableempty"></td>
-			<td><img src="images/main/main강릉.jpg" alt="image" class="domestic"></td>
-			<td class="tableempty"></td>
-			<td><img src="images/main/main전주.jpg" alt="image" class="domestic"></td>
-			<td class="tableempty"></td>
-			<td><img src="images/main/main여수.jpg" alt="image" class="domestic"></td>
-			<td class="tableempty"></td>
-			<td><img src="images/main/main부산.jpg" alt="image" class="domestic"></td>
-			<td class="tableempty"></td>
-			<td><img src="images/main/main동대구.jpg" alt="image" class="domestic"></td>
-		</tr>
-		<tr id="domesticname">
-			<td>서울</td>
-			<td class="tableempty"></td>
-			<td>강릉</td>
-			<td class="tableempty"></td>
-			<td>전주</td>
-			<td class="tableempty"></td>
-			<td>여수</td>
-			<td class="tableempty"></td>
-			<td>부산</td>
-			<td class="tableempty"></td>
-			<td>동대구</td>
-		</tr>
+			<tr>
+				<td><img src="images/main/main서울.jpg" alt="image" class="domestic"></td>
+				<td class="tableempty"></td>
+				<td><img src="images/main/main강릉.jpg" alt="image" class="domestic"></td>
+				<td class="tableempty"></td>
+				<td><img src="images/main/main전주.jpg" alt="image" class="domestic"></td>
+				<td class="tableempty"></td>
+				<td><img src="images/main/main여수.jpg" alt="image" class="domestic"></td>
+				<td class="tableempty"></td>
+				<td><img src="images/main/main부산.jpg" alt="image" class="domestic"></td>
+				<td class="tableempty"></td>
+				<td><img src="images/main/main동대구.jpg" alt="image" class="domestic"></td>
+			</tr>
+			<tr id="domesticname">
+				<td>서울</td>
+				<td class="tableempty"></td>
+				<td>강릉</td>
+				<td class="tableempty"></td>
+				<td>전주</td>
+				<td class="tableempty"></td>
+				<td>여수</td>
+				<td class="tableempty"></td>
+				<td>부산</td>
+				<td class="tableempty"></td>
+				<td>동대구</td>
+			</tr>
 		</table>
 	</div>
 </section>

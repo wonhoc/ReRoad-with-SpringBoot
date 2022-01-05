@@ -9,11 +9,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.util.UriUtils;
@@ -43,7 +46,7 @@ public class NoticeController {
     @GetMapping("/noticelist")
     public String noticeList() {
 
-            return "views/notice/noticeList.html";
+        return "views/notice/noticeList.html";
 
 
     }
@@ -86,12 +89,12 @@ public class NoticeController {
         }
         NoticeVO notice = this.noticeService.retrieveNotice(noticeNo);
         model.addAttribute("notice", notice);
-            return "views/notice/noticeDetail";
-        }
+        return "views/notice/noticeDetail";
+    }
 
     // 공지글 수정
     // 수정폼불러오기
-    @GetMapping("/noticemodifyform/{noticeNo}")
+    @GetMapping("/admin/noticemodifyform/{noticeNo}")
     public String noticeModifyForm(@PathVariable int noticeNo, Model model) {
 
         NoticeVO notice = this.noticeService.retrieveNotice(noticeNo);
@@ -101,23 +104,20 @@ public class NoticeController {
     }
 
     //게시글 수정
-    @PostMapping("/modifynotice")
-    public String noticeModify( @RequestParam("noticeContent") String noticeContent,
-                               @RequestParam("noticeTitle") String noticeTitle,
-                               @RequestParam("noticeNo") int noticeNo,
+    @PostMapping("/admin/modifynotice")
+    public String noticeModify(@Valid NoticeVO notice,@RequestParam int noticeNo,
                                @RequestPart(value = "noticeFileInput", required = false) List<MultipartFile> files,
                                HttpServletRequest request) {
 
         NoticeVO newNotice = new NoticeVO();
 
-        newNotice.setNoticeTitle(noticeTitle);
-        newNotice.setNoticeContent(noticeContent);
+        newNotice.setNoticeTitle(notice.getNoticeTitle());
+        newNotice.setNoticeContent(notice.getNoticeContent());
         newNotice.setNoticeNo(noticeNo);
-        System.out.println(noticeNo);
 
         List<FileVO> noticeFileVO = new ArrayList<FileVO>();
 
-        for(MultipartFile file : files) {
+        for (MultipartFile file : files) {
             FileVO noticefile = new FileVO();
             noticefile.setFileOrigin(file.getOriginalFilename());
             String noticeFileName = null;
@@ -134,62 +134,54 @@ public class NoticeController {
         this.noticeService.modifyNotice(newNotice);
 
 
-            return "redirect:/noticelist";
+        return "redirect:/noticelist";
 
     }
 
     // 공지글 작성
     // 작성폼불러오기
-    @GetMapping("/noticewriteform")
+    @GetMapping("/admin/noticewriteform")
     public String noticeWriteForm( ) {
 
-       return "views/notice/noticeWriteForm";
+        return "views/notice/noticeWriteForm";
     }
 
     //게시글 작성
-    @PostMapping("/writenotice")
-    public String noticeWrite(@RequestParam("noticeContent") String noticeContent,
-                               @RequestParam("noticeTitle") String noticeTitle,
+    @PostMapping("/admin/writenotice")
+    public String noticeWrite(@Valid NoticeVO notice,
                               @AuthenticationPrincipal User principal,
                               @RequestPart(value = "noticeFileInput", required = false) List<MultipartFile> files,
-                               Model model, HttpServletRequest request) {
+                              HttpServletRequest request) {
 
         NoticeVO newNotice = new NoticeVO();
-        newNotice.setNoticeTitle(noticeTitle);
-        newNotice.setNoticeContent(noticeContent);
+        newNotice.setNoticeTitle(notice.getNoticeTitle());
+        newNotice.setNoticeContent(notice.getNoticeContent());
         newNotice.setUserId( principal.getUsername());
 
-
-
         List<FileVO> noticeFileVO = new ArrayList<FileVO>();
-            for(MultipartFile file : files) {
-                FileVO noticefile = new FileVO();
-                noticefile.setFileOrigin(file.getOriginalFilename());
-                String noticeFileName = null;
-                if (!file.getOriginalFilename().isEmpty()) {
-                    noticeFileName = fileUploadService.noticeStore(file, request);
-                    noticefile.setFileSys(noticeFileName);
-                    noticefile.setFileSize(file.getSize());
+        for(MultipartFile file : files) {
+            FileVO noticefile = new FileVO();
+            noticefile.setFileOrigin(file.getOriginalFilename());
+            String noticeFileName = null;
+            if (!file.getOriginalFilename().isEmpty()) {
+                noticeFileName = fileUploadService.noticeStore(file, request);
+                noticefile.setFileSys(noticeFileName);
+                noticefile.setFileSize(file.getSize());
 
-                    noticeFileVO.add(noticefile);
+                noticeFileVO.add(noticefile);
 
-                }
             }
-            newNotice.setNoticeFileList(noticeFileVO);
+        }
+        newNotice.setNoticeFileList(noticeFileVO);
         this.noticeService.createNotice(newNotice);
 
-
-
-
         return "redirect:/noticelist";
-
     }
 
     //파일 다운로드
     @GetMapping("/fileDownload/{fileNo}")
     public ResponseEntity<Resource> downloadFile(
-            @PathVariable int fileNo,
-            HttpServletRequest request) throws MalformedURLException {
+            @PathVariable int fileNo) throws MalformedURLException {
 
         FileVO file = this.noticeService.retrieveNoticeFile(fileNo);
         String storedFileName = file.getFileSys();

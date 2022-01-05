@@ -15,6 +15,5 @@ public class CheckListVO {
     private String checkListContent;
     @NotBlank(message = "준비여부는 null일 수 없습니다.")
     private int ready;
-    @NotBlank(message = "플랜번호가 없습니다.")
     private int planNo;
 }

@@ -1,79 +1,86 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="layout/defaultLayout">
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="layout/defaultLayout">
 <th:block layout:fragment="css">
 	<link rel="stylesheet" th:href="@{/css/main.css}">
 </th:block>
 <th:block layout:fragment="script">
-
+	<script th:src="@{/js/movie/main.js}"></script>
 </th:block>
 <head>
 </head>
 <section layout:fragment="content">
-
 	<div class="container">
 		<img src="/images/메인페이지버스.png" alt="image" id="mainImage">
-
-	<table>
-		<tr>
-			<td><a th:href="@{/boardList}"><img src="/images/tavleReview.jpg" alt="image" class="content"></a></td>
-			<td class="empty"></td>
-			<td><a th:href="@{/member/planlist}"><img src="/images/tavlePlanner.jpg" alt="image" class="content"></a></td>
-			<td class="empty"></td>
-			<td><a th:href="@{/noticelist}"><img src="/images/notice.jpg" alt="image" class="content"></a></td>
-			<td class="empty_little"></td>
-			<td><div class="notice">
-				<table class="notice_table">
-					<thead class="empty_little">
-						<td colspan="9"><a th:href="@{/noticelist}"/>+ 더보기</td>
-					</thead>
-					<tr th:each="list : ${noticeList}">
-						<td colspan="7" th:if="${#strings.length(list.noticeTitle) < 9}" class="list_title"><a th:href="@{/noticedetail/{noticeNo}(noticeNo=${list.noticeNo})}"
-																								   th:text="${list.noticeTitle}"></a></td>
-						<td colspan="7" th:if="${#strings.length(list.noticeTitle) >= 9}" class="list_title"><a th:href="@{/noticedetail/{noticeNo}(noticeNo=${list.noticeNo})}"
-																									th:text="${#strings.substring(list.noticeTitle,0,6)} + ..."></a></td>
-						<td colspan="2" id="noti_wDate" th:text="${#strings.substring(list.writeDate,2)}"></td>
-					</tr>
-				</table>
-			</div></td>
-		</tr>
-		<tr>
-			<td class="menu">여행리뷰</td>
-			<td></td>
-			<td class="menu">여행일정 플래너</td>
-			<td></td>
-			<td class="menu">공지사항</td>
-		</tr>
-	</table>
+		<div id="left_table">
+			<table>
+				<tr>
+					<td><img src="/images/tavleReview.jpg" alt="image" class="content"></td>
+					<td class="empty"></td>
+					<td><a th:href="@{/member/planlist}"><img src="/images/tavlePlanner.jpg" alt="image"
+															  class="content"></a></td>
+				</tr>
+				<tr>
+					<td class="menu">여행리뷰</td>
+					<td></td>
+					<td class="menu">여행일정 플래너</td>
+				</tr>
+			</table>
+		</div>
+		<div id="center_title">
+			<table>
+				<tr><h3 id="noti_text">공지사항</h3></tr>
+				<tr>
+					<td id="message">Re Road의 새로운 소식을 알려드립니다.</td>
+				</tr>
+				<tr>
+					<td><a th:href="@{/noticelist}"/> + 더보기</td>
+				</tr>
+			</table>
+		</div>
+		<div id="right_table">
+			<table id="notice_list">
+				<tr th:each="list : ${noticeList}">
+					<td th:if="${#strings.length(list.noticeTitle) < 15}" class="list_title"><a
+							th:href="@{/noticedetail/{noticeNo}(noticeNo=${list.noticeNo})}"
+							th:text="${list.noticeTitle}"></a></td>
+					<td th:if="${#strings.length(list.noticeTitle) >= 15}" class="list_title"><a
+							th:href="@{/noticedetail/{noticeNo}(noticeNo=${list.noticeNo})}"
+							th:text="${#strings.substring(list.noticeTitle,0,15)} + ..."></a></td>
+					<td></td>
+					<td id="noti_wDate" th:text="${#strings.substring(list.writeDate,2)}"></td>
+				</tr>
+			</table>
+		</div>
 		<table>
-		<tr>
-			<td><img src="images/main/main서울.jpg" alt="image" class="domestic"></td>
-			<td class="tableempty"></td>
-			<td><img src="images/main/main강릉.jpg" alt="image" class="domestic"></td>
-			<td class="tableempty"></td>
-			<td><img src="images/main/main전주.jpg" alt="image" class="domestic"></td>
-			<td class="tableempty"></td>
-			<td><img src="images/main/main여수.jpg" alt="image" class="domestic"></td>
-			<td class="tableempty"></td>
-			<td><img src="images/main/main부산.jpg" alt="image" class="domestic"></td>
-			<td class="tableempty"></td>
-			<td><img src="images/main/main동대구.jpg" alt="image" class="domestic"></td>
-		</tr>
-		<tr id="domesticname">
-			<td>서울</td>
-			<td class="tableempty"></td>
-			<td>강릉</td>
-			<td class="tableempty"></td>
-			<td>전주</td>
-			<td class="tableempty"></td>
-			<td>여수</td>
-			<td class="tableempty"></td>
-			<td>부산</td>
-			<td class="tableempty"></td>
-			<td>동대구</td>
-		</tr>
+			<tr>
+				<td><img src="images/main/main서울.jpg" alt="image" class="domestic"></td>
+				<td class="tableempty"></td>
+				<td><img src="images/main/main강릉.jpg" alt="image" class="domestic"></td>
+				<td class="tableempty"></td>
+				<td><img src="images/main/main전주.jpg" alt="image" class="domestic"></td>
+				<td class="tableempty"></td>
+				<td><img src="images/main/main여수.jpg" alt="image" class="domestic"></td>
+				<td class="tableempty"></td>
+				<td><img src="images/main/main부산.jpg" alt="image" class="domestic"></td>
+				<td class="tableempty"></td>
+				<td><img src="images/main/main동대구.jpg" alt="image" class="domestic"></td>
+			</tr>
+			<tr id="domesticname">
+				<td>서울</td>
+				<td class="tableempty"></td>
+				<td>강릉</td>
+				<td class="tableempty"></td>
+				<td>전주</td>
+				<td class="tableempty"></td>
+				<td>여수</td>
+				<td class="tableempty"></td>
+				<td>부산</td>
+				<td class="tableempty"></td>
+				<td>동대구</td>
+			</tr>
 		</table>
 	</div>
 </section>

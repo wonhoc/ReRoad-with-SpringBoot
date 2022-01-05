@@ -112,11 +112,5 @@
         WHERE userId = #{userId}
     </update>
 
-    <!--  닉네임 중복 검사 -->
-    <select id="checkNick" parameterType="string" resultType="int">
-        SELECT COUNT(*)
-        FROM user_info
-        WHERE userNick = #{userNick}
-    </select>
 </mapper>
 

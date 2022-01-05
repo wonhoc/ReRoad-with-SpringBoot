@@ -4,7 +4,9 @@ $(document).ready(function () {
     //공지글 제목 유효성 체크
     $('#noticeTitle').bind('focusout', function() {
         const noticeTitle = $('#noticeTitle').val();
-        if(noticeTitle == "") {
+        var regex = / /gi;
+
+        if(noticeTitle == "" ||  noticeTitle.replace(regex, '') == "") {
             $('#Isvalid').text('제목을 입력하세요');
             $('#Isvalid').css('color', 'red');
             $('#saveBtn').attr("disabled",true);
@@ -21,7 +23,8 @@ $(document).ready(function () {
     //공지글 본문 유효성 체크
     $('#noticeContent').bind('focusout', function() {
         const noticeContent = $('#noticeContent').val();
-        if(noticeContent == "") {
+        var regex = / /gi;
+        if(noticeContent == "" || noticeContent.replace(regex, '') == "") {
             $('#Isvalid').text('본문을 입력하세요');
             $('#Isvalid').css('color', 'red');
             $('#saveBtn').attr("disabled",true);

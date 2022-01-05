@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/defaultLayout}">
+
+<head>
+
+    <style>
+        table {
+            border-collapse: collapse;
+            border-radius: 20px;
+            border-style: hidden;
+        }
+
+        .filetable {
+            border-top: 1px solid black;
+            border-bottom: 1px solid black;
+        }
+
+
+        #travelTitle {
+            background-color: #fcf4de;
+
+        }
+
+        #titi {
+            font-family: '맑은 고딕';
+            font-size: 30px;
+            color: #000;
+
+        }
+
+
+    </style>
+
+    <script>
+        let planNo = null;
+
+        function plan_delete() {
+            planNo = location.search.substring(1).split("=")[1];
+            $.ajax({
+                url: "/deleteplan/" + planNo,
+                type: "DELETE",
+                success: function () {
+                    location.href = "/planlist";
+                }
+            });
+        }
+    </script>
+</head>
+<section class="container" layout:fragment="content">
+    <div id="plandiv">
+        <form th:action="@{/member/plandelete/{planNo}(planNo=${plan.planNo})}"
+              method="post">
+            <a class="btn btn-default waves-effect waves-light"
+               th:href="@{/member/planlist}">목록</a>
+
+            <input type="hidden" id="planNo" name="planNo" th:value="${plan.planNo}">
+            <h2>여행 일정 플래너</h2>
+            <table class="table">
+                <tr id="planTitle" class="plan">
+                    <td>여행이름</td>
+                    <td id="titi" width="600px;" th:text="${plan.travelTitle}"></td>
+                    <td>여행지</td>
+                    <td width="600px;" th:text="${plan.spot}"></td>
+                    <td>여행기간</td>
+                    <td align="center" th:text="${plan.startDate}"></td>
+                    <td> ~</td>
+                    <td th:text="${plan.arriveDate}"></td>
+                </tr>
+                <tr class="plan">
+                    <td id="memo" height="150px;" colspan="5"
+                        th:text="${plan.memo}"></td>
+                </tr>
+            </table>
+            <table id="checkList" class="checktable" th:if="${!(plan.getCheckList().isEmpty())}">
+                <thead>
+                <th colspan="10">체크리스트</th>
+                </thead>
+                <span th:each="item : ${plan.getCheckList()}">
+          <tr th:id="${item.getCheckListNo()}">
+            <td th:text="${item.getCheckListContent()}"></td>
+              <td>&nbsp; &nbsp;</td>
+              <td th:if="${item.getReady()==0}">아직 준비되지 않았어요.</td>
+              <td th:if="${item.getReady()==1}">준비완료!</td>
+          </tr>
+              </span>
+
+            </table>
+
+            <table id="checkList2" class="checktable" th:if="${plan.getCheckList.isEmpty()}">
+                <tr>
+                    <td colspan="3">체크리스트 없음</td>
+                </tr>
+            </table>
+            <div>
+                <a class="btn btn-default waves-effect waves-light"
+                   th:href="@{/member/planmodifyform/{planNo}(planNo=${plan.planNo})}">수정</a>
+                <button type="submit"
+                        class="btn btn-danger waves-effect waves-light">삭제
+                </button>
+            </div>
+        </form>
+    </div>
+</section>
+</html>

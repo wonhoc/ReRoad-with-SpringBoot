@@ -3,6 +3,7 @@ package com.example.member.vo;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -26,11 +27,14 @@ public class UserVo {
     private String role;
     private String photoOrigin;
     private String photoSys;
+    private MultipartFile photo;
     private String joinDate;
     private String exitType;
 
     private String provider;
     private String providerId;
+
+
 
 
 }

@@ -1,0 +1,4 @@
+
+input[name="ready"]:checked {
+    background: #32e732;
+}

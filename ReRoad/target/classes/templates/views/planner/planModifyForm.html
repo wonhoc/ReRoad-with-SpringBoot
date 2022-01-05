@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/defaultLayout}">
+<th:block layout:fragment="css">
+    <link rel="stylesheet" th:href="@{/css/planner/planWrite.css}">
+</th:block>
+
+<th:block layout:fragment="script">
+    <script th:src="@{/js/planner/planWrite.js}"></script>
+</th:block>
+<head>
+    <!-- 부트스트랩 DatePicker사용을 위함 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+            integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"
+            integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css"
+          integrity="sha512-aOG0c6nPNzGk+5zjwyJaoRUgCdOrfSDhmMID2u4+OIslr0GjpLKo7Xm0Ao3xmpM4T8AmIouRkqwj1nrdVsLKEQ=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+
+    <script>
+        $.datepicker.setDefaults({
+            closeText: '닫기',
+            prevText: '이전달',
+            nextText: '다음달',
+            currentText: '오늘',
+            monthNames: ['1월(JAN)','2월(FEB)','3월(MAR)','4월(APR)','5월(MAY)','6월(JUN)',
+                '7월(JUL)','8월(AUG)','9월(SEP)','10월(OCT)','11월(NOV)','12월(DEC)'],
+            monthNamesShort: ['1월','2월','3월','4월','5월','6월',
+                '7월','8월','9월','10월','11월','12월'],
+            dayNames: ['일','월','화','수','목','금','토'],
+            dayNamesShort: ['일','월','화','수','목','금','토'],
+            dayNamesMin: ['일','월','화','수','목','금','토'],
+            weekHeader: 'Wk',
+            dateFormat: 'yy-mm-dd',
+            firstDay: 0,
+            isRTL: false,
+            showMonthAfterYear: true,
+            yearSuffix: '년',
+            showOn: 'both',
+            buttonText: "달력",
+            changeMonth: true,
+            changeYear: true,
+            showButtonPanel: true,
+            yearRange: 'c-99:c+99',
+            minDate: 0
+        });
+        $(function () {
+            $('#startDate').datepicker();
+            $('#startDate').datepicker("option", "maxDate", $("#arriveDate").val());
+            $('#startDate').datepicker("option", "onClose", function ( selectedDate ) {
+                $("#arriveDate").datepicker( "option", "minDate", selectedDate );
+            });
+
+            $('#arriveDate').datepicker();
+            $('#arriveDate').datepicker("option", "minDate", $("#startDate").val());
+            $('#arriveDate').datepicker("option", "onClose", function ( selectedDate ) {
+                $("#startDate").datepicker( "option", "maxDate", selectedDate );
+            });
+            $("input[name='allchk']").click(function () {
+                var chk_listArr = $("input[name='chk']");
+                for (var i = 0; i < chk_listArr.length; i++) {
+                    chk_listArr[i].checked = this.checked;
+                }
+            });
+
+        });
+
+
+        function item_Add() {
+            addRow = document.all("itemList").insertRow();
+
+            //체크박스
+            var addCol_chk = addRow.insertCell();
+            addCol_chk.innerHTML = "<input type='checkbox' name='chk' />";
+
+            //아이템 내용
+            var addCol_content = addRow.insertCell();
+            addCol_content.innerHTML = "<input type='text' name='checkListContent' placeholder='아이템 입력..' maxlength='10'>";
+
+            //준비여부
+            var addCol_radio = addRow.insertCell();
+            addCol_radio.innerHTML = "<select name='ready'>" +
+                "<option value='0'>준비 못함!</option>" +
+                "<option value='1'>준비 완료!</option>" +
+                "</select> ";
+        }
+
+        function item_del() {
+            var tableData = document.getElementById('itemTable');
+            for (var i = 1; i < tableData.rows.length; i++) {
+                var chkbox = tableData.rows[i].cells[0].childNodes[0].checked;
+
+                if (chkbox) {
+                    tableData.deleteRow(i);
+                    i--;
+                }
+            }
+        }
+        //동적으로 생성된 체크리스트를 위한 유효성 검사 코드
+        $(function () {
+            $("#form").validate({
+                errorElement: "label",
+                errorPlacement: function(error, element) {
+                    error.insertAfter('#Isvalid');
+                    error.css("color", "red");
+                },
+                //규칙
+                rules: {
+                    checkListContent: {
+                        required: true,
+                        spaceCheck: true
+                    }
+                },
+                //규칙체크 실패시 출력될 메시지
+                messages: {
+
+                    checkListContent: {
+                        required: "체크리스트를 올바르게 입력 후 다시 시도하세요",
+                        spaceCheck: "체크리스트에 공백은 입력 불가합니다."
+                    }
+                }
+
+            });
+
+
+            $.validator.addMethod(
+                "spaceCheck", //validate명
+
+                function (value, element) {
+                    var regex = / /gi;
+                    //검사하는 name태그의 value 중 공백이 없으면 true, 있으면 false리턴
+                    if ($(element).val().indexOf(" ")==-1) return true;
+                    else return false;
+                    //false 리턴 시 messages에 선언된 내용들 띄워줌
+
+
+                }
+            );
+
+
+            //확장판 name 처리
+            $.extend($.validator.prototype, {
+                checkForm: function () {
+                    this.prepareForm();
+                    for (var i = 0, elements = (this.currentElements = this.elements()); elements[i]; i++) {
+                        if (this.findByName(elements[i].name).length != undefined && this.findByName(elements[i].name).length > 1) {
+                            for (var cnt = 0; cnt < this.findByName(elements[i].name).length; cnt++) {
+                                this.check(this.findByName(elements[i].name)[cnt]);
+                            }
+                        } else {
+                            this.check(elements[i]);
+                        }
+                    }
+                    return this.valid();
+                }
+            });
+
+
+        });
+    </script>
+</head>
+<section layout:fragment="content">
+    <div>
+        <form name="form" id="form" role="form" method="post" th:action="@{/member/modifyplan}">
+            <input type="hidden" name="planNo" id="planNo" th:value="${plan.planNo}">
+            <div class="mb-3">
+                <h3 class="text-title">여행일정 플랜 수정</h3>
+                <label for="travelTitle">여행 이름</label>
+                <input type="text" class="form-control" name="travelTitle" id="travelTitle"
+                       th:value="${plan.travelTitle}" maxlength="10">
+                <label for="spot">여행지</label>
+                <input type="text" class="form-control" name="spot" id="spot" th:value="${plan.spot}" maxlength="16">
+                <label for="startDate">여행기간</label>
+                <input type="text" class="datepicker" name="startDate" id="startDate" th:value="${plan.startDate}">
+                &nbsp; ~ &nbsp;
+                <input type="text" class="datepicker" name="arriveDate" id="arriveDate" th:value="${plan.arriveDate}">
+            </div>
+
+            <div class="mb-3">
+                <label for="memo">메모</label>
+                <input type="text" class="form-control" name="memo" id="memo" placeholder="잊기 쉬운 정보들을 메모해보세요."
+                       th:value="${plan.memo}" style="height: 150px;">
+            </div>
+            <div class="mb-3">
+                <table id="itemTable" class="item_table">
+                    <thead class="table_head">
+                    <tr>
+                        <th>체크리스트</th>
+                        <th><input type="checkbox" name="allchk" ></th>
+                        <th><input type="button" name="itemAdd" id="itemAdd" value="아이템 추가" onclick="item_Add()"/></th>
+                        <th><input type="button" name="itemDel" id="itemDel" value="선택 삭제" onclick="item_del()"/></th>
+                    </tr>
+                    </thead>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td>준비 여부</td>
+                    </tr>
+
+                        <span th:each="item,i : ${plan.getCheckList()}">
+<tr>
+                <td th:if="${i.index == 0}">&empty;</td>
+              <td th:if="${i.index!=0}"><input type="checkbox" name="chk"></td>
+            <td><input type="text" name="checkListContent" th:value="${item.getCheckListContent()}"></td>
+              <td th:if="${item.getReady()==0}"><select name="ready">
+                  <option value="0" selected>준비 못함!</option>
+                  <option value="1">준비 완료!</option></select> </td>
+              <td th:if="${item.getReady()==1}"><select name="ready">
+                  <option value="0">준비 못함!</option>
+                  <option value="1" selected>준비 완료!</option></select> </td>
+    </tr>
+          </span>
+
+                    <tbody id="itemList">
+
+                    </tbody>
+                </table>
+            </div>
+
+            <div>
+                <div id="Isvalid"></div>
+                <br>
+                <button type="submit" class="btn btn-sm btn-primary" id="saveBtn">저장</button>
+                <a class="btn btn-default waves-effect waves-light" th:href="@{/member/planlist}">목록</a>
+            </div>
+        </form>
+    </div>
+</section>
+</html>

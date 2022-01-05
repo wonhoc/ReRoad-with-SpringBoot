@@ -24,4 +24,6 @@ public interface NoticeDao {
     List<FileVO> selectNoticeFileList(int noticeNo);
 
     FileVO selectNoticeFile(int fileNo);
+
+    List<NoticeVO> selectLastNotices();
 }

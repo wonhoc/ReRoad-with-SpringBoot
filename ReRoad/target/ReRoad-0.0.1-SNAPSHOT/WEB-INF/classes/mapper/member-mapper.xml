@@ -85,5 +85,38 @@
         WHERE userId = #{userId}
     </select>
 
+    <!-- 회원정보를 상세조회한다 -->
+    <resultMap type="UserVo" id="userOneResultMap">
+        <id property="userId" javaType="string" column="userId"
+            jdbcType="VARCHAR" />
+        <result property="userNick" javaType="string" column="userNick"
+                jdbcType="VARCHAR" />
+        <result property="photoOrigin" javaType="string"
+                column="photoOrigin" jdbcType="VARCHAR" />
+        <result property="photoSys" javaType="string" column="photoSys"
+                jdbcType="VARCHAR" />
+    </resultMap>
+    <select id="selectOne" statementType="CALLABLE"
+            resultMap="userOneResultMap" parameterType="string">
+        SELECT userId, userNick, photoOrigin, photoSys
+        FROM user_info
+        WHERE userId = #{userId};
+    </select>
+
+    <!-- 회원정보를 변경한다 -->
+    <update id="update" parameterType="UserVo" >
+        UPDATE user_info
+        SET
+            userPwd = #{userPwd}, userNick = #{userNick},
+            photoOrigin = #{photoOrigin}, photoSys = #{photoSys}
+        WHERE userId = #{userId}
+    </update>
+
+    <!--  닉네임 중복 검사 -->
+    <select id="checkNick" parameterType="string" resultType="int">
+        SELECT COUNT(*)
+        FROM user_info
+        WHERE userNick = #{userNick}
+    </select>
 </mapper>
 

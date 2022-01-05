@@ -51,7 +51,7 @@ $(document).ready(function () {
 
                             //html += '<p each="board : ${list}">';
                             //<td><a href='view.html?userid=" + userid + "'>" + userid + "</a></td>
-                            html += '<td><a href= "/noticedetail?noticeNo=' + data[i].noticeNo  + '">' +  data[i].noticeTitle + '</a></td>';
+                            html += '<td><a href= "/noticedetail/' + data[i].noticeNo  + '">' +  data[i].noticeTitle + '</a></td>';
 
                             html += '<td id="wdate">' + data[i].writeDate + '</td>';
                             html += '<td id="bc">' + data[i].hitCount +  '</td></tr></p></p>';

@@ -4,7 +4,10 @@ import com.example.member.service.MailService;
 import com.example.member.service.UserService;
 import com.example.member.vo.MailVo;
 import com.example.member.vo.UserVo;
+import com.example.util.FileUploadService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -16,8 +19,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
+<<<<<<< HEAD
+=======
+import org.springframework.validation.annotation.Validated;
+>>>>>>> 8614fb3740cc165bfc739978b5eeea31591c386a
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.HashMap;
@@ -32,6 +41,9 @@ public class UserController {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+    @Autowired
+    private FileUploadService fileUploadService;
+
 
     @Autowired
     public HttpSession session;
@@ -61,7 +73,11 @@ public class UserController {
 
     //로그인이 실패했을 경우
     @GetMapping("/loginFail")
+<<<<<<< HEAD
     public String forFailer() {return "views/member/loginForm";}
+=======
+    public String forFailer() { return "views/member/loginForm";}
+>>>>>>> 8614fb3740cc165bfc739978b5eeea31591c386a
 
     @GetMapping("/admin")
     public String forAdmin() { return "views/member/admin"; }
@@ -103,6 +119,7 @@ public class UserController {
 
     //회원가입
     @RequestMapping(value="/joinUserRequest", method = RequestMethod.POST)
+<<<<<<< HEAD
     public String joinUserRequest(@Valid @ModelAttribute UserVo user, BindingResult bindingResult, Model model) {
         //DB 유효성 체크 결과 에러가 발생할 경우 가입폼으로 돌아감
         if (bindingResult.hasErrors()) {
@@ -128,6 +145,17 @@ public class UserController {
             this.userService.registUser(verifyUser);
             return "views/member/joinSuccess";
         }
+=======
+    public String joinUserRequest(@RequestParam ("username") String username,
+          @RequestParam ("inputPwd") String password, @RequestParam ("inputNick") String userNick) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("userId", username);
+        map.put("userPwd", passwordEncoder.encode(password));
+        map.put("userNick", userNick);
+        map.put("role", "ROLE_MEMBER");
+        this.userService.registUser(map);
+        return "views/member/joinSuccess";
+>>>>>>> 8614fb3740cc165bfc739978b5eeea31591c386a
     }
 
 
@@ -237,4 +265,86 @@ public class UserController {
 
         return "redirect:/";
     }
+
+    //회원 정보 상세 조회
+    @GetMapping("/member/modifyUserForm")
+    public String modifyUserForm(Authentication authentication, Model model) {
+
+        UserDetails userDetails = (UserDetails)authentication.getPrincipal();
+        String userId = userDetails.getUsername();
+
+        UserVo user = this.userService.retrieveUser(userId);
+
+        model.addAttribute("user", user);
+        return "views/member/modifyUser";
+    }
+
+    // 회원정보수정
+    @PostMapping("/member/modifyUser")
+    public String modifyUser(@Valid @ModelAttribute UserVo user, Model model, HttpServletRequest request,
+                             @AuthenticationPrincipal User prin, BindingResult bindingResult) {
+
+        //DB 유효성 체크 결과 에러가 발생할 경우 수정폼으로 돌아감
+        if (bindingResult.hasErrors()) {
+            Map<String, String> map = new HashMap<>();
+            for (FieldError error: bindingResult.getFieldErrors()) {
+                String validKey = String.format("valid_%s", error.getField());
+                System.out.println(validKey);
+                map.put(validKey, error.getDefaultMessage());
+
+
+                System.out.println(map.get("valid_userPwd").toString());
+            }
+            model.addAttribute("bindError", map);
+
+            String userId = prin.getUsername();
+            UserVo user1 = this.userService.retrieveUser(userId);
+
+            model.addAttribute("user", user1);
+            return "views/member/modifyUser";
+        } else {
+            UserVo modifyUser = new UserVo();
+            modifyUser.setUserId(user.getUserId());
+            modifyUser.setUserPwd(passwordEncoder.encode(user.getUserPwd()));
+            modifyUser.setUserNick(user.getUserNick());
+            modifyUser.setPhotoOrigin(user.getPhoto().getOriginalFilename());
+
+            String imgname = null;
+            MultipartFile photo = user.getPhoto();
+            if (!user.getPhoto().getOriginalFilename().isEmpty()) {
+                imgname = fileUploadService.restore(photo, request);
+
+            } else {
+                imgname = "default.png";
+            }
+            modifyUser.setPhotoSys(imgname);
+
+            this.userService.modifyUser(modifyUser);
+
+            String userId = prin.getUsername();
+            UserVo user2 = this.userService.getInfo(userId);
+            String userNick = user2.getUserNick();
+            String userRole = user2.getRole();
+
+            session.setAttribute("loginUser", user2);
+            return "redirect:/";
+        }
+    }
+
+    //닉네임 중복 검사
+    @RequestMapping(value="/checkNick", method = RequestMethod.POST)
+    public @ResponseBody String checkNickAjax(@RequestParam("userNick") String requestNick) {
+        String inputNick = requestNick.trim();
+        int checkNick = this.userService.checkNick(inputNick);
+        String nickResult = "";
+        // 중복된 닉네임은 1 = 가입 불가
+        // 없는 닉네임은 0 = 가입 가능
+        if (checkNick == 1) {
+            nickResult = "false";
+        } else if (checkNick == 0) {
+            nickResult = "true";
+        }
+        return nickResult;
+    }
+
 }

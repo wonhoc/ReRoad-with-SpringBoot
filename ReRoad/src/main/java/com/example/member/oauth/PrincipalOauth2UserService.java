@@ -10,12 +10,15 @@ import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpSession;
+
 @Service
 public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
     @Autowired
     private UserDao userDao;
 
-    private PasswordEncoder passwordEncoder;
+    @Autowired
+    public HttpSession session;
 
      @Override
         public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
@@ -25,27 +28,30 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
 
         OAuth2User oAuth2User = super.loadUser(userRequest);
 
-        String provider = userRequest.getClientRegistration().getClientId();
-        String providerId = oAuth2User.getAttribute("sub");
+//        String provider = userRequest.getClientRegistration().getClientId();
+//        String providerId = oAuth2User.getAttribute("sub");
+         //OAuth2User에 있는 Email을 아이디로 지정하고 ROLE를 MEMBER로 지정한다..
         String username = oAuth2User.getAttribute("email");
-        String password = this.passwordEncoder.encode("asdfasdf!234");
         String role = ("ROLE_MEMBER");
 
-        UserVo user = new UserVo();
+        //DB상에 중복된 아이디가 있는지 검사 해서 있다면 1, 없다면 0을 반환한다.
         int checkUser = userDao.existId(username);
+
         if(checkUser == 0) {
+            //Attribute에서 가져온 정보를 Vo 객체에 담고 Dao의 회원가입 메소드를 호출
             System.out.println("구글 로그인이 최초입니다.");
-            user.setUserId(username);
-            user.setUserPwd(password);
-            user.setUserNick(String.format("Google_$s",username));
+            UserVo user = new UserVo();
+            user.setUserId(username); 
+            user.setUserNick(String.format("Google_%s",username)); 
             user.setRole(role);
-            user.setProvider(provider);
-            user.setProviderId(providerId);
+            session.setAttribute("loginUser", user);
             this.userDao.insertUser(user);
         } else {
-        System.out.println("이미 로그인 기록이 있습니다. 자동 회원 가입이 되어 있습니다.");
+            //회원 아이디를 통해 DB에서 정보를 가져온 후 Session에 등록한다.
+            UserVo user = this.userDao.getUserInfo(username);
+            session.setAttribute("loginUser", user);
+            System.out.println("이미 로그인 기록이 있습니다. 자동 회원 가입이 되어 있습니다.");
         }
-
       return super.loadUser(userRequest);
     }
 }

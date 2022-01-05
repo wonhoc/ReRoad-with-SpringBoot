@@ -2,6 +2,20 @@
     width: 100%;
     height: 300px;;
 }
+#mainwrapper{
+	 width: 100%;
+    height: 450px;
+    position: relative;
+}
+
+#searchBox{
+	width: 80%;
+	height: 300px;
+	background-color: coral;
+	position: absolute;
+	left: 110px;
+	bottom: 10px;
+}
 .content{
     width: 250px;
     height: 180px;

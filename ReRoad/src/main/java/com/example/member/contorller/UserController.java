@@ -48,7 +48,7 @@ public class UserController {
     public String login() { return "views/member/loginForm"; }
 
     // 로그인 성공시 이동 페이지(임시)
-    @GetMapping("/loginSuccess")
+    @GetMapping("/loginOk")
     public String loginSuccess(@AuthenticationPrincipal User prin, Model model) {
         model.addAttribute("username", prin.getUsername());
         model.addAttribute("userRole", prin.getAuthorities());
@@ -60,15 +60,12 @@ public class UserController {
         String userRole = user.getRole();
 
         session.setAttribute("loginUser", user);
-        return "views/member/loginSuccess";
+        return "redirect:/";
     }
 
     //로그인이 실패했을 경우
-    @GetMapping("/loginFail")
+    @PostMapping("/loginFail")
     public String forFailer() {return "views/member/loginForm";}
-
-    @GetMapping("/admin")
-    public String forAdmin() { return "views/member/admin"; }
 
     @GetMapping("/joinUser")
     public String forJoin() { return "views/member/JoinUser";}
@@ -134,33 +131,32 @@ public class UserController {
         }
 
     }
-        //인증 메일 발송
-        @PostMapping("/verifyEmail")
-        public @ResponseBody String sendEmail(@RequestParam("mail") String email) {
-            String key="";
-            Random random = new Random();
-            for(int i = 0; i<3; i++) {
-                int index = random.nextInt(25)+65;
-                key += (char)index;
-            }
-            int numIndex = random.nextInt(9999)+1000;
-            key += numIndex;
-            MailVo mail = new MailVo();
-            mail.setAddress(email);
-            mail.setTitle("ReRoad 회원 가입을 위한 인증 메일입니다.");
-            mail.setMessage("인증 번호는 "+ key + "입니다.");
-
-            this.mailService.sendMail(mail);
-            return key;
+    //인증 메일 발송
+    @PostMapping("/verifyEmail")
+    public @ResponseBody String sendEmail(@RequestParam("mail") String email) {
+        String key="";
+        Random random = new Random();
+        for(int i = 0; i<3; i++) {
+            int index = random.nextInt(25)+65;
+            key += (char)index;
         }
+        int numIndex = random.nextInt(9999)+1000;
+        key += numIndex;
+        MailVo mail = new MailVo();
+        mail.setAddress(email);
+        mail.setTitle("ReRoad 회원 가입을 위한 인증 메일입니다.");
+        mail.setMessage("인증 번호는 "+ key + "입니다.");
+
+        this.mailService.sendMail(mail);
+        return key;
+    }
 
 
-        // 권한이 없는 경로로 접근했을 경우
+    // 권한이 없는 경로로 접근했을 경우
     @PostMapping("/accessDenied")
     public void deniedMessage() {
 
     }
-
 
     // 관리자의 사용자 정보 조회
     @GetMapping("/admin/listUser")

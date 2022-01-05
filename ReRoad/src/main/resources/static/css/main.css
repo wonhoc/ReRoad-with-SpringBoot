@@ -1,7 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700;900&display=swap');
+
 #mainImage{
     width: 100%;
-    height: 300px;;
+    height: 300px;
+  
 }
+#mainwrapper{
+	 width: 100%;
+    height: 450px;
+    position: relative;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+#searchBox{
+	width: 80%;
+	height: 300px;
+	background-color: coral;
+	position: absolute;
+	left: 110px;
+	bottom: 10px;
+}
+
+#headWrapper{
+	width: 100%;
+	height: 10%;
+}
+
+.searchBoxHead{
+	font-weight: 900;
+	height: 100%;
+	background-color: white;
+	border: solid 1px blue; 	
+}
+
+#headTrain{
+	
+	background-color: red;
+	
+}
+
+#headBus{
+	
+	background-color: yellow;
+	
+}
+
+#selWrapper{
+	left: 5px;
+	position: absolute;
+	top:15%;
+	width: 100%;
+	height: 13%;
+}
+
+.selTextdiv{
+	font-weight: 700;
+	padding-top: 10%;
+	display: inline-block;
+}
+
+#selOneway{
+	background-color: red;
+	height: 100%;
+}
+
+#selTurn{
+	background-color: yellow;
+	height: 100%;
+}
+
+#bodyWrapper{
+	
+	top: 50%;
+	width: 100%;
+	background-color: pink;
+	position: absolute;
+	height: 30%;
+	
+}
+
+.searchBody{
+	
+	height: 100%
+}
+
+#dep{
+	
+}
+
+#arr{
+	
+}
+
+#date{
+	
+}
+
+#btnSearch{
+	margin-top: 3%;
+}
+.bodyTextdiv{
+	font-size: 30px;
+	font-weight: 700;
+	padding-top: 10%;
+	display: inline-block;
+}
+
 .content{
     width: 250px;
     height: 180px;
@@ -11,10 +115,7 @@
     width: 80px;
     height: 180px;
 }
-.empty_little{
-    width: 40px;
-    height: 95px;
-}
+
 .menu{
     font-size: 25px;
     text-align: center;
@@ -34,10 +135,48 @@
     font-size: 18px;
 }
 
-.notice_table  a{
+#right_table  a{
+    color: #ce8483;
+}
+
+#center_title a{
     color: #ce8483;
 }
 #noti_wDate{
     font-size: smaller;
     color: #5e5e5e;
+}
+
+#left_table{
+    width: 53%;
+    float: left;
+}
+
+#right_table{
+    width: 23%;
+    float: right;
+    margin-top: 72px;
+    margin-right: -24px;
+    border-left: 1px dashed;
+    text-align: -webkit-center;
+}
+
+#center_title{
+    float: left;
+    margin-top: 4em;
+    margin-right: -69px;
+    margin-left: 25px;
+}
+
+#notice_list{
+    line-height: 1.8;
+    font-size: 17px;
+}
+
+#message {
+    line-height: 73px;
+}
+
+#noti_text {
+    font-weight: bold;
 }

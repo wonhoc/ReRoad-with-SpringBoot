@@ -14,15 +14,33 @@
 <section layout:fragment="content">
 
 	<div class="container">
-		<img src="/images/메인페이지버스.png" alt="image" id="mainImage">
-
+		<div id="mainwrapper">
+			<img src="/images/메인페이지버스.png" alt="image" id="mainImage">
+			<div id="searchBox">
+			</div>
+		</div>	
 	<table>
 		<tr>
 			<td><a th:href="@{/boardList}"><img src="/images/tavleReview.jpg" alt="image" class="content"></a></td>
 			<td class="empty"></td>
-			<td><img src="/images/tavlePlanner.jpg" alt="image" class="content"></td>
+			<td><a th:href="@{/member/planlist}"><img src="/images/tavlePlanner.jpg" alt="image" class="content"></a></td>
 			<td class="empty"></td>
 			<td><a th:href="@{/noticelist}"><img src="/images/notice.jpg" alt="image" class="content"></a></td>
+			<td class="empty_little"></td>
+			<td><div class="notice">
+				<table class="notice_table">
+					<thead class="empty_little">
+						<td colspan="9"><a th:href="@{/noticelist}"/>+ 더보기</td>
+					</thead>
+					<tr th:each="list : ${noticeList}">
+						<td colspan="7" th:if="${#strings.length(list.noticeTitle) < 9}" class="list_title"><a th:href="@{/noticedetail/{noticeNo}(noticeNo=${list.noticeNo})}"
+																								   th:text="${list.noticeTitle}"></a></td>
+						<td colspan="7" th:if="${#strings.length(list.noticeTitle) >= 9}" class="list_title"><a th:href="@{/noticedetail/{noticeNo}(noticeNo=${list.noticeNo})}"
+																									th:text="${#strings.substring(list.noticeTitle,0,6)} + ..."></a></td>
+						<td colspan="2" id="noti_wDate" th:text="${#strings.substring(list.writeDate,2)}"></td>
+					</tr>
+				</table>
+			</div></td>
 		</tr>
 		<tr>
 			<td class="menu">여행리뷰</td>

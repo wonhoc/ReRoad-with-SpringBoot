@@ -1,10 +1,5 @@
 $(document).ready(function() {
 
-    $('#writeBtn').on('click',function (){
-        location.href="/writeboardForm";
-    })
-
-
 
     $('#searchBtn').on('click',function () {
         $.ajax({

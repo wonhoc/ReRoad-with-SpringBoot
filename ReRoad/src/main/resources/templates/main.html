@@ -13,47 +13,73 @@
 </head>
 <section layout:fragment="content">
 	<div class="container">
-		<img src="/images/메인페이지버스.png" alt="image" id="mainImage">
-		<div id="left_table">
-			<table>
-				<tr>
-					<td><img src="/images/tavleReview.jpg" alt="image" class="content"></td>
-					<td class="empty"></td>
-					<td><a th:href="@{/member/planlist}"><img src="/images/tavlePlanner.jpg" alt="image"
-															  class="content"></a></td>
-				</tr>
-				<tr>
-					<td class="menu">여행리뷰</td>
-					<td></td>
-					<td class="menu">여행일정 플래너</td>
-				</tr>
-			</table>
-		</div>
-		<div id="center_title">
-			<table>
-				<tr><h3 id="noti_text">공지사항</h3></tr>
-				<tr>
-					<td id="message">Re Road의 새로운 소식을 알려드립니다.</td>
-				</tr>
-				<tr>
-					<td><a th:href="@{/noticelist}"/> + 더보기</td>
-				</tr>
-			</table>
-		</div>
-		<div id="right_table">
-			<table id="notice_list">
-				<tr th:each="list : ${noticeList}">
-					<td th:if="${#strings.length(list.noticeTitle) < 15}" class="list_title"><a
-							th:href="@{/noticedetail/{noticeNo}(noticeNo=${list.noticeNo})}"
-							th:text="${list.noticeTitle}"></a></td>
-					<td th:if="${#strings.length(list.noticeTitle) >= 15}" class="list_title"><a
-							th:href="@{/noticedetail/{noticeNo}(noticeNo=${list.noticeNo})}"
-							th:text="${#strings.substring(list.noticeTitle,0,15)} + ..."></a></td>
-					<td></td>
-					<td id="noti_wDate" th:text="${#strings.substring(list.writeDate,2)}"></td>
-				</tr>
-			</table>
-		</div>
+
+	
+		<div id="mainwrapper">
+			<img src="/images/메인페이지버스.png" alt="image" id="mainImage">
+			<div id="searchBox" class="row text-center">
+				<!-- 헤드 -->
+				<div id="headWrapper">
+					<div class="searchBoxHead col-sm-6" id="headTrain">열차</div>	
+			        <div class="searchBoxHead col-sm-6" id="headBus">버스</div>
+			    </div>
+			    <!-- 왕복 -->
+			    <div id="selWrapper">
+			    	<div id="selOneway" class="col-sm-2">
+			    		<div class="selTextdiv">편도</div>
+			    		</div>
+			        <div id="selTurn" class="col-sm-2">
+			        	<div class="selTextdiv">왕복</div>
+			        </div>
+			    </div>
+			    <!-- 바디 -->
+			    <div id="bodyWrapper">		    
+				    <div id="dep" class="col-sm-3 searchBody" style="background-color: red">
+				    	<div class="bodyTextdiv">출발지</div>
+				    </div>
+				    <div id="arr" class="col-sm-3 searchBody" style="background-color: orange">
+				    	<div class="bodyTextdiv">도착지</div>
+				    </div>
+				    <div id="date" class="col-sm-3 searchBody" style="background-color: yellow">
+				    	<div class="bodyTextdiv">날짜</div>
+				    </div>
+				    <button type="button" id="btnSearch" class="btn btn-lg btn-primary">검색</button>		    
+			    </div>  
+			</div>
+		</div>	
+		
+	<table>
+		<tr>
+			<td><a th:href="@{/boardList}"><img src="/images/tavleReview.jpg" alt="image" class="content"></a></td>
+			<td class="empty"></td>
+			<td><a th:href="@{/member/planlist}"><img src="/images/tavlePlanner.jpg" alt="image" class="content"></a></td>
+			<td class="empty"></td>
+			<td><a th:href="@{/noticelist}"><img src="/images/notice.jpg" alt="image" class="content"></a></td>
+			<td class="empty_little"></td>
+			<td><div class="notice">
+				<table class="notice_table">
+					<thead class="empty_little">
+						<td colspan="9"><a th:href="@{/noticelist}"/>+ 더보기</td>
+					</thead>
+					<tr th:each="list : ${noticeList}">
+						<td colspan="7" th:if="${#strings.length(list.noticeTitle) < 9}" class="list_title"><a th:href="@{/noticedetail/{noticeNo}(noticeNo=${list.noticeNo})}"
+																								   th:text="${list.noticeTitle}"></a></td>
+						<td colspan="7" th:if="${#strings.length(list.noticeTitle) >= 9}" class="list_title"><a th:href="@{/noticedetail/{noticeNo}(noticeNo=${list.noticeNo})}"
+																									th:text="${#strings.substring(list.noticeTitle,0,6)} + ..."></a></td>
+						<td colspan="2" id="noti_wDate" th:text="${#strings.substring(list.writeDate,2)}"></td>
+					</tr>
+				</table>
+			</div></td>
+		</tr>
+		<tr>
+			<td class="menu">여행리뷰</td>
+			<td></td>
+			<td class="menu">여행일정 플래너</td>
+			<td></td>
+			<td class="menu">공지사항</td>
+		</tr>
+	</table>
+
 		<table>
 			<tr>
 				<td><img src="images/main/main서울.jpg" alt="image" class="domestic"></td>

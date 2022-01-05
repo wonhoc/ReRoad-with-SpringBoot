@@ -1,15 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,500&display=swap');
 
 /*로그인 화면 폼 디자인 */
 .loginContainer {
     padding-right: 15px;
     padding-left: 15px;
+    padding-bottom: 15px;
     margin-right: auto;
     margin-left: auto;
     margin-top: 5em;
     background-color: RGB(242,242,242);
     border-radius: 15px;
-    height: 40em;
+    height: auto;
     width: 35em;
 }
 /*로그인 화면 폼의 상단 여백 */
@@ -61,7 +63,7 @@
 
 }
 /* 로그인 버튼 디자인 */
-.btn {
+.btn-primary {
     background-color: RGB(1,121,122);
     border-color: RGB(1,121,122);
     font-weight: bolder;
@@ -77,6 +79,20 @@
 .btn-primary.disabled:disabled {
     background-color: #5e5e5e;
     border-color: #5e5e5e;
+}
+
+/* Google 로그인 */
+#googleLogin {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    border-color:RGB(1,121,122);
+}
+#googleImage {
+    width: 20px;
+    height: 20px;
+    margin-right: 20px;
+    vertical-align: text-top;
+
 }
 
 
@@ -96,4 +112,13 @@
     padding-top: 2em;
     font-weight: bold;
     color: RGB(1,121,122);
+}
+
+span.icon {
+    background: url('/identity/sign-in/g-normal.png') transparent 5px 50% no-repeat;
+    display: inline-block;
+    vertical-align: middle;
+    width: 42px;
+    height: 42px;
+
 }

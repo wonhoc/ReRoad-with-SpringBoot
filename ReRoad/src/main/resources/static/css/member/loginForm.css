@@ -79,6 +79,8 @@
     border-color: #5e5e5e;
 }
 
+
+
 .inputidpwd {
     padding-bottom: 2em;
 }
@@ -87,7 +89,7 @@
     height: 4px;
     background-color: #414141;
     margin-top: 1em;
-
+    margin-bottom: 1em;
 }
 
 .otherSelect {

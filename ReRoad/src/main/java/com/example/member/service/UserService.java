@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 public interface UserService {
-    void registUser(Map map, String userId);
+    void registUser(UserVo user);
     UserVo getInfo(String username);
     int checkId(String isId);
     int checkNick(String isNick);

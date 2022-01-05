@@ -1,11 +1,27 @@
 $(document).ready(function() {
+    const url = 'http://localhost:8080';
 
-    $('#deleteBtn').on('click', function (){
-        confirm("정말 삭제하시겠습니까?")
-    });
+  function connectToChat(username){
+
+      console.log("connecting to chat...");
+
+      let socket = new SockJS(url + '/chat');
+      stompClient = Stomp.over(socket);
+  }
+
+
+
 
     $('#addComBtn').on('click',function (){
-        alert("간지");
+        let username = $('#username').val();
+        $.ajax({
+            url: url + '/registration' + username,
+            success:function (response){
+                console.log(`reponse : ${response}`)
+                connectToChat(username);
+            }
+        })
+
     })
 
 

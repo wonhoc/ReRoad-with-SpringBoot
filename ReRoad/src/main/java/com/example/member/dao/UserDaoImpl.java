@@ -27,15 +27,10 @@ public class UserDaoImpl implements UserDao {
 
     // 회원 가입
     @Override
-
-    public void insertUser(Map map) {
-        this.sqlSession.selectOne("Member.inputUser", map);
+    public void insertUser(UserVo user) {
+        this.sqlSession.selectOne("Member.inputUser", user);
     }
-
-
-
-
-    //아이디 중복 체크
+     //아이디 중복 체크
     @Override
     public int existId(String userId) {
         return this.sqlSession.selectOne("Member.checkId", userId);

@@ -14,9 +14,12 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,6 +29,7 @@ import java.util.Random;
 public class UserController {
     @Autowired
     private UserService userService;
+
     @Autowired
     private PasswordEncoder passwordEncoder;
 
@@ -55,11 +59,15 @@ public class UserController {
         return "views/member/loginSuccess";
     }
 
+    //로그인이 실패했을 경우
+    @GetMapping("/loginFail")
+    public String forFailer() {return "views/member/loginForm";}
+
     @GetMapping("/admin")
     public String forAdmin() { return "views/member/admin"; }
 
     @GetMapping("/joinUser")
-    public String forJoin() { return "views/member/joinuser";}
+    public String forJoin() { return "views/member/JoinUser";}
 
     // 회원 가입 과정에서 아이디 중복 체크
     @RequestMapping(value="/checkId", method = RequestMethod.POST)
@@ -95,9 +103,33 @@ public class UserController {
 
     //회원가입
     @RequestMapping(value="/joinUserRequest", method = RequestMethod.POST)
-    public @ResponseBody void joinUserRequest() {
+    public String joinUserRequest(@Valid @ModelAttribute UserVo user, BindingResult bindingResult, Model model) {
+        //DB 유효성 체크 결과 에러가 발생할 경우 가입폼으로 돌아감
+        if (bindingResult.hasErrors()) {
+            Map<String, String> map = new HashMap<>();
+            for (FieldError error: bindingResult.getFieldErrors()) {
+                String validKey = String.format("valid_%s", error.getField());
+                System.out.println(validKey);
+                map.put(validKey, error.getDefaultMessage());
 
+
+                System.out.println(map.get("valid_userPwd").toString());
+            }
+            model.addAttribute("bindError", map);
+            return "views/member/JoinUser";
+        } else {
+            // 에러가 없을 경우 Password 암호화 후 DB에 등록
+            UserVo verifyUser = new UserVo();
+            verifyUser.setUserId(user.getUserId());
+            verifyUser.setUserPwd(passwordEncoder.encode(user.getUserPwd()));
+            verifyUser.setUserNick(user.getUserNick());
+            verifyUser.setRole("ROLE_MEMBER");
+
+            this.userService.registUser(verifyUser);
+            return "views/member/joinSuccess";
+        }
     }
+
 
     //인증 메일 발송
     @PostMapping("/verifyEmail")
@@ -116,9 +148,13 @@ public class UserController {
         mail.setMessage("인증 번호는 "+ key + "입니다.");
 
         this.mailService.sendMail(mail);
-        System.out.println("Controller Key : "+key);
-
         return key;
+    }
+
+
+    // 권한이 없는 경로로 접근했을 경우
+    @PostMapping("/accessDenied")
+    public void deniedMessage() {
 
     }
 

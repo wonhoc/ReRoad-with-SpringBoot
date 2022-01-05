@@ -1,0 +1,55 @@
+#img {
+    border-radius: 50%;
+    width: 8rem;
+    height: 8rem;
+    border: 1px solid;
+    margin-right: 2.5em;
+}
+
+#img1 {
+    border-radius: 50%;
+    width: 8rem;
+    height: 8rem;
+    border: 1px solid;
+    margin-right: 2.5em;
+}
+.join_box {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.join_right{
+    width: 30em;
+}
+.join_left{
+    width: 45em;
+}
+
+.join_title {
+    font-size: 36px;
+    font-weight: bolder;
+    margin: 0.3em 0;
+}
+
+.join_notice {
+    padding: 3em 0 2em 5em;
+}
+
+.join_devide {
+    width: 30%;
+    height: 4px;
+    background-color: black;
+}
+
+.join_text {
+    margin: 0.25em;
+}
+
+.page_content {
+    margin-left: 9em;
+    margin-bottom: 3em;
+    margin-top: -3em;
+    height: 36px;
+    width: 100%;
+}

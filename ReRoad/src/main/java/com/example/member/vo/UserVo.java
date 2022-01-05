@@ -34,6 +34,10 @@ public class UserVo {
     private String provider;
     private String providerId;
 
+    private int reportCount;
+    private int boardCount;
+    private int comCount;
+
 
 
 

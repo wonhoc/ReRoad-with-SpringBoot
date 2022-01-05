@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout/defaultLayout">
+<th:block layout:fragment="css">
+    <link rel="stylesheet" th:href="@{/css/member/mypage.css}">
+</th:block>
+<head>
+</head>
+<section layout:fragment="content">
+    <div class="container">
+        <div class="join_notice">
+            <h1 class="join_title">마이페이지</h1>
+            <div class="join_devide"></div>
+            <p class="join_text">내 활동을 확인할 수 있습니다.</p>
+        </div >
+        <div>
+        <img th:if="${#strings.isEmpty(user.photoSys)}" id="img"
+             th:src="@{'/upload/default.png'}">
+        <img th:unless="${#strings.isEmpty(user.photoSys)}" id="img1"
+             th:src="@{'/upload/' + ${user.photoSys}}">
+        </div>
+        <div class="page_content">
+            아이디 : <span id="userId" th:text="${user.userId}"></span>
+        </div>
+        <div class="page_content">
+            닉네임 : <span id="userNick" th:text="${user.userNick}"></span>
+        </div>
+        <div class="page_content">
+            가입일 : <span id="joinDate" th:text="${#strings.substring(user.joinDate,0,11)}"></span>
+        </div>
+        <div class="join_notice">
+            <h2 class="join_title">활동내역</h2>
+            <div class="join_devide"></div>
+        </div >
+        <div>
+            작성한 리뷰수 : <span id="boardCount" th:text="${user.boardCount}"></span>
+        </div>
+        <div>
+            작성한 댓글수 : <span id="comCount" th:text="${user.comCount}"></span>
+        </div>
+        <div>
+            <a th:href="@{/member/modifyUserForm}">
+                <button type="button" class="btn btn-light" >회원 정보 수정</button>
+            </a>
+        </div>
+        <div>
+            <a th:href="@{/member/exitUser}">
+                <button type="button" class="btn btn-light" >회원 탈퇴</button>
+            </a>
+        </div>
+    </div>
+</section>
+</html>

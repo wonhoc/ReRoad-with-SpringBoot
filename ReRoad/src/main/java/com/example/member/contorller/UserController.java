@@ -306,5 +306,17 @@ public class UserController {
         }
     }
 
+    //마이페이지 회원조회
+    @GetMapping("/member/myPage")
+    public String mypageForm(Authentication authentication, Model model) {
+
+        UserDetails userDetails = (UserDetails)authentication.getPrincipal();
+        String userId = userDetails.getUsername();
+
+        UserVo user = this.userService.retrieveUser(userId);
+
+        model.addAttribute("user", user);
+        return "views/member/myPage";
+    }
 
 }

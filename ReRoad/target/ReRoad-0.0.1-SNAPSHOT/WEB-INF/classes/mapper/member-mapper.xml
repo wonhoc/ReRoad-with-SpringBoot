@@ -95,12 +95,17 @@
                 column="photoOrigin" jdbcType="VARCHAR" />
         <result property="photoSys" javaType="string" column="photoSys"
                 jdbcType="VARCHAR" />
+        <result property="joinDate" javaType="string" column="joinDate" jdbcType="VARCHAR" />
+        <result property="boardCount" javaType="int" column="boardCount" jdbcType="INTEGER" />
+        <result property="comCount" javaType="int" column="comCount" jdbcType="INTEGER" />
     </resultMap>
     <select id="selectOne" statementType="CALLABLE"
             resultMap="userOneResultMap" parameterType="string">
-        SELECT userId, userNick, photoOrigin, photoSys
-        FROM user_info
-        WHERE userId = #{userId};
+        SELECT u.userId, u.userNick, u.photoOrigin, u.photoSys, u.joinDate,(SELECT COUNT(*) FROM board b WHERE b.userId = u.userId )
+            as boardCount, (SELECT COUNT(*) FROM comment c WHERE c.userId = u.userId )
+            as comCount
+        FROM user_info u
+        WHERE u.userId = #{userId};
     </select>
 
     <!-- 회원정보를 변경한다 -->
@@ -112,11 +117,5 @@
         WHERE userId = #{userId}
     </update>
 
-    <!--  닉네임 중복 검사 -->
-    <select id="checkNick" parameterType="string" resultType="int">
-        SELECT COUNT(*)
-        FROM user_info
-        WHERE userNick = #{userNick}
-    </select>
 </mapper>
 

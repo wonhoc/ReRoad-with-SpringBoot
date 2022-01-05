@@ -68,12 +68,12 @@
                                 html += '<td>' + index++ + '</td>';
                                 html += '<td>' + data[i].userId + '</td>';
                                 html += '<td> ' + data[i].userNick +' </td>';
-                                if (data[i].reportCount === undefined) {
-                                    report = '없음';
-                                }else {
-                                    report = data[i].reportCount;
-                                }
-                                html += '<td>' + report +' </td></tr>';
+                                // if (data[i].reportCount === undefined) {
+                                //     report = '없음';
+                                // }else {
+                                //     ;
+                                // }
+                                html += '<td>' + data[i].reportCount +' </td></tr>';
 
                             }
                             $("#userList").empty();

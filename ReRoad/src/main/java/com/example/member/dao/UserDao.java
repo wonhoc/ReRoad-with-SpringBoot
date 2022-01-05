@@ -17,5 +17,4 @@ public interface UserDao {
     void deleteUser(String userId);
     UserVo selectUser(String userId);
     void update(UserVo user);
-    int existNick(String userNick);
 }

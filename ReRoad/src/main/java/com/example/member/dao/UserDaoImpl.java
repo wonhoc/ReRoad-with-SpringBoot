@@ -82,9 +82,5 @@ public class UserDaoImpl implements UserDao {
 
     }
 
-    // 닉네임 중복 체크
-    @Override
-    public int existNick(String userNick) {
-        return this.sqlSession.selectOne("Member.checkNick", userNick);
-    }
+
 }

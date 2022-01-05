@@ -6,23 +6,15 @@ import com.example.member.vo.MailVo;
 import com.example.member.vo.UserVo;
 import com.example.util.FileUploadService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
-<<<<<<< HEAD
-=======
-import org.springframework.validation.annotation.Validated;
->>>>>>> 8614fb3740cc165bfc739978b5eeea31591c386a
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -73,11 +65,7 @@ public class UserController {
 
     //로그인이 실패했을 경우
     @GetMapping("/loginFail")
-<<<<<<< HEAD
     public String forFailer() {return "views/member/loginForm";}
-=======
-    public String forFailer() { return "views/member/loginForm";}
->>>>>>> 8614fb3740cc165bfc739978b5eeea31591c386a
 
     @GetMapping("/admin")
     public String forAdmin() { return "views/member/admin"; }
@@ -119,12 +107,11 @@ public class UserController {
 
     //회원가입
     @RequestMapping(value="/joinUserRequest", method = RequestMethod.POST)
-<<<<<<< HEAD
     public String joinUserRequest(@Valid @ModelAttribute UserVo user, BindingResult bindingResult, Model model) {
         //DB 유효성 체크 결과 에러가 발생할 경우 가입폼으로 돌아감
         if (bindingResult.hasErrors()) {
             Map<String, String> map = new HashMap<>();
-            for (FieldError error: bindingResult.getFieldErrors()) {
+            for (FieldError error : bindingResult.getFieldErrors()) {
                 String validKey = String.format("valid_%s", error.getField());
                 System.out.println(validKey);
                 map.put(validKey, error.getDefaultMessage());
@@ -145,42 +132,30 @@ public class UserController {
             this.userService.registUser(verifyUser);
             return "views/member/joinSuccess";
         }
-=======
-    public String joinUserRequest(@RequestParam ("username") String username,
-          @RequestParam ("inputPwd") String password, @RequestParam ("inputNick") String userNick) {
-        Map<String, Object> map = new HashMap<String, Object>();
-        map.put("userId", username);
-        map.put("userPwd", passwordEncoder.encode(password));
-        map.put("userNick", userNick);
-        map.put("role", "ROLE_MEMBER");
-        this.userService.registUser(map);
-        return "views/member/joinSuccess";
->>>>>>> 8614fb3740cc165bfc739978b5eeea31591c386a
+
     }
+        //인증 메일 발송
+        @PostMapping("/verifyEmail")
+        public @ResponseBody String sendEmail(@RequestParam("mail") String email) {
+            String key="";
+            Random random = new Random();
+            for(int i = 0; i<3; i++) {
+                int index = random.nextInt(25)+65;
+                key += (char)index;
+            }
+            int numIndex = random.nextInt(9999)+1000;
+            key += numIndex;
+            MailVo mail = new MailVo();
+            mail.setAddress(email);
+            mail.setTitle("ReRoad 회원 가입을 위한 인증 메일입니다.");
+            mail.setMessage("인증 번호는 "+ key + "입니다.");
 
-
-    //인증 메일 발송
-    @PostMapping("/verifyEmail")
-    public @ResponseBody String sendEmail(@RequestParam("mail") String email) {
-        String key="";
-        Random random = new Random();
-        for(int i = 0; i<3; i++) {
-            int index = random.nextInt(25)+65;
-            key += (char)index;
+            this.mailService.sendMail(mail);
+            return key;
         }
-        int numIndex = random.nextInt(9999)+1000;
-        key += numIndex;
-        MailVo mail = new MailVo();
-        mail.setAddress(email);
-        mail.setTitle("ReRoad 회원 가입을 위한 인증 메일입니다.");
-        mail.setMessage("인증 번호는 "+ key + "입니다.");
-
-        this.mailService.sendMail(mail);
-        return key;
-    }
 
 
-    // 권한이 없는 경로로 접근했을 경우
+        // 권한이 없는 경로로 접근했을 경우
     @PostMapping("/accessDenied")
     public void deniedMessage() {
 
@@ -331,20 +306,5 @@ public class UserController {
         }
     }
 
-    //닉네임 중복 검사
-    @RequestMapping(value="/checkNick", method = RequestMethod.POST)
-    public @ResponseBody String checkNickAjax(@RequestParam("userNick") String requestNick) {
-        String inputNick = requestNick.trim();
-        int checkNick = this.userService.checkNick(inputNick);
-        String nickResult = "";
-        // 중복된 닉네임은 1 = 가입 불가
-        // 없는 닉네임은 0 = 가입 가능
-        if (checkNick == 1) {
-            nickResult = "false";
-        } else if (checkNick == 0) {
-            nickResult = "true";
-        }
-        return nickResult;
-    }
 
 }

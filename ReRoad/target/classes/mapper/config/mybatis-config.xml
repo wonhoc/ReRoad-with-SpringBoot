@@ -11,14 +11,14 @@
 		<typeAlias type="com.example.notice.vo.NoticeVO" alias="noticeVO"/>
 		<typeAlias type="com.example.common.SearchVO" alias="searchVO"/>
 		<typeAlias type="com.example.common.FileVO" alias="fileVO"/>
-<<<<<<< HEAD
+
 		<typeAlias type="com.example.board.vo.RecomVo" alias="RecomVo"/>
 		<typeAlias type="com.example.board.vo.ReportVo" alias="ReportVo"/>
 		<typeAlias type="com.example.board.vo.BoardFileVo" alias="BoardFileVo"/>
-=======
+
 		<typeAlias type="com.example.planner.vo.PlannerVO" alias="planVO"/>
 		<typeAlias type="com.example.planner.vo.CheckListVO" alias="chkVO"/>
->>>>>>> 8614fb3740cc165bfc739978b5eeea31591c386a
+
  	</typeAliases>
 
 </configuration>

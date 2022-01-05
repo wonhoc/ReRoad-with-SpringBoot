@@ -50,9 +50,9 @@
   </style>
 
   <script>
-      let noticeNo = null;
+
     function notice_delete(){
-        noticeNo = location.search.substring(1).split("=")[1];
+        const noticeNo = $('#noticeNo').val();
       $.ajax({
         url : "/admin/deleteNotice/" + noticeNo,
         type : "DELETE",

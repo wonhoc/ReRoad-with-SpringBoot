@@ -45,18 +45,10 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         return this.userDao.getUserInfo(username);
     }
 
-<<<<<<< HEAD
+
     //회원가입
     @Override
     public void registUser(UserVo user) { this.userDao.insertUser(user);}
-=======
-
-
-    @Override
-    public void registUser(Map map) {
-        this.userDao.insertUser(map);
-    }
->>>>>>> 8614fb3740cc165bfc739978b5eeea31591c386a
 
     //아이디 중복 검사
     @Override

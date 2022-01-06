@@ -21,7 +21,7 @@ public class TrainScheduleServiceImpl implements TrainScheduleService {
 	private final RestTemplate restTemplate;
 	
 	//서버 DNS주소
-	private final String SERVER_URL = "http://ec2-15-164-94-165.ap-northeast-2.compute.amazonaws.com";
+	private final String SERVER_URL = "http://ec2-54-180-79-188.ap-northeast-2.compute.amazonaws.com";
 	//도시별 기차역 정보를 요청 path
 	private final String GET_TRAIN_INFO_URL = "/api/citytrainstinfo";
 	

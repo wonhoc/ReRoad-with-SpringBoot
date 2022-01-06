@@ -16,7 +16,7 @@
     <title>비밀번호 찾기</title>
 </head>
 <section layout:fragment="content">
-    <form class="form-signin" action="" id="forgetPwd" method="POST" modelAttribute = "UserVo">
+    <form class="form-signin" action="" id="forgetPwd" method="POST">
         <div id = "searchFormOne" class="searchPwdContainer">
             <div class="welcome_page_text">
                 <h1 class="welcomeText1">비밀번호 찾기</h1>
@@ -31,12 +31,8 @@
             <div class="inputForgetEmailAndNum">
                 <label class="UpperInputText" for="userId">ID(Email)</label>
                 <input class="form-control" type="text" id="userId" name="userId" placeholder="example@email.com" />
-                <div id="checkDbId"></div>
-                <button class="btn btn-primary btn-lg btn-block">인증번호 발송</button>
-                <label class="UpperInputText" for="verifyNum">인증번호</label>
-                <input class="form-control" type="text" id="verifyNum" name="verifyNum" placeholder="인증번호를 입력하세요" />
-                <div id="checkVeriNum"></div>
-                <button class="btn btn-primary btn-lg btn-block">확인</button>
+                <div id="checkDbId" name="checkDbId"></div>
+                <button type="button" class="btn btn-primary btn-lg btn-block" id="sendTempPwd" name="sendTempPwd">임시 비밀번호 발급</button>
             </div>
 
         </div>

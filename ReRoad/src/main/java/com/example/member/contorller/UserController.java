@@ -190,7 +190,7 @@ public class UserController {
 
     //비밀번호 일치 확인 후 삭제 페이지 이동
     @PostMapping("/member/pwdCheck")
-    public String pwdCheck(Authentication authentication, @RequestParam String userPwd) {
+    public String pwdCheck(Authentication authentication,@Valid @RequestParam String userPwd) {
         UserDetails userDetails = (UserDetails)authentication.getPrincipal();
         String userId = userDetails.getUsername();
 

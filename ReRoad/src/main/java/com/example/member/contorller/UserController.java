@@ -48,7 +48,7 @@ public class UserController {
     public String login() { return "views/member/loginForm"; }
 
     // 로그인 성공시 이동 페이지(임시)
-    @GetMapping("/loginSuccess")
+    @GetMapping("/loginOk")
     public String loginSuccess(@AuthenticationPrincipal User prin, Model model) {
         model.addAttribute("username", prin.getUsername());
         model.addAttribute("userRole", prin.getAuthorities());
@@ -60,18 +60,18 @@ public class UserController {
         String userRole = user.getRole();
 
         session.setAttribute("loginUser", user);
-        return "views/member/loginSuccess";
+        return "redirect:/";
     }
 
     //로그인이 실패했을 경우
-    @GetMapping("/loginFail")
+    @PostMapping("/loginFail")
     public String forFailer() {return "views/member/loginForm";}
-
-    @GetMapping("/admin")
-    public String forAdmin() { return "views/member/admin"; }
 
     @GetMapping("/joinUser")
     public String forJoin() { return "views/member/JoinUser";}
+
+    @GetMapping("/forgetPwd")
+    public String forForgetPwd() { return "views/member/forgetPwd";}
 
     // 회원 가입 과정에서 아이디 중복 체크
     @RequestMapping(value="/checkId", method = RequestMethod.POST)
@@ -134,33 +134,59 @@ public class UserController {
         }
 
     }
-        //인증 메일 발송
-        @PostMapping("/verifyEmail")
-        public @ResponseBody String sendEmail(@RequestParam("mail") String email) {
-            String key="";
-            Random random = new Random();
-            for(int i = 0; i<3; i++) {
-                int index = random.nextInt(25)+65;
-                key += (char)index;
-            }
-            int numIndex = random.nextInt(9999)+1000;
-            key += numIndex;
-            MailVo mail = new MailVo();
-            mail.setAddress(email);
-            mail.setTitle("ReRoad 회원 가입을 위한 인증 메일입니다.");
-            mail.setMessage("인증 번호는 "+ key + "입니다.");
-
-            this.mailService.sendMail(mail);
-            return key;
+    //인증 메일 발송
+    @PostMapping("/verifyEmail")
+    public @ResponseBody String sendEmail(@RequestParam("mail") String email) {
+        String key="";
+        Random random = new Random();
+        for(int i = 0; i<3; i++) {
+            int index = random.nextInt(25)+65;
+            key += (char)index;
         }
+        int numIndex = random.nextInt(9999)+1000;
+        key += numIndex;
+        MailVo mail = new MailVo();
+        mail.setAddress(email);
+        mail.setTitle("ReRoad 회원 가입을 위한 인증 메일입니다.");
+        mail.setMessage("인증 번호는 "+ key + "입니다.");
+
+        this.mailService.sendMail(mail);
+        return key;
+    }
+
+    // 임시 비밀번호 발급
+    @PostMapping("/sendTempPwd")
+    public String sendTempPwd(@RequestParam("userId") String email) {
+        String tempPwd = "";
+        Random random = new Random();
+        for (int i=0; i<5; i++) {
+            int index = random.nextInt(25)+65;
+            tempPwd +=(char)index;
+        }
+        int numIndex = random.nextInt(9999)+1000;
+        tempPwd += numIndex;
+        MailVo mail = new MailVo();
+        mail.setAddress(email);
+        mail.setTitle("ReRoad 회원의 임시비밀번호 발급 메일입니다.");
+        mail.setMessage("임시 비밀 번호는 " + tempPwd + "입니다. 로그인 후 반드시 비밀번호를 변경하시기 바랍니다.");
+        this.mailService.sendMail(mail);
+        System.out.println(tempPwd);
+
+        UserVo user = new UserVo();
+        user.setUserId(email);
+        user.setUserPwd(passwordEncoder.encode(tempPwd));
+        this.userService.updateTempPwd(user);
+
+        return "views/member/forgetPwdSuccess";
+    }
 
 
-        // 권한이 없는 경로로 접근했을 경우
+
+    // 권한이 없는 경로로 접근했을 경우
     @PostMapping("/accessDenied")
     public void deniedMessage() {
 
     }
-
 
     // 관리자의 사용자 정보 조회
     @GetMapping("/admin/listUser")
@@ -194,7 +220,7 @@ public class UserController {
 
     //비밀번호 일치 확인 후 삭제 페이지 이동
     @PostMapping("/member/pwdCheck")
-    public String pwdCheck(Authentication authentication, @RequestParam String userPwd) {
+    public String pwdCheck(Authentication authentication,@Valid @RequestParam String userPwd) {
         UserDetails userDetails = (UserDetails)authentication.getPrincipal();
         String userId = userDetails.getUsername();
 
@@ -306,5 +332,17 @@ public class UserController {
         }
     }
 
+    //마이페이지 회원조회
+    @GetMapping("/member/myPage")
+    public String mypageForm(Authentication authentication, Model model) {
+
+        UserDetails userDetails = (UserDetails)authentication.getPrincipal();
+        String userId = userDetails.getUsername();
+
+        UserVo user = this.userService.retrieveUser(userId);
+
+        model.addAttribute("user", user);
+        return "views/member/myPage";
+    }
 
 }

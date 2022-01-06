@@ -148,4 +148,9 @@ public class BoardDaoImpl implements BoardDao {
     public ReportVo selectReport(ReportVo report) {
         return this.sqlSession.selectOne("Board.reportSelect", report);
     }
+
+    @Override
+    public List<ReportVo> selectReportList(String userId) {
+        return this.sqlSession.selectList("Board.selectReport", userId);
+    }
 }

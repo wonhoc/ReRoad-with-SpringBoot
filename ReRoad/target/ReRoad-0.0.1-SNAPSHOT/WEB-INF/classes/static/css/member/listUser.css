@@ -3,7 +3,7 @@
 }
 .list_table {
     margin: auto;
-    width: 50%;
+    width: 60%;
 
 }
 
@@ -14,7 +14,7 @@
 }
 
 .list_title_box {
-    margin: 5em 17em;
+    margin: 5em 10em;
 }
 
 .list_title {
@@ -55,6 +55,7 @@ th {
 td {
     padding: 0.5em 0;
     text-align: center;
+    font-size: 17px;
 }
 th {
     text-align: center;

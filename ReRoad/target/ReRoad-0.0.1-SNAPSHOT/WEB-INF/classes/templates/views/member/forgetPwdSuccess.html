@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:width="http://www.w3.org/1999/xhtml" lang="ko"
+      layout:decorate="~{layout/defaultLayout}">
+<th:block layout:fragment="css">
+    <link rel="stylesheet" th:href="@{css/member/forgetPwd.css}">
+</th:block>
+<th:block layout:fragment="script">
+    <script th:src="@{/js/member/forgetPwd.js}"></script>
+</th:block>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>임시 비밀번호 발송</title>
+</head>
+<section layout:fragment="content">
+    <form class="form-signin" action="" id="forgetPwd" method="POST">
+        <div id = "searchFormOne" class="searchPwdContainer">
+            <div class="welcome_page_text">
+                <h1 class="welcomeText1">비밀번호 재설정</h1>
+                <div class="title_devide_forgetPwd"></div>
+                <div class="welcome_text">
+                    가입당시 사용하신 이메일로 임시 비밀번호가 발급되었습니다.<br>
+                    발송된 임시 비밀번호로 로그인하실 수 있습니다.<br>
+                    안전한 사이트 이용을 위해 로그인 후 비밀번호를 변경하시기 바랍니다.
+                </div>
+            </div>
+            <div id="successEmptyDiv"></div>
+            <a th:href="@{/loginForm}">
+                <button type="button" class="btn btn-primary btn-lg btn-block" id="toLoginForm" name="toLoginForm">로그인 페이지로 이동</button>
+            </a>
+
+        </div>
+    </form>
+
+</section>
+</html>

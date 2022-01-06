@@ -58,7 +58,11 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     //닉네임 중복 검사
     @Override
-    public int checkNick(String userNick) {return this.userDao.existNick(userNick);};
+    public int checkNick(String userNick) {return this.userDao.existNick(userNick);}
+
+    //임시 비밀번호 DB로 업데이트
+    @Override
+    public void updateTempPwd(UserVo user) { this.userDao.insertTempPwd(user);}
 
     @Override
     public List<UserVo> retrieveUserList() {

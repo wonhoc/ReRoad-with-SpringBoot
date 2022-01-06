@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout/defaultLayout">
+<th:block layout:fragment="css">
+    <link rel="stylesheet" th:href="@{/css/board/reportList.css}">
+</th:block>
+<head>
+    <script>
+        $(document).ready(function () {
+            let name = location.search;
+            var params =  new URLSearchParams(name);
+            var userId = params.get('userId');
+
+            $.ajax({
+                url: '/admin/getReportList/' + userId,
+                method: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    $('#pagination-div').twbsPagination({
+
+                        totalPages: Math.ceil(data.length / 10),   // 총 페이지 번호 수
+                        visiblePages: 5,   // 하단에서 한번에 보여지는 페이지 번호 수
+                        startPage: 1, // 시작시 표시되는 현재 페이지
+                        initiateStartPageClick: true,   // 플러그인이 시작시 페이지 버튼 클릭 여부 (default : true)
+                        first: "<<",   // 페이지네이션 버튼중 처음으로 돌아가는 버튼에 쓰여 있는 텍스트
+                        prev: "<",   // 이전 페이지 버튼에 쓰여있는 텍스트
+                        next: ">",   // 다음 페이지 버튼에 쓰여있는 텍스트
+                        last: ">>",   // 페이지네이션 버튼중 마지막으로 가는 버튼에 쓰여있는 텍스트
+                        nextClass: "page-item next",   // 이전 페이지 CSS class
+                        prevClass: "page-item prev",   // 다음 페이지 CSS class
+                        lastClass: "page-item last",   // 마지막 페이지 CSS calss
+                        firstClass: "page-item first",   // 첫 페이지 CSS class
+                        pageClass: "page-item",   // 페이지 버튼의 CSS class
+                        activeClass: "active",   // 클릭된 페이지 버튼의 CSS class
+                        disabledClass: "disabled",   // 클릭 안된 페이지 버튼의 CSS class
+                        anchorClass: "page-link",   //버튼 안의 앵커에 대한 CSS class
+
+                        onPageClick: function (event, page) {
+                            //클릭 이벤트
+                            let html = "<tr>";
+                            let startRow = (page - 1) * 10;
+                            let endRow = page * 10;
+                            let totalCount = data.length
+                            if (endRow > totalCount) {
+                                endRow = totalCount;
+                            }
+                            let totalPages = Math.ceil(totalCount / 10);
+                            if (totalCount % 10 > 0) {
+                                totalPages++;
+                            }
+                            let startPage = ((page - 1) / 5) * 5 + 1;
+                            let endPage = startPage + 5 - 1;
+                            if (endPage > totalPages) {    //
+                                endPage = totalPages;
+                            }
+                            console.log(page);
+                            let index = (page * 10) - 9;
+                            if (data == null) {
+                                html += '<td colspan="7">' + "신고받은 게시글이 없습니다." + '</td>';
+                            } else {
+                                for (let i = startRow; i < endRow; i++) {
+                                    html += '<td>' + index++ + '</td>';
+                                    html += '<td>' + data[i].reporter + '</td>';
+                                    html += '<td> ' + data[i].boardTitle + ' </td></tr>';
+                                }
+                                $("#users").empty();
+
+                                //document.getElementById("userList").innerHTML(html);
+                                $("tbody").html(html);
+
+                            }
+                        }
+                    });
+                },
+                error: function (error) {
+                    console.log(error);
+
+                }
+            });
+
+        });
+
+
+   </script>
+</head>
+<section layout:fragment="content">
+    <div class="container">
+
+        <input type="hidden" id="users" th:value="${users}">
+
+        <div class="list_title_box">
+            <h1 class="list_title" >신고 게시글 목록</h1>
+            <div class="list_devide"></div>
+        </div>
+
+        <div>
+            <table class="list_table">
+                <thead class="table_head">
+                <tr>
+                    <th>번호</th>
+                    <th>신고자</th>
+                    <th>게시글 제목</th>
+                </tr>
+                </thead>
+                <tbody id="users">
+
+                </tbody>
+            </table>
+            <div id="page-content">
+                <div id="pagination-div"></div>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+</html>

@@ -43,6 +43,12 @@ public class UserDaoImpl implements UserDao {
         return this.sqlSession.selectOne("Member.checkNick", userNick);
     }
 
+    // 임시 비밀번호 발급
+    @Override
+    public void insertTempPwd(UserVo user) { this.sqlSession.selectOne("Member.tempPwdUpdate", user);}
+
+
+
     //회원정보조회
     @Override
     public List<UserVo> selectUserList() {

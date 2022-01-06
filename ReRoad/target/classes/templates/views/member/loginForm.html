@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" lang="ko"
-      layout:decorate="~{layout/defaultLayout}" >
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:width="http://www.w3.org/1999/xhtml" lang="ko"
+      layout:decorate="~{layout/defaultLayout}">
 <th:block layout:fragment="css">
     <link rel="stylesheet" th:href="@{css/member/loginForm.css}">
 </th:block>
@@ -39,20 +39,21 @@
             </div>
 
             <button type="submit" class="btn btn-primary btn-lg btn-block">로그인</button>
-            <div class="join_devide"/>
+
+            <div class="join_devide"></div>
+                <a href="/oauth2/authorization/google" >
+                    <button type="button" class="btn btn-default btn-lg btn-block" id="googleLogin">
+                        <img th:src="@{/images/member/google-logo.png}" id="googleImage">구글 계정으로 로그인</button>
+                </a>
+
 
             <div class="otherSelect" th:align="right">
                 아이디가 없다면 <strong><a th:href ="@{/joinUser}">회원가입</a></strong><br>
-                비밀번호를 잊어버렸다면 <strong><a href="">비밀번호 찾기</a></strong><br>
-                <a href="/oauth2/authorization/google" >
-                    Google 계정이 있다면<img th:src="@{/images/member/google_login.png}">
-                </a>
+                비밀번호를 잊어버렸다면 <strong><a th:href="@{/forgetPwd}">비밀번호 재설정</a></strong><br>
 
             </div>
 
-
-
-        </form>
+    </form>
     </div>
 
 </section>

@@ -1,8 +1,6 @@
 package com.example.planner.controller;
 
-import com.example.common.FileVO;
-import com.example.notice.service.NoticeService;
-import com.example.notice.vo.NoticeVO;
+
 import com.example.planner.service.PlannerService;
 import com.example.planner.vo.CheckListVO;
 import com.example.planner.vo.PlannerVO;
@@ -13,11 +11,8 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,51 +30,55 @@ public class PlannerController {
 
     // 플래너 상세보기
     @GetMapping("/member/plandetail")
-    public String detailplan(int planNo, Model model) {
+    public String detailplan(int planNo, Model model, @AuthenticationPrincipal User principal) {
+        //자신 외 다른 유저의 글 조회 방지
+        String nowUser = principal.getUsername();
+        String writeUser = this.plannerService.retrievePlan(planNo).getUserId();
 
-        PlannerVO plan = this.plannerService.retrievePlan(planNo);
-        model.addAttribute("plan", plan);
+        if (nowUser.equals(writeUser)) {
+            PlannerVO plan = this.plannerService.retrievePlan(planNo);
+            model.addAttribute("plan", plan);
 
-        return "views/planner/planDetail";
+            return "views/planner/planDetail";
+        } else return "redirect:/member/planlist";
+
     }
 
     // 플랜 작성
     // 작성폼불러오기
     @GetMapping("/member/planwriteform")
-    public String noticeWriteForm( ) {
+    public String noticeWriteForm() {
 
         return "views/planner/planWriteForm";
     }
 
     //게시글 작성
     @PostMapping("/member/writeplan")
-    public String planWrite(@RequestParam("travelTitle") String travelTitle, @RequestParam("spot") String spot,
-                              @AuthenticationPrincipal User principal, @RequestParam("startDate") String startDate,
-                              @RequestParam("arriveDate") String arriveDate, @RequestParam("memo") String memo,
-                              @RequestParam(value = "checkListContent", required = false) String[] checkListContents,
-                              @RequestParam(value = "ready", required = false) int[] ready) {
+    public String planWrite(@Valid PlannerVO plan, @AuthenticationPrincipal User principal,
+                            @RequestParam(value = "checkListContent", required = false) String[] checkListContents,
+                            @RequestParam(value = "ready", required = false) int[] ready) {
 
 
         PlannerVO newPlan = new PlannerVO();
-        newPlan.setTravelTitle(travelTitle);
-        newPlan.setSpot(spot);
-        newPlan.setStartDate(startDate);
-        newPlan.setArriveDate(arriveDate);
-        newPlan.setMemo(memo);
+        newPlan.setTravelTitle(plan.getTravelTitle());
+        newPlan.setSpot(plan.getSpot());
+        newPlan.setStartDate(plan.getStartDate());
+        newPlan.setArriveDate(plan.getArriveDate());
+        newPlan.setMemo(plan.getMemo());
         newPlan.setUserId(principal.getUsername());
         List<CheckListVO> checkList = new ArrayList<CheckListVO>();
 
 
-            for (int i = 0; i < ready.length; i++) {
-                CheckListVO checkListVO = new CheckListVO();
-                String isNull = checkListContents[i].replaceAll("/ /gi","");
-                if (isNull != "" || !isNull.isEmpty() ) {
-                    checkListVO.setCheckListContent(checkListContents[i]);
+        for (int i = 0; i < ready.length; i++) {
+            CheckListVO checkListVO = new CheckListVO();
+            String isNull = checkListContents[i].replaceAll("/ /gi", "");
+            if (isNull != "" || !isNull.isEmpty()) {
+                checkListVO.setCheckListContent(checkListContents[i]);
 
-                    checkListVO.setReady(ready[i]);
-                    checkList.add(i, checkListVO);
-                }
+                checkListVO.setReady(ready[i]);
+                checkList.add(i, checkListVO);
             }
+        }
 
         newPlan.setCheckList(checkList);
         this.plannerService.createPlan(newPlan);
@@ -91,44 +90,44 @@ public class PlannerController {
     //플랜 수정
     //수정 폼으로 이동
     @GetMapping("/member/planmodifyform/{planNo}")
-    public String planModifyForm(@PathVariable int planNo,Model model) {
+    public String planModifyForm(@PathVariable int planNo, Model model, @AuthenticationPrincipal User principal) {
+        //다른 유저의 글 수정 방지
+        String nowUser = principal.getUsername();
+        String writeUser = this.plannerService.retrievePlan(planNo).getUserId();
 
-        PlannerVO plan = this.plannerService.retrievePlan(planNo);
-        plan.setPlanNo(planNo);
-        model.addAttribute("plan",plan);
-        return "views/planner/planModifyForm";
+        if (nowUser.equals(writeUser)) {
+            PlannerVO plan = this.plannerService.retrievePlan(planNo);
+            plan.setPlanNo(planNo);
+            model.addAttribute("plan", plan);
+            return "views/planner/planModifyForm";
+        } else
+            return "redirect:/member/planlist";
     }
 
     //플래너 수정
     @PostMapping("/member/modifyplan")
-    public String planModify(@RequestParam("planNo") int planNo,@RequestParam("travelTitle") String travelTitle,
-                             @RequestParam("spot") String spot, @RequestParam("startDate") String startDate,
-                             @RequestParam("arriveDate") String arriveDate, @RequestParam("memo") String memo,
+    public String planModify(@RequestParam("planNo") int planNo, @Valid PlannerVO plan,
                              @RequestParam(value = "checkListContent", required = false) String[] checkListContents,
-                            @RequestParam(value = "ready", required = false) int[] ready) {
+                             @RequestParam(value = "ready", required = false) int[] ready) {
 
         PlannerVO newPlan = new PlannerVO();
         newPlan.setPlanNo(planNo);
-        newPlan.setTravelTitle(travelTitle);
-        newPlan.setSpot(spot);
-        newPlan.setStartDate(startDate);
-        newPlan.setArriveDate(arriveDate);
-        newPlan.setMemo(memo);
+        newPlan.setTravelTitle(plan.getTravelTitle());
+        newPlan.setSpot(plan.getSpot());
+        newPlan.setStartDate(plan.getStartDate());
+        newPlan.setArriveDate(plan.getArriveDate());
+        newPlan.setMemo(plan.getMemo());
         List<CheckListVO> checkList = new ArrayList<CheckListVO>();
 
+        for (int i = 0; i < ready.length; i++) {
+            CheckListVO checkListVO = new CheckListVO();
+            checkListVO.setCheckListContent(checkListContents[i]);
 
-            for (int i = 0; i < ready.length; i++) {
-                CheckListVO checkListVO = new CheckListVO();
-                checkListVO.setCheckListContent(checkListContents[i]);
-
-                checkListVO.setReady(ready[i]);
-                checkList.add(i, checkListVO);
-
-            }
-            newPlan.setCheckList(checkList);
-
+            checkListVO.setReady(ready[i]);
+            checkList.add(i, checkListVO);
+        }
+        newPlan.setCheckList(checkList);
         this.plannerService.modifyPlan(newPlan);
-
         return "redirect:/member/planlist";
     }
 

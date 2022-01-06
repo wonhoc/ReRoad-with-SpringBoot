@@ -42,9 +42,13 @@
 .searchBoxHead{
 	font-weight: 900;
 	height: 100%;
+	background-color: white;
 }
 
 .searchBoxHead:hover{
+	font-weight: 900;
+	height: 100%;
+	background-color: white;
 	box-shadow: 2px 2px 2px 2px gray;
 }
 
@@ -76,15 +80,15 @@
 	display: inline-block;
 }
 
-#selOneway{
-	background-color: rgb(233,233,233);
+
+	background-color: teal;
 	height: 100%;
 	border-top-left-radius: 15px;
 	
 }
 
 #selTurn{
-	background-color: teal;
+	background-color: rgb(233,233,233);
 	height: 100%;
 	border-top-right-radius: 15px;
 }
@@ -98,7 +102,6 @@
 	height: 40%;
 	
 }
-
 .searchBody{
 	
 	 float: left;
@@ -106,7 +109,6 @@
      box-sizing: border-box;
      left: 1px;
      height: 100%;
-     color: white;
      border: 3px solid white;
 	
 }
@@ -127,7 +129,7 @@
 	position: absolute;
 	top: 92%;
 	right: 30%;
-	z-index: 0;
+
 }
 
 .btn-primary {
@@ -146,17 +148,6 @@
 	background-color: tear;
 }
 
-#hideOnbush{
-	position: absolute;
-	top: 100%;
-	width: 100%;
-	height: auto;
-	background-color: white;
-	z-index: 1;
-	display: none;
-}
-
-
 .content{
     width: 250px;
     height: 180px;
@@ -166,10 +157,7 @@
     width: 80px;
     height: 180px;
 }
-.empty_little{
-    width: 40px;
-    height: 95px;
-}
+
 .menu{
     font-size: 25px;
     text-align: center;
@@ -189,10 +177,47 @@
     font-size: 18px;
 }
 
-.notice_table  a{
+#right_table  a{
+    color: #ce8483;
+}
+
+#center_title a{
     color: #ce8483;
 }
 #noti_wDate{
     font-size: smaller;
     color: #5e5e5e;
+}
+
+#left_table{
+    width: 53%;
+    float: left;
+}
+
+#right_table{
+    width: 23%;
+    float: right;
+    margin-top: 72px;
+    margin-right: -24px;
+    text-align: -webkit-center;
+}
+
+#center_title{
+    float: left;
+    margin-top: 4em;
+    margin-right: -69px;
+    margin-left: 25px;
+}
+
+#notice_list{
+    line-height: 1.8;
+    font-size: 17px;
+}
+
+#message {
+    line-height: 73px;
+}
+
+#noti_text {
+    font-weight: bold;
 }

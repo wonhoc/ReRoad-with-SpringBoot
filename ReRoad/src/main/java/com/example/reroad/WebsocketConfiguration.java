@@ -12,8 +12,8 @@ public class WebsocketConfiguration implements WebSocketMessageBrokerConfigurer 
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry){
-        //stop가 websocket과 핸드셰이킹을 위해 endpoint를 잡아준다.
-        registry.addEndpoint("/chat").setAllowedOrigins("*").withSockJS();
+        //stomp가 websocket과 핸드셰이킹을 위해 endpoint를 잡아준다.
+        registry.addEndpoint("/chat").withSockJS();
     }
 
     @Override

@@ -2,33 +2,15 @@
 <html xmlns:th="https://www.thymeleaf.org/">
 <head>
 <meta charset="UTF-8">
-<style>
-#logo{
-	width: 100px;
-	height: 60px;
-	float:left;
-}
-.ReRoad{
-	font-size: 30px;
+	<link rel="stylesheet" href="/css/header.css" />
+	<script type="text/javascript" src="/js/message/chat.js"></script>
 
-}
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.0/handlebars.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.1.1/list.min.js"></script>
 
-#bar{
-width: 100%;
-height: 20px;
-background-color: teal;
-	margin-top: 20px;
-}
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 
-#loginBtn{
-	margin-top: 20px;
-	margin-left: 800px;
-
-}
-#road{
-	float:left;
-}
-</style>
 </head>
 
 	<div th:fragment="headerFragment">
@@ -40,24 +22,41 @@ background-color: teal;
 					</a>
 			</div>
 		</div>
+
+			<strong id ="alarm">
+
+			</strong>
+
+
+
 			<div>
 				<!--session에 로그인 유저 정보가 없다면 -->
 				<div th:if="${session.loginUser == null}">
 					<a th:href="@{/loginForm}">
-						<button class="" id="loginBtn">로그인/회원가입</button>
+						<button class="btn btn-default" id="loginBtn">로그인/회원가입</button>
 					</a>
 				</div>
 				<!--session에 로그인 유저 정보가 있다면 -->
 				<div style="float:right" th:unless="${session.loginUser == null}">
+
+					<input type="hidden" id="username" th:value="${session.loginUser.userId}">
+
 					<!--session에 로그인한 유저의 권한이 Member라면 -->
 					<div th:if="${session.loginUser.role == 'ROLE_MEMBER'}">
 						일반 회원 계정입니다.<br>
-						<span th:text="${session.loginUser.userNick}" />
+						<span th:text="${session.loginUser.userNick}" /><br>
+						<a href="/logout">
+							<button type="button">로그아웃</button>
+						</a>
+
 
 					</div>
 					<div th:if="${session.loginUser.role == 'ROLE_ADMIN'}">
-							관리자 계정입니다.<br>
-							<span th:text="${session.loginUser.userNick}" />
+						관리자 계정입니다.<br>
+						<span th:text="${session.loginUser.userNick}" /><br>
+						<a href="/logout">
+							<button type="button">로그아웃</button>
+						</a>
 					</div>
 				</div>
 			</div>

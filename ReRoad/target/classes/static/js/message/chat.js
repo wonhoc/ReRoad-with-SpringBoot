@@ -4,41 +4,46 @@ let username;
 let newMessage = new Map();
 
 
+$(document).ready(function () {
 
-$(document).ready(function() {
     let username = $('#username').val();
 
-if(username != null){
+    console.log(username);
 
-    console.log("connecting to chat...")
+    if (username != null) {
 
-    let socket = new SockJS(url + '/chat');
-    stompClient = Stomp.over(socket);
+        console.log("connecting to chat...");
 
-    stompClient.connect({}, function (frame) {
+        let socket = new SockJS(url + '/chat');
+        stompClient = Stomp.over(socket);
 
-        stompClient("topic/message/"+username, function (message){
-            let data = JSON.parse(message.body);
+        console.log("dodododo");
 
-            $('#alarm').append("<strong id='newMessage' style='color: red;'>new</strong>");
-            render(data.message, data.fromLogin);
+        stompClient.connect({}, function (frame) {
+
+            stompClient.subscribe("topic/message/" + username, function (message) {
+                let data = JSON.parse(message.body);
+                console.log("hi")
+                $('#alarm').append("<strong id='newMessage' style='color: red;'>new</strong>");
+                render(data.message, data.fromLogin);
+            });
+
         });
 
-    });
 
+        function sendMsg(from, text) {
+            console.log('from : ', from, 'text : ', text);
+            console.log(`selectedUser : ${username}`);
+            console.log(`stompClient : ${stompClient}`);
 
-    function sendMsg(from, text) {
-        console.log('from : ', from, 'text : ', text);
-        console.log(`selectedUser : ${username}`);
-        console.log(`stompClient : ${stompClient}`);
+            stompClient.send('/app/chat/' + username, {}, JSON.stringify({
+                message: text,
+                fromLogin: from
 
-        stompClient.send('/app/chat/' + username, {}, JSON.stringify({
-            message: text,
-            fromLogin: from
+            }));
+        }
 
-        }));
     }
-
-}});
+});
 
 

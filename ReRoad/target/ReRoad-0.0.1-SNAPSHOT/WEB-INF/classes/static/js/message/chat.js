@@ -1,44 +1,49 @@
 const url = 'http://localhost:8080';
 let stompClient;
-let userId;
+let username;
 let newMessage = new Map();
 
-function connectToChat(username){
 
-// hand shaking
- let socket = new SockJs(url + '/chat');
- stompClient = Stomp.over(socket);
+$(document).ready(function () {
+
+    let username = $('#username').val();
+
+    console.log(username);
+
+    if (username != null) {
+
+        console.log("connecting to chat...");
+
+        let socket = new SockJS(url + '/chat');
+        stompClient = Stomp.over(socket);
+
+        console.log("dodododo");
+
+        stompClient.connect({}, function (frame) {
+
+            stompClient.subscribe("topic/message/" + username, function (message) {
+                let data = JSON.parse(message.body);
+                console.log("hi")
+                $('#alarm').append("<strong id='newMessage' style='color: red;'>new</strong>");
+                render(data.message, data.fromLogin);
+            });
+
+        });
 
 
-//Connect to the server
+        function sendMsg(from, text) {
+            console.log('from : ', from, 'text : ', text);
+            console.log(`selectedUser : ${username}`);
+            console.log(`stompClient : ${stompClient}`);
 
-stompClient.connect({}, function (frame){
+            stompClient.send('/app/chat/' + username, {}, JSON.stringify({
+                message: text,
+                fromLogin: from
 
-    console.log(`frame : ${frame}`);
+            }));
+        }
 
-    stompClient.subscribe("/topic/messages/" + username,function (message){
-
-        let data =JSON.parse(message.body);
-        alert('result : ' + (data.fromLogin == userId));
-
-        render(data.message, data.fromLogin);
-
-    });
-
+    }
 });
-}
 
 
-
-function sendMsg(from, text){
-
-    console.log('from : ', from, 'text : ', text);
-    console.log(`selectedUser : ${userId}`);
-    console.log(`stompClient : ${stompClient}`);
-
-    stompClient.send('/app/chat/' + selectedUser, {}, JSON.stringify({
-        message: text,
-        fromLogin: from
-    }));
-
-}

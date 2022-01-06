@@ -1,4 +1,4 @@
-const url = 'http://localhost:8080';
+const url = 'ec2-13-209-22-214.ap-northeast-2.compute.amazonaws.com';
 let stompClient;
 let username;
 let newMessage = new Map();

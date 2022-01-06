@@ -108,8 +108,9 @@ public class UserController {
     }
 
     //회원가입 2번째 창으로 이동
-    @GetMapping("/moveJoinFormSe")
-    public String moveSeForm() {
+    @PostMapping("/moveJoinFormSe")
+    public String moveSeForm(@RequestParam ("userId") String userId, Model model) {
+        model.addAttribute("userId", userId);
         return "views/member/JoinUserSe";
     }
 

@@ -14,7 +14,7 @@
 
 <section layout:fragment="content">
 
-    <form class="form-signin" method="POST">
+    <form class="form-signin" method="POST" action="/moveJoinFormSe">
         <div id = "joinFormOne"class="joinUserContainer">
             <div class="welcome_join_Text">
                 <h1 class="joinText1">회원가입</h1>
@@ -36,43 +36,8 @@
                 <label class = "pwcss" for="veriNumber">인증번호</label>
                 <input class="form-control" type="text" id="veriNumber" name="veriNumber" placeholder="인증번호를 입력하세요" />
                 <div id="checkVeriNumber"></div>
-                <a th:href="@{/moveJoinFormSe}">
-                <button id="nextButton" type="button" class="btn btn-primary btn-lg btn-block"> 다음 </button>
-                </a>
+                <button id="nextButton" type="submit" class="btn btn-primary btn-lg btn-block"> 다음 </button>
 
-
-            </div>
-        </div>
-        <div id = "joinFormTwo" class="joinUserContainer" >
-            <div class="welcome_join_text">
-                <div class="joinText2">
-                    <h1 class="joinText2">회원가입</h1>
-                    <div class = "title_devide"></div>
-                    <div class="welcome_join">
-                        회원 가입에 필요한 추가 정보를 입력하세요.<br>
-                        회원 가입 버튼을 누르면 가입 절차가 완료됩니다.
-                    </div>
-                </div>
-                <div class="inputAnotherInfo">
-                    <label class = "idcss" >ID(Email)</label>
-                    <input class="form-control" id="verifiedMail" disabled>
-                    <div>
-                        <span th:style="${'color:red;'}" th:text="${valid_userId}"></span>
-                    </div>
-                    <label class="idcss" for="userPwd">Password</label>
-                    <input class="form-control" type="password" id="userPwd" name="userPwd">
-                    <div id="checkPwdformat"></div>
-                    <label class="idcss" for="reInputPwd">Password 재입력</label>
-                    <input class="form-control" type="password" id="reInputPwd" name="reInputPwd">
-                    <div id="checkPwdOneMore"></div>
-                    <label class="idcss" for="userNick">NickName</label>
-                    <input class="form-control" type="text" id="userNick" name="userNick">
-                    <div id="checkNick">
-                        <span th:style="${'color:red;'}" th:text="${valid_userNick}"></span>
-                    </div>
-                    <button class="btn btn-primary btn-lg btn-block" type="button" id="joinButton" name="joinButton">회원가입</button>
-
-                </div>
             </div>
         </div>
     </form>

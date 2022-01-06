@@ -14,7 +14,7 @@
 
 <section layout:fragment="content">
 
-    <form class="form-signin">
+    <form class="form-signin" method="POST" action="/moveJoinFormSe">
         <div id = "joinFormOne"class="joinUserContainer">
             <div class="welcome_join_Text">
                 <h1 class="joinText1">회원가입</h1>
@@ -36,10 +36,7 @@
                 <label class = "pwcss" for="veriNumber">인증번호</label>
                 <input class="form-control" type="text" id="veriNumber" name="veriNumber" placeholder="인증번호를 입력하세요" />
                 <div id="checkVeriNumber"></div>
-                <a th:href="@{/moveJoinFormSe}">
-                <button id="nextButton" type="button" class="btn btn-primary btn-lg btn-block"> 다음 </button>
-                </a>
-
+                <button id="nextButton" type="submit" class="btn btn-primary btn-lg btn-block"> 다음 </button>
 
             </div>
         </div>

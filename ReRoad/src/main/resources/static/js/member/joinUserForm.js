@@ -12,7 +12,6 @@ $(document).ready(function() {
 
 
     //아이디 중복, 유효성 체크
-
     $('#userId').bind('keyup', function () {
         const userId = $('#userId').val();
         var idRule = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
@@ -109,7 +108,6 @@ $(document).ready(function() {
         ));
     }
 
-
     // 인증 번호 검증
     $('#veriNumber').bind('keyup', function () {
         const inputNum = $('#veriNumber').val();
@@ -125,8 +123,5 @@ $(document).ready(function() {
 
         }
     })
-
-
-
 })
 

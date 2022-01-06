@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
+
+/*폼 디자인 */
+.searchPwdContainer {
+    padding-right: 15px;
+    padding-left: 15px;
+    padding-bottom: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 5em;
+    background-color: RGB(242,242,242);
+    border-radius: 15px;
+    height: auto;
+    width: 35em;
+}
+/* 비밀번호 찾기 + 상세 설명 그룹한 div */
+.welcome_page_text {
+    margin-left: 1.5em;
+}
+/* 비밀번호찾기 글자 스타일*/
+.welcomeText1 {
+    padding-top: 1.5em;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 900;
+}
+/* 비밀번호찾기 하단 구분선*/
+.title_devide {
+    width: 50%;
+    height: 5px;
+    background-color: #414141;
+    margin-top: -0.5em;
+}
+.welcome_text {
+    font-family: 'Noto Sans KR', sans-serif;
+    color:RGB(1,121,122);
+    font-weight: 500;
+    font-size: small;
+    margin-bottom: 1em;
+}
+/*가운데 여백 */
+#emptyDiv {
+    height:10em;
+}
+/*input 공통 여백 설정 */
+.form-control {
+    margin-top: 0.3em;
+    margin-bottom: 1em;
+}
+/* Id, 인증번호 텍스트 디자인*/
+.UpperInputText {
+    font-family: 'Noto Sans KR', sans-serif;
+    padding-top: 1em;
+    font-weight: 700;
+    font-size: large;
+}
+/* 버튼 기본 세팅 */
+.btn-primary {
+    background-color: RGB(1,121,122);
+    border-color: RGB(1,121,122);
+    font-weight: bolder;
+}
+/*버튼 위에 마우스 올라갔을때의 색상 변화 */
+.btn-primary:hover {
+    background-color: #27B8B9;
+    border-color: #27B8B9;
+}
+.btn-primary:active {
+    background-color: RGB(1,121,122);
+    border-color: RGB(1,121,122);
+    font-weight: bolder;
+}
+/* 버튼 비활성 화 시 색상 */
+.btn.btn-primary[disabled] {
+    background-color: #5e5e5e;
+    border-color: #5e5e5e;
+}

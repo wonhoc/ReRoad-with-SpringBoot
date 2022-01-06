@@ -60,7 +60,7 @@ $(document).ready(function () {
         } else {
             for (var i = 0; i < files.length; i++) {
                 file = files[i];
-                if (file.size > 100)  //파일이 40MB이상이면
+                if (file.size > 41943040)  //파일이 40MB이상이면
                 {
                     const sizeErr = '파일크기 초과!(최대 40MB)';
                     html += "<li id='fileName[" + i + "]'>" + file.name + sizeErr + "</li>";

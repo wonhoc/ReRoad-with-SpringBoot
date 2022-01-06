@@ -62,16 +62,22 @@
     font-size: 20px;
 
 }
+
 /* 로그인 버튼 디자인 */
-.btn-primary {
+.btn.btn-primary {
     background-color: RGB(1,121,122);
     border-color: RGB(1,121,122);
     font-weight: bolder;
 }
 /*로그인 버튼 마우스 오버 시 디자인 */
-.btn.btn-primary:hover {
+.btn-primary:hover {
     background-color: #27B8B9;
     border-color: #27B8B9;
+}
+.btn-primary:current{
+    background-color: RGB(1,121,122);
+    border-color: RGB(1,121,122);
+    font-weight: bolder;
 }
 
 
@@ -113,13 +119,4 @@
     padding-top: 2em;
     font-weight: bold;
     color: RGB(1,121,122);
-}
-
-span.icon {
-    background: url('/identity/sign-in/g-normal.png') transparent 5px 50% no-repeat;
-    display: inline-block;
-    vertical-align: middle;
-    width: 42px;
-    height: 42px;
-
 }

@@ -57,6 +57,13 @@
         WHERE userNick = #{userNick}
     </select>
 
+    <!-- 임시 비밀번호 발급 과정에서 비밀번호 수정-->
+    <update id="tempPwdUpdate" parameterType="UserVo">
+        UPDATE user_info
+        SET userPwd = #{userPwd}
+        WHERE userId = #{userId}
+    </update>
+
 
     <!-- 관리자가 회원의 상세정보를 조회한다 -->
     <resultMap type="UserVo" id="userResultMap">

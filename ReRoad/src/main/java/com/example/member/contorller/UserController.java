@@ -70,6 +70,9 @@ public class UserController {
     @GetMapping("/joinUser")
     public String forJoin() { return "views/member/JoinUser";}
 
+    @GetMapping("/forgetPwd")
+    public String forForgetPwd() { return "views/member/forgetPwd";}
+
     // 회원 가입 과정에서 아이디 중복 체크
     @RequestMapping(value="/checkId", method = RequestMethod.POST)
     public @ResponseBody String checkIdAjax(@RequestParam("userId") String requestId) {
@@ -150,6 +153,33 @@ public class UserController {
         this.mailService.sendMail(mail);
         return key;
     }
+
+    // 임시 비밀번호 발급
+    @PostMapping("/sendTempPwd")
+    public String sendTempPwd(@RequestParam("userId") String email) {
+        String tempPwd = "";
+        Random random = new Random();
+        for (int i=0; i<5; i++) {
+            int index = random.nextInt(25)+65;
+            tempPwd +=(char)index;
+        }
+        int numIndex = random.nextInt(9999)+1000;
+        tempPwd += numIndex;
+        MailVo mail = new MailVo();
+        mail.setAddress(email);
+        mail.setTitle("ReRoad 회원의 임시비밀번호 발급 메일입니다.");
+        mail.setMessage("임시 비밀 번호는 " + tempPwd + "입니다. 로그인 후 반드시 비밀번호를 변경하시기 바랍니다.");
+        this.mailService.sendMail(mail);
+        System.out.println(tempPwd);
+
+        UserVo user = new UserVo();
+        user.setUserId(email);
+        user.setUserPwd(passwordEncoder.encode(tempPwd));
+        this.userService.updateTempPwd(user);
+
+        return "views/member/forgetPwdSuccess";
+    }
+
 
 
     // 권한이 없는 경로로 접근했을 경우

@@ -11,6 +11,8 @@ public interface UserDao {
     UserVo getUserInfo(String username);
     int existId(String userId);
     int existNick(String userNick);
+    void insertTempPwd(UserVo user);
+
     List<UserVo> selectUserList();
     void deleteUserForce(String userId);
     String confirmPwd(String userId);

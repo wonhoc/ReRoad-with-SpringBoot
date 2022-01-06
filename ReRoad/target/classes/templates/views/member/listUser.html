@@ -66,7 +66,9 @@
                                 html += '<td><input name="rowCheck" type="checkbox" value=' + data[i].userId + '></td>';
 
                                 html += '<td>' + index++ + '</td>';
+
                                 html += '<td><a href="/admin/reportList?userId=' + data[i].userId + '">' + data[i].userId + '</a></td>';
+
                                 html += '<td>' + data[i].userNick +' </td>';
                                 html += '<td>' + data[i].reportCount +' </td></tr>';
 
@@ -199,7 +201,9 @@
                         html += '<td><input name="rowCheck" type="checkbox" value=' + data[i].userId + '></td>';
 
                         html += '<td>' + index++ + '</td>';
+
                         html += '<td><a href="/admin/reportList?userId=' + data[i].userId + '">' + data[i].userId + '</td>';
+
                         html += '<td>' + data[i].userNick +' </td>';
                         html += '<td>' + data[i].reportCount +' </td></tr>';
 

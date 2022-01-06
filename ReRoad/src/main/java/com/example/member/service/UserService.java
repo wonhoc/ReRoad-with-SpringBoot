@@ -11,6 +11,7 @@ public interface UserService {
     UserVo getInfo(String username);
     int checkId(String isId);
     int checkNick(String isNick);
+    void updateTempPwd(UserVo user);
 
     List<UserVo> retrieveUserList();
     void removeUserForce(String userId);

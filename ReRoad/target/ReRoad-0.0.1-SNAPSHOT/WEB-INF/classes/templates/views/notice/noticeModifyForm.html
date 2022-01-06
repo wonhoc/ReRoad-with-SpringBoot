@@ -17,17 +17,17 @@
 <section layout:fragment="content">
   <div>
 
-    <form name="form" id="form" role="form" method="post" th:action="@{/modifynotice}" enctype="multipart/form-data">
+    <form name="form" id="form" role="form" method="post" th:action="@{/admin/modifynotice}" enctype="multipart/form-data">
       <input type="hidden" name="noticeNo" id="noticeNo" th:value="${notice.noticeNo}">
       <div class="mb-3">
         <h3 class="text-title">공지사항 수정 폼</h3>
         <input type="text" class="form-control" name="noticeTitle" id="noticeTitle"
-               th:value="${notice.noticeTitle}" maxlength="10">
+               th:value="${notice.noticeTitle}" maxlength="16" autocomplete="off">
       </div>
 
       <div class="mb-3">
         <input type="text" class="form-control" name="noticeContent" id="noticeContent"
-               th:value="${notice.noticeContent}" style="height: 300px;">
+               th:value="${notice.noticeContent}" style="height: 300px;" autocomplete="off">
       </div>
       <table id="fileList" class="filetable" th:if="${!(notice.getNoticeFileList().isEmpty())}">
         <tr> 기존 파일 목록</tr>
@@ -39,13 +39,13 @@
       </table>
       <table id ="files">
         <tbody id="originFileList" th:each="file : ${notice.getNoticeFileList()}">
-          <tr th:id="${file.fileNo}">
-              <td colspan="6" th:text="${file.fileOrigin }" > </td>
-              <td colspan="6" th:text="${file.fileSize}"></td>
-               <td><button type="button"  id="removeFileBtn">파일 삭제</button></td>
+        <tr th:id="${file.fileNo}">
+          <td colspan="6" th:text="${file.fileOrigin }" > </td>
+          <td colspan="6" th:text="${file.fileSize}"></td>
+          <td><button type="button"  id="removeFileBtn">파일 삭제</button></td>
 
-          </tr>
-              </tbody>
+        </tr>
+        </tbody>
 
 
       </table>

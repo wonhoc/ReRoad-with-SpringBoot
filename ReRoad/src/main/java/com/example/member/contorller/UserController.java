@@ -70,6 +70,9 @@ public class UserController {
     @GetMapping("/joinUser")
     public String forJoin() { return "views/member/JoinUser";}
 
+    @GetMapping("/forgetPwd")
+    public String forForgetPwd() { return "views/member/forgetPwd";}
+
     // 회원 가입 과정에서 아이디 중복 체크
     @RequestMapping(value="/checkId", method = RequestMethod.POST)
     public @ResponseBody String checkIdAjax(@RequestParam("userId") String requestId) {

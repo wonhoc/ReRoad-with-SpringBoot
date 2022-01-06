@@ -41,7 +41,12 @@
 #emptyDiv {
     height:10em;
 }
-/*input 공통 여백 설정 */
+
+/* 비밀번호 변경 성공 후 여백 */
+#successEmptyDiv {
+    height: 20em;
+}
+ /*input 공통 여백 설정 */
 .form-control {
     margin-top: 0.3em;
     margin-bottom: 1em;

@@ -42,4 +42,6 @@ public interface BoardService {
     //신고
     void registerReport(ReportVo report);
     ReportVo retrieveReport(ReportVo report);
+    List<ReportVo> retrieveReportList(String userId);
+
 }

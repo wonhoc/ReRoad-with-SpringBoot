@@ -223,4 +223,9 @@ public class BoardServiceImpl implements BoardService{
     public ReportVo retrieveReport(ReportVo report) {
         return this.boardDao.selectReport(report);
     }
+
+    @Override
+    public List<ReportVo> retrieveReportList(String userId) {
+        return this.boardDao.selectReportList(userId);
+    }
 }

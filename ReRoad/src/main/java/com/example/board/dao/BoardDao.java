@@ -42,4 +42,5 @@ public interface BoardDao {
     //신고
     void insertReport(ReportVo report);
     ReportVo selectReport(ReportVo report);
+    List<ReportVo> selectReportList(String userId);
 }

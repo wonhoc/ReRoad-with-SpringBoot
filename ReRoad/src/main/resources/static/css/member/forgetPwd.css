@@ -30,6 +30,14 @@
     background-color: #414141;
     margin-top: -0.5em;
 }
+
+/*비밀번호 재설정 성공 후 구분선 */
+.title_devide_forgetPwd{
+    width: 57%;
+    height: 5px;
+    background-color: #414141;
+    margin-top: -0.5em;
+}
 .welcome_text {
     font-family: 'Noto Sans KR', sans-serif;
     color:RGB(1,121,122);
@@ -41,7 +49,12 @@
 #emptyDiv {
     height:10em;
 }
-/*input 공통 여백 설정 */
+
+/* 비밀번호 변경 성공 후 여백 */
+#successEmptyDiv {
+    height: 20em;
+}
+ /*input 공통 여백 설정 */
 .form-control {
     margin-top: 0.3em;
     margin-bottom: 1em;

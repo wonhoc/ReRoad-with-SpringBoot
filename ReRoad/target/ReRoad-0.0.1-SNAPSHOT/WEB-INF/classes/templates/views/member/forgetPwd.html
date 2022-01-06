@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:width="http://www.w3.org/1999/xhtml" lang="ko"
+      layout:decorate="~{layout/defaultLayout}">
+<th:block layout:fragment="css">
+    <link rel="stylesheet" th:href="@{css/member/forgetPwd.css}">
+</th:block>
+<th:block layout:fragment="script">
+    <script th:src="@{/js/member/forgetPwd.js}"></script>
+</th:block>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>비밀번호 찾기</title>
+</head>
+<section layout:fragment="content">
+    <form class="form-signin" action="sendTempPwd" id="forgetPwd" method="POST">
+        <div id = "searchFormOne" class="searchPwdContainer">
+            <div class="welcome_page_text">
+                <h1 class="welcomeText1">비밀번호 재설정</h1>
+                <div class="title_devide_forgetPwd"></div>
+                <div class="welcome_text">
+                    가입하신 아이디를 입력하세요.<br>
+                    아이디는 이메일 형식으로 되어 있습니다.<br>
+                    탈퇴, 정지된 계정의 이메일인 경우 사용하실 수 없습니다.
+                </div>
+            </div>
+            <div id="emptyDiv"></div>
+            <div class="inputForgetEmailAndNum">
+                <label class="UpperInputText" for="userId">ID(Email)</label>
+                <input class="form-control" type="text" id="userId" name="userId" placeholder="example@email.com" />
+                <div id="checkDbId" name="checkDbId"></div>
+                <button type="submit" class="btn btn-primary btn-lg btn-block" id="sendTempPwd" name="sendTempPwd">임시 비밀번호 발급</button>
+            </div>
+
+        </div>
+
+    </form>
+</section>
+</html>

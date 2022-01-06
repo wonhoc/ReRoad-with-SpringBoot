@@ -1,24 +1,58 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="layout/defaultLayout">
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="layout/defaultLayout">
 <th:block layout:fragment="css">
 	<link rel="stylesheet" th:href="@{/css/main.css}">
 </th:block>
 <th:block layout:fragment="script">
 
+	<script th:src="@{/js/main.js}"></script>
+
 </th:block>
 <head>
 </head>
 <section layout:fragment="content">
-
 	<div class="container">
+
+	
 		<div id="mainwrapper">
 			<img src="/images/메인페이지버스.png" alt="image" id="mainImage">
-			<div id="searchBox">
+			<div id="searchBox" class="row text-center">
+				<!-- 헤드 -->
+				<div id="headWrapper">
+					<div class="searchBoxHead col-sm-6" id="headTrain">열차</div>	
+			        <div class="searchBoxHead col-sm-6" id="headBus">버스</div>
+			    </div>
+			     <div class="tempWrapper">
+				    <!-- 왕복 -->
+				    <div id="selWrapper">
+				    	<div id="selOneway" class="col-sm-6 tripType">
+				    		<div class="selTextdiv">편도</div>
+				    		</div>
+				        <div id="selTurn" class="col-sm-6 tripType">
+				        	<div class="selTextdiv">왕복</div>
+				        </div>
+				    </div>
+			   
+			    <!-- 바디 -->
+				    <div id="bodyWrapper">	    
+					    <div id="dep" class="searchBody">
+					    	<div class="bodyTextdiv">출발지</div>
+					    </div>
+					    <div id="arr" class="searchBody">
+					    	<div class="bodyTextdiv">도착지</div>
+					    </div>
+					    <div id="date" class="searchBody">
+					    	<div class="bodyTextdiv">날짜</div>
+					    </div> 		    		  
+				    </div>
+				 </div>
 			</div>
+			 <button type="button" id="btnSearch" class="btn btn-primary">검색</button>
 		</div>	
+		
 	<table>
 		<tr>
 			<td><a th:href="@{/boardList}"><img src="/images/tavleReview.jpg" alt="image" class="content"></a></td>
@@ -50,33 +84,34 @@
 			<td class="menu">공지사항</td>
 		</tr>
 	</table>
+
 		<table>
-		<tr>
-			<td><img src="images/main/main서울.jpg" alt="image" class="domestic"></td>
-			<td class="tableempty"></td>
-			<td><img src="images/main/main강릉.jpg" alt="image" class="domestic"></td>
-			<td class="tableempty"></td>
-			<td><img src="images/main/main전주.jpg" alt="image" class="domestic"></td>
-			<td class="tableempty"></td>
-			<td><img src="images/main/main여수.jpg" alt="image" class="domestic"></td>
-			<td class="tableempty"></td>
-			<td><img src="images/main/main부산.jpg" alt="image" class="domestic"></td>
-			<td class="tableempty"></td>
-			<td><img src="images/main/main동대구.jpg" alt="image" class="domestic"></td>
-		</tr>
-		<tr id="domesticname">
-			<td>서울</td>
-			<td class="tableempty"></td>
-			<td>강릉</td>
-			<td class="tableempty"></td>
-			<td>전주</td>
-			<td class="tableempty"></td>
-			<td>여수</td>
-			<td class="tableempty"></td>
-			<td>부산</td>
-			<td class="tableempty"></td>
-			<td>동대구</td>
-		</tr>
+			<tr>
+				<td><img src="images/main/main서울.jpg" alt="image" class="domestic"></td>
+				<td class="tableempty"></td>
+				<td><img src="images/main/main강릉.jpg" alt="image" class="domestic"></td>
+				<td class="tableempty"></td>
+				<td><img src="images/main/main전주.jpg" alt="image" class="domestic"></td>
+				<td class="tableempty"></td>
+				<td><img src="images/main/main여수.jpg" alt="image" class="domestic"></td>
+				<td class="tableempty"></td>
+				<td><img src="images/main/main부산.jpg" alt="image" class="domestic"></td>
+				<td class="tableempty"></td>
+				<td><img src="images/main/main동대구.jpg" alt="image" class="domestic"></td>
+			</tr>
+			<tr id="domesticname">
+				<td>서울</td>
+				<td class="tableempty"></td>
+				<td>강릉</td>
+				<td class="tableempty"></td>
+				<td>전주</td>
+				<td class="tableempty"></td>
+				<td>여수</td>
+				<td class="tableempty"></td>
+				<td>부산</td>
+				<td class="tableempty"></td>
+				<td>동대구</td>
+			</tr>
 		</table>
 	</div>
 </section>

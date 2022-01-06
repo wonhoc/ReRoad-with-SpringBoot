@@ -9,14 +9,18 @@
 </th:block>
 <th:block layout:fragment="script">
     <script th:src="@{/js/board/detailBoard.js}"></script>
+    <script th:src="@{/js/message/sendMsg.js}"></script>
 </th:block>
 <head>
 
 </head>
 <section layout:fragment="content">
 
+    <!-- 로그인 사용자 -->
     <input type="hidden" th:value="${username}" id="username">
+    <!-- 작성자 -->
     <input type="hidden" th:value="${board.userId}" id="userId">
+
     <div class="container">
 
         <form th:action="@{/deleteBoard/{boardNo}(boardNo=${board.boardNo})}" method="post">

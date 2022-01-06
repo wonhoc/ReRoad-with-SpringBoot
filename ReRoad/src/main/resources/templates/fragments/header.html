@@ -2,38 +2,8 @@
 <html xmlns:th="https://www.thymeleaf.org/">
 <head>
 <meta charset="UTF-8">
-<style>
-#logo{
-	width: 100px;
-	height: 60px;
-	float:left;
-}
-.ReRoad{
-	font-size: 30px;
-
-}
-
-#bar{
-width: 100%;
-height: 20px;
-background-color: teal;
-	margin-top: 20px;
-}
-
-#loginBtn{
-	margin-top: 20px;
-	margin-left: 800px;
-	background-color: teal;
-	border-color: teal;
-	font-weight: bolder;
-	color: white;
-
-
-}
-#road{
-	float:left;
-}
-</style>
+	<link rel="stylesheet" href="/css/header.css" />
+	<script type="text/javascript" src="/js/message/chat.js"></script>
 </head>
 
 	<div th:fragment="headerFragment">
@@ -45,6 +15,13 @@ background-color: teal;
 					</a>
 			</div>
 		</div>
+
+			<strong id ="alarm">
+
+			</strong>
+
+
+
 			<div>
 				<!--session에 로그인 유저 정보가 없다면 -->
 				<div th:if="${session.loginUser == null}">
@@ -54,6 +31,9 @@ background-color: teal;
 				</div>
 				<!--session에 로그인 유저 정보가 있다면 -->
 				<div style="float:right" th:unless="${session.loginUser == null}">
+
+					<input type="hidden" id="username" th:value="${session.loginUser.userId}">
+
 					<!--session에 로그인한 유저의 권한이 Member라면 -->
 					<div th:if="${session.loginUser.role == 'ROLE_MEMBER'}">
 						일반 회원 계정입니다.<br>

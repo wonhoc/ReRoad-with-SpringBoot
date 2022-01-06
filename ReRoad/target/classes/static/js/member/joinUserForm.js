@@ -9,6 +9,7 @@ $(document).ready(function() {
     // 버튼 기본 비활성화
     $('#sendVeriNum').attr("disabled", true);
     $('#nextButton').attr("disabled", true);
+    $('#joinButton').attr('disabled', true);
 
     //아이디 중복, 유효성 체크
 
@@ -23,6 +24,7 @@ $(document).ready(function() {
             if(idRule.test(userId) == false) {
                 $('#checkDbId').text('이메일 주소 형식에 맞지 않습니다.');
                 $('#checkDbId').css('color', 'red');
+                $('#sendVeriNum').attr("disabled", true);
             } else {
                 idchkProcess('/checkId', userId);
             }
@@ -38,9 +40,6 @@ $(document).ready(function() {
                 data: {
                     userId: userId
                 },
-                // beforeSend: function(xhr){
-                //     xhr.setRequestHeader(header,token);
-                // },
                 success: function (data) {
                     resolve(data);
                 },
@@ -58,11 +57,11 @@ $(document).ready(function() {
             if (result == 'false') {
                 $('#checkDbId').text('이미 사용중인 이메일입니다.');
                 $('#checkDbId').css('color', 'red');
+                $('#sendVeriNum').attr("disabled", true);
 
             } else if (result == 'true') {
                 $('#checkDbId').text('사용 가능한 아이디입니다.');
                 $('#checkDbId').css('color', 'RGB(1,121,122)');
-
                 $('#sendVeriNum').attr("disabled", false);
 
             }
@@ -94,9 +93,6 @@ $(document).ready(function() {
                     data: {
                         mail: mail
                     },
-                    // beforeSend: function (xhr) {
-                    //     xhr.setRequestHeader(header, token);
-                    // },
                     success: function (data) {
                         alert("인증 번호가 전송되었습니다.메일을 확인하고 인증번호를 입력하세요.")
                         console.log("Data : " + data)
@@ -125,6 +121,7 @@ $(document).ready(function() {
         } else {
             $('#checkVeriNumber').text("인증번호가 일치하지 않습니다.");
             $('#checkVeriNumber').css('color', 'red');
+            $('#joinButton').attr('disabled',true);
 
         }
     })
@@ -144,6 +141,7 @@ $(document).ready(function() {
         if(pass1.length <10 || pass1.length > 20) {
             $('#checkPwdformat').text("비밀번호는 10~20자 사이로 입력해야 합니다.");
             $('#checkPwdformat').css('color','red');
+
         } else if (pass1.length >=10 && pwdRule.test(pass1) == true) {
             $('#checkPwdformat').text("사용할 수 있는 비밀번호 입니다.");
             $('#checkPwdformat').css('color','RGB(1,121,122)');
@@ -213,6 +211,27 @@ $(document).ready(function() {
 
         }
     }
+
+
+    // 최종 입력 전 Ajax 체크
+    $('#joinButton').on('click', function() {
+        $.ajax({
+            url:"/joinUserRequest",
+            method: "POST",
+            data: {
+                userId: $('#userId'),
+                userNick: $('#userNick')
+            },
+            success: function (data) {
+
+            },
+            error: function(e) {
+
+            }
+        })
+
+
+    })
 
     //입력한 데이터 최종 유효성 체크
     $('#joinButton').on('click', function() {

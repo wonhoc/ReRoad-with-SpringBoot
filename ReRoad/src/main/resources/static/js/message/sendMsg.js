@@ -1,7 +1,4 @@
-let $chatHistory;
-let $button;
-let $textarea;
-let $chatHistoryList;
+
 
     $('#addComBtn').on('click',function (){
 

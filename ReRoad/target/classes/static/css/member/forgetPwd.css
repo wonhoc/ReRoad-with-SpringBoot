@@ -30,6 +30,14 @@
     background-color: #414141;
     margin-top: -0.5em;
 }
+
+/*비밀번호 재설정 성공 후 구분선 */
+.title_devide_forgetPwd{
+    width: 57%;
+    height: 5px;
+    background-color: #414141;
+    margin-top: -0.5em;
+}
 .welcome_text {
     font-family: 'Noto Sans KR', sans-serif;
     color:RGB(1,121,122);

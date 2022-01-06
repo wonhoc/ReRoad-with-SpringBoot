@@ -42,13 +42,9 @@
 .searchBoxHead{
 	font-weight: 900;
 	height: 100%;
-	background-color: white;
 }
 
 .searchBoxHead:hover{
-	font-weight: 900;
-	height: 100%;
-	background-color: white;
 	box-shadow: 2px 2px 2px 2px gray;
 }
 
@@ -81,14 +77,14 @@
 }
 
 #selOneway{
-	background-color: teal;
+	background-color: rgb(233,233,233);
 	height: 100%;
 	border-top-left-radius: 15px;
 	
 }
 
 #selTurn{
-	background-color: rgb(233,233,233);
+	background-color: teal;
 	height: 100%;
 	border-top-right-radius: 15px;
 }
@@ -110,6 +106,7 @@
      box-sizing: border-box;
      left: 1px;
      height: 100%;
+     color: white;
      border: 3px solid white;
 	
 }
@@ -130,6 +127,7 @@
 	position: absolute;
 	top: 92%;
 	right: 30%;
+	z-index: 0;
 }
 
 .btn-primary {
@@ -147,6 +145,17 @@
 	display: inline-block;
 	background-color: tear;
 }
+
+#hideOnbush{
+	position: absolute;
+	top: 100%;
+	width: 100%;
+	height: auto;
+	background-color: white;
+	z-index: 1;
+	display: none;
+}
+
 
 .content{
     width: 250px;

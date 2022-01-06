@@ -1,21 +1,162 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700;900&display=swap');
+
 #mainImage{
     width: 100%;
-    height: 300px;;
+    height: 300px;
+  
 }
 #mainwrapper{
 	 width: 100%;
-    height: 450px;
+    height: 400px;
     position: relative;
+    font-family: 'Noto Sans KR', sans-serif;
 }
 
 #searchBox{
 	width: 80%;
 	height: 300px;
-	background-color: coral;
+	background-color: rgb(242,242,242);
 	position: absolute;
 	left: 110px;
 	bottom: 10px;
+	border-radius: 15px;
 }
+
+
+.tempWrapper{
+	
+	border-radius: 15px;
+	background-color: rgb(233,233,233);
+	width: 90%;
+	height: 80%;
+	position: absolute;
+	left: 5%;
+	top:20%;	
+}
+
+#headWrapper{
+	width: 100%;
+	height: 10%;
+}
+
+.searchBoxHead{
+	font-weight: 900;
+	height: 100%;
+}
+
+.searchBoxHead:hover{
+	box-shadow: 2px 2px 2px 2px gray;
+}
+
+#headTrain{
+	border-top-left-radius: 15px;
+	background-color: rgb(242,242,242);
+	
+}
+
+#headBus{
+	border-top-right-radius: 15px;
+	background-color:  teal;
+	
+}
+
+#selWrapper{
+	position: absolute;
+	width: 100%;
+	height: 13%;
+}
+
+.tripType:hover{
+	box-shadow: 2px 2px 2px 2px gray;
+}
+
+.selTextdiv{
+	font-weight: 700;
+	padding-top: 2%;
+	display: inline-block;
+}
+
+#selOneway{
+	background-color: rgb(233,233,233);
+	height: 100%;
+	border-top-left-radius: 15px;
+	
+}
+
+#selTurn{
+	background-color: teal;
+	height: 100%;
+	border-top-right-radius: 15px;
+}
+
+#bodyWrapper{
+	
+	left: 5%;
+	top: 20%;
+	width: 99%;
+	position: absolute;
+	height: 40%;
+	
+}
+
+.searchBody{
+	
+	 float: left;
+     width:30%;
+     box-sizing: border-box;
+     left: 1px;
+     height: 100%;
+     color: white;
+     border: 3px solid white;
+	
+}
+
+#dep{
+	background-color: teal;
+}
+
+#arr{
+	background-color: teal;
+}
+
+#date{
+	background-color: teal;
+}
+
+#btnSearch{
+	position: absolute;
+	top: 92%;
+	right: 30%;
+	z-index: 0;
+}
+
+.btn-primary {
+    background-color: RGB(1,121,122);
+    border-color: RGB(1,121,122);
+    font-weight: bolder;
+    width: 50%;
+}
+
+
+.bodyTextdiv{
+	font-size: 30px;
+	font-weight: 700;
+	padding-top: 15%;
+	display: inline-block;
+	background-color: tear;
+}
+
+#hideOnbush{
+	position: absolute;
+	top: 100%;
+	width: 100%;
+	height: auto;
+	background-color: white;
+	z-index: 1;
+	display: none;
+}
+
+
 .content{
     width: 250px;
     height: 180px;

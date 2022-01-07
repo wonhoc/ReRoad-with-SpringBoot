@@ -1,4 +1,29 @@
+#writeForm{
+    padding-left: 60px;
+    padding-right: 60px;
+    padding-top: 30px;
+}
+.text-title{
+    margin-bottom: 25px;
+}
+.oneline{
+    float: left;
+}
+#travelTitle{
+    width:233px;
+    margin-right: 50px;
+    margin-left: 10px;
+}
 
-input[name="ready"]:checked {
-    background: #32e732;
+.input{
+    display: block;
+    height: 34px;
+    font-size: 14px;
+    color: #555;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.input:focus{
+    outline: 2px solid #ce8483;
 }

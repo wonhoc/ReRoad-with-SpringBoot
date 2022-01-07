@@ -47,13 +47,8 @@ $(document).ready(function () {
 
                 let boardNo = data.boardNo;
 
-                alert((boardNo)+"김감자");
-
                 toastr.options.onclick = function() { location.href='/detailBoard/'+boardNo }
                 toastr.info(data.fromLogin+"님이 댓글을 남기셨습니다.");
-
-
-
 
                 render(data.message, data.fromLogin,data.boardNo);
             });

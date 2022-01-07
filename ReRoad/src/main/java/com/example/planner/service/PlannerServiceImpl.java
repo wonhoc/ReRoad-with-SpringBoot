@@ -24,6 +24,11 @@ public class PlannerServiceImpl implements PlannerService{
     }
 
     @Override
+    public List<PlannerVO> retrievePastPlanList(String userId) {
+        return this.plannerDao.selectPastPlanList(userId);
+    }
+
+    @Override
     public PlannerVO retrievePlan(int planNo) {
         PlannerVO plan = this.plannerDao.selectPlan(planNo);
         plan.setCheckList(this.plannerDao.selectCheckList(planNo));

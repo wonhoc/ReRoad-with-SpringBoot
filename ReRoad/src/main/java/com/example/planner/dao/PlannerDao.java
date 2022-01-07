@@ -8,6 +8,7 @@ import java.util.zip.CheckedInputStream;
 
 public interface PlannerDao {
     List<PlannerVO> selectPlanList(String userId);
+    List<PlannerVO> selectPastPlanList(String userId);
     PlannerVO selectPlan(int planNo);
     void insertPlan(PlannerVO plan);
     int lastIdPlanner();

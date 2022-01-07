@@ -25,7 +25,7 @@
 }
 /*'회원가입' 하단 구분선 */
 .title_devide {
-    width: 35%;
+    width: 32%;
     height: 5px;
     background-color: #414141;
     margin-top: -0.5em;
@@ -97,12 +97,4 @@
     background-color:#cbcbcb ;
     border-color: #cbcbcb ;
 
-}
-
-
-
-#joinFormTwo {
-    display: none;
-    height: auto;
-    animation-duration: 5s;
 }

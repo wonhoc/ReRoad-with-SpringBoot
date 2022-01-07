@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,500&display=swap');
 
+
 /*로그인 화면 폼 디자인 */
 .loginContainer {
     padding-right: 15px;
@@ -14,6 +15,13 @@
     height: auto;
     width: 35em;
 }
+
+/* 전체 폼 디자인*/
+.form_signin {
+    margin-left: 1em;
+    margin-right: 1em;
+}
+
 /*로그인 화면 폼의 상단 여백 */
 .form-signin-heading{
     padding-top: 1.5em;
@@ -27,7 +35,7 @@
 
 
 .title_devide {
-    width: 30%;
+    width: 25%;
     height: 5px;
     background-color: #414141;
     margin-top: -0.5em;
@@ -36,16 +44,23 @@
 .welcome_text {
     font-family: 'Noto Sans KR', sans-serif;
     color:RGB(1,121,122);
-    font-weight: 300;
+    font-weight: 500;
     font-size: small;
     padding-bottom: 3em;
 }
-.form_signin {
-    margin-left: 1em;
-    margin-right: 1em;
+
+/* 로그인 실패 시 에러 메시지 디자인*/
+#loginFailmessage {
+    font-family: 'Noto Sans KR', sans-serif;
+    color: darkred;
+    font-weight: 500;
+    font-size: small;
 }
+
+/* input 위 ID Password 텍스트 디자인*/
 .idcss,.pwcss {
     padding-top: 1em;
+    font-family: 'Noto Sans KR', sans-serif;
     font-weight: bold;
     font-size: large;
 }
@@ -60,6 +75,12 @@
     width: 500px;
     height: 200px;
     font-size: 20px;
+
+}
+/* 버튼 공통 설정*/
+.btn {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
 
 }
 
@@ -91,30 +112,41 @@
 #googleLogin {
     font-family: 'Roboto', sans-serif;
     font-weight: 700;
-    border-color:RGB(1,121,122);
+    border-color:#4285F4;
 }
 
-#googleImage {
+/* 회원가입 버튼 디자인*/
+#newJoinUser {
+    font-weight: bolder;
+    border-color: RGB(1,121,122);
+
+}
+/* Google 로고 이미지*/
+#googleImage, #mailIcon {
     width: 20px;
     height: 20px;
     margin-right: 20px;
     vertical-align: text-top;
 
 }
-
-
-
+/*아이디 비밀번호 입력 전체 Div */
 .inputidpwd {
+    padding-top: 3em;
     padding-bottom: 2em;
 }
+/* 로그인과 회원가입 구분선 */
 .join_devide {
     width: 100%;
     height: 4px;
     background-color: #414141;
-    margin-top: 1em;
-    margin-bottom: 1em;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
 }
 
+
+
+
+/* 회원가입, 비밀번호 설정 div */
 .otherSelect {
     padding-top: 2em;
     font-weight: bold;

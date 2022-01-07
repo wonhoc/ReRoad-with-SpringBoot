@@ -32,7 +32,9 @@
                 </div>
                 <label class="idcss" for="userPwd">Password</label>
                 <input class="form-control" type="password" id="userPwd" name="userPwd">
-                <div id="checkPwdformat"></div>
+                <div id="checkPwdformat">
+                    <span th:style="${'color:red'}" th:text="${valid_userPwd}"></span>
+                </div>
                 <label class="idcss" for="reInputPwd">Password 재입력</label>
                 <input class="form-control" type="password" id="reInputPwd" name="reInputPwd">
                 <div id="checkPwdOneMore"></div>
@@ -42,6 +44,9 @@
                     <span th:style="${'color:red;'}" th:text="${valid_userNick}"></span>
                 </div>
                 <button class="btn btn-primary btn-lg btn-block" type="submit" id="joinButton" name="joinButton">회원가입</button>
+                <a th:href="@{joinUser}" style="text-decoration: none">
+                    <button class="btn btn-default btn-lg btn-block" type="button" id="backButton" name="backButton"> 뒤로 </button>
+                </a>
             </div>
         </div>
 

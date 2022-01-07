@@ -12,9 +12,7 @@
     <script th:src="@{/js/board/detailBoard.js}"></script>
 </th:block>
 <head>
-    <!--    libs for stomp and sockjs-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+
 </head>
 <section layout:fragment="content">
 
@@ -102,6 +100,20 @@
         </div>
 
 
+        <div class="toast" data-autohide="false" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <img src="..." class="rounded me-2" alt="...">
+                <strong class="me-auto">Bootstrap</strong>
+                <small class="text-muted">11 mins ago</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                Hello, world! This is a toast message.
+            </div>
+        </div>dddddd</div>
+
+
+    <button id="info">info</button>
 
     </div>
 </section>

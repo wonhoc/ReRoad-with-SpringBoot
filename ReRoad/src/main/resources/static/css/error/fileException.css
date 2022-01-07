@@ -1,0 +1,33 @@
+#errTable {
+    margin-top: 116px;
+    margin-left:auto;
+    margin-right:auto;
+    border: 1px solid #008080;
+    width: 1111px;
+    height: 551px;
+}
+
+#errTitle {
+    font-size: 25px;
+    font-weight: bolder;
+    color: crimson;
+    text-align: center;
+}
+
+#infoTxt {
+    font-size: 19px;
+    height: 81px;
+    text-align: center;
+}
+#mainBtn a{
+    font-size: 18px;
+    text-decoration: underline ;
+    color: #ce8483;
+}
+#mainBtn {
+    text-align: center;
+}
+#errimg {
+    width: 200px;
+    height: 280px;
+}

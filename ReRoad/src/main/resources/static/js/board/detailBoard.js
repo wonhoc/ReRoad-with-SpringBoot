@@ -1,28 +1,5 @@
 $(document).ready(function() {
-    const url = 'http://localhost:8080';
 
-  function connectToChat(username){
-
-      console.log("connecting to chat...");
-
-      let socket = new SockJS(url + '/chat');
-      stompClient = Stomp.over(socket);
-  }
-
-
-
-
-    $('#addComBtn').on('click',function (){
-        let username = $('#username').val();
-        $.ajax({
-            url: url + '/registration' + username,
-            success:function (response){
-                console.log(`reponse : ${response}`)
-                connectToChat(username);
-            }
-        })
-
-    })
 
 
     $('#listComment').on('click', '.modifyComReqBtn', function() {
@@ -83,6 +60,7 @@ $(document).ready(function() {
             }
 
         })
+
     });
 
     $('.modifyComBtn').on('click',function () {

@@ -1,4 +1,6 @@
+
 const url = 'http://localhost:8080';
+
 let stompClient;
 let username;
 let newMessage = new Map();

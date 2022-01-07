@@ -24,7 +24,7 @@ public class NoticeRestController {
 
     // 게시글 조회 ajax
     @GetMapping("/getNoticeList")
-    public @ResponseBody List<NoticeVO> listNotice() {
+    public List<NoticeVO> listNotice() {
         List<NoticeVO> list= this.noticeService.retrieveNoticeList();
 
 
@@ -54,11 +54,11 @@ public class NoticeRestController {
     //파일만 삭제
     @DeleteMapping("/removeNoticeFile/{fileNo}/{noticeNo}")
     public List<FileVO> deleteOnlyFile(@PathVariable int fileNo, @PathVariable int noticeNo) {
-       this.noticeService.removeOnlyNoticeFile(fileNo);
+        this.noticeService.removeOnlyNoticeFile(fileNo);
 
-      NoticeVO notice = this.noticeService.retrieveNotice(noticeNo);
-      List<FileVO> files = notice.getNoticeFileList();
-      return files;
+        NoticeVO notice = this.noticeService.retrieveNotice(noticeNo);
+        List<FileVO> files = notice.getNoticeFileList();
+        return files;
     }
 
 }

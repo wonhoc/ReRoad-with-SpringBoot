@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" lang="ko"
+      layout:decorate="~{layout/defaultLayout}" >
+<th:block layout:fragment="css">
+    <link rel="stylesheet" th:href="@{css/member/joinUserFormSe.css}">
+</th:block>
+<th:block layout:fragment="script">
+    <script th:src="@{/js/member/joinUserFormSe.js}"></script>
+</th:block>
+<head>
+</head>
+
+<section layout:fragment="content">
+    <form class="form-signin" method="POST" action="/joinUserRequest" modelAttribute="UserVo">
+        <div id = "joinFormTwo" class="joinUserContainer" >
+            <div class="welcome_join_Text">
+                <h1 class="joinText2">회원가입</h1>
+                <div class = "title_devide"></div>
+                <div class="welcome_join">
+                    회원 가입에 필요한 추가 정보를 입력하세요.<br>
+                    회원 가입 버튼을 누르면 가입 절차가 완료됩니다.
+                </div>
+            </div>
+            <div class="inputAnotherInfo">
+                <label class = "idcss" for="verifiedMail">ID(Email)</label>
+                <input type="hidden" id="userId" th:value="${userId}" name="userId">
+                <input class="form-control" id="verifiedMail" th:value="${userId}" disabled>
+                <div>
+                    <span th:style="${'color:red;'}" th:text="${valid_userId}"></span>
+                </div>
+                <label class="idcss" for="userPwd">Password</label>
+                <input class="form-control" type="password" id="userPwd" name="userPwd">
+                <div id="checkPwdformat"></div>
+                <label class="idcss" for="reInputPwd">Password 재입력</label>
+                <input class="form-control" type="password" id="reInputPwd" name="reInputPwd">
+                <div id="checkPwdOneMore"></div>
+                <label class="idcss" for="userNick">NickName</label>
+                <input class="form-control" type="text" id="userNick" name="userNick">
+                <div id="checkNick">
+                    <span th:style="${'color:red;'}" th:text="${valid_userNick}"></span>
+                </div>
+                <button class="btn btn-primary btn-lg btn-block" type="submit" id="joinButton" name="joinButton">회원가입</button>
+            </div>
+        </div>
+
+    </form>
+</section>
+</html>

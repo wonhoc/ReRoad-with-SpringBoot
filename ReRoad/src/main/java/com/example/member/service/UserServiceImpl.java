@@ -16,11 +16,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.TransactionSynchronizationManager;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class UserServiceImpl implements UserService, UserDetailsService {
@@ -63,6 +62,16 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     //임시 비밀번호 DB로 업데이트
     @Override
     public void updateTempPwd(UserVo user) { this.userDao.insertTempPwd(user);}
+
+    //회원가입 과정에서 Validation 검증
+    @Override
+    public Map <String, String> validate(BindingResult bindingResult) {
+        Map<String, String> map = new HashMap<String, String>();
+        for(FieldError error: bindingResult.getFieldErrors()) {
+            map.put(String.format("valid_%s", error.getField()), error.getDefaultMessage());
+        }
+        return map;
+    }
 
     @Override
     public List<UserVo> retrieveUserList() {

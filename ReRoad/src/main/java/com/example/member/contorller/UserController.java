@@ -5,6 +5,7 @@ import com.example.member.service.UserService;
 import com.example.member.vo.MailVo;
 import com.example.member.vo.UserVo;
 import com.example.util.FileUploadService;
+import org.attoparser.IDocumentHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -17,6 +18,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.thymeleaf.spring5.context.IThymeleafBindStatus;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -105,22 +107,22 @@ public class UserController {
         return nickResult;
     }
 
+    //회원가입 2번째 창으로 이동
+    @PostMapping("/moveJoinFormSe")
+    public String moveSeForm(@RequestParam ("userId") String userId, Model model) {
+        model.addAttribute("userId", userId);
+        return "views/member/JoinUserSe";
+    }
+
     //회원가입
     @RequestMapping(value="/joinUserRequest", method = RequestMethod.POST)
     public String joinUserRequest(@Valid @ModelAttribute UserVo user, BindingResult bindingResult, Model model) {
         //DB 유효성 체크 결과 에러가 발생할 경우 가입폼으로 돌아감
         if (bindingResult.hasErrors()) {
-            Map<String, String> map = new HashMap<>();
-            for (FieldError error : bindingResult.getFieldErrors()) {
-                String validKey = String.format("valid_%s", error.getField());
-                System.out.println(validKey);
-                map.put(validKey, error.getDefaultMessage());
-
-
-                System.out.println(map.get("valid_userPwd").toString());
-            }
-            model.addAttribute("bindError", map);
-            return "views/member/JoinUser";
+            Map<String, String> map = userService.validate(bindingResult);
+            for(String key: map.keySet()) {
+                model.addAttribute(key,map.get(key));
+            }return "views/member/JoinUserSe";
         } else {
             // 에러가 없을 경우 Password 암호화 후 DB에 등록
             UserVo verifyUser = new UserVo();
@@ -188,6 +190,7 @@ public class UserController {
 
     }
 
+
     // 관리자의 사용자 정보 조회
     @GetMapping("/admin/listUser")
     public String listUser(Model model) {
@@ -220,7 +223,7 @@ public class UserController {
 
     //비밀번호 일치 확인 후 삭제 페이지 이동
     @PostMapping("/member/pwdCheck")
-    public String pwdCheck(Authentication authentication, @RequestParam String userPwd) {
+    public String pwdCheck(Authentication authentication,@Valid @RequestParam String userPwd) {
         UserDetails userDetails = (UserDetails)authentication.getPrincipal();
         String userId = userDetails.getUsername();
 

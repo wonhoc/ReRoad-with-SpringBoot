@@ -113,7 +113,7 @@ public class BoardRestController {
     @PostMapping("/report")
     public Map report(@RequestBody ReportVo report, @AuthenticationPrincipal User pricipal){
         HashMap<String, Object> map = new HashMap<String, Object>();
-        report.setRepoter(pricipal.getUsername());
+        report.setReporter(pricipal.getUsername());
 
         ReportVo isReported = this.boardService.retrieveReport(report);
         int boardNo = report.getBoardNo();

@@ -111,5 +111,22 @@ public class BoardController {
 
         return "redirect:/boardList";
         }
+
+        //신고 게시글 리스트 조회
+        @GetMapping("/admin/reportList")
+        public String reportList(@RequestParam String userId, Model model) {
+            List<ReportVo> users = this.boardService.retrieveReportList(userId);
+            model.addAttribute("users", users);
+            //System.out.println(users);
+            return "views/board/reportList";
+        }
+
+    // 사용자 정보 조회 ajax
+    @GetMapping("/admin/getReportList/{userId}")
+    public @ResponseBody List<ReportVo> reportList(@PathVariable String userId) {
+        List<ReportVo> users = this.boardService.retrieveReportList(userId);
+        System.out.println(users);
+        return users;
+    }
     }
 

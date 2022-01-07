@@ -1,5 +1,5 @@
 
-const url = 'http://localhost:8080';
+const url = 'http://ec2-54-180-31-9.ap-northeast-2.compute.amazonaws.com';
 
 let stompClient;
 let username;

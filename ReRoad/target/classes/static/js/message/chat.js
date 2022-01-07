@@ -1,10 +1,30 @@
-const url = 'http://ec2-54-180-31-9.ap-northeast-2.compute.amazonaws.com/';
+const url = 'http://localhost:8080';
 let stompClient;
 let username;
 let newMessage = new Map();
 
+toastr.options = {
+    "closeButton": false,
+    "debug": false,
+    "newestOnTop": false,
+    "progressBar": true,
+    "positionClass": "toast-top-right",
+    "preventDuplicates": false,
+    "showDuration": "2000",
+    "hideDuration": "1000",
+    "timeOut": "4500",
+    "extendedTimeOut": "4500",
+    "showEasing": "swing",
+    "hideEasing": "linear",
+    "showMethod": "fadeIn",
+    "hideMethod": "fadeOut"
+}
+
 
 $(document).ready(function () {
+
+
+
 
     let username = $('#username').val();
 
@@ -17,31 +37,38 @@ $(document).ready(function () {
         let socket = new SockJS(url + '/chat');
         stompClient = Stomp.over(socket);
 
-        console.log("dodododo");
+
+
 
         stompClient.connect({}, function (frame) {
 
-            stompClient.subscribe("topic/message/" + username, function (message) {
+            stompClient.subscribe("/topic/messages/" + username, function (message) {
                 let data = JSON.parse(message.body);
-                console.log("hi")
-                $('#alarm').append("<strong id='newMessage' style='color: red;'>new</strong>");
-                render(data.message, data.fromLogin);
+
+                let boardNo = data.boardNo;
+
+                alert((boardNo)+"김감자");
+
+                toastr.options.onclick = function() { location.href='/detailBoard/'+boardNo }
+                toastr.info(data.fromLogin+"님이 댓글을 남기셨습니다.");
+
+
+
+
+                render(data.message, data.fromLogin,data.boardNo);
             });
 
         });
 
+        function render(message, username) {
+            var contextResponse = {
+                response: message,
+                username: username,
+                boardNo : boardNo
+            };
 
-        function sendMsg(from, text) {
-            console.log('from : ', from, 'text : ', text);
-            console.log(`selectedUser : ${username}`);
-            console.log(`stompClient : ${stompClient}`);
-
-            stompClient.send('/app/chat/' + username, {}, JSON.stringify({
-                message: text,
-                fromLogin: from
-
-            }));
         }
+
 
     }
 });

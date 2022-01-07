@@ -2,10 +2,10 @@ package com.example.schedule.service;
 
 import java.util.ArrayList;
 
-import com.example.schedule.vo.TrainStInfoVo;
+import com.example.schedule.vo.CityTrainStInfoVo;
 
 public interface TrainScheduleService {
 
-	ArrayList<TrainStInfoVo> retrieveTrainStinfo() throws Exception;
+	ArrayList<CityTrainStInfoVo> retrieveTrainStinfo() throws Exception;
 	
 }//interface end

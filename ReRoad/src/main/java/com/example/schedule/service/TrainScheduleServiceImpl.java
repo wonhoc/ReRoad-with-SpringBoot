@@ -33,7 +33,7 @@ public class TrainScheduleServiceImpl implements TrainScheduleService {
 	
 	//도시별 기차역 조회
 	@Override
-	public ArrayList<TrainStInfoVo> retrieveTrainStinfo() throws Exception {
+	public ArrayList<CityTrainStInfoVo> retrieveTrainStinfo() throws Exception {
 		ResponseEntity<ApiResponseObject> responseEntity = restTemplate.getForEntity(SERVER_URL + GET_TRAIN_INFO_URL, ApiResponseObject.class); 
 		
 		//System.out.println("class : " + responseEntity.getClass());
@@ -48,12 +48,9 @@ public class TrainScheduleServiceImpl implements TrainScheduleService {
 		
 		Type listType = new TypeToken<ArrayList<CityTrainStInfoVo>>(){}.getType();
 		
-		List<CityTrainStInfoVo> list = gson.fromJson(json, listType);
+		ArrayList<CityTrainStInfoVo> list = gson.fromJson(json, listType);		
 		
-		System.out.println("List : " + list.toString());
-		
-		
-		return null;
+		return list;
 		
 	}//getTrainStinfo() end
 

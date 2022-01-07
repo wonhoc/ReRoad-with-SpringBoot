@@ -1,4 +1,4 @@
-const url = 'ec2-13-209-22-214.ap-northeast-2.compute.amazonaws.com';
+const url = 'http://localhost:8080';
 let stompClient;
 let username;
 let newMessage = new Map();
@@ -19,6 +19,7 @@ $(document).ready(function () {
 
         console.log("dodododo");
 
+
         stompClient.connect({}, function (frame) {
 
             stompClient.subscribe("topic/message/" + username, function (message) {
@@ -36,7 +37,7 @@ $(document).ready(function () {
             console.log(`selectedUser : ${username}`);
             console.log(`stompClient : ${stompClient}`);
 
-            stompClient.send('/app/chat/' + username, {}, JSON.stringify({
+            stompClient.send('/app/chatasdasd/' + username, {}, JSON.stringify({
                 message: text,
                 fromLogin: from
 

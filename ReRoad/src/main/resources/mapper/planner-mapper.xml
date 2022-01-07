@@ -90,7 +90,10 @@
     <select id="selectPlanList" statementType="CALLABLE" parameterMap="IdParameter" resultMap="resultMapPlanList">
         { call sp_list_planner(?) }
     </select>
-
+    <!-- 날짜 지난 플랜 목록 조회-->
+    <select id="selectPastPlanList" statementType="CALLABLE" parameterMap="IdParameter" resultMap="resultMapPlanList">
+        { call sp_planner_pastList(?) }
+    </select>
     <!-- 플랜 상세조회 -->
     <select id="selectPlan" statementType="CALLABLE" parameterMap="planNoParameter" resultMap="resultMapPlan">
         { call sp_detail_planner(?) }
@@ -131,5 +134,7 @@
     <delete id="deletePlan" statementType="CALLABLE" parameterMap="planNoParameter">
         { call sp_delete_plan(?) }
     </delete>
+
+
 </mapper>
 

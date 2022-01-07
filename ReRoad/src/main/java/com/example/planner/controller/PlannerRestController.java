@@ -22,9 +22,17 @@ public class PlannerRestController {
 
     // 게시글 조회 ajax
     @GetMapping("/getPlanList")
-    public @ResponseBody List<PlannerVO> listPlanner( @AuthenticationPrincipal User principal) {
+    public List<PlannerVO> listPlanner( @AuthenticationPrincipal User principal) {
 
         List<PlannerVO> list= this.plannerService.retrievePlanList(principal.getUsername());
+        return list;
+    }
+
+    //지나간 플랜 목록 조회 ajax
+    @GetMapping("/getPastPlanList")
+    public List<PlannerVO> pastlistPlanner( @AuthenticationPrincipal User principal) {
+
+        List<PlannerVO> list= this.plannerService.retrievePastPlanList(principal.getUsername());
         return list;
     }
 }

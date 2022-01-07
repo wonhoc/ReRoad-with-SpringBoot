@@ -1,7 +1,7 @@
 
 
 #travelTitle {
-  border-bottom: 1px solid #dee2e6;
+    border-bottom: 1px solid #dee2e6;
 
 }
 
@@ -25,9 +25,11 @@ td {
     vertical-align: middle;
     text-align: center;
     border-bottom: 1px solid #dee2e6;
+    font-style: italic;
 }
 .userinput{
     font-style: italic;
+    text-align: center;
 }
 
 #listBtn{
@@ -37,6 +39,7 @@ td {
 #btnctl{
     float: right;
     margin-left: 533px;
+    margin-top: 75px;
 }
 
 #checkList{
@@ -57,8 +60,12 @@ td {
 
 #chkTbl{
     line-height: 1.7;
+    margin-top: 33px;
 }
 
+h3 {
+    margin-top: 30px;
+}
 .isReady{
     width: 40px;
     height: 25px;
@@ -67,6 +74,13 @@ td {
     width:50px;
     margin-right: 50px;
 }
-.itemNames{
+.unReady{
+    margin-right: 10px;
+    font-style: italic;
+}
+
+.ready{
+    color: darkgray;
+    font-style: italic;
     margin-right: 10px;
 }

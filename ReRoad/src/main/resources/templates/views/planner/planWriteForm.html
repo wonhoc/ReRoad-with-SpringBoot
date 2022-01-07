@@ -81,7 +81,7 @@
 
             //아이템 내용
             var addCol_content = addRow.insertCell();
-            addCol_content.innerHTML = "<input type='text' name='checkListContent' placeholder='아이템 입력..'  autocomplete='off' maxlength='10'>";
+            addCol_content.innerHTML = "<input type='text'  class='input' name='checkListContent' placeholder='아이템 입력..'  autocomplete='off' maxlength='10'>";
 
             //준비여부
             var addCol_radio = addRow.insertCell();
@@ -102,7 +102,7 @@
                 }
             }
         }
-//동적으로 생성된 체크리스트를 위한 유효성 검사 코드
+        //동적으로 생성된 체크리스트를 위한 유효성 검사 코드
         $(function () {
             $("#form").validate({
                 errorElement: "label",
@@ -114,14 +114,14 @@
                 rules: {
                     checkListContent: {
                         required: true,
-                       spaceCheck: true
+                        spaceCheck: true
                     }
                 },
                 //규칙체크 실패시 출력될 메시지
                 messages: {
                     checkListContent: {
                         required: "체크리스트를 올바르게 입력 후 다시 시도하세요",
-                       spaceCheck: "체크리스트에 공백은 입력 불가합니다."
+                        spaceCheck: "체크리스트를 올바르게 입력 후 다시 시도하세요"
                     }
                 }
             });
@@ -129,18 +129,15 @@
 
             $.validator.addMethod(
                 "spaceCheck", //validate명
-
                 function (value, element) {
-
-    //검사하는 name태그의 value 중 공백이 없으면 true, 있으면 false리턴
-                    if ($(element).val().indexOf(" ")==-1) return true;
-                    else return false;
-    //false 리턴 시 messages에 선언된 내용들 띄워줌
-
-
+                    //검사하는  value가 공백이면 false리턴
+                    var blank_pattern = /^\s+|\s+$/g;
+                    if($(element).val()==''||$(element).val().replace(blank_pattern, '' ) == ""){
+                        return false;
+                    } else return true;
+                    //false 리턴 시 messages에 선언된 내용들 띄워줌
                 }
             );
-
 
             //확장판 name 처리
             $.extend($.validator.prototype, {
@@ -158,33 +155,32 @@
                     return this.valid();
                 }
             });
-
-
         });
     </script>
-
 </head>
-<section layout:fragment="content">
-    <div>
+<section class="container" layout:fragment="content">
+    <div id="writeForm">
         <form name="form" id="form" role="form" method="post" th:action="@{/member/writeplan}">
-
             <div class="mb-3">
                 <h3 class="text-title">여행일정 플랜 작성</h3>
-                <label for="travelTitle">여행 이름</label>
-                <input type="text" class="form-control" name="travelTitle" id="travelTitle"
-                       autocomplete="off" maxlength="10">
-                <label for="spot">여행지</label>
-                <input type="text" class="form-control" name="spot" id="spot"
-                       autocomplete="off" maxlength="16">
+                <div class="oneline">
+                    <label for="travelTitle">여행 이름</label>
+                    <input type="text" class="input" name="travelTitle" id="travelTitle"
+                           autocomplete="off" maxlength="16">
+                </div>
+                <div class="oneline">
+                    <label for="spot">여행지</label>
+                    <input type="text" class="input" name="spot" id="spot"
+                           autocomplete="off" maxlength="16">
+                </div>
                 <label for="startDate">여행기간</label>
-                <input type="text" class="datepicker" name="startDate" id="startDate" autocomplete="off"> &nbsp; ~
-                &nbsp;
+                <input type="text" class="datepicker" name="startDate" id="startDate" autocomplete="off"> &nbsp; ~&nbsp;
                 <input type="text" class="datepicker" name="arriveDate" id="arriveDate" autocomplete="off">
             </div>
 
             <div class="mb-3">
                 <label for="memo">메모</label>
-                <input type="text" class="form-control" name="memo" id="memo" placeholder="잊기 쉬운 정보들을 메모해보세요."
+                <input type="text" class="input" name="memo" id="memo" placeholder="잊기 쉬운 정보들을 메모해보세요."
                        style="height: 150px;" autocomplete="off">
             </div>
             <div class="mb-3">
@@ -203,7 +199,7 @@
                     </tr>
                     <tr>
                         <td>&empty;</td>
-                        <td><input type="text" id="requiredChk" name="checkListContent" placeholder="아이템 입력.."
+                        <td><input class="input" type="text" id="requiredChk" name="checkListContent" placeholder="아이템 입력.."
                                    autocomplete="off" maxlength="10"></td>
                         <td><select name="ready">
                             <option value="0">준비 못함!</option>

@@ -20,6 +20,11 @@ public class PlannerDaoImpl implements PlannerDao{
     }
 
     @Override
+    public List<PlannerVO> selectPastPlanList(String userId) {
+        return this.sqlSession.selectList("selectPastPlanList", userId);
+    }
+
+    @Override
     public PlannerVO selectPlan(int planNo) {
         return this.sqlSession.selectOne("selectPlan", planNo);
     }

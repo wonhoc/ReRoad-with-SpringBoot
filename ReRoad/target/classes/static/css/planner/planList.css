@@ -1,0 +1,87 @@
+#pagination-div{
+    text-align: center;
+}
+#pagination-div{
+    text-align: center;
+}
+#pagination-div2{
+    text-align: center;
+}
+th{
+    text-align: center;
+}
+
+#title{
+    margin-top: 45px;
+    margin-bottom: 11px;
+    padding-left: 60px;
+}
+#writeBtn{
+    background-color: black;
+    border-color: black;
+    color: white;
+    border-style: outset;
+    margin-top: -80px;
+    margin-left: 281px;
+}
+#external-table{
+    padding-right: 60px;
+    padding-left: 60px;
+}
+#spot{
+    text-align: center;
+    font-style: italic;
+}
+#startDate{
+    text-align: right;
+    font-style: italic;
+}
+#sign{
+    width: 10px;
+}
+#arriveDate{
+    font-style: italic;
+
+}
+td a{
+    color: #ce8483;
+    font-style: italic;
+}
+.page-item.active .page-link {
+    background-color: teal;
+    border-color: teal;
+}
+
+.pagination>li>a{
+    color: teal;
+}
+
+#noPlan{
+    margin-top: 41px;
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 500px;
+    vertical-align: middle;
+    height: 330px;
+    color: darkgray;
+}
+
+#table{
+    height: 490px;
+}
+
+#pastplan-table{
+    padding-right: 80px;
+    padding-left: 80px;
+    border: 1px solid #dee2e6;
+    padding-top: 37px;
+    margin-top: 17px;
+}
+#pastplan-table tr{
+    background-color: #fcf6f7;
+}
+
+#past_title{
+    font-size: 21px;
+    color: #5e5e5e;
+}

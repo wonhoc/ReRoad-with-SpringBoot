@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface PlannerService {
     List<PlannerVO> retrievePlanList(String userId);
+    List<PlannerVO> retrievePastPlanList(String userId);
     PlannerVO retrievePlan(int planNo);
     void createPlan(PlannerVO plan);
     void modifyPlan(PlannerVO plan);

@@ -44,4 +44,10 @@ public interface BoardService {
     ReportVo retrieveReport(ReportVo report);
     List<ReportVo> retrieveReportList(String userId);
 
+    //회원 게시글 보기
+    List<BoardVo> retrieveRecentBoardList(String userId);
+    List<BoardVo> retrieveUserBoardList(String userId);
+
+
+
 }

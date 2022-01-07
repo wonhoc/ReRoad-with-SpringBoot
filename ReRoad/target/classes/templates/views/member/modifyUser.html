@@ -34,7 +34,9 @@
                         <input class="form-control input_info" type="password" name="userPwd"
                                id="userPwd">
                     </div>
-                    <div id="checkPwdformat"></div>
+                    <div id="checkPwdformat">
+                        <span th:style="${'color:red;'}" th:text="${valid_userPwd}"></span>
+                    </div>
                     <div class="input_section">
                         <label class="input_title" for="reInputPwd">Password 확인</label>
                         <input class="form-control input_info" type="password" name="reInputPwd"
@@ -47,7 +49,9 @@
                                th:value="${user.userNick}">
 
                     </div>
-                    <div id="checkNick"></div>
+                    <div id="checkNick">
+                        <span th:style="${'color:red;'}" th:text="${valid_userNick}"></span>
+                    </div>
 
                     <div class="input_section">
                         <label class="input_title">프로필 사진 설정</label>

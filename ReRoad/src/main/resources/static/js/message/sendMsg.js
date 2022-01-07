@@ -5,7 +5,7 @@ $(document).ready(function() {
     let selectedUser = $('#userId').val();
     let boardNo = $('#boardNo').val();
 
-    const url = 'http://localhost:8080';
+    const url = 'http://ec2-54-180-31-9.ap-northeast-2.compute.amazonaws.com';
     let socket = new SockJS(url + '/chat');
     stompClient = Stomp.over(socket);
 

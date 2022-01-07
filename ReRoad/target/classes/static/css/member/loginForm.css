@@ -112,12 +112,14 @@
 #googleLogin {
     font-family: 'Roboto', sans-serif;
     font-weight: 700;
-    border-color:RGB(1,121,122);
+    border-color:#4285F4;
 }
 
+/* 회원가입 버튼 디자인*/
 #newJoinUser {
     font-weight: bolder;
-    border-color: black;
+    border-color: RGB(1,121,122);
+
 }
 /* Google 로고 이미지*/
 #googleImage, #mailIcon {
@@ -129,7 +131,8 @@
 }
 /*아이디 비밀번호 입력 전체 Div */
 .inputidpwd {
-    padding-bottom: 5em;
+    padding-top: 3em;
+    padding-bottom: 2em;
 }
 /* 로그인과 회원가입 구분선 */
 .join_devide {
@@ -139,6 +142,9 @@
     margin-top: 0.5em;
     margin-bottom: 0.5em;
 }
+
+
+
 
 /* 회원가입, 비밀번호 설정 div */
 .otherSelect {

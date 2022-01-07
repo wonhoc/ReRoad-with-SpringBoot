@@ -58,8 +58,6 @@ public class UserController {
         // 로그인 후 세션에 UserVo 객체 등록
         String userId = prin.getUsername();
         UserVo user = this.userService.getInfo(userId);
-        String userNick = user.getUserNick();
-        String userRole = user.getRole();
 
         session.setAttribute("loginUser", user);
         return "redirect:/";

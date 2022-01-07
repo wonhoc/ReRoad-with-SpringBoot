@@ -1,23 +1,19 @@
 $(document).ready(function(){
-
 	
 	var vehicl = "열차";
 	var tripType ="편도";
 	
 	//열차, 버스 선택
-
 	$('.searchBoxHead').click(function(){	
 		$(this).css('background-color', 'rgb(242,242,242)');
 		$(this).prevAll().css('background-color', 'teal');
 		$(this).nextAll().css('background-color', 'teal');
 		
-
 		vehicl = $(this).text();
 		console.log(vehicl);
 		
 	});
 	//편도, 왕복선택
-
 	$('.tripType').click(function(){	
 		$(this).css('background-color', 'rgb(242,242,242)');
 		$(this).prevAll().css('background-color', 'teal');
@@ -28,7 +24,6 @@ $(document).ready(function(){
 		
 	});
 	
-
 	//출발지 선택
 	$('#dep').click(function(){
 	
@@ -39,6 +34,6 @@ $(document).ready(function(){
 	$('#hideOnbush').click(function(){
 		$('#hideOnbush').hide()
 	});
-
+	
 
 });

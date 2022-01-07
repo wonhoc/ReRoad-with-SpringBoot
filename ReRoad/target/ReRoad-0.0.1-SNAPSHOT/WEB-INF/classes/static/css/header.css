@@ -1,30 +1,94 @@
+/* 헤더 기본 설정 */
+.container {
+    height: 7em;
+    position: relative;
+    top: 1em;
+}
+/* 바 디자인 */
+#bar {
+    max-width: 1110px;
+    width: 100%;
+    height: 20px;
+    background-color: teal;
+    position:absolute;
+    border-color: unset;
+    bottom: 0px;
+    line-height: 7em;
+}
+/* 헤더 좌측 로고*/
 #logo{
     width: 100px;
     height: 60px;
     float:left;
+    margin-left: 2em;
 }
+
+/* 헤더 우측 로그인, 회원 정보 부분 */
+.loginAndInfo {
+    float: right;
+    width: 13em;
+    margin-right: 2em;
+
+}
+/*로그인 버튼 */
+#loginBtn{
+    margin-top: 20px;
+    background-color: teal;
+    border-color: teal;
+    font-weight: bolder;
+    color: white;
+    margin-left: 3em;
+}
+/* 로그인 버튼 마우스 오버 */
+#loginBtn:hover {
+    background-color: #27B8B9;
+    border-color: #27B8B9;
+    color: white;
+}
+/*로그아웃 버튼 */
+#logoutBtn {
+    font-weight: bolder;
+    border-color: teal;
+}
+/* 로그아웃 버튼 마우스 오버시*/
+#logoutBtn:hover {
+    color: white;
+    background-color: #ff7f7f;
+    border-color: #ff7f7f;
+}
+
+/*로그인 성공 시 기본 박스 */
+.showInfo {
+    background-color:RGB(242,242,242);
+    border-color: teal;
+    border-radius: 13px;
+    height: 4.5em;
+    vertical-align: middle;
+}
+/* 프로필 사진이 없을 경우 */
+
+/* 헤더 프로필 사진 */
+.showPho {
+    border-radius: 50%;
+    border-color: teal;
+    border-width: 1px;
+}
+
+/*닉네임 */
+#showNick{
+line-height: 5em;
+}
+
+
+
+
 .ReRoad{
     font-size: 30px;
 
 }
 
-#bar{
-    width: 100%;
-    height: 20px;
-    background-color: teal;
-    margin-top: 20px;
-}
-
-#loginBtn{
-    margin-top: 20px;
-    margin-left: 800px;
-    background-color: teal;
-    border-color: teal;
-    font-weight: bolder;
-    color: white;
 
 
-}
 #road{
     float:left;
 }

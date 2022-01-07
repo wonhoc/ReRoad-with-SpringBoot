@@ -23,11 +23,12 @@
         <id property="userId" javaType="string" jdbcType="VARCHAR" column="userId" />
         <id property="userNick" javaType="string" jdbcType="VARCHAR"  column="userNick" />
         <id property="role" javaType="string" jdbcType="VARCHAR" column="role" />
+        <id property="photoSys" javaType="string" jdbcType="VARCHAR" column="photoSys" />
     </resultMap>
 
     <!-- 아이디를 통해 회원 정보 반환, 필요한 회원 정보가 있다면 추가할 것. -->
     <select id="getInfoFromDB" parameterType="string" resultType="UserVo" resultMap="infoMap">
-        SELECT userId, userNick, role
+        SELECT userId, userNick, photoSys, role
         FROM user_info
         WHERE userId = #{userId}
     </select>

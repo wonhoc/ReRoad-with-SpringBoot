@@ -41,12 +41,12 @@
             </div>
 
             <button type="submit" class="btn btn-primary btn-lg btn-block">로그인</button>
-            <a href="/oauth2/authorization/google" >
+            <a href="/oauth2/authorization/google" style="text-decoration: none">
                 <button type="button" class="btn btn-default btn-lg btn-block" id="googleLogin">
                 <img th:src="@{/images/member/google-logo.png}" id="googleImage">구글 계정으로 로그인</button>
             </a>
             <div class="join_devide"></div>
-            <a th:href ="@{/joinUser}">
+            <a th:href ="@{/joinUser}" style="text-decoration: none">
             <button type="button" class="btn btn-default btn-lg btn-block" id="newJoinUser">
                 <img th:src="@{/images/member/mail.png}" id="mailIcon">회원가입</button>
             </a>

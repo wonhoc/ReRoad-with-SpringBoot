@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org/">
+<th:block layout:fragment="script">
+	<script th:src="@{/js/header.js}"></script>
+</th:block>
 <head>
 <meta charset="UTF-8">
 	<link rel="stylesheet" href="/css/header.css" />
+	<link rel="script" href="/js/header.js">
 	<script type="text/javascript" src="/js/message/chat.js"></script>
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.0/handlebars.min.js"></script>
@@ -10,57 +14,45 @@
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
-
 </head>
 
 	<div th:fragment="headerFragment">
 		<div class="container">
-		<div class="header">
-			<div class="header_logo">
-					<a th:href="@{/}">
-						<img id="logo" src="/images/mainLogo.png" />
-					</a>
-			</div>
-		</div>
+			<span class="header_logo">
+				<a th:href="@{/}">
+					<img id="logo" src="/images/mainLogo.png">
+				</a>
+			</span>
 
-			<strong id ="alarm">
-
-			</strong>
-
-
-
-			<div>
-				<!--session에 로그인 유저 정보가 없다면 -->
+			<span class="loginAndInfo">
+				<!-- session에 로그인 유저 정보가 없다면 -->
 				<div th:if="${session.loginUser == null}">
-					<a th:href="@{/loginForm}">
+					<a th:href="@{/loginForm}" style="text-decoration: none">
 						<button class="btn btn-default" id="loginBtn">로그인/회원가입</button>
 					</a>
 				</div>
-				<!--session에 로그인 유저 정보가 있다면 -->
-				<div style="float:right" th:unless="${session.loginUser == null}">
-
-					<input type="hidden" id="username" th:value="${session.loginUser.userId}">
-
-					<!--session에 로그인한 유저의 권한이 Member라면 -->
-					<div th:if="${session.loginUser.role == 'ROLE_MEMBER'}">
-						일반 회원 계정입니다.<br>
-						<span th:text="${session.loginUser.userNick}" /><br>
-						<a href="/logout">
-							<button type="button">로그아웃</button>
-						</a>
-
-
-					</div>
-					<div th:if="${session.loginUser.role == 'ROLE_ADMIN'}">
-						관리자 계정입니다.<br>
-						<span th:text="${session.loginUser.userNick}" /><br>
-						<a href="/logout">
-							<button type="button">로그아웃</button>
-						</a>
-					</div>
+				<!-- session에 로그인 유저 정보가 있다면 -->
+				<div th:unless="${session.loginUser == null}" class="showInfo" id="showInfo" name="showInfo" th:onclick="showMore()">
+					<!--프로필 사진 -->
+					<!-- 회원의 프로필 사진 정보가 session에 없다면 -> default 이미지 지정-->
+					<span th:if="${session.loginUser.photoSys == null}">
+						<img class= "showPho" th:src="@{/images/member/happy_default.jpg}">
+					</span>
+					<!-- 회원의 프로필 사진 정보가 session에 있다면 -->
+					<span th:unless = "${session.loginUser.photoSys == null}">
+						<img class= "showPho" th:src="@{/images/member/user.png}">
+					</span>
+					<span th:text="${session.loginUser.userNick}" id="showNick"/>
 				</div>
-			</div>
-		<div id ="bar"></div>
+				
+			</span>
+			<a th:href="@{/logout}" style="text-decoration: none">
+				<button class="btn btn-default" type="button" id="logoutBtn">로그아웃</button>
+			</a>
+			<div id ="bar"></div>
 	</div>
+
+
+
 </div>
 </html>

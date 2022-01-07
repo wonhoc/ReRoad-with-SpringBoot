@@ -14,9 +14,10 @@ public class messageController {
     @Autowired
     private SimpMessagingTemplate simpMessagingTemplate;
 
-    @MessageMapping("chat/{to}")
+    @MessageMapping("/chat/{to}")
     public void sendMessage(@DestinationVariable String to, Model message, Principal principal){
-
+        System.out.println("handling send message: " + message + " to: " + to);
+        System.out.println("principal :" + principal);
             simpMessagingTemplate.convertAndSend("/topic/messages/" + to, message);
 
     }

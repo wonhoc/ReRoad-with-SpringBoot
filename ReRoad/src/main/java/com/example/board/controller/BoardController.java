@@ -1,35 +1,25 @@
 package com.example.board.controller;
 
-import com.example.board.dao.BoardDao;
 import com.example.board.service.BoardService;
 import com.example.board.vo.BoardFileVo;
 import com.example.board.vo.BoardVo;
 import com.example.board.vo.CommentVo;
-import com.example.board.vo.ReportVo;
-import com.example.common.FileVO;
-import com.example.member.vo.UserVo;
-import com.example.notice.vo.NoticeVO;
 import com.example.util.FileUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AbstractAuthenticationToken;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 @Controller
 @Slf4j

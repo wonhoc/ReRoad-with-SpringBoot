@@ -1,28 +1,76 @@
 $(document).ready(function() {
-    const url = 'http://localhost:8080';
+    let $chatHistory;
+    let $textarea;
+    let $chatHistoryList;
+    let username = $('#username').val();
+    let selectedUser = $('#userId').val();
 
-  function connectToChat(username){
+    let socket = new SockJS(url + '/chat');
+    stompClient = Stomp.over(socket);
 
-      console.log("connecting to chat...");
+    $('#addComBtn').on('click',function () {
 
-      let socket = new SockJS(url + '/chat');
-      stompClient = Stomp.over(socket);
-  }
-
-
+        function addMessage() {
+            sendMessage($('#comContent').val());
+        }
 
 
-    $('#addComBtn').on('click',function (){
-        let username = $('#username').val();
-        $.ajax({
-            url: url + '/registration' + username,
-            success:function (response){
-                console.log(`reponse : ${response}`)
-                connectToChat(username);
+        function init() {
+            cacheDOM();
+            bindEvents();
+        }
+
+        function bindEvents() {
+            $textarea.on('keyup', addMessageEnter.bind(this));
+        }
+
+        function cacheDOM() {
+            $chatHistory = $('.chat-history');
+            $textarea = $('#comContent');
+        }
+
+
+        function sendMessage(message) {
+
+            console.log(username);
+            // **************************************************************
+            sendMsg(username, message);
+            // **************************************************************
+            if (message.trim() !== '') {
+                $textarea.val('');
             }
-        })
+        }
 
-    })
+
+        function sendMsg(from, text) {
+
+            console.log('from : ', from, 'text : ', text);
+            console.log(`selectedUser : ${selectedUser}`);
+            console.log(`stompClient : ${stompClient}`);
+
+            stompClient.send('/app/chat/' + selectedUser, {}, JSON.stringify({
+                message: text,
+                fromLogin: from
+            }));
+
+        }
+
+
+        function addMessageEnter(event) {
+            // enter was pressed
+            if (event.keyCode === 13) {
+                addMessage();
+            }
+        }
+
+
+
+
+
+        init();
+    });
+
+
 
 
     $('#listComment').on('click', '.modifyComReqBtn', function() {
@@ -83,6 +131,7 @@ $(document).ready(function() {
             }
 
         })
+
     });
 
     $('.modifyComBtn').on('click',function () {

@@ -23,8 +23,8 @@ public class mainController {
     public String main(Model model) throws Exception {
         List<NoticeVO> noticeList  = this.noticeService.retrieveLastNotices();
         model.addAttribute("noticeList", noticeList);
-        
-       model.addAttribute("trainStList", trainScheduleService.retrieveTrainStinfo());
+        //지역별 기차역리스트 add
+        model.addAttribute("trainStList", trainScheduleService.retrieveTrainStinfo());
         
         return "main";
     }

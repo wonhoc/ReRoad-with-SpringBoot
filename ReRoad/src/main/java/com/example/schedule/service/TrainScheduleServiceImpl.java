@@ -21,7 +21,7 @@ public class TrainScheduleServiceImpl implements TrainScheduleService {
 	private final RestTemplate restTemplate;
 	
 	//서버 DNS주소
-	private final String SERVER_URL = "http://ec2-15-164-94-165.ap-northeast-2.compute.amazonaws.com";
+	private final String SERVER_URL = "http://ec2-54-180-79-188.ap-northeast-2.compute.amazonaws.com";
 	//도시별 기차역 정보를 요청 path
 	private final String GET_TRAIN_INFO_URL = "/api/citytrainstinfo";
 	
@@ -33,7 +33,7 @@ public class TrainScheduleServiceImpl implements TrainScheduleService {
 	
 	//도시별 기차역 조회
 	@Override
-	public ArrayList<TrainStInfoVo> retrieveTrainStinfo() throws Exception {
+	public ArrayList<CityTrainStInfoVo> retrieveTrainStinfo() throws Exception {
 		ResponseEntity<ApiResponseObject> responseEntity = restTemplate.getForEntity(SERVER_URL + GET_TRAIN_INFO_URL, ApiResponseObject.class); 
 		
 		//System.out.println("class : " + responseEntity.getClass());
@@ -48,12 +48,9 @@ public class TrainScheduleServiceImpl implements TrainScheduleService {
 		
 		Type listType = new TypeToken<ArrayList<CityTrainStInfoVo>>(){}.getType();
 		
-		List<CityTrainStInfoVo> list = gson.fromJson(json, listType);
+		ArrayList<CityTrainStInfoVo> list = gson.fromJson(json, listType);		
 		
-		System.out.println("List : " + list.toString());
-		
-		
-		return null;
+		return list;
 		
 	}//getTrainStinfo() end
 

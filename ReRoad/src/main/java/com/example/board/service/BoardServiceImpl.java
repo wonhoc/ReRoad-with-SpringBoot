@@ -163,7 +163,6 @@ public class BoardServiceImpl implements BoardService{
     public void registerBoard(BoardVo board) {
         this.boardDao.insertBoard(board);
         int no = this.boardDao.lastId();
-
             for (BoardFileVo file : board.getBoardFiles()) {
                 file.setBoardNo(no);
                 this.boardDao.insertBoardFile(file);

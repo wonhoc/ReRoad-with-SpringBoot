@@ -22,37 +22,43 @@ public class FileUtils {
     public static List uploadFiles(List<MultipartFile> filelist) throws Exception {
 
         List<BoardFileVo> boardFileList = new ArrayList<>();
+
+
+
         for (MultipartFile file : filelist) {
 
-            String originalFileName = file.getOriginalFilename();
+            if (file.getSize() != 0) {
 
-            String systemFileName = "";
-            File f = new File(UPLOAD_PATH + File.separator + originalFileName);
+                String originalFileName = file.getOriginalFilename();
 
-            if (f.exists()) {
-                systemFileName = originalFileName.substring(0, originalFileName.lastIndexOf(".")) + "_" + UUID.randomUUID() + originalFileName.substring(originalFileName.lastIndexOf("."));
-            } else {
-                systemFileName = originalFileName;
+                String systemFileName = "";
+                File f = new File(UPLOAD_PATH + File.separator + originalFileName);
+
+
+                if (f.exists()) {
+                    systemFileName = originalFileName.substring(0, originalFileName.lastIndexOf(".")) + "_" + UUID.randomUUID() + originalFileName.substring(originalFileName.lastIndexOf("."));
+                } else {
+                    systemFileName = originalFileName;
+                }
+
+                long fileSize = file.getSize();
+
+                String fullFilePath = UPLOAD_PATH + File.separator + systemFileName;
+
+
+                Path path = Paths.get(fullFilePath).toAbsolutePath();
+
+                BoardFileVo boardFile = new BoardFileVo();
+
+                boardFile.setOriginalFileName(originalFileName);
+                boardFile.setSystemFileName(systemFileName);
+                boardFile.setFileSize(fileSize);
+
+
+                file.transferTo(path.toFile());
+
+                boardFileList.add(boardFile);
             }
-
-            long fileSize = file.getSize();
-
-            String fullFilePath = UPLOAD_PATH + File.separator + systemFileName;
-
-
-            Path path = Paths.get(fullFilePath).toAbsolutePath();
-
-            BoardFileVo boardFile = new BoardFileVo();
-
-            boardFile.setOriginalFileName(originalFileName);
-            boardFile.setSystemFileName(systemFileName);
-            boardFile.setFileSize(fileSize);
-
-
-            file.transferTo(path.toFile());
-
-            boardFileList.add(boardFile);
-
         }
 
         return boardFileList;

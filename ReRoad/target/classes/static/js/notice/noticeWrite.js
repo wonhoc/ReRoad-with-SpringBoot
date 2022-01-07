@@ -42,7 +42,7 @@ $(document).ready(function () {
 
     });
 
-    //파일 이름 띄우기
+    //파일 이름 띄우기 및 유효성 검사
     $("input[type=file]").change(function () {
         $('#file_name').empty();
         $('#saveBtn').attr("disabled",false);
@@ -50,12 +50,14 @@ $(document).ready(function () {
         var files = fileInput.files;
         var file=null;
         let html = "<ul>";
+
         if(files.length==1){
+            console.log(files[0].size);
             if(files[0].size>41943040){
                 const sizeErr = '파일크기 초과!(최대 40MB)';
-                html += "<li id='fileName["+i+"]'>"+file.name+sizeErr+"</li>";
-                $('#fileName[i]').css('color', 'red');
+                html += "<li class='errli' id='fileName["+i+"]'>"+sizeErr+"</li>";
                 $('#saveBtn').attr("disabled", true);
+                $("#file_name").html(html);
             }
         } else {
             for (var i = 0; i < files.length; i++) {
@@ -63,8 +65,8 @@ $(document).ready(function () {
                 if (file.size > 41943040)  //파일이 40MB이상이면
                 {
                     const sizeErr = '파일크기 초과!(최대 40MB)';
-                    html += "<li id='fileName[" + i + "]'>" + file.name + sizeErr + "</li>";
-                    $('#fileName[i]').css('color', 'red');
+                    html += "<li class='errli' id='fileName[" + i + "]'>" + file.name + sizeErr + "</li>";
+
                     $('#saveBtn').attr("disabled", true);
                 } else {
                     html += "<li id='fileName[" + i + "]'>" + file.name + "</li>";

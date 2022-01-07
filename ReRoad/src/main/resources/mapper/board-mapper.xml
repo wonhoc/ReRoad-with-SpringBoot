@@ -48,9 +48,17 @@
     <!-- 신고 -->
     <resultMap id="resultMapReport" type="ReportVo">
         <result property="userId" javaType="string" column="userId"  jdbcType="VARCHAR"/>
-        <result property="repoter" javaType="string" column="repoter"  jdbcType="VARCHAR"/>
+        <result property="reporter" javaType="string" column="reporter"  jdbcType="VARCHAR"/>
         <result property="boardNo" javaType="int" column="boardNo"  jdbcType="INTEGER"/>
+        <result property="boardTitle" javaType="string" column="boardTitle"  jdbcType="VARCHAR"/>
     </resultMap>
+
+    <!-- 신고 게시글 목록 조회 -->
+    <select id="selectReport" resultMap="resultMapReport" statementType="CALLABLE">
+        SELECT reporter, (SELECT boardTitle FROM board b WHERE b.boardNo = r.boardNo) AS boardTitle, userId
+        FROM report r
+        WHERE userId = #{userId}
+    </select>
 
 
 
@@ -105,13 +113,13 @@
     <parameterMap id="parameterReportMap" type="ReportVo">
         <parameter property="boardNo" javaType="int" jdbcType="INTEGER" mode="IN" />
         <parameter property="userId" javaType="string" jdbcType="VARCHAR" mode="IN" />
-        <parameter property="repoter" javaType="string" jdbcType="VARCHAR" mode="IN" />
+        <parameter property="reporter" javaType="string" jdbcType="VARCHAR" mode="IN" />
     </parameterMap>
 
     <!-- 신고조회 -->
     <parameterMap id="parameterReportUpdate" type="ReportVo">
         <parameter property="boardNo" javaType="int" jdbcType="INTEGER" mode="IN" />
-        <parameter property="repoter" javaType="string" jdbcType="VARCHAR" mode="IN" />
+        <parameter property="reporter" javaType="string" jdbcType="VARCHAR" mode="IN" />
     </parameterMap>
 
     <!-- 댓글 -->

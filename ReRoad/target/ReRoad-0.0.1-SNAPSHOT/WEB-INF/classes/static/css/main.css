@@ -80,7 +80,7 @@
 	display: inline-block;
 }
 
-#selOneway{
+
 	background-color: teal;
 	height: 100%;
 	border-top-left-radius: 15px;
@@ -102,7 +102,6 @@
 	height: 40%;
 	
 }
-
 .searchBody{
 	
 	 float: left;
@@ -130,6 +129,7 @@
 	position: absolute;
 	top: 92%;
 	right: 30%;
+
 }
 
 .btn-primary {

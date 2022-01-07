@@ -11,6 +11,12 @@
     height: auto;
     width: 35em;
 }
+/*버튼 공통 설정 */
+.btn {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+
+}
 /*회원가입 + 상세 설명 Div */
 .welcome_join_Text {
     margin-left: 1.5em;
@@ -23,7 +29,7 @@
 }
 /*'회원가입' 하단 구분선 */
 .title_devide {
-    width: 35%;
+    width: 32%;
     height: 5px;
     background-color: #414141;
     margin-top: -0.5em;
@@ -81,6 +87,18 @@
     margin-top: 1em;
 
 }
+/* 뒤로 버튼 별도 디자인 */
+#backButton {
+    background-color: white;
+    border-color: RGB(1,121,122);
+    font-weight: bolder;
+}
+#backButton:hover {
+    background-color: #ff7f7f;
+    border-color: #ff7f7f;
+    color: white;
+}
+
 
 
 

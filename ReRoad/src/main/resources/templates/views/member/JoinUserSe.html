@@ -44,6 +44,9 @@
                     <span th:style="${'color:red;'}" th:text="${valid_userNick}"></span>
                 </div>
                 <button class="btn btn-primary btn-lg btn-block" type="submit" id="joinButton" name="joinButton">회원가입</button>
+                <a th:href="@{joinUser}">
+                    <button class="btn btn-default btn-lg btn-block" type="button" id="backButton" name="backButton"> 뒤로 </button>
+                </a>
             </div>
         </div>
 

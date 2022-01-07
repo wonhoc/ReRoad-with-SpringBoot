@@ -7,9 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 
 @Repository
@@ -153,4 +151,15 @@ public class BoardDaoImpl implements BoardDao {
     public List<ReportVo> selectReportList(String userId) {
         return this.sqlSession.selectList("Board.selectReport", userId);
     }
+
+    @Override
+    public List<BoardVo> readRecentList(String userId) {
+        return this.sqlSession.selectList("Board.recentList", userId);
+    }
+
+    @Override
+    public List<BoardVo> readUserBoardList(String userId) {
+        return this.sqlSession.selectList("Board.userBoardList", userId);
+    }
+
 }

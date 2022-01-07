@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout/defaultLayout">
+<th:block layout:fragment="css">
+    <link rel="stylesheet" th:href="@{/css/member/listUser.css}">
+</th:block>
+
+<head>
+   <script>
+           $(document).ready(function () {
+               $.ajax({
+                   url: '/member/listUserBoard',
+                   method: 'GET',
+                   dataType: 'json',
+                   success: function (data) {
+                       $('#pagination-div').twbsPagination({
+                           totalPages: Math.ceil(data.length / 10),   // 총 페이지 번호 수
+                           visiblePages: 5,   // 하단에서 한번에 보여지는 페이지 번호 수
+                           startPage: 1, // 시작시 표시되는 현재 페이지
+                           initiateStartPageClick: true,   // 플러그인이 시작시 페이지 버튼 클릭 여부 (default : true)
+                           first: "<<",   // 페이지네이션 버튼중 처음으로 돌아가는 버튼에 쓰여 있는 텍스트
+                           prev: "<",   // 이전 페이지 버튼에 쓰여있는 텍스트
+                           next: ">",   // 다음 페이지 버튼에 쓰여있는 텍스트
+                           last: ">>",   // 페이지네이션 버튼중 마지막으로 가는 버튼에 쓰여있는 텍스트
+                           nextClass: "page-item next",   // 이전 페이지 CSS class
+                           prevClass: "page-item prev",   // 다음 페이지 CSS class
+                           lastClass: "page-item last",   // 마지막 페이지 CSS calss
+                           firstClass: "page-item first",   // 첫 페이지 CSS class
+                           pageClass: "page-item",   // 페이지 버튼의 CSS class
+                           activeClass: "active",   // 클릭된 페이지 버튼의 CSS class
+                           disabledClass: "disabled",   // 클릭 안된 페이지 버튼의 CSS class
+                           anchorClass: "page-link",   //버튼 안의 앵커에 대한 CSS class
+
+                           onPageClick: function (event, page) {
+
+                               //클릭 이벤트
+                               let html = "<tr>";
+                               let report;
+                               let startRow = (page - 1) * 10 ;
+                               let endRow = page * 10;
+                               let totalCount = data.length
+                               if (endRow > totalCount)
+                               {
+                                   endRow = totalCount;
+                               }
+                               let totalPages = Math.ceil(totalCount/10);
+                               if (totalCount%10 > 0) {
+                                   totalPages++;
+                               }
+                               let startPage = ((page - 1)/5) * 5 + 1;
+                               let endPage = startPage + 5 - 1;
+                               if(endPage > totalPages) {    //
+                                   endPage = totalPages;
+                               }
+                               console.log(page);
+                               let index = (page*10) -9;
+                               for (let i = startRow; i < endRow ; i++) {
+                                   html += '<td><input name="rowCheck" type="checkbox" value=' + data[i].boardNo + '></td>';
+
+                                   html += '<td>' + index++ + '</td>';
+                                   html += '<td><a href="/detailBoard/' + data[i].boardNo + '">' + data[i].boardTitle + '</a></td>';
+                                   html += '<td>' + data[i].boardWdate +' </td>';
+                                   html += '<td>' + data[i].boardCount +' </td>';
+                                   html += '<td>' + data[i].commentCount +' </td>';
+                                   html += '<td>' + data[i].recomCount +' </td></tr>';
+
+                               }
+                               $("#boards").empty();
+
+                               //document.getElementById("userList").innerHTML(html);
+                               $("tbody").html(html);
+
+                           }
+                       });
+                   },
+                   error: function (error) {
+                       console.log(error);
+
+                   }
+               });
+
+               $(function(){
+                   var chkObj = document.getElementsByName("rowCheck");
+                   var rowCnt = chkObj.length;
+
+                   $("input[name='allCheck']").click(function(){
+                       var chk_listArr = $("input[name='rowCheck']");
+                       for (var i = 0; i<chk_listArr.length; i++){
+                           chk_listArr[i].checked = this.checked;
+                       }
+                   });
+                   $("input[name='rowCheck']").click(function(){
+                       if ($("input[name='rowCheck']:checked").length == rowCnt){
+                           $("input[name='allCheck']")[0].checked = true;
+                       } else {
+                           $("input[name='allCheck']")[0].checked = false;
+                       }
+                   });
+               });
+
+
+               $('#deleteBtn').on('click', function() {
+
+                   var list = $("input[name='rowCheck']:checked").length;
+                   if (list == 0)  {
+                       alert("선택된 리뷰가 없습니다.");
+                       return;
+                   }
+                   var valueArr = [];
+
+                   $("input[name='rowCheck']:checked").each(function () {
+                       valueArr.push($(this).val());
+                   });
+                   console.log("valueArr " + valueArr);
+
+                   var chk = confirm("정말 삭제하시겠습니까?");
+
+                   if (chk) {
+                       console.log("valueArr " + JSON.stringify(valueArr));
+
+                       $.ajax({
+                           url : "/member/userDeleteList",
+                           method : "post",
+                           dataType: "json",
+                           data: JSON.stringify(valueArr),
+                           contentType: "application/json",
+                           success: function (data) {
+                               update(data.boards);
+                           },
+                           error: function (){
+                               console.log(error);
+                           }
+
+
+                       });
+                   }
+               });
+
+
+           });
+
+
+           function update(data) {
+
+               $('#pagination-div').twbsPagination('destroy');
+               document.getElementById('page-content').innerHTML ="<div id='pagination-div'></div>";
+
+               $('#pagination-div').twbsPagination({
+                   totalPages: Math.ceil(data.length / 10),   // 총 페이지 번호 수
+                   visiblePages: 5,   // 하단에서 한번에 보여지는 페이지 번호 수
+                   startPage: 1, // 시작시 표시되는 현재 페이지
+                   initiateStartPageClick: true,   // 플러그인이 시작시 페이지 버튼 클릭 여부 (default : true)
+                   first: "<<",   // 페이지네이션 버튼중 처음으로 돌아가는 버튼에 쓰여 있는 텍스트
+                   prev: "<",   // 이전 페이지 버튼에 쓰여있는 텍스트
+                   next: ">",   // 다음 페이지 버튼에 쓰여있는 텍스트
+                   last: ">>",   // 페이지네이션 버튼중 마지막으로 가는 버튼에 쓰여있는 텍스트
+                   nextClass: "page-item next",   // 이전 페이지 CSS class
+                   prevClass: "page-item prev",   // 다음 페이지 CSS class
+                   lastClass: "page-item last",   // 마지막 페이지 CSS calss
+                   firstClass: "page-item first",   // 첫 페이지 CSS class
+                   pageClass: "page-item",   // 페이지 버튼의 CSS class
+                   activeClass: "active",   // 클릭된 페이지 버튼의 CSS class
+                   disabledClass: "disabled",   // 클릭 안된 페이지 버튼의 CSS class
+                   anchorClass: "page-link",   //버튼 안의 앵커에 대한 CSS class
+
+                   onPageClick: function (event, page) {
+
+                       //클릭 이벤트
+                       let html = "<tr>";
+                       let report;
+                       let startRow = (page - 1) * 10 ;
+                       let endRow = page * 10;
+                       let totalCount = data.length
+                       if (endRow > totalCount)
+                       {
+                           endRow = totalCount;
+                       }
+                       let totalPages = Math.ceil(totalCount/10);
+                       if (totalCount%10 > 0) {
+                           totalPages++;
+                       }
+                       let startPage = ((page - 1)/5) * 5 + 1;
+                       let endPage = startPage + 5 - 1;
+                       if(endPage > totalPages) {    //
+                           endPage = totalPages;
+                       }
+                       console.log(page);
+                       let index = (page*10) -9;
+                       for (let i = startRow; i < endRow ; i++) {
+                           html += '<td><input name="rowCheck" type="checkbox" value=' + data[i].boardNo + '></td>';
+
+                           html += '<td>' + index++ + '</td>';
+                           html += '<td><a href="/detailBoard/' + data[i].boardNo + '">' + data[i].boardTitle + '</a></td>';
+                           html += '<td>' + data[i].boardWdate +' </td>';
+                           html += '<td>' + data[i].boardCount +' </td>';
+                           html += '<td>' + data[i].commentCount +' </td>';
+                           html += '<td>' + data[i].recomCount +' </td></tr>';
+
+                       }
+                       $("#boards").empty();
+
+
+                       $("tbody").html(html);
+                   }
+               });
+           }
+   </script>
+</head>
+<section layout:fragment="content">
+    <div class="container">
+        <input type="hidden" id="boards" th:value="${boards}">
+        <div class="list_title_box">
+            <h1 class="list_title">내가 쓴 리뷰 목록</h1>
+            <div class="list_devide"></div>
+        </div>
+
+        <div>
+            <table class="list_table">
+                <thead class="table_head">
+                <tr>
+                    <th><input id="allCheck" type="checkbox" name="allCheck"></th>
+                    <th>번호</th>
+                    <th>리뷰제목</th>
+                    <th>작성날짜</th>
+                    <th>조회수</th>
+                    <th>댓글수</th>
+                    <th>추천수</th>
+                </tr>
+                </thead>
+                <tbody id="boards">
+                </tbody>
+            </table>
+            <input type="button" value="삭제" class="btn-outline-info" id="deleteBtn" >
+            <div id="page-content">
+                <div id="pagination-div"></div>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+</html>

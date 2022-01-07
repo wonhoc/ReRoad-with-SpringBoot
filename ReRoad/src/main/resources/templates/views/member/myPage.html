@@ -34,11 +34,34 @@
             <h2 class="join_title">활동내역</h2>
             <div class="join_devide"></div>
         </div >
-        <div>
-            작성한 리뷰수 : <span id="boardCount" th:text="${user.boardCount}"></span>
-        </div>
-        <div>
-            작성한 댓글수 : <span id="comCount" th:text="${user.comCount}"></span>
+        <div id="right_table">
+            <table class="list_table">
+                <thead class="table_head">
+                <h3>최근 작성한 게시글</h3>
+                <tr>
+                    <td><a th:href="@{/member/myBoardList}"/> + 더보기</td>
+                </tr>
+                <tr>
+                    <th>번호</th>
+                    <th>게시글제목</th>
+                    <th>날짜</th>
+                    <th>조회수</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="board, num : ${board}">
+                    <td th:text="${num.count}"></td>
+                    <td th:if="${#strings.length(board.boardTitle) < 15}" class="list_title"><a
+                            th:href="@{/detailBoard/{boardNo}(boardNo=${board.boardNo})}"
+                            th:text="${board.boardTitle}"></a></td>
+                    <td th:if="${#strings.length(board.boardTitle) >= 15}" class="list_title"><a
+                            th:href="@{/detailBoard/{boardNo}(boardNo=${board.boardNo})}"
+                            th:text="${board.boardTitle}"></a></td>
+                    <td th:text="${#strings.substring(board.boardWdate,0,11)}"></td>
+                    <td th:text="${board.boardCount}"></td>
+                </tr>
+                </tbody>
+            </table>
         </div>
         <div>
             <a th:href="@{/member/modifyUserForm}">

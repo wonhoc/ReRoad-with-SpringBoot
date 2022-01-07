@@ -228,4 +228,15 @@ public class BoardServiceImpl implements BoardService{
     public List<ReportVo> retrieveReportList(String userId) {
         return this.boardDao.selectReportList(userId);
     }
+
+    @Override
+    public List<BoardVo> retrieveRecentBoardList(String userId) {
+        return this.boardDao.readRecentList(userId);
+    }
+
+    @Override
+    public List<BoardVo> retrieveUserBoardList(String userId) {
+        return this.boardDao.readUserBoardList(userId);
+    }
+
 }

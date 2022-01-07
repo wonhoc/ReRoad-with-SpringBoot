@@ -1,5 +1,7 @@
 package com.example.member.contorller;
 
+import com.example.board.service.BoardService;
+import com.example.board.vo.BoardVo;
 import com.example.member.service.MailService;
 import com.example.member.service.UserService;
 import com.example.member.vo.MailVo;
@@ -32,6 +34,9 @@ import java.util.Random;
 public class UserController {
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private BoardService boardService;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -285,22 +290,16 @@ public class UserController {
 
     // 회원정보수정
     @PostMapping("/member/modifyUser")
-    public String modifyUser(@Valid @ModelAttribute UserVo user, Model model, HttpServletRequest request,
-                             @AuthenticationPrincipal User prin, BindingResult bindingResult) {
+    public String modifyUser(@Valid @ModelAttribute UserVo user, BindingResult bindingResult,
+                             Model model, HttpServletRequest request,
+                             @AuthenticationPrincipal User prin) {
 
         //DB 유효성 체크 결과 에러가 발생할 경우 수정폼으로 돌아감
         if (bindingResult.hasErrors()) {
-            Map<String, String> map = new HashMap<>();
-            for (FieldError error: bindingResult.getFieldErrors()) {
-                String validKey = String.format("valid_%s", error.getField());
-                System.out.println(validKey);
-                map.put(validKey, error.getDefaultMessage());
-
-
-                System.out.println(map.get("valid_userPwd").toString());
+            Map<String, String> map = userService.validate(bindingResult);
+            for(String key: map.keySet()) {
+                model.addAttribute(key,map.get(key));
             }
-            model.addAttribute("bindError", map);
-
             String userId = prin.getUsername();
             UserVo user1 = this.userService.retrieveUser(userId);
 
@@ -343,8 +342,12 @@ public class UserController {
         String userId = userDetails.getUsername();
 
         UserVo user = this.userService.retrieveUser(userId);
-
         model.addAttribute("user", user);
+
+        List<BoardVo> board = this.boardService.retrieveRecentBoardList(userId);
+        model.addAttribute("board", board);
+
+
         return "views/member/myPage";
     }
 

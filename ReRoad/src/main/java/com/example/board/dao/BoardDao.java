@@ -3,7 +3,6 @@ package com.example.board.dao;
 import com.example.board.vo.*;
 
 import java.util.List;
-import java.util.Map;
 
 public interface BoardDao {
     //목록보기
@@ -43,4 +42,9 @@ public interface BoardDao {
     void insertReport(ReportVo report);
     ReportVo selectReport(ReportVo report);
     List<ReportVo> selectReportList(String userId);
+
+    //회원 게시글 보기
+    List<BoardVo> readRecentList(String userId);
+    List<BoardVo> readUserBoardList(String userId);
+
 }

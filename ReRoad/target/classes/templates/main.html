@@ -4,17 +4,18 @@
 	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	  layout:decorate="layout/defaultLayout">
 <th:block layout:fragment="css">
+	<link rel="stylesheet" th:href="@{/css/jquery-ui.min.css}" />
 	<link rel="stylesheet" th:href="@{/css/main.css}">
 </th:block>
 <th:block layout:fragment="script">
-
+	
 	<script th:src="@{/js/main.js}"></script>
-
+	<script th:src="@{/js/jquery-ui.min.js}"></script>
 </th:block>
 <head>
 </head>
-<section layout:fragment="content">
-	<div class="container">
+<section layout:fragment="content" >
+	<div class="container" data-spy="affix">
 
 	
 		<div id="mainwrapper">
@@ -45,9 +46,25 @@
 					    	<div class="bodyTextdiv">도착지</div>
 					    </div>
 					    <div id="date" class="searchBody">
-					    	<div class="bodyTextdiv">날짜</div>
+					    	<div class="bodyTextDatediv">날짜</div>				    	
 					    </div>	
-					    <div id="hideOnbush">			
+					    <div id="hideOnbush">
+					    
+					    <input class="form-control" id="searchInput" type="text" placeholder="Search..">
+					    
+					    <div th:if="${#lists.size(trainStList) == 0}">
+					    	<p><strong>API불러오기 실패</strong></p>
+					    </div>
+					    
+					     <div th:if="${#lists.size(trainStList) > 0}">
+					   
+					     	<div class="listWrapper" th:each="trainSt:${trainStList}">
+					     		<div class="cityName" th:text="${trainSt.cityName}"></div>			     		
+						     	<div class="stNameWrapper" >					     		
+				     				<div class="stNameIn" th:each="trainSts:${trainSt.trainStInfo}">[[${trainSts.trainStName} +'역' + '&nbsp;']]</div>	      							     								     				     						     		  							     					     				     									   					     						    							     			     				     									   		     	  												     						    							     	
+						     	</div>					     					
+					     	</div>				    	
+					    </div>     		
 				    	</div>				   		  
 				    </div>
 				   

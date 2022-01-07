@@ -16,8 +16,7 @@
     <title>로그인 페이지</title>
 </head>
 <section layout:fragment="content">
-
-    <div class="loginContainer">
+     <div class="loginContainer" style=" position:relative;z-index:2">
         <div class="welcome_login">
             <h1 class="form-signin-heading">로그인</h1>
             <div class = "title_devide"></div>
@@ -29,6 +28,9 @@
         </div>
 
         <form class="form_signin" method="POST">
+            <div id="loginFailLog">
+                <span id = loginFailmessage th:text="${loginFail}"></span>
+            </div>
             <div class="inputidpwd">
                 <label class = "idcss" for="userName">ID</label>
                 <input class="form-control" type="text" id="username" name="username" placeholder="Example01@email.com"/>
@@ -52,9 +54,7 @@
                 비밀번호를 잊어버렸다면 <strong><a th:href="@{/forgetPwd}">비밀번호 재설정</a></strong><br>
 
             </div>
-
-    </form>
+        </form>
     </div>
-
 </section>
 </html>

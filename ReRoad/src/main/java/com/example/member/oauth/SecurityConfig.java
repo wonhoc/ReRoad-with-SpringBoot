@@ -41,10 +41,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.formLogin()
                 .loginPage("/loginForm") // 로그인 폼 경로
                 .defaultSuccessUrl("/loginOk", true) // 로그인 성공 시 이동할 URL
-                .failureUrl("/loginFail"); // 로그인 실패 시 이동 URL
-
-        //권한이 없는 경로로 접근했을 경우
-        http.exceptionHandling().accessDeniedPage("/accessDenied");
+                .failureForwardUrl("/loginFail");// 로그인 실패 시 이동 URL
 
         //로그아웃
         http.logout()

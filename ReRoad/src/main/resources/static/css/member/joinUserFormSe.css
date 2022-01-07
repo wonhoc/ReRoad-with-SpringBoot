@@ -76,6 +76,11 @@
     border-color: #cbcbcb ;
 
 }
+/* 회원가입 버튼 디자인*/
+#joinButton {
+    margin-top: 1em;
+
+}
 
 
 

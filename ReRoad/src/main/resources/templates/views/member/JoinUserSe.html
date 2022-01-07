@@ -32,7 +32,9 @@
                 </div>
                 <label class="idcss" for="userPwd">Password</label>
                 <input class="form-control" type="password" id="userPwd" name="userPwd">
-                <div id="checkPwdformat"></div>
+                <div id="checkPwdformat">
+                    <span th:style="${'color:red'}" th:text="${valid_userPwd}"></span>
+                </div>
                 <label class="idcss" for="reInputPwd">Password 재입력</label>
                 <input class="form-control" type="password" id="reInputPwd" name="reInputPwd">
                 <div id="checkPwdOneMore"></div>

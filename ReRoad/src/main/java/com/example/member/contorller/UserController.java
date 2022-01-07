@@ -67,7 +67,18 @@ public class UserController {
 
     //로그인이 실패했을 경우
     @PostMapping("/loginFail")
-    public String forFailer() {return "views/member/loginForm";}
+    public String forFailer(@RequestParam ("username") String userId,  Model model) {
+        // 입력한 ID 값을 가져와서 DB에서 중복 검사
+        int checkNum = this.userService.checkId(userId);
+        // 중복한 값이 있다면 비밀번호 오류로 안내
+        // 중복한 값이 없다면 가입하지 않은 이메일로 안내
+        if (checkNum == 1) {
+            model.addAttribute("loginFail","비밀번호가 잘못되었습니다.입력하신 정보를 확인해주세요.");
+        } else {
+            model.addAttribute("loginFail", "해당 이메일로 가입한 회원 정보를 찾을 수 없습니다.");
+        }
+        return "views/member/loginForm";
+    }
 
     @GetMapping("/joinUser")
     public String forJoin() { return "views/member/JoinUser";}
@@ -122,6 +133,7 @@ public class UserController {
             Map<String, String> map = userService.validate(bindingResult);
             for(String key: map.keySet()) {
                 model.addAttribute(key,map.get(key));
+                model.addAttribute("userId", user.getUserId());
             }return "views/member/JoinUserSe";
         } else {
             // 에러가 없을 경우 Password 암호화 후 DB에 등록

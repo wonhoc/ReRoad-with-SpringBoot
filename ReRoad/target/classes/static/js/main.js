@@ -16,7 +16,7 @@ $(document).ready(function(){
 	});
 	//편도, 왕복선택
 	$('.tripType').click(function(){	
-		$(this).css('background-color', 'rgb(242,242,242)');
+		$(this).css('background-color', 'rgb(233,233,233);');
 		$(this).prevAll().css('background-color', 'teal');
 		$(this).nextAll().css('background-color', 'teal');
 		
@@ -42,7 +42,8 @@ $(document).ready(function(){
 				$('#hideOnbush').show();
 				tripSel = $(this);
 			}else {
-				$('#hideOnbush').hide(); }//if end
+				$('#hideOnbush').hide(); 
+		}//if end
 	});
 	
 	//선택창 숨기기
@@ -53,6 +54,7 @@ $(document).ready(function(){
 	//역 선택 보여주기
 	$('.stNameIn').click(function(){	
 		tripSel.children('.bodyTextdiv').text($(this).text());
+		tripSel.children('.selLo').val($(this).attr('value'));
 	});
 	
 	//검색어 입력
@@ -69,16 +71,49 @@ $(document).ready(function(){
 		
 		if($('#arr').children('.bodyTextdiv').text() == $('#dep').children('.bodyTextdiv').text()){
 			alert('출발지와 도착지가 서로 같습니다.');
+		}else{
+			$('#ScSelectForm').submit();
 		}
 	});
 	
+	
+	
 	//날짜 입력
 	$('#date').click(function(){
-		$('#date').datepicker();
-		
+	
+		$('#inputDatepicker').datepicker({
+			dayNamesMin: ['월', '화', '수', '목', '금', '토', '일'],
+			monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+			monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+			dateFormat : 'yymmdd',
+			showButtonPanel: true,
+			closeText: '닫기',		
+			onSelect : function(){
+				//선택시 선택창의 값이 바뀐다
+				let yymmdd = $('#inputDatepicker').val();
+				$('.bodyTextDatediv').text(dateCon(yymmdd));
+				$('.bodyTextDatediv').css('font-size', '25px');
+				$('#startDate').val(yymmdd);
+			}
+			
+			
+			
+		});
+		$('#inputDatepicker').show().focus().hide();	
 	});
 	
 	
 	
 	
 });
+
+//날짜 포멧 변환
+function dateCon(date){
+	
+	let mon = date.substr(5,1);
+	let day = date.substr(6,2);
+	let ymd = mon + '월' + day + '일';
+	
+	return ymd;
+	
+}//dateCon() end

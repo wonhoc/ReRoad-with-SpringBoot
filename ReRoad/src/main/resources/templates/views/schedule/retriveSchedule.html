@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/defaultLayout}">
+<th:block layout:fragment="script">
+    <script th:src="@{/js/schedule/retriveSchedule.js}"></script>
+</th:block>
+<th:block layout:fragment="css">
+	<link rel="stylesheet" th:href="@{/css/schedule/retriveSchedule.css}">
+</th:block>
+<head>
+</head>
+<section class="container" layout:fragment="content">
+ 	<h1>안녕!!</h1>
+</section>
+</html>

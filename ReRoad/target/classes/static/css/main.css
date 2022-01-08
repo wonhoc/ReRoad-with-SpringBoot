@@ -31,17 +31,19 @@
 	height: 80%;
 	position: absolute;
 	left: 5%;
-	top:20%;	
+	top:20%;
+	padding: 0;
 }
 
 #headWrapper{
-	width: 100%;
 	height: 10%;
+	padding: 0;
 }
 
 .searchBoxHead{
 	font-weight: 900;
 	height: 100%;
+	cursor: pointer;
 }
 
 .searchBoxHead:hover{
@@ -80,6 +82,8 @@
 	background-color: rgb(233,233,233);
 	height: 100%;
 	border-top-left-radius: 15px;
+	padding: 0;
+	cursor: pointer;
 	
 }
 
@@ -87,6 +91,7 @@
 	background-color: teal;
 	height: 100%;
 	border-top-right-radius: 15px;
+	cursor: pointer;
 }
 
 #bodyWrapper{
@@ -129,11 +134,25 @@
 	background-color: teal;
 }
 
+#inputDatepicker{
+	
+	width: 0;
+	height: 0;
+	display: inline;
+	position: absolute;	
+	top: 90%;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	right: 40%;
+}
+
 #btnSearch{
-	position: absolute;
-	top: 92%;
-	right: 30%;
+	height : 15%;
 	z-index: 0;
+	position: absolute;
+	top: 90%;
+	right: 25%;
 }
 
 .btn-primary {
@@ -203,6 +222,16 @@
 .stNameIn{
 	font-size: 20px;
 	display: inline-block;
+	 margin: 0 0 0 0;
+    padding: 0 0 0 0;
+    border : 0;
+}
+
+.olSt{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	
 }
 
 .stNameIn:hover{

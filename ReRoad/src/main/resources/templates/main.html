@@ -20,6 +20,7 @@
 	
 		<div id="mainwrapper">
 			<img src="/images/메인페이지버스.png" alt="image" id="mainImage">
+			<form action="/retriveSchedule" method="GET" id="ScSelectForm">
 			<div id="searchBox" class="row text-center">
 				<!-- 헤드 -->
 				<div id="headWrapper">
@@ -41,12 +42,17 @@
 				    <div id="bodyWrapper">	    
 					    <div id="dep" class="searchBody">
 					    	<div class="bodyTextdiv">출발지</div>
+					    	<input type="hidden" class="selLo" id="depLo" name ="depLo">
 					    </div>
 					    <div id="arr" class="searchBody">
 					    	<div class="bodyTextdiv">도착지</div>
+					    	<input type="hidden" class="selLo" id="arrLo" name ="arrLo">
 					    </div>
 					    <div id="date" class="searchBody">
-					    	<div class="bodyTextDatediv">날짜</div>				    	
+					    	<div class="bodyTextDatediv">날짜</div>
+					    	<input type="text" id="inputDatepicker" name="startDate">	
+					    	<input type="hidden" id="startDate" name ="startDate">
+					    	<input type="hidden" id="arrDate" name ="arrDate" value="none">	    	
 					    </div>	
 					    <div id="hideOnbush">
 					    
@@ -60,17 +66,19 @@
 					   
 					     	<div class="listWrapper" th:each="trainSt:${trainStList}">
 					     		<div class="cityName" th:text="${trainSt.cityName}"></div>			     		
-						     	<div class="stNameWrapper" >					     		
-				     				<div class="stNameIn" th:each="trainSts:${trainSt.trainStInfo}">[[${trainSts.trainStName} +'역' + '&nbsp;']]</div>	      							     								     				     						     		  							     					     				     									   					     						    							     			     				     									   		     	  												     						    							     	
+						     	<div class="stNameWrapper" >
+						     		<ol class="olSt">				     		
+				     				<li class="stNameIn" th:each="trainSts:${trainSt.trainStInfo}" th:value="${trainSts.trainStId}">[[${trainSts.trainStName} +'역' + '&nbsp;']]</li>	      							     								     				     						     		  							     					     				     									   					     						    							     			     				     									   		     	  												     						    							     	
+						     		</ol>
 						     	</div>					     					
 					     	</div>				    	
 					    </div>     		
 				    	</div>				   		  
 				    </div>
-				   
+				    <button type="button" id="btnSearch" class="btn btn-primary">검색</button>				
 				 </div>
 			</div>
-			 <button type="button" id="btnSearch" class="btn btn-primary">검색</button>
+			</form>	
 		</div>
 
 		<div id="left_table">

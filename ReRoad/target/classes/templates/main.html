@@ -8,9 +8,11 @@
 	<link rel="stylesheet" th:href="@{/css/main.css}">
 </th:block>
 <th:block layout:fragment="script">
-	
 	<script th:src="@{/js/main.js}"></script>
 	<script th:src="@{/js/jquery-ui.min.js}"></script>
+	<script th:src="@{/js/tooltip.js}"></script>
+	<script th:src="@{/js/popover.js}"></script>
+	<script th:src="@{/js/popper.min.js}"></script>
 </th:block>
 <head>
 </head>
@@ -41,16 +43,17 @@
 			    <!-- 바디 -->
 				    <div id="bodyWrapper">	    
 					    <div id="dep" class="searchBody">
-					    	<div class="bodyTextdiv">출발지</div>
+					    	
+					    	<div class="bodyTextdiv" id="bodyDep" data-toggle="popover" data-placement="top">출발지</div>
 					    	<input type="hidden" class="selLo" id="depLo" name ="depLo">
 					    </div>
 					    <div id="arr" class="searchBody">
-					    	<div class="bodyTextdiv">도착지</div>
+					    	<div class="bodyTextdiv" id="bodyArr" data-toggle="popover" data-placement="top">도착지</div>
 					    	<input type="hidden" class="selLo" id="arrLo" name ="arrLo">
 					    </div>
 					    <div id="date" class="searchBody">
-					    	<div class="bodyTextDatediv">날짜</div>
-					    	<input type="text" id="inputDatepicker" name="startDate">	
+					    	<div class="bodyTextDatediv" id="bodyDate" data-toggle="popover" data-placement="top">날짜</div>
+					    	<input type="text" id="inputDatepicker">	
 					    	<input type="hidden" id="startDate" name ="startDate">
 					    	<input type="hidden" id="arrDate" name ="arrDate" value="none">	    	
 					    </div>	
@@ -74,8 +77,8 @@
 					     	</div>				    	
 					    </div>     		
 				    	</div>				   		  
-				    </div>
-				    <button type="button" id="btnSearch" class="btn btn-primary">검색</button>				
+				    </div>			  
+				    <button type="button" id="btnSearch" class="btn btn-primary" data-toggle="popover" data-placement="top">검색</button>				
 				 </div>
 			</div>
 			</form>	

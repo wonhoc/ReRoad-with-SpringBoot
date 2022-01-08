@@ -187,9 +187,14 @@
     z-index: 9;
 }
 
+/*
+	팝오버 설정
+*/
 
-
-
+.popover-content{
+	font-size: 10px;
+	color: black;
+}
 
 
 #hideOnbush{

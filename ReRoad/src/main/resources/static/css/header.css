@@ -6,7 +6,6 @@
 }
 /* 바 디자인 */
 #bar {
-    max-width: 1110px;
     width: 100%;
     height: 20px;
     background-color: teal;
@@ -26,7 +25,7 @@
 /* 헤더 우측 로그인, 회원 정보 부분 */
 .loginAndInfo {
     float: right;
-    width: 13em;
+    width: auto;
     margin-right: 2em;
 
 }
@@ -56,6 +55,30 @@
     background-color: #ff7f7f;
     border-color: #ff7f7f;
 }
+/* 닉네임, 마이페이지 버튼 */
+#myPageBtn {
+    background-color: RGB(242,242,242);
+    font-weight: bolder;
+    border-color: RGB(242,242,242);
+}
+/* 닉네임, 마이페이지 버튼에 마우스 오버시 */
+#myPageBtn:hover {
+    color: white;
+    background-color: #27B8B9 ;
+    border-color: #27B8B9;
+}
+/* 마이페이지는 평상시 안보이도록 */
+#showMyPage {
+    display: none
+}
+/* 닉네임은 마우스 오버시 안보이도록 */
+#myPageBtn:hover #showNick{
+    display: none;
+}
+/* 마이페이지 이동이 마우스 오버시 보이도록*/
+#myPageBtn:hover #showMyPage {
+    display: block;
+}
 
 /*로그인 성공 시 기본 박스 */
 .showInfo {
@@ -64,30 +87,26 @@
     border-radius: 13px;
     height: 4.5em;
     vertical-align: middle;
-    padding-left: 1em;
-    padding-right: 1em;
+    padding: 0.5em 1em 0.5em 1em;
 }
-/* 프로필 사진이 없을 경우 */
 
 /* 헤더 프로필 사진 */
 .showPho {
-    width: 50px;
-    height: 50px;
+    width: 5rem;
+    height: 5rem;
     border-radius: 50%;
-    border-color: teal;
-    border-width: 1px;
-    vertical-align: middle;
-    margin-bottom: 1em;
+    border: 2px teal solid;
+    margin-right: 1em;
 }
 
-/*닉네임 */
+/*닉네임 디자인*/
 #showNick{
-    padding-left: 1em;
-    line-height: 5em;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
-
+}
+#buttons {
+    ;
 }
 
 

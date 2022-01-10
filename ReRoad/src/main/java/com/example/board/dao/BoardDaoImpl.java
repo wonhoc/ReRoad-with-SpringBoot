@@ -162,4 +162,9 @@ public class BoardDaoImpl implements BoardDao {
         return this.sqlSession.selectList("Board.userBoardList", userId);
     }
 
+    @Override
+    public  List<CommentVo> readRecentComList(String userId) {
+        return this.sqlSession.selectList("Board.recentComList", userId);
+    }
+
 }

@@ -93,11 +93,14 @@ $(document).ready(function() {
                         mail: mail
                     },
                     success: function (data) {
-                        alert("인증 번호가 전송되었습니다.메일을 확인하고 인증번호를 입력하세요.")
-                        console.log("Data : " + data)
                         resultVerify = data;
-                        console.log("resultVerify : " + resultVerify);
                         resolve(data)
+                        console.log("resultVerify : " + resultVerify);
+                        if (resultVerify == "Error") {
+                            alert("메일 발송에 실패했습니다. 스팸 설정이나 메일 주소를 확인하고 다시 시도해주세요.")
+                        } else {
+                            alert("인증 번호가 발송되었습니다.메일을 확인하고 인증번호를 입력하세요.");
+                        }
                     },
                     error: function (e) {
                         alert("인증 번호 전송에 실패하였습니다. 잠시 후 다시 이용해주세요.")

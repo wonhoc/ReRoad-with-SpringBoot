@@ -2,6 +2,7 @@ package com.example.member.contorller;
 
 import com.example.board.service.BoardService;
 import com.example.board.vo.BoardVo;
+import com.example.board.vo.CommentVo;
 import com.example.member.service.MailService;
 import com.example.member.service.UserService;
 import com.example.member.vo.MailVo;
@@ -358,6 +359,8 @@ public class UserController {
         List<BoardVo> board = this.boardService.retrieveRecentBoardList(userId);
         model.addAttribute("board", board);
 
+        List<CommentVo> com = this.boardService.retrieveRecentComList(userId);
+        model.addAttribute("com", com);
 
         return "views/member/myPage";
     }

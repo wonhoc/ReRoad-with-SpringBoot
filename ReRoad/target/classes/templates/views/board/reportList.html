@@ -57,9 +57,6 @@
                             }
                             console.log(page);
                             let index = (page * 10) - 9;
-                            if (data == null) {
-                                html += '<td colspan="7">' + "신고받은 게시글이 없습니다." + '</td>';
-                            } else {
                                 for (let i = startRow; i < endRow; i++) {
                                     html += '<td>' + index++ + '</td>';
                                     html += '<td>' + data[i].reporter + '</td>';
@@ -70,7 +67,7 @@
                                 //document.getElementById("userList").innerHTML(html);
                                 $("tbody").html(html);
 
-                            }
+
                         }
                     });
                 },
@@ -104,6 +101,11 @@
                     <th>게시글 제목</th>
                 </tr>
                 </thead>
+                <tbody th:if="${users.isEmpty()}">
+                <tr>
+                    <td>신고받은 리뷰가 없습니다.</td>
+                </tr>
+                </tbody>
                 <tbody id="users">
 
                 </tbody>

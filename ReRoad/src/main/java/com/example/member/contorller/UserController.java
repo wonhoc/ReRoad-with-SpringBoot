@@ -12,6 +12,7 @@ import org.attoparser.IDocumentHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.parameters.P;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -74,14 +75,19 @@ public class UserController {
     //로그인이 실패했을 경우
     @PostMapping("/loginFail")
     public String forFailer(@RequestParam ("username") String userId,  Model model) {
-        // 입력한 ID 값을 가져와서 DB에서 중복 검사
-        int checkNum = this.userService.checkId(userId);
-        // 중복한 값이 있다면 비밀번호 오류로 안내
-        // 중복한 값이 없다면 가입하지 않은 이메일로 안내
-        if (checkNum == 1) {
-            model.addAttribute("loginFail","비밀번호가 잘못되었습니다.입력하신 정보를 확인해주세요.");
+        // 아이디를 입력하지 않았을 경우
+        if(userId.equals("") || userId == null){
+            model.addAttribute("loginFail", "아이디를 입력해주세요");
         } else {
-            model.addAttribute("loginFail", "해당 이메일로 가입한 회원 정보를 찾을 수 없습니다.");
+            // 아이디를 입력했을 경우 입력한 ID 값을 가져와서 DB에서 중복 검사
+            int checkNum = this.userService.checkId(userId);
+            // 중복한 값이 있다면 비밀번호 오류로 안내
+            // 중복한 값이 없다면 가입하지 않은 이메일로 안내
+            if (checkNum == 1) {
+                model.addAttribute("loginFail","비밀번호가 잘못되었습니다.입력하신 정보를 확인해주세요.");
+            } else {
+                model.addAttribute("loginFail", "해당 이메일로 가입한 회원 정보를 찾을 수 없습니다.");
+            }
         }
         return "views/member/loginForm";
     }
@@ -169,8 +175,16 @@ public class UserController {
         mail.setTitle("ReRoad 회원 가입을 위한 인증 메일입니다.");
         mail.setMessage("인증 번호는 "+ key + "입니다.");
 
-        this.mailService.sendMail(mail);
-        return key;
+        // 1이면 발송 성공 = key 반환, 0이면 실패 = "Error" 반환
+        int result = this.mailService.sendMail(mail);
+        System.out.println(result);
+        if(result == 1) {
+            return key;
+        } else {
+            return "Error";
+        }
+
+
     }
 
     // 임시 비밀번호 발급

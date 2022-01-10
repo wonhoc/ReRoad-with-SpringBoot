@@ -48,6 +48,7 @@ public interface BoardService {
     List<BoardVo> retrieveRecentBoardList(String userId);
     List<BoardVo> retrieveUserBoardList(String userId);
 
-
+    //회원 댓글 보기
+    List<CommentVo> retrieveRecentComList(String userId);
 
 }

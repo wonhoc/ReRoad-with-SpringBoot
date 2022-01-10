@@ -15,4 +15,5 @@ public class CommentVo {
     private String userId;
     private String userNick;
     private int boardNo;
+    private String boardTitle;
 }

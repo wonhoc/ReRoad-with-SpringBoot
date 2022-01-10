@@ -37,7 +37,6 @@ $(document).ready(function () {
     //여행지란 다시 클릭시 경고 메시지 지우기
     $('#spot').bind('click', function () {
         $('#saveBtn').attr("disabled", false);
-
     });
 
 
@@ -92,11 +91,6 @@ $(document).ready(function () {
         }
     });
 
-    $("input[name='checkListContent']").bind('click', function () {
-        $('#Isvalid').css('color', 'white');
-        $('#saveBtn').attr("disabled", false);
-
-    });
     $('#saveBtn').bind('click', function () {
         const travelTitle = $('#travelTitle').val();
         const spot = $('#spot').val();
@@ -104,8 +98,7 @@ $(document).ready(function () {
         const arriveDate = $('#arriveDate').val();
         const memo = $('#memo').val();
         const item = $("input[name='checkListContent']").val();
-        const chkCnt = $("input[name='checkListContent']").length+1;
-        var regex = / /gi;
+       var regex = / /gi;
 
         if (travelTitle == "" || travelTitle.replace(regex, '') == "" || travelTitle == null) {
             $('#Isvalid').text('여행 이름을 입력하세요!');
@@ -127,10 +120,10 @@ $(document).ready(function () {
             $('#Isvalid').text('여행 메모를 입력하세요!');
             $('#Isvalid').css('color', 'red');
             $('#saveBtn').attr("disabled", true);
-        }  else if (item == "" || item.replace(regex, '') == "" || item == null) {
+        }  /*else if (item == "" || item.replace(regex, '') == "" || item == null) {
             $('#Isvalid').text('체크리스트를 입력하세요!');
             $('#Isvalid').css('color', 'red');
             $('#saveBtn').attr("disabled", true);
-        }
+        }*/
     });
 })

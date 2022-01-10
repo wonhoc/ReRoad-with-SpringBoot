@@ -47,7 +47,6 @@
             showButtonPanel: true,
             yearRange: 'c-99:c+99',
             minDate: 0
-
         });
         $(function () {
             $('#startDate').datepicker();
@@ -68,9 +67,7 @@
                     chk_listArr[i].checked = this.checked;
                 }
             });
-
         });
-
 
         function item_Add() {
             addRow = document.all("itemList").insertRow();
@@ -107,20 +104,18 @@
             $("#form").validate({
                 errorElement: "label",
                 errorPlacement: function(error, element) {
-                    error.insertAfter('#itemList');
+                    error.insertAfter('#Isvalid');
                     error.css("color", "red");
                 },
                 //규칙
                 rules: {
                     checkListContent: {
-                        required: true,
                         spaceCheck: true
                     }
                 },
                 //규칙체크 실패시 출력될 메시지
                 messages: {
                     checkListContent: {
-                        required: "체크리스트를 올바르게 입력 후 다시 시도하세요",
                         spaceCheck: "체크리스트를 올바르게 입력 후 다시 시도하세요"
                     }
                 }
@@ -168,38 +163,39 @@
                     <input type="text" class="input" name="travelTitle" id="travelTitle"
                            autocomplete="off" maxlength="16">
                 </div>
-                <div class="oneline">
                     <label for="spot">여행지</label>
                     <input type="text" class="input" name="spot" id="spot"
                            autocomplete="off" maxlength="16">
-                </div>
-                <label for="startDate">여행기간</label>
+                <br>
+                <div class="twoline">
+                <label id="duringlabel" for="startDate">여행기간</label>
                 <input type="text" class="datepicker" name="startDate" id="startDate" autocomplete="off"> &nbsp; ~&nbsp;
                 <input type="text" class="datepicker" name="arriveDate" id="arriveDate" autocomplete="off">
-            </div>
-
-            <div class="mb-3">
-                <label for="memo">메모</label>
+                </div>
+                </div>
+            <br>
+            <div class="threeline">
+                <label  for="memo">메모</label>
                 <input type="text" class="input" name="memo" id="memo" placeholder="잊기 쉬운 정보들을 메모해보세요."
                        style="height: 150px;" autocomplete="off">
             </div>
-            <div class="mb-3">
-                <table id="itemTable" class="item_table">
+            <br>
+            <br>
+               <div id="subtitle">
+                <h4 id="chkTitle">체크리스트</h4>
+                <input type="button" name="itemAdd" id="itemAdd" value="아이템 추가" onclick="item_Add()"/>
+               </div>
+                <div id="subcontent">
+                   <table id="itemTable" class="item_table">
                     <thead class="table_head">
                     <tr>
-                        <th>체크리스트</th>
-                        <th><input type="checkbox" name="allchk"></th>
-                        <th><input type="button" name="itemAdd" id="itemAdd" value="아이템 추가" onclick="item_Add()"/></th>
+                       <th><input type="checkbox" id="allchk" name="allchk"></th>
                         <th><input type="button" name="itemDel" id="itemDel" value="선택 삭제" onclick="item_del()"/></th>
                     </tr>
                     </thead>
                     <tr>
-                        <td>&nbsp;</td>
-                        <td>준비 여부</td>
-                    </tr>
-                    <tr>
-                        <td>&empty;</td>
-                        <td><input class="input" type="text" id="requiredChk" name="checkListContent" placeholder="아이템 입력.."
+                        <td id="empty">&empty;</td>
+                        <td><input class="input" type="text" id="checkListContent" name="checkListContent" placeholder="아이템 입력.."
                                    autocomplete="off" maxlength="10"></td>
                         <td><select name="ready">
                             <option value="0">준비 못함!</option>
@@ -210,13 +206,14 @@
 
                     </tbody>
                 </table>
-            </div>
+                    <div id="foot">
+                        <div id="Isvalid"></div>
+                        <h4></h4>
+                        <button type="submit" class="btn btn-sm btn-primary" id="saveBtn">저장</button>
+                        <a class="btn btn-default waves-effect waves-light" th:href="@{/member/planlist}">목록</a>
+                    </div>
+                </div>
 
-            <div>
-                <div id="Isvalid"></div>
-                <button type="submit" class="btn btn-sm btn-primary" id="saveBtn">저장</button>
-                <a class="btn btn-default waves-effect waves-light" th:href="@{/member/planlist}">목록</a>
-            </div>
         </form>
     </div>
 </section>

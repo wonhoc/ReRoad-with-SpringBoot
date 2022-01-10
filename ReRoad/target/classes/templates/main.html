@@ -8,9 +8,11 @@
 	<link rel="stylesheet" th:href="@{/css/main.css}">
 </th:block>
 <th:block layout:fragment="script">
-	
 	<script th:src="@{/js/main.js}"></script>
 	<script th:src="@{/js/jquery-ui.min.js}"></script>
+	<script th:src="@{/js/tooltip.js}"></script>
+	<script th:src="@{/js/popover.js}"></script>
+	<script th:src="@{/js/popper.min.js}"></script>
 </th:block>
 <head>
 </head>
@@ -20,6 +22,7 @@
 	
 		<div id="mainwrapper">
 			<img src="/images/메인페이지버스.png" alt="image" id="mainImage">
+			<form action="/retriveSchedule" method="GET" id="ScSelectForm">
 			<div id="searchBox" class="row text-center">
 				<!-- 헤드 -->
 				<div id="headWrapper">
@@ -40,13 +43,19 @@
 			    <!-- 바디 -->
 				    <div id="bodyWrapper">	    
 					    <div id="dep" class="searchBody">
-					    	<div class="bodyTextdiv">출발지</div>
+					    	
+					    	<div class="bodyTextdiv" id="bodyDep" data-toggle="popover" data-placement="top">출발지</div>
+					    	<input type="hidden" class="selLo" id="depLo" name ="depLo">
 					    </div>
 					    <div id="arr" class="searchBody">
-					    	<div class="bodyTextdiv">도착지</div>
+					    	<div class="bodyTextdiv" id="bodyArr" data-toggle="popover" data-placement="top">도착지</div>
+					    	<input type="hidden" class="selLo" id="arrLo" name ="arrLo">
 					    </div>
 					    <div id="date" class="searchBody">
-					    	<div class="bodyTextDatediv">날짜</div>				    	
+					    	<div class="bodyTextDatediv" id="bodyDate" data-toggle="popover" data-placement="top">날짜</div>
+					    	<input type="text" id="inputDatepicker">	
+					    	<input type="hidden" id="startDate" name ="startDate">
+					    	<input type="hidden" id="arrDate" name ="arrDate" value="none">	    	
 					    </div>	
 					    <div id="hideOnbush">
 					    
@@ -60,17 +69,19 @@
 					   
 					     	<div class="listWrapper" th:each="trainSt:${trainStList}">
 					     		<div class="cityName" th:text="${trainSt.cityName}"></div>			     		
-						     	<div class="stNameWrapper" >					     		
-				     				<div class="stNameIn" th:each="trainSts:${trainSt.trainStInfo}">[[${trainSts.trainStName} +'역' + '&nbsp;']]</div>	      							     								     				     						     		  							     					     				     									   					     						    							     			     				     									   		     	  												     						    							     	
+						     	<div class="stNameWrapper" >
+						     		<ol class="olSt">				     		
+				     				<li class="stNameIn" th:each="trainSts:${trainSt.trainStInfo}" th:value="${trainSts.trainStId}">[[${trainSts.trainStName} +'역' + '&nbsp;']]</li>	      							     								     				     						     		  							     					     				     									   					     						    							     			     				     									   		     	  												     						    							     	
+						     		</ol>
 						     	</div>					     					
 					     	</div>				    	
 					    </div>     		
 				    	</div>				   		  
-				    </div>
-				   
+				    </div>			  
+				    <button type="button" id="btnSearch" class="btn btn-primary" data-toggle="popover" data-placement="top">검색</button>				
 				 </div>
 			</div>
-			 <button type="button" id="btnSearch" class="btn btn-primary">검색</button>
+			</form>	
 		</div>
 
 		<div id="left_table">

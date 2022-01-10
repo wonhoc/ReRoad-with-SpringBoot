@@ -99,27 +99,16 @@
     margin-right: 1em;
 }
 
-
-/*닉네임 */
+/*닉네임 디자인*/
 #showNick{
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
 }
-#buttons {
-    ;
-}
-
-
-
 
 .ReRoad{
     font-size: 30px;
-
 }
-
-
-
 #road{
     float:left;
 }

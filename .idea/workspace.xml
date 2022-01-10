@@ -4,13 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="18869558-432e-4011-9d86-a59d03e83cff" name="Changes" comment="메일 예외 처리">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/layout/defaultLayout.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/layout/defaultLayout.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/target/classes/static/css/footer.css" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/classes/static/css/footer.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/target/classes/static/js/member/joinUserForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/classes/static/js/member/joinUserForm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/target/classes/templates/layout/defaultLayout.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/classes/templates/layout/defaultLayout.html" afterDir="false" />
-    </list>
+
+    <list default="true" id="18869558-432e-4011-9d86-a59d03e83cff" name="Changes" comment="수정" />
+
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -76,8 +72,10 @@
       <option name="presentableId" value="Default" />
       <updated>1641545232469</updated>
       <workItem from="1641545233731" duration="21000" />
-      <workItem from="1641548778947" duration="3508000" />
-      <workItem from="1641772901334" duration="26488000" />
+
+      <workItem from="1641548778947" duration="3080000" />
+      <workItem from="1641773754740" duration="88000" />
+
     </task>
     <task id="LOCAL-00001" summary="수정">
       <created>1641550413516</created>

@@ -2,7 +2,6 @@
 
 #travelTitle {
     border-bottom: 1px solid #dee2e6;
-
 }
 
 #plandiv {
@@ -15,11 +14,13 @@
 .default{
     border-right: 1px solid #dee2e6;
     width: 88px;
-    background-color: whitesmoke;
-    text-align: left;
+    text-align: right;
 }
 td {
     vertical-align: middle;
+}
+td.default{
+    background-color: whitesmoke;
 }
 #memo{
     vertical-align: middle;

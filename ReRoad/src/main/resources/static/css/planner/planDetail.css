@@ -85,3 +85,9 @@ h3 {
     font-style: italic;
     margin-right: 10px;
 }
+pre{
+    background-color: white;
+    border: 1px solid white;
+    font-style: italic;
+    font-family: "맑은 고딕";
+}

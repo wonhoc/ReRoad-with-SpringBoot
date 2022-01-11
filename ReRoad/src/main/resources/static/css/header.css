@@ -1,12 +1,12 @@
 /* 헤더 기본 설정 */
-.container {
+#headerContainer {
     height: 7em;
     position: relative;
-    top: 1em;
+    margin-top:1em;
 }
 /* 바 디자인 */
 #bar {
-    width: 100%;
+    width: 97.4%;
     height: 20px;
     background-color: teal;
     position:absolute;

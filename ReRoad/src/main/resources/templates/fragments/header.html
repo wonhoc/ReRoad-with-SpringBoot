@@ -17,28 +17,28 @@
 </head>
 
 <div th:fragment="headerFragment">
-	<div class="container">
+	<div class="container" id="headerContainer">
+		<div id="wrapper">
 			<span class="header_logo">
 				<a th:href="@{/}">
 					<img id="logo" src="/images/mainLogo.png">
 				</a>
 			</span>
-
-		<span class="loginAndInfo">
+			<span class="loginAndInfo">
 				<!-- session에 로그인 유저 정보가 없다면 -->
 				<div th:if="${session.loginUser == null}">
 					<a th:href="@{/loginForm}" style="text-decoration: none">
 						<button class="btn btn-default" id="loginBtn">로그인/회원가입</button>
 					</a>
 				</div>
-			<!-- session에 로그인 유저 정보가 있다면 -->
+				<!-- session에 로그인 유저 정보가 있다면 -->
 				<div th:unless="${session.loginUser == null}" class="showInfo">
 						<!--프로필 사진 -->
-						<!-- 회원의 프로필 사진 정보가 session에 없다면 -> default 이미지 지정-->
+					<!-- 회원의 프로필 사진 정보가 session에 없다면 -> default 이미지 지정-->
 					<span th:if="${session.loginUser.getPhotoSys() == null}" class="photoSpan">
 						<img class= "showPho" th:src="@{/images/member/happy_default.jpg}">
 					</span>
-						<!-- 회원의 프로필 사진 정보가 session에 있다면 -->
+					<!-- 회원의 프로필 사진 정보가 session에 있다면 -->
 					<span th:unless = "${session.loginUser.getPhotoSys() == null}" class = "photoSpan">
 						<img class= "showPho" th:src="@{/images/member/user.png}">
 					</span>
@@ -55,8 +55,9 @@
 							</a>
 					</span>
 				</div>
-		</span>
+			</span>
 
+		</div>
 		<div id ="bar"></div>
 	</div>
 

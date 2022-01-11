@@ -113,7 +113,10 @@
      height: 100%;
      color: white;
      border: 3px solid rgb(233,233,233);
-	
+     background-color: teal;
+     font-size: 30px;
+     font-family: 'DoHyeon', sans-serif;
+    	
 }
 
 .searchBody:hover{
@@ -122,29 +125,39 @@
 	cursor: pointer;
 }
 
-#dep{
-	background-color: teal;
-}
-
-#arr{
-	background-color: teal;
-}
-
-#date{
-	background-color: teal;
-}
-
-#inputDatepicker{
+.searchBodyDate{
 	
-	width: 0;
-	height: 0;
-	display: inline;
-	position: absolute;	
-	top: 90%;
-	margin: 0;
+	 float: left;
+     width:18%;
+     box-sizing: border-box;
+     left: 1px;
+     height: 100%;
+     color: white;
+     border: 3px solid rgb(233,233,233);
+     background-color: teal;
+     
+}
+
+.searchBodyDate:hover{
+	
+	color: #ff7f7f;
+	cursor: pointer;
+}
+
+#dateArr{
+	 
+	 display: none;
+}
+
+
+.datePikcer{
+	margin-top: 40%;
+	right: 65%;
+	position: absolute;
 	padding: 0;
 	border: 0;
-	right: 40%;
+	width: 0;
+	height: 0;
 }
 
 #btnSearch{
@@ -220,7 +233,9 @@
 	margin-left: 0;
 	padding-left: 0;
 	text-align: left;
+	/* background-color: #ffffea; */
 	background-color: teal;
+	/*color: black;*/
 	color: white;
 }
 
@@ -244,12 +259,6 @@
 	color: #ff7f7f;
 	cursor: pointer
 }
-
-.stNameBk{	
-	font-size: 20px;
-	display: block;
-}
-
 
 .content{
     width: 250px;

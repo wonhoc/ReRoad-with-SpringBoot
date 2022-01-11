@@ -1,6 +1,10 @@
 package com.example.schedule.vo;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
+
+import com.example.schedule.vo.train.TrainScInfoVo;
+import com.example.schedule.vo.train.TrainSetInfoVo;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -19,5 +23,9 @@ public class ApiResponseObject {
 
 	private LinkedHashMap _embedded;
 	private LinkedHashMap _links;
+	private String pageNo;
+	private String totalCnt;
+	private ArrayList<TrainScInfoVo> scList;
+	
 	
 }//class end

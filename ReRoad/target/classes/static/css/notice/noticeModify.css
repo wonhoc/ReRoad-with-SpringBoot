@@ -33,8 +33,29 @@ li{
 .foot{
     display: inline;
 }
+#existFileTitle{
+    margin-top: 25px;
+    font-size: 1.5rem;
+    font-weight: 500;
+    border-bottom: 1px dashed #dee2e6;
+    width: fit-content;
+    height: 25px;
+}
+.list_title{
+    width: 250px;
+}
 #noticeContent{
     resize: none;
-    height: 450px;
-    text-align: center;
+}
+#removeFileBtn{
+    margin-left: 10px;
+    background-color: #ce8483;
+    border-color: #ce8483;
+    color: white;
+    border-style: outset;
+    margin-top: 3px;
+}
+
+#files{
+    width: fit-content;
 }

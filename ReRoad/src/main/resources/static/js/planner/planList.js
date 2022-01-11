@@ -63,7 +63,7 @@ $(document).ready(function () {
                                 html += '<td id="spot">' + data[i].spot + '</td>';
                                 html += '<td id="startDate">' + data[i].startDate + '</td>';
                                 html += '<td id="sign"> ~ </td>';
-                                html += '<td id="arriveDate">' + data[i].arriveDate + '&nbsp;&nbsp;<img src="/images/planner/ing.gif" alt="gif"' +
+                                html += '<td id="ing_arriveDate">' + data[i].arriveDate + '&nbsp;&nbsp;<img src="/images/planner/ing.gif" alt="gif"' +
                                     '                 class="ingimg"></td></tr>';
                             } else{
                                 html += '<tr>'

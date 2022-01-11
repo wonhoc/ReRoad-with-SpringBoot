@@ -39,6 +39,7 @@
     margin-left: 10px;
 }
 #memo{
+    resize: none;
     width:650px;
 }
 .twoline input{

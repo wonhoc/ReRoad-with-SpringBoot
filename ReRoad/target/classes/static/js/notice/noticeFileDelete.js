@@ -15,19 +15,24 @@ $(document).ready(function() {
                         type: 'DELETE',
                         dataType: 'json',
                         success: function (data) {
+                            $("#originFileSize").remove();
                             $("#originFileList").remove();
-                            console.log(data[0].fileOrigin);
-                            let html = '<tbody id="originFileList">';
-                            for(let i = 0; i<data.length; i++) {
-                                html += '<tr id=' + data[i].fileNo + '>';
-                                html += '<td>' + data[i].fileOrigin + '</td>';
-                                html += '<td>' + data[i].fileSize + 'bytes</td>';
-                                html += '<td><button type="button"  id="removeFileBtn">파일 삭제</button></td></tr>'
-
-                            }
-                           html += '</tbody>';
-                            $("#files").html(html);
-                            },
+                            console.log(data.length);
+                            if(data.length == 0){
+                                let html = '<input type="hidden" name="originFileSize" id="originFileSize" value=0>';
+                                $("#files").html(html);
+                            } else {
+                                let html = '<tbody id="originFileList">';
+                                for(let i = 0; i<data.length; i++) {
+                                    html += '<tr id=' + data[i].fileNo + '>';
+                                    html += '<td>' + data[i].fileOrigin + '</td>';
+                                    html += '<td>' + data[i].fileSize + 'bytes</td>';
+                                    html += '<td><button type="button"  id="removeFileBtn">파일 삭제</button></td></tr>'
+                                    html += '<input type="hidden" name="originFileSize" id="originFileSize" value='+data.length+'>';
+                                }
+                                html += '</tbody>';
+                                $("#files").html(html);
+                            }},
                         error: function (err) {
                             console.log(err);
                         }

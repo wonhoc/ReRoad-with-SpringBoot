@@ -184,8 +184,8 @@
             </div>
             <div class="threeline">
                 <label for="memo">메모</label>
-                <input type="text" class="input" name="memo" id="memo" placeholder="잊기 쉬운 정보들을 메모해보세요."
-                       th:value="${plan.memo}" style="height: 150px;">
+                <textarea class="input" name="memo" id="memo" placeholder="잊기 쉬운 정보들을 메모해보세요."
+                          th:value="${plan.memo}" th:text="${plan.memo}" style="height: 150px;"></textarea>
             </div>
             <div id="subtitle">
                 <h4 id="chkTitle">체크리스트</h4>

@@ -1,6 +1,7 @@
 package com.example.member.service;
 
 import com.example.member.dao.UserDao;
+import com.example.member.vo.UserAccount;
 import com.example.member.vo.UserVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -34,8 +35,10 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
         Collection<SimpleGrantedAuthority> roles = new ArrayList<SimpleGrantedAuthority>();
         roles.add(new SimpleGrantedAuthority(selectedUser.getRole()));
-        String password = selectedUser.getUserPwd();
-        UserDetails user = new User(username, password, roles);
+//        String password = selectedUser.getUserPwd();
+//        UserDetails user = new User(username, password, roles);
+        UserAccount user = new UserAccount(selectedUser, roles);
+
         return user;
     }
     // 로그인 후 아이디로 회원 정보 반환(ID, NickName, Role)

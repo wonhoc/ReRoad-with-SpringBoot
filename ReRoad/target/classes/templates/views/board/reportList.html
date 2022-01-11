@@ -63,35 +63,24 @@
                                     html += '<td> ' + data[i].boardTitle + ' </td></tr>';
                                 }
                                 $("#users").empty();
-
-                                //document.getElementById("userList").innerHTML(html);
                                 $("tbody").html(html);
-
-
                         }
                     });
                 },
                 error: function (error) {
                     console.log(error);
-
                 }
             });
-
         });
-
-
-   </script>
+    </script>
 </head>
 <section layout:fragment="content">
     <div class="container">
-
         <input type="hidden" id="users" th:value="${users}">
-
         <div class="list_title_box">
             <h1 class="list_title" >신고 게시글 목록</h1>
             <div class="list_devide"></div>
         </div>
-
         <div>
             <table class="list_table">
                 <thead class="table_head">
@@ -107,16 +96,12 @@
                 </tr>
                 </tbody>
                 <tbody id="users">
-
                 </tbody>
             </table>
             <div id="page-content">
                 <div id="pagination-div"></div>
             </div>
         </div>
-
     </div>
-
 </section>
-
 </html>

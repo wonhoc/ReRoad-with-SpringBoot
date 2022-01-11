@@ -1,4 +1,4 @@
-package com.example.schedule.vo;
+package com.example.schedule.vo.train;
 
 import lombok.ToString;
 

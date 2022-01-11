@@ -11,6 +11,11 @@ $(document).ready(function(){
 		
 		vehicl = $(this).text();
 		console.log(vehicl);
+		//#vehiclType에 value 추가
+		vehicl == "열차" ? $('#vehiclType').val('train') : $('vehiclType').val('expBus');
+		console.log($('#vehiclType').val());
+		
+		
 		
 	});
 	//편도, 왕복선택
@@ -19,15 +24,36 @@ $(document).ready(function(){
 		$(this).prevAll().css('background-color', 'teal');
 		$(this).nextAll().css('background-color', 'teal');
 		
-		tripType = $(this).children().text();
+		tripType = $(this).children().text().trim();
 		console.log(tripType);
 		
+		//날짜선택 변경
+		if(tripType == "편도"){
+		
+			$('#date').attr('class', 'searchBody');
+			$('#date').children('#bodyDate').text('날짜');
+			$('#dateArr').hide();
+			
+		}//if end
+		
+		if(tripType == "왕복"){
+	
+			$('#date').attr('class', 'searchBodyDate');
+			$('#date').children('#bodyDate').text('가는날');
+			$('#dateArr').show();
+		
+		}//if end
+		
 	});
+	
+	
+	
 	
 	//출발지 선택
 	$('#dep').click(function(){
 	
-		if ($('#hideOnbush').css('display') === 'none' ){ 
+		if ($('#hideOnbush').css('display') === 'none' ){
+		
 			$('#hideOnbush').show();
 			tripSel = $(this);
 		}else {
@@ -53,7 +79,9 @@ $(document).ready(function(){
 	//역 선택 보여주기
 	$('.stNameIn').click(function(){	
 		tripSel.children('.bodyTextdiv').text($(this).text());
+		tripSel.children('.selLoNa-me').val($(this).text().trim());
 		tripSel.children('.selLo').val($(this).attr('value'));
+		tripSel.children('.selLoName').val($(this).text());
 	});
 	
 	//검색어 입력
@@ -72,6 +100,7 @@ $(document).ready(function(){
 		let letDepLo = $('#depLo').val();
 		let letArrLo = $('#arrLo').val();
 		let letStartDate = $('#startDate').val();
+		let letArrDate = $('#arrDate').val();
 		let letDepName = $('#arr').children('.bodyTextdiv').text().trim();
 		let letArrName =  $('#dep').children('.bodyTextdiv').text().trim();
 		let hideTime = 3000;	//숨김처리시간
@@ -110,6 +139,16 @@ $(document).ready(function(){
 			$('#bodyDate').popover("show");
 			setTimeout(function() {$('#bodyDate').popover('hide');}, hideTime);
 		}//if end
+		
+		//오는날 선택
+		if($('#dateArr').css('display') == 'block' && letArrDate == "none") {
+			flag = false;
+			$('#bodyDateArr').attr("data-content","오는날을 선택 해주세요.");
+			$('#bodyDateArr').popover("show");
+			setTimeout(function() {$('#bodyDateArr').popover('hide');}, hideTime);
+		}//if end
+		
+		
 	
 		//submit?
 		if(flag){
@@ -132,21 +171,42 @@ $(document).ready(function(){
 			onSelect : function(){
 				//선택시 선택창의 값이 바뀐다
 				let yymmdd = $('#inputDatepicker').val();
-				$('.bodyTextDatediv').text(dateCon(yymmdd));
-				$('.bodyTextDatediv').css('font-size', '25px');
+				$('#bodyDate').text(dateCon(yymmdd));
+				$('#bodyDate').css('font-size', '25px');
 				$('#startDate').val(yymmdd);
 			}
-			
-			
-			
 		});
 		$('#inputDatepicker').show().focus().hide();	
+	});
+	
+	//오는날 입력
+	$('#dateArr').click(function(){
+	
+		$('#inputDatepickerArr').datepicker({
+			dayNamesMin: ['월', '화', '수', '목', '금', '토', '일'],
+			monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+			monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+			dateFormat : 'yymmdd',
+			showButtonPanel: true,
+			closeText: '닫기',		
+			onSelect : function(){
+				//선택시 선택창의 값이 바뀐다
+				let yymmdd = $('#inputDatepickerArr').val();
+				$('#bodyDateArr').text(dateCon(yymmdd));
+				$('#bodyDateArr').css('font-size', '25px');
+				$('#arrDate').val(yymmdd);
+			}
+		});
+		$('#inputDatepickerArr').show().focus().hide();	
 	});
 	
 	
 	
 	
-});
+});//ready() end
+
+
+
 
 //날짜 포멧 변환
 function dateCon(date){

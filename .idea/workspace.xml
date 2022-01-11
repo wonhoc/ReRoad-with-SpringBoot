@@ -5,12 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="18869558-432e-4011-9d86-a59d03e83cff" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_json_json_20210307.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/paper/controller/PaperController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/paper/vo/AddressVo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/paper/vo/ReceivePaperVo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/paper/vo/SendPaperVo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/static/css/paper/sendPaper.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/static/js/paper/sendPaper.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/views/paper/sendPaper.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/ReRoad_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/ReRoad_war_exploded.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/resources/static/css/footer.css" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/static/css/footer.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/ReRoad.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/ReRoad.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ReRoad/src/main/resources/static/css/header.css" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/static/css/header.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/fragments/footer.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/fragments/footer.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/fragments/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/fragments/header.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/target/classes/mapper/member-mapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/classes/mapper/member-mapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/target/classes/META-INF/spring-configuration-metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/classes/META-INF/spring-configuration-metadata.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/target/classes/static/css/header.css" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/classes/static/css/header.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ReRoad/target/classes/templates/fragments/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/classes/templates/fragments/header.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -21,8 +31,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JavaScript File" />
+        <option value="HTML File" />
+        <option value="CSS File" />
         <option value="Class" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -50,6 +62,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RequestMappingsPanelOrder0" value="0" />
     <property name="RequestMappingsPanelOrder1" value="1" />
     <property name="RequestMappingsPanelWidth0" value="75" />
@@ -59,6 +72,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/ReRoad" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
   </component>
   <component name="RunManager">
@@ -82,6 +96,7 @@
       <workItem from="1641548778947" duration="3080000" />
       <workItem from="1641773754740" duration="88000" />
       <workItem from="1641859728918" duration="16437000" />
+      <workItem from="1641883256128" duration="13575000" />
     </task>
     <task id="LOCAL-00001" summary="수정">
       <created>1641550413516</created>

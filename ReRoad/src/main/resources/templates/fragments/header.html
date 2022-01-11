@@ -50,6 +50,11 @@
 								<span th:text="${session.loginUser.getUserNick()}" id="showNick" />
 							</button>
 							</a>
+							<a th:href="@{/defaultPaper}" style="text-decoration: none">
+								<button class="btn btn-default" type="button" id="myPaperBtn">
+									쪽지관리
+								</button>
+							</a>
 							<a th:href="@{/logout}" style="text-decoration: none">
 								<button class="btn btn-default" type="button" id="logoutBtn">로그아웃</button>
 							</a>

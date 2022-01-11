@@ -40,6 +40,7 @@
 }
 #memo{
     width:650px;
+    resize: none;
 }
 .twoline input{
     height: 33px;

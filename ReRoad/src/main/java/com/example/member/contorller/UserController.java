@@ -6,6 +6,7 @@ import com.example.board.vo.CommentVo;
 import com.example.member.service.MailService;
 import com.example.member.service.UserService;
 import com.example.member.vo.MailVo;
+import com.example.member.vo.UserAccount;
 import com.example.member.vo.UserVo;
 import com.example.util.FileUploadService;
 import org.attoparser.IDocumentHandler;
@@ -56,19 +57,17 @@ public class UserController {
     @GetMapping("/loginForm")
     public String login() { return "views/member/loginForm"; }
 
-    // 로그인 성공시 이동 페이지(임시)
+    // 로그인 성공
     @GetMapping("/loginOk")
-    public String loginSuccess(@AuthenticationPrincipal User prin, Model model) {
-        model.addAttribute("username", prin.getUsername());
-        model.addAttribute("userRole", prin.getAuthorities());
+    public String loginSuccess(@AuthenticationPrincipal UserAccount prin, Model model) {
 
-        // 로그인 후 세션에 UserVo 객체 등록
-        String userId = prin.getUsername();
-        UserVo user = this.userService.getInfo(userId);
-        String userNick = user.getUserNick();
-        String userRole = user.getRole();
+//        String userId = prin.getUsername();
+//        UserVo user = this.userService.getInfo(userId);
+//        String userNick = user.getUserNick();
+//        String userRole = user.getRole();
 
-        session.setAttribute("loginUser", user);
+        // 로그인 후 세션에 UserAccount(UserVo+Role) 객체 등록
+        session.setAttribute("loginUser", prin.getUser());
         return "redirect:/";
     }
 

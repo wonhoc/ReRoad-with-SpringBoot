@@ -8,12 +8,10 @@
 <th:block th:replace="config :: configFragment"></th:block>
 </head>
 <body>
-	<div id="wrap">
 		<header th:insert="fragments/header.html"></header>
 		<main>
 			<section layout:fragment="content"></section>
 		</main>
-	</div>
 <footer th:insert="fragments/footer.html"></footer>
 </body>
 </html>

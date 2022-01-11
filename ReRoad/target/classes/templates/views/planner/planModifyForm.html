@@ -162,7 +162,7 @@
     </script>
 </head>
 <section layout:fragment="content">
-    <div id="modifyForm">
+    <div class="container" id="modifyForm">
         <form name="form" id="form" role="form" method="post" th:action="@{/member/modifyplan}">
             <input type="hidden" name="planNo" id="planNo" th:value="${plan.planNo}">
             <div class="mb-3">

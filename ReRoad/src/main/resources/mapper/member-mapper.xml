@@ -8,12 +8,15 @@
     <resultMap id="loginMap" type="UserVo">
         <id property="userId" javaType="string" jdbcType="VARCHAR" column="userId" />
         <id property="userPwd" javaType="string" jdbcType="VARCHAR"  column="userPwd" />
+        <id property="userNick" javaType="string" jdbcType="VARCHAR" column="userNick" />
         <id property="role" javaType="string" jdbcType="VARCHAR" column="role" />
+        <id property="photoSys" javaType="string" jdbcType="VARCHAR" column="photoSys" />
+        <id property="joinDate" javaType="string" jdbcType="VARCHAR" column="joinDate" />
     </resultMap>
 
     <!-- Security 로그인 -->
     <select id="getUserById" parameterType="string" resultType="UserVo" resultMap="loginMap">
-        SELECT userId, userPwd, userNick, role
+        SELECT userId, userPwd, userNick, role, photoSys, joinDate
         FROM user_info
         WHERE userId = #{userId}
 

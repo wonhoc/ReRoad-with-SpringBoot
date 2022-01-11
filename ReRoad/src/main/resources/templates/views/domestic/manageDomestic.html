@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout/defaultLayout">
+<th:block layout:fragment="css">
+    <link rel="stylesheet" th:href="@{/css/domestic/manageDomestic.css}">
+</th:block>
+<th:block layout:fragment="script">
+    <script th:src="@{/js/domestic/manageDomestic.js}"></script>
+</th:block>
+<head>
+</head>
+<section layout:fragment="content">
+    <div class="container" data-spy="affix">
+
+
+        <input type="text" id="domesticname">
+
+        <div id="search" style="display: none" >
+            <div th:id="whole+${list}" class="entireDomesticName" th:each="list : ${entireList}" >
+                <span class="name" th:text="${list}">  </span>
+            </div>
+        </div>
+
+
+
+        <div id="entire">
+            <div class="maincity" th:id="${maincity}" th:each="maincity : ${mainList}">
+                <input type="checkbox" name="domesticName" th:value="${maincity}" th:text="${maincity}">
+            </div>
+        </div>
+
+        <button id="removeList" type="button">삭제</button>
+
+        <div id = "cityImg" style="display: inline;">
+            <label for="fileList">
+                <p>이미지 추가</p>
+                <img src="/images/board/poto.png" style="width:100px; height:100px; cursor: pointer;">
+            </label>
+            <input type="file" class="form-fileInput" name="fileList" id="fileList" onchange="previewImage(this,'View_area')" style="display: none;">
+        </div>
+
+    </div>
+</section>
+</html>

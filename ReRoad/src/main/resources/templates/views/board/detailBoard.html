@@ -22,32 +22,28 @@
 
     <div class="container">
 
-        <form th:action="@{/deleteBoard/{boardNo}(boardNo=${board.boardNo})}" method="post">
-            <input type="hidden" name="boardNo" th:value="${board.boardNo}" id="boardNo">
-            <button id="deleteBtn" class="btn-primary">삭제</button>
-            <a class="btn btn-default waves-effect waves-light" th:href="@{/modifyBoardForm/{boardNo}(boardNo=${boardNo})}">수정</a>
+        <input type="hidden" name="boardNo" th:value="${board.boardNo}" id="boardNo">
+        <form method="post">
+                <button style="height: 30px;" id="modiBtn" class="btn btn-default waves-effect waves-light">수정</button>
+                <button style="height: 30px;" id="deleteBtn" class="btn btn-primary">삭제</button>
 
-        <table id="table">
+            <div id="main">
+                <div th:if="${#lists.size(board.boardFiles) >= 1}">
+                    <div th:each="boardfile : ${board.boardFiles}" ><img class="fileimage" th:src="@{'/upload/'+${boardfile.systemFileName}}"></div>
+                </div>
 
-            <tr th:if="${#lists.size(board.boardFiles) >= 1}">
-                <td  th:each="boardfile : ${board.boardFiles}" ><img class="fileimage" th:src="@{'/upload/'+${boardfile.systemFileName}}"></td>
-            </tr>
+                <div id="boardTitle" th:text="${board.boardTitle}"></div>
 
-            <thead>
-            <tr>
-                <td id="boardTitle" colspan="2"  th:text="${board.boardTitle}"></td>
-                <td  th:text="${board.userNick}"></td>
-            </tr>
-            </thead>
-            <tr id="tablebody">
-                <td>작성일자 <span th:text="${board.boardWdate}"></span></td>
-                <td><img class="images" src="/images/board/view.png">조회수<span th:text="${board.boardCount}"></span></td>
-                <td><img class="images" src="/images/board/commentCount.png">추천수<span id="recomCount"><span th:text="${board.recomCount}" /></span></td>
-            </tr>
-            <tr>
-                <td height="300px;" th:text="${board.boardContent}"></td>
-            </tr>
-        </table>
+                <span th:text="${board.userNick}"></span>
+
+                <span id="wdate" th:text="${board.boardWdate}"></span>
+                <img class="images" src="/images/board/commentCount.png"><span th:text="${board.boardCount}"></span>
+                <img class="images" src="/images/board/reComcount.png"><span id="recomCount"><span th:text="${board.recomCount}" /></span>
+
+                <div style="height: 300px;" th:text="${board.boardContent}"></div>
+
+            </div>
+
         </form>
         <button type="button" class="btn btn-success" id="recomBtn">추천</button>
         <button type="button" class="btn btn-warning" id="reportBtn">신고</button>
@@ -110,11 +106,8 @@
             <div class="toast-body">
                 Hello, world! This is a toast message.
             </div>
-        </div>dddddd</div>
 
-
-    <button id="info">info</button>
-
+        </div>
     </div>
 </section>
 </html>

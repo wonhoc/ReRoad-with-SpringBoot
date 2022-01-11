@@ -5,6 +5,7 @@ import com.example.board.vo.BoardFileVo;
 import com.example.board.vo.BoardVo;
 import com.example.board.vo.CommentVo;
 import com.example.board.vo.ReportVo;
+import com.example.member.vo.UserVo;
 import com.example.util.FileUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.*;
 
@@ -27,20 +30,25 @@ public class BoardController {
     private BoardService boardService;
 
     @GetMapping("/boardList")
-    public String boardList(@AuthenticationPrincipal User principal, Model model) {
+    public String boardList(@AuthenticationPrincipal User principle, Model model) {
 
         List<BoardVo> list = this.boardService.retrieveList();
 
+        for (BoardVo board : list){
+            board.setRecomCount(this.boardService.ReComCount(board.getBoardNo()));
+            board.setCommentCount(this.boardService.countCommemt(board.getBoardNo()));
+        }
 
         model.addAttribute("boardList", list);
-        model.addAttribute("username", principal.getUsername());
-        model.addAttribute("roles", principal.getAuthorities());
 
         return "views/board/boardList";
     }
 
     @GetMapping("/detailBoard/{boardNo}")
-    public String boardDetail(@PathVariable int boardNo, Model model, @AuthenticationPrincipal User principal) {
+    public String boardDetail(@PathVariable int boardNo, Model model, HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        UserVo user = (UserVo) session.getAttribute("userInfo");
+
         this.boardService.updateUphit(boardNo);
         BoardVo board = boardService.retrieveDetail(boardNo);
         List<CommentVo> comlist = this.boardService.retrieveComList(boardNo);
@@ -50,8 +58,7 @@ public class BoardController {
 
         log.info("board dd :" + board);
 
-        model.addAttribute("username", principal.getUsername());
-        model.addAttribute("roles", principal.getAuthorities());
+        model.addAttribute("user",user);
         model.addAttribute("board", board);
         model.addAttribute("commentList", comlist);
 

@@ -1,0 +1,86 @@
+
+
+#travelTitle {
+    border-bottom: 1px solid #dee2e6;
+
+}
+
+#plandiv {
+    margin-top: 50px;
+    margin-right: 86px;
+    margin-left: 86px;
+    padding-right: -400px;
+}
+
+.default{
+    border-right: 1px solid #dee2e6;
+    width: 88px;
+    background-color: whitesmoke;
+    text-align: left;
+}
+td {
+    vertical-align: middle;
+}
+#memo{
+    vertical-align: middle;
+    text-align: center;
+    border-bottom: 1px solid #dee2e6;
+    font-style: italic;
+}
+.userinput{
+    font-style: italic;
+    text-align: center;
+}
+
+#listBtn{
+    float: right;
+}
+
+#btnctl{
+    float: right;
+    margin-left: 533px;
+    margin-top: 75px;
+}
+
+#checkList{
+    border-bottom: 1px solid #dee2e6;
+    border-top:1px solid #dee2e6;
+}
+
+#left_table{
+    float: left;
+}
+
+#center_table{
+    float: left;
+}
+#right_table{
+    float: left;
+}
+
+#chkTbl{
+    line-height: 1.7;
+    margin-top: 33px;
+}
+
+h3 {
+    margin-top: 30px;
+}
+.isReady{
+    width: 40px;
+    height: 25px;
+}
+.empty{
+    width:50px;
+    margin-right: 50px;
+}
+.unReady{
+    margin-right: 10px;
+    font-style: italic;
+}
+
+.ready{
+    color: darkgray;
+    font-style: italic;
+    margin-right: 10px;
+}

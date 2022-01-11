@@ -1,23 +1,69 @@
+$(document).ready(function() {
+    let $chatHistory;
+    let $textarea;
+    let username = $('#username').val();
+    let selectedUser = $('#userId').val();
+    let boardNo = $('#boardNo').val();
+
+    const url = 'http://localhost:8080';
+    let socket = new SockJS(url + '/chat');
+    stompClient = Stomp.over(socket);
 
 
-    $('#addComBtn').on('click',function (){
 
+    $('#addComBtn').on('click', function () {
+
+
+        sendMessage($('#comContent').val());
 
         function sendMessage(message) {
-            let username = $('#username').val();//보내는 사람
-            console.log(username)
-            // **************************************************************
-            sendMsg(username, message);
 
-            if (message.trim() !== '') {
-                var context = {
-                    messageOutput: message,
-                    toUserName: $('#userId').val()
-                };
+            console.log(username);
 
-            }
+            sendMsg(username, message, boardNo);
+
+        }
+
+        function sendMsg(from, text, boardNo) {
+
+            console.log('from : ', from, 'text : ', text);
+            console.log(`selectedUser : ${selectedUser}`);
+            console.log(`stompClient : ${stompClient}`);
+
+            stompClient.send('/app/chat/' + selectedUser, {}, JSON.stringify({
+                message: text,
+                fromLogin: from,
+                boardNo : boardNo
+            }));
+
         }
 
 
+        function init() {
+            cacheDOM();
+            bindEvents();
+        }
+
+        function bindEvents() {
+            $textarea.on('keyup', addMessageEnter.bind(this));
+        }
+
+        function cacheDOM() {
+            $chatHistory = $('.chat-history');
+            $textarea = $('#comContent');
+        }
+
+
+        function addMessageEnter(event) {
+            // enter was pressed
+            if (event.keyCode === 13) {
+                addMessage();
+            }
+        }
+
+        init();
+
+
+    });
 
 });

@@ -1,27 +1,9 @@
 $(document).ready(function() {
-    const url = 'http://localhost:8080';
 
-  function connectToChat(username){
-
-      console.log("connecting to chat...");
-
-      let socket = new SockJS(url + '/chat');
-      stompClient = Stomp.over(socket);
-  }
-
-
-
-
-    $('#addComBtn').on('click',function (){
-        let username = $('#username').val();
-        $.ajax({
-            url: url + '/registration' + username,
-            success:function (response){
-                console.log(`reponse : ${response}`)
-                connectToChat(username);
-            }
-        })
-
+    $('#deleteBtn').on('click',function (){
+        let boardNo = $('#boardNo').val();
+        console.log("dddd")
+        location.href = '/deleteBoard/' + boardNo;
     })
 
 
@@ -83,6 +65,7 @@ $(document).ready(function() {
             }
 
         })
+
     });
 
     $('.modifyComBtn').on('click',function () {

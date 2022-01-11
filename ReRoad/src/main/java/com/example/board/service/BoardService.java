@@ -32,6 +32,7 @@ public interface BoardService {
     void registerComment(CommentVo comment);
     void modifyComment(CommentVo comment);
     void removeComment(int comNo);
+    int countCommemt(int boardNo);
 
     //추천
     void registerRecom(RecomVo recom);

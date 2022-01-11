@@ -31,6 +31,7 @@ public interface BoardDao {
     void insertCom(CommentVo comment);
     void updateCom(CommentVo comment);
     void deleteCom(int comNo);
+    int selectComCount(int boardNo);
 
     //추천
     void insertRecom(RecomVo recom);
@@ -47,7 +48,5 @@ public interface BoardDao {
     List<BoardVo> readRecentList(String userId);
     List<BoardVo> readUserBoardList(String userId);
 
-    //회원 댓글 보기
-    List<CommentVo> readRecentComList(String userId);
 
 }

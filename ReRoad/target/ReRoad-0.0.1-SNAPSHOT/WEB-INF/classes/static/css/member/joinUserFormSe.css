@@ -1,0 +1,106 @@
+/*회원가입 화면 폼 디자인 */
+.joinUserContainer {
+    padding-right: 15px;
+    padding-left: 15px;
+    padding-bottom: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 5em;
+    background-color: RGB(242,242,242);
+    border-radius: 15px;
+    height: auto;
+    width: 35em;
+}
+/*버튼 공통 설정 */
+.btn {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+
+}
+/*회원가입 + 상세 설명 Div */
+.welcome_join_Text {
+    margin-left: 1.5em;
+}
+/*회원 가입 텍스트 */
+.joinText2 {
+    padding-top: 1.5em;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 900;
+}
+/*'회원가입' 하단 구분선 */
+.title_devide {
+    width: 32%;
+    height: 5px;
+    background-color: #414141;
+    margin-top: -0.5em;
+}
+/*구분선 하단 설명글 */
+.welcome_join {
+    font-family: 'Noto Sans KR', sans-serif;
+    color:RGB(1,121,122);
+    font-weight: 500;
+    font-size: small;
+    margin-bottom: 1em;
+}
+/* input창 상단 항목 설명글*/
+.idcss,.pwcss {
+    font-family: 'Noto Sans KR', sans-serif;
+    padding-top: 1em;
+    font-weight: 700;
+    font-size: large;
+}
+/* 아이디, 인증번호 입력창 디자인 */
+.form-control {
+    margin-top: 0.3em;
+    margin-bottom: 1em;
+}
+
+/* 회원가입 버튼 디자인 - 기본*/
+.btn-primary {
+    background-color: RGB(1,121,122);
+    border-color: RGB(1,121,122);
+    font-weight: bolder;
+}
+/* 회원가입 버튼 디자인 - 마우스 오버시 */
+.btn-primary:hover {
+    background-color: #27B8B9;
+    border-color: #27B8B9;
+}
+.btn-primary:active {
+    background-color: RGB(1,121,122);
+    border-color: RGB(1,121,122);
+    font-weight: bolder;
+}
+/* 회원가입 버튼 디자인 - 비활성화 시 */
+.btn.btn-primary[disabled] {
+    background-color: #5e5e5e;
+    border-color: #5e5e5e;
+}
+/* 회원가입 버튼 디자인 - 비활성화 시 마우스 오버 */
+.btn.btn-primary[disabled]:hover {
+    background-color:#cbcbcb ;
+    border-color: #cbcbcb ;
+
+}
+/* 회원가입 버튼 디자인*/
+#joinButton {
+    margin-top: 1em;
+
+}
+/* 뒤로 버튼 별도 디자인 */
+#backButton {
+    background-color: white;
+    border-color: RGB(1,121,122);
+    font-weight: bolder;
+}
+#backButton:hover {
+    background-color: #ff7f7f;
+    border-color: #ff7f7f;
+    color: white;
+}
+
+
+
+
+
+

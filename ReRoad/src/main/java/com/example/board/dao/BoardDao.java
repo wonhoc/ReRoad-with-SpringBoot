@@ -49,5 +49,4 @@ public interface BoardDao {
     List<BoardVo> readUserBoardList(String userId);
 
 
-
 }

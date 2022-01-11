@@ -27,10 +27,11 @@
 
     <!-- 회원본인게시글 목록 조회 -->
     <select id="userBoardList" resultMap="resultMapSelectList" statementType="CALLABLE">
-        SELECT b.boardTitle, b.boardWdate, b.boardCount, (SELECT COUNT(*) FROM comment c WHERE b.boardNo = c.boardNo) as commentCount,
+        SELECT b.boardTitle, DATE_FORMAT(b.boardWdate,'%Y-%m-%d')AS boardWdate, b.boardCount, (SELECT COUNT(*) FROM comment c WHERE b.boardNo = c.boardNo) as commentCount,
                (SELECT COUNT(*) FROM recommend r WHERE  b.boardNo = r.boardNo) AS recomCount, boardNo
         FROM board b
         WHERE userId = #{userId}
+        ORDER BY boardWdate DESC
     </select>
 
 
@@ -50,8 +51,17 @@
         <result property="userNick" javaType="string" column="userNick" jdbcType="VARCHAR" />
         <result property="comContent" javaType="string" column="comContent" jdbcType="VARCHAR" />
         <result property="comWdate" javaType="string" column="comWdate" jdbcType="VARCHAR" />
+        <result property="boardTitle" javaType="string" column="boardTitle" jdbcType="VARCHAR" />
     </resultMap>
 
+    <!-- 최근댓글 목록 조회 -->
+    <select id="recentComList" resultMap="resultMapComList" statementType="CALLABLE">
+        SELECT (SELECT boardTitle FROM board b WHERE b.boardNo = c.boardNo) AS boardTitle,
+               c.comContent, c.comWdate, c.boardNo
+        FROM comment c
+        WHERE userId = #{userId}
+        ORDER BY comWdate DESC LIMIT 5;
+    </select>
 
 
     <!-- 추천 -->

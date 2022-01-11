@@ -32,10 +32,17 @@ $(document).ready(function () {
 
                     onPageClick: function (event, page) {
                         //클릭 이벤트
-                        let html = "<tr>";
+                        let html = "";
                         let startRow = (page - 1) * 10;
                         let endRow = page * 10;
                         let totalCount = data.length
+                        let today = new Date();
+
+                        let year = today.getFullYear();
+                        let month = ('0' + (today.getMonth() + 1)).slice(-2);
+                        let day = ('0' + today.getDate()).slice(-2);
+
+                        let now = year + '-' + month  + '-' + day;
                         if (endRow > totalCount) {
                             endRow = totalCount;
                         }
@@ -49,11 +56,23 @@ $(document).ready(function () {
                             endPage = totalPages;
                         }
                         for (let i = startRow; i < endRow; i++) {
-                            html += '<td><a href= "/member/plandetail?planNo=' + data[i].planNo + '">' + data[i].travelTitle + '</a></td>';
-                            html += '<td id="spot">' + data[i].spot + '</td>';
-                            html += '<td id="startDate">' + data[i].startDate + '</td>';
-                            html += '<td id="sign"> ~ </td>';
-                            html += '<td id="arriveDate">' + data[i].arriveDate + '</td></tr>';
+                            //만일 여행이 진행중이라면,
+                            if(data[i].startDate<= now &&  data[i].arriveDate>=now){
+                                html += '<tr class="ing">'
+                                html += '<td ><a id="ingTitle" href= "/member/plandetail?planNo=' + data[i].planNo + '">' + data[i].travelTitle + '</a></td>';
+                                html += '<td id="spot">' + data[i].spot + '</td>';
+                                html += '<td id="startDate">' + data[i].startDate + '</td>';
+                                html += '<td id="sign"> ~ </td>';
+                                html += '<td id="arriveDate">' + data[i].arriveDate + '&nbsp;&nbsp;<img src="/images/planner/ing.gif" alt="gif"' +
+                                    '                 class="ingimg"></td></tr>';
+                            } else{
+                                html += '<tr>'
+                                html += '<td><a href= "/member/plandetail?planNo=' + data[i].planNo + '">' + data[i].travelTitle + '</a></td>';
+                                html += '<td id="spot">' + data[i].spot + '</td>';
+                                html += '<td id="startDate">' + data[i].startDate + '</td>';
+                                html += '<td id="sign"> ~ </td>';
+                                html += '<td id="arriveDate">' + data[i].arriveDate + '</td></tr>';
+                            }
                         }
                         $("#planList").empty();
                         $("#planList").html(html);

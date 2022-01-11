@@ -1,0 +1,140 @@
+	<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/defaultLayout}">
+<th:block layout:fragment="script">
+	<script th:src="@{/js/main.js}"></script>
+    <script th:src="@{/js/schedule/retriveSchedule.js}"></script>
+    <script th:src="@{/js/jquery-ui.min.js}"></script>
+	<script th:src="@{/js/tooltip.js}"></script>
+	<script th:src="@{/js/popover.js}"></script>
+	<script th:src="@{/js/popper.min.js}"></script>
+</th:block>
+<th:block layout:fragment="css">
+	<link rel="stylesheet" th:href="@{/css/schedule/retriveSchedule.css}">
+	<link rel="stylesheet" th:href="@{/css/jquery-ui.min.css}" />	
+</th:block>
+<head>
+	<title>ㅋㅋㅋㅋ</title>
+</head>
+
+
+
+<section layout:fragment="content">
+	<div class="container">
+
+		<div id="mainwrapper">		
+			<form action="/retriveSchedule" method="POST" id="ScSelectForm">
+				<input type="hidden" id="pageNo" name="pageNo" value="1">
+			<div id="searchBox" class="row text-center">
+				<!-- 헤드 -->
+				<div id="headWrapper">
+					<input type="hidden" id="vehiclType" name="vehiclType" value="train">
+					<div class="searchBoxHead col-sm-6" id="headTrain">열차</div>	
+			        <div class="searchBoxHead col-sm-6" id="headBus">버스</div>
+			    </div>
+			     <div class="tempWrapper">
+				    <!-- 왕복 -->
+				    <div id="selWrapper">
+				    	<div id="selOneway" class="col-sm-6 tripType">
+				    		<div class="selTextdiv">편도</div>
+				    		</div>
+				        <div id="selTurn" class="col-sm-6 tripType">
+				        	<div class="selTextdiv">왕복</div>
+				        </div>
+				    </div>
+			   
+			    <!-- 바디 -->
+				    <div id="bodyWrapper">	    
+					    <div id="dep" class="searchBody">
+					    	
+					    	<div class="bodyTextdiv" id="bodyDep" data-toggle="popover" data-placement="top">[[${depLoName}]]</div>
+					    	<input type="hidden" class="selLo" id="depLo" name ="depLo" th:value="${depLo}">
+					    	<input type="hidden" id="depLoName" name="depLoName" class="selLoName" th:value="${depLoName}">
+					    </div>
+					    <div id="arr" class="searchBody">
+					    	<div class="bodyTextdiv" id="bodyArr" data-toggle="popover" data-placement="top">[[${arrLoName}]]</div>
+					    	<input type="hidden" class="selLo" id="arrLo" name ="arrLo" th:value="${arrLo}">
+					    	<input type="hidden" id="arrLoName" name="arrLoName" class="selLoName" th:value="${arrLoName}">
+					    </div>
+					    
+					  <div id="date" th:attr="class=${arrDate == 'none' ? 'searchBody' : 'searchBodyDate'}">					   					    					   
+					    	<div class="bodyTextDatediv" id="bodyDate" data-toggle="popover" data-placement="top" th:text="|${#strings.substring(startDate,4,6)}월${#strings.substring(startDate,6,8)}일|"></div>
+					    	<input type="text" id="inputDatepicker" class="datePikcer">	
+					    	<input type="hidden" id="startDate" name ="startDate" th:value="${startDate}">					      	
+					    </div>	
+					    
+					    <div id="dateArr" class="searchBodyDate" th:attr="style=${arrDate == 'none' ? 'display: none;' : 'display: block;'}">
+					    	<div class="bodyTextDatediv" id="bodyDateArr" data-toggle="popover" data-placement="top" th:text="${arrDate == 'none' ? '오는날' : arrDate}"></div>
+					    	<input type="text" id="inputDatepickerArr" class="datePikcer">
+					    	<input type="hidden" id="arrDate" name ="arrDate" th:attr="value=${arrDate == 'none' ? 'none' : arrDate}">	   
+					    </div>
+					    
+					    
+					    
+					    <div id="hideOnbush">
+					    
+					    <input class="form-control" id="searchInput" type="text" placeholder="역 검색..">
+					    
+					    <div th:if="${#lists.size(trainStList) == 0}">
+					    	<p><strong>API불러오기 실패</strong></p>
+					    </div>
+					    
+					     <div th:if="${#lists.size(trainStList) > 0}">
+					   
+					     	<div class="listWrapper" th:each="trainSt:${trainStList}">
+					     		<div class="cityName" th:text="${trainSt.cityName}"></div>			     		
+						     	<div class="stNameWrapper" >
+						     		<ol class="olSt">				     		
+				     				<li class="stNameIn" th:each="trainSts:${trainSt.trainStInfo}" th:value="${trainSts.trainStId}">[[${trainSts.trainStName} +'역' + '&nbsp;']]</li>	      							     								     				     						     		  							     					     				     									   					     						    							     			     				     									   		     	  												     						    							     	
+						     		</ol>
+						     	</div>					     					
+					     	</div>				    	
+					    </div>     		
+				    	</div>				   		  
+				    </div>			  
+				    <button type="button" id="btnSearch" class="btn btn-primary" data-toggle="popover" data-placement="top">검색</button>				
+				 </div>
+			</div>
+			</form>	
+		</div>
+		
+		
+		<div id="scListBox">
+		
+		 		<div id="box1" th:attr="class=${arrSc == null ? 'centerInnerBox' : 'innerBox'}">
+		 			<table class="table table-bordered">
+		 				<thead>
+		 					<tr>
+		 						<th>열차 종류</th>
+		 						<th>출발 시간</th>
+		 						<th>도착 시간</th>
+		 						<th>열차 번호</th>
+		 						<th>운임</th>
+		 						<th>소요시간</th>
+		 					</tr>
+		 				</thead>
+		 				<tbody>
+		 					<tr th:each="sc:${startSc.ScList}">
+		 						<td>[[${sc.traingradename}]]</td>	 				
+		 						<td>[[${sc.depplandtime}]]</td>
+		 						<td>[[${sc.arrplandtime}]]</td>
+		 						<td>[[${sc.trainno}]]</td>
+		 						<td>[[${sc.arrplandtime}]]</td>
+		 						<td>소요시간</td>		
+		 					</tr>
+		 				</tbody>
+		 				
+		 			</table>
+		 		</div>
+		 		
+		 		<div id="box2"  th:if="${arrSc != null}" class="innerBox">
+		 			[[${arrSc}]]
+		 		</div>
+		 	
+ 		</div>
+		
+ 	</div> 
+</section>
+</html>

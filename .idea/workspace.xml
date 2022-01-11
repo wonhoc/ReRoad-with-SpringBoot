@@ -6,12 +6,25 @@
   <component name="ChangeListManager">
     <list default="true" id="18869558-432e-4011-9d86-a59d03e83cff" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/resources/static/css/footer.css" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/static/css/footer.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/resources/static/css/header.css" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/static/css/header.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/fragments/footer.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/fragments/footer.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/fragments/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/fragments/header.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/target/classes/mapper/member-mapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/classes/mapper/member-mapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/target/classes/templates/fragments/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/classes/templates/fragments/header.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -67,6 +80,8 @@
       <updated>1641545232469</updated>
       <workItem from="1641545233731" duration="21000" />
       <workItem from="1641548778947" duration="3080000" />
+      <workItem from="1641773754740" duration="88000" />
+      <workItem from="1641859728918" duration="16437000" />
     </task>
     <task id="LOCAL-00001" summary="수정">
       <created>1641550413516</created>
@@ -82,7 +97,35 @@
       <option name="project" value="LOCAL" />
       <updated>1641551387061</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="수정">
+      <created>1641551949976</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1641551949976</updated>
+    </task>
+    <task id="LOCAL-00004" summary="헤더 CSS 수정">
+      <created>1641795338738</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1641795338738</updated>
+    </task>
+    <task id="LOCAL-00005" summary="메일 예외 처리">
+      <created>1641801957379</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1641801957379</updated>
+    </task>
+    <task id="LOCAL-00006" summary="로그인 시 session 작업 변경">
+      <created>1641863510298</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1641863510298</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -90,6 +133,9 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="수정" />
-    <option name="LAST_COMMIT_MESSAGE" value="수정" />
+    <MESSAGE value="헤더 CSS 수정" />
+    <MESSAGE value="메일 예외 처리" />
+    <MESSAGE value="로그인 시 session 작업 변경" />
+    <option name="LAST_COMMIT_MESSAGE" value="로그인 시 session 작업 변경" />
   </component>
 </project>

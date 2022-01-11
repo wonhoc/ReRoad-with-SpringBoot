@@ -17,40 +17,54 @@
 </head>
 
 <div th:fragment="headerFragment">
-	<div class="container">
+	<div class="container" id="headerContainer">
+		<div id="wrapper">
 			<span class="header_logo">
 				<a th:href="@{/}">
 					<img id="logo" src="/images/mainLogo.png">
 				</a>
 			</span>
-
-		<span class="loginAndInfo">
+			<span class="loginAndInfo">
 				<!-- session에 로그인 유저 정보가 없다면 -->
 				<div th:if="${session.loginUser == null}">
 					<a th:href="@{/loginForm}" style="text-decoration: none">
 						<button class="btn btn-default" id="loginBtn">로그인/회원가입</button>
 					</a>
 				</div>
-			<!-- session에 로그인 유저 정보가 있다면 -->
-				<div th:unless="${session.loginUser == null}" class="showInfo" id="showInfo" name="showInfo" th:onclick="showMore()">
-					<!--프로필 사진 -->
+				<!-- session에 로그인 유저 정보가 있다면 -->
+				<div th:unless="${session.loginUser == null}" class="showInfo">
+						<!--프로필 사진 -->
 					<!-- 회원의 프로필 사진 정보가 session에 없다면 -> default 이미지 지정-->
-					<span th:if="${session.loginUser.photoSys == null}">
+					<span th:if="${session.loginUser.getPhotoSys() == null}" class="photoSpan">
 						<img class= "showPho" th:src="@{/images/member/happy_default.jpg}">
 					</span>
 					<!-- 회원의 프로필 사진 정보가 session에 있다면 -->
-					<span th:unless = "${session.loginUser.photoSys == null}">
+					<span th:unless = "${session.loginUser.getPhotoSys() == null}" class = "photoSpan">
 						<img class= "showPho" th:src="@{/images/member/user.png}">
 					</span>
-					<span th:text="${session.loginUser.userNick}" id="showNick"/>
-				</div>
 
+					<span id="buttons">
+							<a th:href="@{/member/myPage}" style="text-decoration: none">
+							<button class="btn btn-default" type="button" id="myPageBtn" >
+								<span id="showMyPage">마이페이지</span>
+								<span th:text="${session.loginUser.getUserNick()}" id="showNick" />
+							</button>
+							</a>
+							<a th:href="@{/logout}" style="text-decoration: none">
+								<button class="btn btn-default" type="button" id="logoutBtn">로그아웃</button>
+							</a>
+					</span>
+				</div>
 			</span>
-		<a th:href="@{/logout}" style="text-decoration: none">
-			<button class="btn btn-default" type="button" id="logoutBtn">로그아웃</button>
-		</a>
+
+		</div>
 		<div id ="bar"></div>
 	</div>
+
+
+
+
+
 
 
 

@@ -2,15 +2,18 @@ package com.example.member.contorller;
 
 import com.example.board.service.BoardService;
 import com.example.board.vo.BoardVo;
+import com.example.board.vo.CommentVo;
 import com.example.member.service.MailService;
 import com.example.member.service.UserService;
 import com.example.member.vo.MailVo;
+import com.example.member.vo.UserAccount;
 import com.example.member.vo.UserVo;
 import com.example.util.FileUploadService;
 import org.attoparser.IDocumentHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.parameters.P;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -54,33 +57,36 @@ public class UserController {
     @GetMapping("/loginForm")
     public String login() { return "views/member/loginForm"; }
 
-    // 로그인 성공시 이동 페이지(임시)
+    // 로그인 성공
     @GetMapping("/loginOk")
-    public String loginSuccess(@AuthenticationPrincipal User prin, Model model) {
-        model.addAttribute("username", prin.getUsername());
-        model.addAttribute("userRole", prin.getAuthorities());
+    public String loginSuccess(@AuthenticationPrincipal UserAccount prin, Model model) {
 
-        // 로그인 후 세션에 UserVo 객체 등록
-        String userId = prin.getUsername();
-        UserVo user = this.userService.getInfo(userId);
-        String userNick = user.getUserNick();
-        String userRole = user.getRole();
+//        String userId = prin.getUsername();
+//        UserVo user = this.userService.getInfo(userId);
+//        String userNick = user.getUserNick();
+//        String userRole = user.getRole();
 
-        session.setAttribute("loginUser", user);
+        // 로그인 후 세션에 UserAccount(UserVo+Role) 객체 등록
+        session.setAttribute("loginUser", prin.getUser());
         return "redirect:/";
     }
 
     //로그인이 실패했을 경우
     @PostMapping("/loginFail")
     public String forFailer(@RequestParam ("username") String userId,  Model model) {
-        // 입력한 ID 값을 가져와서 DB에서 중복 검사
-        int checkNum = this.userService.checkId(userId);
-        // 중복한 값이 있다면 비밀번호 오류로 안내
-        // 중복한 값이 없다면 가입하지 않은 이메일로 안내
-        if (checkNum == 1) {
-            model.addAttribute("loginFail","비밀번호가 잘못되었습니다.입력하신 정보를 확인해주세요.");
+        // 아이디를 입력하지 않았을 경우
+        if(userId.equals("") || userId == null){
+            model.addAttribute("loginFail", "아이디를 입력해주세요");
         } else {
-            model.addAttribute("loginFail", "해당 이메일로 가입한 회원 정보를 찾을 수 없습니다.");
+            // 아이디를 입력했을 경우 입력한 ID 값을 가져와서 DB에서 중복 검사
+            int checkNum = this.userService.checkId(userId);
+            // 중복한 값이 있다면 비밀번호 오류로 안내
+            // 중복한 값이 없다면 가입하지 않은 이메일로 안내
+            if (checkNum == 1) {
+                model.addAttribute("loginFail","비밀번호가 잘못되었습니다.입력하신 정보를 확인해주세요.");
+            } else {
+                model.addAttribute("loginFail", "해당 이메일로 가입한 회원 정보를 찾을 수 없습니다.");
+            }
         }
         return "views/member/loginForm";
     }
@@ -168,8 +174,16 @@ public class UserController {
         mail.setTitle("ReRoad 회원 가입을 위한 인증 메일입니다.");
         mail.setMessage("인증 번호는 "+ key + "입니다.");
 
-        this.mailService.sendMail(mail);
-        return key;
+        // 1이면 발송 성공 = key 반환, 0이면 실패 = "Error" 반환
+        int result = this.mailService.sendMail(mail);
+        System.out.println(result);
+        if(result == 1) {
+            return key;
+        } else {
+            return "Error";
+        }
+
+
     }
 
     // 임시 비밀번호 발급
@@ -358,6 +372,8 @@ public class UserController {
         List<BoardVo> board = this.boardService.retrieveRecentBoardList(userId);
         model.addAttribute("board", board);
 
+        List<CommentVo> com = this.boardService.retrieveRecentComList(userId);
+        model.addAttribute("com", com);
 
         return "views/member/myPage";
     }

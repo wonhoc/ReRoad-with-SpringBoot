@@ -15,9 +15,13 @@
 		<typeAlias type="com.example.board.vo.RecomVo" alias="RecomVo"/>
 		<typeAlias type="com.example.board.vo.ReportVo" alias="ReportVo"/>
 		<typeAlias type="com.example.board.vo.BoardFileVo" alias="BoardFileVo"/>
+		<typeAlias type="com.example.domestic.vo.DomesticVo" alias="DomesticVo"/>
+
 
 		<typeAlias type="com.example.planner.vo.PlannerVO" alias="planVO"/>
 		<typeAlias type="com.example.planner.vo.CheckListVO" alias="chkVO"/>
+
+
 
  	</typeAliases>
 

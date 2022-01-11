@@ -194,6 +194,11 @@ public class BoardServiceImpl implements BoardService{
     }
 
     @Override
+    public int countCommemt(int boardNo) {
+        return this.boardDao.selectComCount(boardNo);
+    }
+
+    @Override
     public void registerRecom(RecomVo recom) {
         this.boardDao.insertRecom(recom);
     }

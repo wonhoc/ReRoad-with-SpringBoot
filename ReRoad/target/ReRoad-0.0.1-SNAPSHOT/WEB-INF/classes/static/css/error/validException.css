@@ -1,0 +1,35 @@
+#errTable {
+    margin-top: 116px;
+    margin-left:auto;
+    margin-right:auto;
+    border: 1px solid #008080;
+    width: 1111px;
+    height: 551px;
+}
+
+#errTitle {
+    font-size: 25px;
+    font-weight: bolder;
+    color: crimson;
+    text-align: center;
+    height: 90px;
+}
+
+#msg {
+    font-size: 20px;
+    height: 81px;
+}
+#mainBtn a{
+    font-size: 18px;
+    text-decoration: underline ;
+    color: #ce8483;
+    height: 81px;
+}
+ #mainBtn {
+     text-align: center;
+ }
+
+#userinput {
+    font-size: 19px;
+
+}

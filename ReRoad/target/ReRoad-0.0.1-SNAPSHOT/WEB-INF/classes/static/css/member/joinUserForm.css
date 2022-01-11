@@ -25,7 +25,7 @@
 }
 /*'회원가입' 하단 구분선 */
 .title_devide {
-    width: 35%;
+    width: 32%;
     height: 5px;
     background-color: #414141;
     margin-top: -0.5em;
@@ -37,13 +37,6 @@
     font-weight: 500;
     font-size: small;
     margin-bottom: 1em;
-}
-/*설명글 하단 빈 공간, 회원 가입 실패시 경고 메시지 들어감*/
-.AlertDiv {
-    height: 10%;
-    margin-right: 1em;
-    margin-left: 1em;
-
 }
 
 /* 재 로그인 시 에러 출력*/
@@ -104,17 +97,4 @@
     background-color:#cbcbcb ;
     border-color: #cbcbcb ;
 
-}
-
-
-
-#joinFormTwo {
-    display: none;
-    height: auto;
-    animation-duration: 5s;
-}
-.joinText2 {
-    padding-top: 0.5em;
-    font-family: 'Noto Sans KR', sans-serif;
-    font-weight: 900;
 }

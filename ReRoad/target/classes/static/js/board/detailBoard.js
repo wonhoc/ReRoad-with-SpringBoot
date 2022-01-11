@@ -1,5 +1,10 @@
 $(document).ready(function() {
 
+    $('#deleteBtn').on('click',function (){
+        let boardNo = $('#boardNo').val();
+        console.log("dddd")
+        location.href = '/deleteBoard/' + boardNo;
+    })
 
 
     $('#listComment').on('click', '.modifyComReqBtn', function() {

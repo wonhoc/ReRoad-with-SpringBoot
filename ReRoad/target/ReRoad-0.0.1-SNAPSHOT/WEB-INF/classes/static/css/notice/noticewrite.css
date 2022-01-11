@@ -2,3 +2,11 @@ ul{
     list-style:none;
     padding-left:0px;
 }
+li{
+    color: blue;
+}
+.errli{
+    color: red;
+}
+
+

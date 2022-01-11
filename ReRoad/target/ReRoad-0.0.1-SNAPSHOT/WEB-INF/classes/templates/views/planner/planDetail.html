@@ -3,40 +3,13 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout/defaultLayout}">
+<th:block layout:fragment="css">
+    <link rel="stylesheet" th:href="@{/css/planner/planDetail.css}">
+</th:block>
 
 <head>
-
-    <style>
-        table {
-            border-collapse: collapse;
-            border-radius: 20px;
-            border-style: hidden;
-        }
-
-        .filetable {
-            border-top: 1px solid black;
-            border-bottom: 1px solid black;
-        }
-
-
-        #travelTitle {
-            background-color: #fcf4de;
-
-        }
-
-        #titi {
-            font-family: '맑은 고딕';
-            font-size: 30px;
-            color: #000;
-
-        }
-
-
-    </style>
-
     <script>
         let planNo = null;
-
         function plan_delete() {
             planNo = location.search.substring(1).split("=")[1];
             $.ajax({
@@ -53,51 +26,100 @@
     <div id="plandiv">
         <form th:action="@{/member/plandelete/{planNo}(planNo=${plan.planNo})}"
               method="post">
-            <a class="btn btn-default waves-effect waves-light"
+            <a id="listBtn" class="btn btn-default waves-effect waves-light"
                th:href="@{/member/planlist}">목록</a>
-
+            <input type="hidden" id="chklistCnt" name="chklistCnt" th:value="${plan.getCheckList()}">
             <input type="hidden" id="planNo" name="planNo" th:value="${plan.planNo}">
             <h2>여행 일정 플래너</h2>
             <table class="table">
-                <tr id="planTitle" class="plan">
-                    <td>여행이름</td>
-                    <td id="titi" width="600px;" th:text="${plan.travelTitle}"></td>
-                    <td>여행지</td>
-                    <td width="600px;" th:text="${plan.spot}"></td>
-                    <td>여행기간</td>
-                    <td align="center" th:text="${plan.startDate}"></td>
-                    <td> ~</td>
-                    <td th:text="${plan.arriveDate}"></td>
+                <tr id="travelTitle" class="plan">
+                    <td class="default">여행이름</td>
+                    <td class="userinput" th:text="${plan.travelTitle}"></td>
+                    <td class="default">여행지</td>
+                    <td class="userinput" th:text="${plan.spot}"></td>
+                    <td class="default">여행기간</td>
+                    <td class="userinput" th:text="${plan.startDate}"></td>
+                    <td id="sign"> ~</td>
+                    <td class="userinput" th:text="${plan.arriveDate}"></td>
                 </tr>
                 <tr class="plan">
-                    <td id="memo" height="150px;" colspan="5"
+                    <td id="memo" height="150px;" colspan="8"
                         th:text="${plan.memo}"></td>
                 </tr>
             </table>
-            <table id="checkList" class="checktable" th:if="${!(plan.getCheckList().isEmpty())}">
-                <thead>
-                <th colspan="10">체크리스트</th>
-                </thead>
-                <span th:each="item : ${plan.getCheckList()}">
-          <tr th:id="${item.getCheckListNo()}">
-            <td th:text="${item.getCheckListContent()}"></td>
-              <td>&nbsp; &nbsp;</td>
-              <td th:if="${item.getReady()==0}">아직 준비되지 않았어요.</td>
-              <td th:if="${item.getReady()==1}">준비완료!</td>
+            <h3>체크리스트</h3>
+            <div id="chkTbl">
+            <span th:each="item,i : ${plan.getCheckList()}">
+                <div id="left_table">
+            <table class="checktable">
+                <tbody id="left_chklist">
+                <span th:if="${i.index}%3==0">
+                    <tr th:id="${item.getCheckListNo()}">
+                        <span class="unReady_tr" th:if="${item.getReady() ==0}">
+        <td ><img src="/images/planner/unready.png" alt="png"
+                  class="isReady"></td>
+        <td class="unReady" th:text="${item.getCheckListContent()}"></td>
+                            <td class="empty"></td>
+    </span>
+     <span class="ready_tr" th:if="${item.getReady() ==1}">
+        <td><img src="/images/planner/ready.png" alt="png"
+                 class="isReady"></td>
+        <td  class="ready" th:text="${item.getCheckListContent()}"></td>
+        <td class="empty"></td>
+     </span>
+                    </tr>
+                </span>
+                </tbody>
+            </table>
+            </div>
+            <div id="center_table">
+                <table class="checktable">
+                    <tbody id="center_chklist">
+<tr th:if="${i.index}%3==1" th:id="${item.getCheckListNo()}">
+     <span class="unReady_tr" th:if="${item.getReady() ==0}">
+        <td><img src="/images/planner/unready.png" alt="png"
+                 class="isReady"></td>
+        <td class="unReady" th:text="${item.getCheckListContent()}"></td>
+         <td class="empty"></td>
+    </span>
+     <span class="ready_tr" th:if="${item.getReady() ==1}">
+        <td ><img src="/images/planner/ready.png" alt="png"
+                  class="isReady"></td>
+        <td class="ready" th:text="${item.getCheckListContent()}"></td>
+        <td class="empty"></td>
+     </span>
           </tr>
-              </span>
+                    </tbody>
 
-            </table>
+                </table>
+            </div>
+            <div id="right_table">
+                <table class="checktable">
+                    <tbody id="right_chklist">
+<tr th:if="${i.index}%3==2" th:id="${item.getCheckListNo()}">
+    <span class="unReady_tr" th:if="${item.getReady() ==0}">
+        <td><img src="/images/planner/unready.png" alt="png"
+                 class="isReady"></td>
+        <td  class="unReady" th:text="${item.getCheckListContent()}"></td>
+        <td class="empty"></td>
+    </span>
+     <span class="ready_tr" th:if="${item.getReady() ==1}">
+        <td><img src="/images/planner/ready.png" alt="png"
+                 class="isReady"></td>
+        <td class="ready" th:text="${item.getCheckListContent()}"></td>
+        <td class="empty"></td>
+     </span>
+</tr>
+                    </tbody>
 
-            <table id="checkList2" class="checktable" th:if="${plan.getCheckList.isEmpty()}">
-                <tr>
-                    <td colspan="3">체크리스트 없음</td>
-                </tr>
-            </table>
-            <div>
-                <a class="btn btn-default waves-effect waves-light"
+                </table>
+            </div>
+            </span>
+            </div>
+            <div id="btnctl">
+                <a id="modiBtn" class="btn btn-default waves-effect waves-light"
                    th:href="@{/member/planmodifyform/{planNo}(planNo=${plan.planNo})}">수정</a>
-                <button type="submit"
+                <button id="delBtn" type="submit"
                         class="btn btn-danger waves-effect waves-light">삭제
                 </button>
             </div>

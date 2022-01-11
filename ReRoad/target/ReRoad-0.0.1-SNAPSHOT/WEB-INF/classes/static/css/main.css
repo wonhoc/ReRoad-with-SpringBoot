@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700;900&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
 #mainImage{
     width: 100%;
     height: 300px;
@@ -9,7 +9,7 @@
 	 width: 100%;
     height: 400px;
     position: relative;
-    font-family: 'Noto Sans KR', sans-serif;
+    font-family: 'DoHyeon', sans-serif;
 }
 
 #searchBox{
@@ -42,13 +42,9 @@
 .searchBoxHead{
 	font-weight: 900;
 	height: 100%;
-	background-color: white;
 }
 
 .searchBoxHead:hover{
-	font-weight: 900;
-	height: 100%;
-	background-color: white;
 	box-shadow: 2px 2px 2px 2px gray;
 }
 
@@ -80,15 +76,15 @@
 	display: inline-block;
 }
 
-
-	background-color: teal;
+#selOneway{
+	background-color: rgb(233,233,233);
 	height: 100%;
 	border-top-left-radius: 15px;
 	
 }
 
 #selTurn{
-	background-color: rgb(233,233,233);
+	background-color: teal;
 	height: 100%;
 	border-top-right-radius: 15px;
 }
@@ -102,6 +98,7 @@
 	height: 40%;
 	
 }
+
 .searchBody{
 	
 	 float: left;
@@ -109,8 +106,15 @@
      box-sizing: border-box;
      left: 1px;
      height: 100%;
-     border: 3px solid white;
+     color: white;
+     border: 3px solid rgb(233,233,233);
 	
+}
+
+.searchBody:hover{
+	
+	color: #ff7f7f;
+	cursor: pointer;
 }
 
 #dep{
@@ -129,7 +133,7 @@
 	position: absolute;
 	top: 92%;
 	right: 30%;
-
+	z-index: 0;
 }
 
 .btn-primary {
@@ -147,6 +151,71 @@
 	display: inline-block;
 	background-color: tear;
 }
+
+.bodyTextDatediv{
+	font-size: 30px;
+	font-weight: 700;
+	padding-top: 15%;
+	display: inline-block;
+	background-color: tear;
+}
+
+/*
+	datapicker zindex setting
+*/
+.hasDatepicker {
+    position: relative;
+    z-index: 9;
+}
+
+
+
+
+
+
+#hideOnbush{
+	position: absolute;
+	top: 100%;
+	width: 100%;
+	height: auto;
+	background-color: white;
+	z-index: 1;
+	display: none;
+	border:  3px solid teal;
+}
+
+.cityName{
+	font-weight: 700;
+	font-size: 150%;
+	text-align: left;	
+	border: 2px solid gray;
+	
+}
+
+.stNameWrapper{
+	margin-left: 0;
+	padding-left: 0;
+	text-align: left;
+	background-color: teal;
+	color: white;
+}
+
+.stNameIn{
+	font-size: 20px;
+	display: inline-block;
+}
+
+.stNameIn:hover{
+	display: inline-block;
+	color: #ff7f7f;
+	cursor: pointer
+}
+
+.stNameBk{	
+	font-size: 20px;
+	display: block;
+}
+
 
 .content{
     width: 250px;
@@ -177,47 +246,53 @@
     font-size: 18px;
 }
 
+
 #right_table  a{
-    color: #ce8483;
+	color: #ce8483;
 }
 
 #center_title a{
-    color: #ce8483;
+	color: #ce8483;
 }
 #noti_wDate{
-    font-size: smaller;
-    color: #5e5e5e;
+	font-size: smaller;
+	color: #5e5e5e;
 }
 
 #left_table{
-    width: 53%;
-    float: left;
+	width: 53%;
+	float: left;
 }
 
 #right_table{
-    width: 23%;
-    float: right;
-    margin-top: 72px;
-    margin-right: -24px;
-    text-align: -webkit-center;
+	width: 23%;
+	float: right;
+	margin-top: 72px;
+	margin-right: -24px;
+	text-align: -webkit-center;
+	border-left: 1px dashed #dee2e6;
 }
 
 #center_title{
-    float: left;
-    margin-top: 4em;
-    margin-right: -69px;
-    margin-left: 25px;
+	float: left;
+	margin-top: 4em;
+	margin-right: -69px;
+	margin-left: 25px;
 }
 
 #notice_list{
-    line-height: 1.8;
-    font-size: 17px;
+	line-height: 1.8;
+	font-size: 17px;
 }
 
 #message {
-    line-height: 73px;
+	line-height: 73px;
 }
 
 #noti_text {
-    font-weight: bold;
+	font-weight: bold;
+}
+
+#managerDomestic{
+	margin-left: 1000px;
 }

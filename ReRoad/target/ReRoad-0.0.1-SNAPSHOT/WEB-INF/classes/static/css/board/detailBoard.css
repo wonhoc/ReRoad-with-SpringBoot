@@ -20,3 +20,17 @@
     width: 150px;
     height: 100px;
 }
+#main{
+    border: 3px solid teal;
+    border-radius: 15px;
+    width: 950px;
+    margin-left: 80px;
+    margin-top: 5px;
+}
+#wdate{
+    margin-left: 660px;
+}
+#modi{
+    margin-left: 660px;
+    margin-top: 50px;
+}

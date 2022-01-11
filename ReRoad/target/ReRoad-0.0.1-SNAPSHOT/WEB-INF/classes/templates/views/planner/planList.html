@@ -6,55 +6,21 @@
 <th:block layout:fragment="script">
     <script th:src="@{/js/planner/planList.js}"></script>
 </th:block>
-
+<th:block layout:fragment="css">
+    <link rel="stylesheet" th:href="@{/css/planner/planList.css}">
+</th:block>
 <head>
-
-    <style>
-        .paging-div {
-            padding: 15px 0 5px 10px;
-            display: table;
-            margin-left: auto;
-            margin-right: auto;
-            text-align: center;
-        }
-        #pagination-div{
-            text-align: center;
-        }
-        #pagination-div{
-            text-align: center;
-        }
-        #pagination-div2{
-            text-align: center;
-        }
-        thead{
-            text-align: center;
-        }
-
-        #UK{
-            width: 150px;
-            line-height: 3.5em;
-        }
-        #thead{
-            background-color: burlywood;
-
-        }
-]        #wdate,#bc,#rc,#cc,span{
-            line-height: 3.5em;
-        }
-        .navBox {
-            margin-top: 1em;
-        }
-
-    </style>
- </head>
+</head>
 <section class="container" layout:fragment="content">
-    <h3>여행 일정 플래너</h3>
+    <h3 id="title">여행 일정 플래너</h3>
+    <a  id="writeBtn" class="btn btn-primary waves-effect waves-light"
+        th:href="@{/member/planwriteform}">일정짜기</a>
     <div id="external-table">
         <table id="table" class="table table-hover">
             <thead>
-                <th>여행이름</th>
-                <th>여행지</th>
-                <th>여행기간</th>
+            <th>여행이름</th>
+            <th>여행지</th>
+            <th colspan="3">여행기간</th>
             </thead>
             <tbody id="planList">
 
@@ -65,10 +31,25 @@
                 <div id="page-content"></div>
             </div>
         </div>
-            <a class="btn btn-primary waves-effect waves-light"
-               th:href="@{/member/planwriteform}">일정짜기</a>
-
     </div>
 
+    <div id="pastplan-table">
+        <h3 id="past_title">지난 여행</h3>
+        <table id="pasttable" class="table table-hover">
+            <thead>
+            <th>여행이름</th>
+            <th>여행지</th>
+            <th colspan="3">여행기간</th>
+            </thead>
+            <tbody id="pastplanList">
+
+            </tbody>
+        </table>
+        <div id="paging2">
+            <div id="pagination-div2">
+                <div id="page-content2"></div>
+            </div>
+        </div>
+    </div>
 </section>
 </html>

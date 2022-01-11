@@ -116,6 +116,11 @@ public class BoardDaoImpl implements BoardDao {
     }
 
     @Override
+    public int selectComCount(int boardNo) {
+        return this.sqlSession.selectOne("Board.commentCount", boardNo);
+    }
+
+    @Override
     public void insertRecom(RecomVo recom) {
         this.sqlSession.update("Board.recomUpdate", recom);
 
@@ -161,5 +166,6 @@ public class BoardDaoImpl implements BoardDao {
     public List<BoardVo> readUserBoardList(String userId) {
         return this.sqlSession.selectList("Board.userBoardList", userId);
     }
+
 
 }

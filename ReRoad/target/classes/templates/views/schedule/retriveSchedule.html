@@ -66,7 +66,7 @@
 					    </div>	
 					    
 					    <div id="dateArr" class="searchBodyDate" th:attr="style=${arrDate == 'none' ? 'display: none;' : 'display: block;'}">
-					    	<div class="bodyTextDatediv" id="bodyDateArr" data-toggle="popover" data-placement="top" th:text="${arrDate == 'none' ? '오는날' : arrDate}"></div>
+					    	<div class="bodyTextDatediv" id="bodyDateArr" data-toggle="popover" data-placement="top" th:text="${arrDate == 'none' ? '오는날' : #strings.substring(arrDate,4,6) + '월' + #strings.substring(arrDate,6,8) + '일'}"></div>
 					    	<input type="text" id="inputDatepickerArr" class="datePikcer">
 					    	<input type="hidden" id="arrDate" name ="arrDate" th:attr="value=${arrDate == 'none' ? 'none' : arrDate}">	   
 					    </div>
@@ -102,11 +102,11 @@
 		
 		
 		<div id="scListBox">
-		
-		 		<div id="box1" th:attr="class=${arrSc == null ? 'centerInnerBox' : 'innerBox'}">
+		 		<div id="box1" th:attr="class=${turnSc == null ? 'centerInnerBox' : 'innerBox'}">
+		 			<h1>[[${depLoName}]] → [[${arrLoName}]] </h1>
 		 			<table class="table table-bordered">
-		 				<thead>
-		 					<tr>
+		 				<thead>	 		
+		 					<tr th:if="${#lists.size(startSc.ScList) > 0}">
 		 						<th>열차 종류</th>
 		 						<th>출발 시간</th>
 		 						<th>도착 시간</th>
@@ -114,14 +114,18 @@
 		 						<th>운임</th>
 		 						<th>소요시간</th>
 		 					</tr>
+		 					
+		 					<tr th:if="${#lists.size(startSc.ScList) == 0}">
+		 						<th>조회된 스케줄이 없습니다.</th>
+		 					</tr>
 		 				</thead>
-		 				<tbody>
-		 					<tr th:each="sc:${startSc.ScList}">
+		 				<tbody>		 					
+		 					<tr th:if="${#lists.size(startSc.ScList) > 0}" th:each="sc:${startSc.ScList}">
 		 						<td>[[${sc.traingradename}]]</td>	 				
 		 						<td>[[${sc.depplandtime}]]</td>
 		 						<td>[[${sc.arrplandtime}]]</td>
 		 						<td>[[${sc.trainno}]]</td>
-		 						<td>[[${sc.arrplandtime}]]</td>
+		 						<td>[[${sc.adultcharge}]]</td>
 		 						<td>소요시간</td>		
 		 					</tr>
 		 				</tbody>
@@ -129,12 +133,41 @@
 		 			</table>
 		 		</div>
 		 		
-		 		<div id="box2"  th:if="${arrSc != null}" class="innerBox">
-		 			[[${arrSc}]]
+		 		<div id="box2"  th:if="${turnSc != null}" class="innerBox">
+		 		<h1>[[${arrLoName}]] → [[${depLoName}]]</h1>
+		 			<table class="table table-bordered">
+		 				<thead>	 		
+		 					<tr th:if="${#lists.size(turnSc.ScList) > 0}">
+		 						<th>열차 종류</th>
+		 						<th>출발 시간</th>
+		 						<th>도착 시간</th>
+		 						<th>열차 번호</th>
+		 						<th>운임</th>
+		 						<th>소요시간</th>
+		 					</tr>
+		 					
+		 					<tr th:if="${#lists.size(turnSc.ScList) == 0}">
+		 						<th>조회된 스케줄이 없습니다.</th>
+		 					</tr>
+		 				</thead>
+		 				<tbody>		 					
+		 					<tr th:if="${#lists.size(turnSc.ScList) > 0}" th:each="sc:${turnSc.ScList}">
+		 						<td>[[${sc.traingradename}]]</td>	 				
+		 						<td>[[${sc.depplandtime}]]</td>
+		 						<td>[[${sc.arrplandtime}]]</td>
+		 						<td>[[${sc.trainno}]]</td>
+		 						<td>[[${sc.adultcharge}]]</td>
+		 						<td>소요시간</td>		
+		 					</tr>
+		 				</tbody>
+		 				
+		 			</table>
 		 		</div>
-		 	
+		 		  
+		 		</div>
+		 		 
  		</div>
-		
+ 			
  	</div> 
 </section>
 </html>

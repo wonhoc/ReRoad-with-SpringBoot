@@ -109,6 +109,7 @@ public class TrainScheduleServiceImpl implements TrainScheduleService {
 				
 			}else{
 				System.out.println("왕복아님");
+				scList.put("turnSc", null);
 			}//end
 			
 		}//if end

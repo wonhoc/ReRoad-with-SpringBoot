@@ -2,44 +2,66 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
 
-h1{
+
+body{
+	cursor: default;
+	text-align: center;
+	font-family: 'DoHyeon', sans-serif;
+	font-weight: 900; 
+}
+
+thead{
 	
-	color: teal;
+	background-color: #052d36;
+	color: white;
+}
+
+tbody{
+	
+	background-color: #1bc4b6;
+	
+}
+
+h1{
+	background-color: rgb(242,242,242);
+	color: black;
+	margin: 0;
 }
 
 #scListBox{
 	
-	width: 100%;
-	background-color: coral;
-	height: 30em;
+	width: auto;
+	background-color: rgb(242,242,242);
+	height: auto;
 	margin-top: 10%;
-	
+	overflow: auto;
+	border-radius: 2%;
 }
 
 .innerBox{
 	
-	float: left;
-	width: 40%;
-	height: 80%;
+	display: inline-block;
+	width: auto;
+	height: auto;
 	margin-top: 5%;
-	background-color: red;
-	margin-left: 5%;
+	background-color: rgb(233, 233, 233);
+	margin-left: 1%;
+	border-radius: 2%;
 }
 
 .centerInnerBox{
 	display:inline-block;
-	height: 80%;
-	width: 40%;
-	margin-left: 30%;
+	height: auto;
+	width: auto;
 	margin-top: 5%;
-	background-color: yellow;
+	background-color: rgb(233, 233, 233);
+	padding: 0;
 }
 
 #box2{
-	background-color: blue;
 	padding: 0;
 	float: right;
-	margin-right: 5%;
+	margin-right: 1%;
 }
 
 #mainwrapper{

@@ -32,6 +32,7 @@ $(document).ready(function(){
 		
 			$('#date').attr('class', 'searchBody');
 			$('#date').children('#bodyDate').text('날짜');
+			$('#dateArr').children('#arrDate').val('none');
 			$('#dateArr').hide();
 			
 		}//if end
@@ -167,6 +168,7 @@ $(document).ready(function(){
 			monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
 			dateFormat : 'yymmdd',
 			showButtonPanel: true,
+			showMonthAfterYear : true,
 			closeText: '닫기',		
 			onSelect : function(){
 				//선택시 선택창의 값이 바뀐다
@@ -188,6 +190,7 @@ $(document).ready(function(){
 			monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
 			dateFormat : 'yymmdd',
 			showButtonPanel: true,
+			showMonthAfterYear : true,
 			closeText: '닫기',		
 			onSelect : function(){
 				//선택시 선택창의 값이 바뀐다
@@ -211,7 +214,7 @@ $(document).ready(function(){
 //날짜 포멧 변환
 function dateCon(date){
 	
-	let mon = date.substr(5,1);
+	let mon = date.substr(4,2);
 	let day = date.substr(6,2);
 	let ymd = mon + '월' + day + '일';
 	

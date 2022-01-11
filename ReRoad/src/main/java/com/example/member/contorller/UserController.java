@@ -372,8 +372,7 @@ public class UserController {
         List<BoardVo> board = this.boardService.retrieveRecentBoardList(userId);
         model.addAttribute("board", board);
 
-        List<CommentVo> com = this.boardService.retrieveRecentComList(userId);
-        model.addAttribute("com", com);
+
 
         return "views/member/myPage";
     }

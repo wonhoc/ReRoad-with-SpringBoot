@@ -3,6 +3,57 @@
 @import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
 
 
+
+
+.scInfoEl{
+	
+	display: inline-block;
+	
+}
+
+#chargeBox{
+	
+	background-color: green;
+}
+
+#trainTypeNo{
+	
+	background-color: blue;
+	
+}
+
+#spanTime{
+	
+	background-color: orange;
+}
+
+#clock{
+	
+	height: 50px;
+	widows: 50px;
+	
+}
+
+#timeAndAw{
+	
+	background-color: yellow;
+	
+}
+
+#rightAw{
+	
+	height: 50px;
+	widows: 50px;
+}
+
+#scInfo{
+	
+	background-color: red;
+	
+}
+
+
+/* 
 body{
 	cursor: default;
 	text-align: center;
@@ -27,7 +78,7 @@ h1{
 	color: black;
 	margin: 0;
 }
-
+ */
 #scListBox{
 	
 	width: auto;

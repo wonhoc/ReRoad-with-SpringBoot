@@ -100,74 +100,37 @@
 			</form>	
 		</div>
 		
-		
-		<div id="scListBox">
-		 		<div id="box1" th:attr="class=${turnSc == null ? 'centerInnerBox' : 'innerBox'}">
-		 			<h1>[[${depLoName}]] → [[${arrLoName}]] </h1>
-		 			<table class="table table-bordered">
-		 				<thead>	 		
-		 					<tr th:if="${#lists.size(startSc.ScList) > 0}">
-		 						<th>열차 종류</th>
-		 						<th>출발 시간</th>
-		 						<th>도착 시간</th>
-		 						<th>열차 번호</th>
-		 						<th>운임</th>
-		 						<th>소요시간</th>
-		 					</tr>
-		 					
-		 					<tr th:if="${#lists.size(startSc.ScList) == 0}">
-		 						<th>조회된 스케줄이 없습니다.</th>
-		 					</tr>
-		 				</thead>
-		 				<tbody>		 					
-		 					<tr th:if="${#lists.size(startSc.ScList) > 0}" th:each="sc:${startSc.ScList}">
-		 						<td>[[${sc.traingradename}]]</td>	 				
-		 						<td>[[${sc.depplandtime}]]</td>
-		 						<td>[[${sc.arrplandtime}]]</td>
-		 						<td>[[${sc.trainno}]]</td>
-		 						<td>[[${sc.adultcharge}]]</td>
-		 						<td>소요시간</td>		
-		 					</tr>
-		 				</tbody>
-		 				
-		 			</table>
-		 		</div>
-		 		
-		 		<div id="box2"  th:if="${turnSc != null}" class="innerBox">
-		 		<h1>[[${arrLoName}]] → [[${depLoName}]]</h1>
-		 			<table class="table table-bordered">
-		 				<thead>	 		
-		 					<tr th:if="${#lists.size(turnSc.ScList) > 0}">
-		 						<th>열차 종류</th>
-		 						<th>출발 시간</th>
-		 						<th>도착 시간</th>
-		 						<th>열차 번호</th>
-		 						<th>운임</th>
-		 						<th>소요시간</th>
-		 					</tr>
-		 					
-		 					<tr th:if="${#lists.size(turnSc.ScList) == 0}">
-		 						<th>조회된 스케줄이 없습니다.</th>
-		 					</tr>
-		 				</thead>
-		 				<tbody>		 					
-		 					<tr th:if="${#lists.size(turnSc.ScList) > 0}" th:each="sc:${turnSc.ScList}">
-		 						<td>[[${sc.traingradename}]]</td>	 				
-		 						<td>[[${sc.depplandtime}]]</td>
-		 						<td>[[${sc.arrplandtime}]]</td>
-		 						<td>[[${sc.trainno}]]</td>
-		 						<td>[[${sc.adultcharge}]]</td>
-		 						<td>소요시간</td>		
-		 					</tr>
-		 				</tbody>
-		 				
-		 			</table>
-		 		</div>
-		 		  
-		 		</div>
-		 		 
- 		</div>
- 			
- 	</div> 
+		<div id="scBoxWrapper">
+			<div id="scBox">
+				<div id="scInfo">
+					<div>
+					
+						<div id="timeAndAw" class="scInfoEl">
+							<span>06</span>
+							<span><img id="rightAw" src="/images/schedule/right-arrow.png"></span>
+							<span>07</span>
+							<span></span>
+						</div>
+						
+						<div id="spanTime" class="scInfoEl">
+							<span>2시간23분</span><span><img id="clock" src="/images/schedule/clock.png"></span>
+						</div>
+						
+						<div id="trainTypeNo" class="scInfoEl">
+							<span>ktx</span><span>321</span>
+						</div>
+						
+						<div id="chargeBox" class="scInfoEl">
+							<span>35000</span>
+						</div>
+						
+					</div>
+				</div>
+				
+				
+				
+			</div>
+		</div>
+ </div>
 </section>
 </html>

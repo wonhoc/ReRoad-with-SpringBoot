@@ -22,8 +22,6 @@ public interface NoticeDao {
     List<NoticeVO> selectSearchByContentNotice(SearchVO search);
     void upHitCount(int noticeNo);
     List<FileVO> selectNoticeFileList(int noticeNo);
-
     FileVO selectNoticeFile(int fileNo);
-
     List<NoticeVO> selectLastNotices();
 }

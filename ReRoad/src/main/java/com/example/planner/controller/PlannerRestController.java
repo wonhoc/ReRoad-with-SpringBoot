@@ -20,7 +20,7 @@ public class PlannerRestController {
     @Autowired
     private PlannerService plannerService;
 
-    // 게시글 조회 ajax
+    // 게시글 조회 페이징을 위한 ajax
     @GetMapping("/getPlanList")
     public List<PlannerVO> listPlanner( @AuthenticationPrincipal User principal) {
 
@@ -28,7 +28,7 @@ public class PlannerRestController {
         return list;
     }
 
-    //지나간 플랜 목록 조회 ajax
+    //지나간 플랜 목록 조회 페이징을 위한 ajax
     @GetMapping("/getPastPlanList")
     public List<PlannerVO> pastlistPlanner( @AuthenticationPrincipal User principal) {
 

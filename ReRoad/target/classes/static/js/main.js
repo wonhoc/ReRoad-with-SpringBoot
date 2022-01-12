@@ -12,7 +12,7 @@ $(document).ready(function(){
 		vehicl = $(this).text();
 		console.log(vehicl);
 		//#vehiclType에 value 추가
-		vehicl == "열차" ? $('#vehiclType').val('train') : $('vehiclType').val('expBus');
+		vehicl == "열차" ? $('#vehiclType').val('train') : $('#vehiclType').val('expBus');
 		console.log($('#vehiclType').val());
 		
 		
@@ -25,13 +25,13 @@ $(document).ready(function(){
 		$(this).nextAll().css('background-color', 'teal');
 		
 		tripType = $(this).children().text().trim();
-		console.log(tripType);
 		
 		//날짜선택 변경
 		if(tripType == "편도"){
 		
 			$('#date').attr('class', 'searchBody');
 			$('#date').children('#bodyDate').text('날짜');
+			$('#date').children('#startDate').val('');
 			$('#dateArr').children('#arrDate').val('none');
 			$('#dateArr').hide();
 			
@@ -41,6 +41,7 @@ $(document).ready(function(){
 	
 			$('#date').attr('class', 'searchBodyDate');
 			$('#date').children('#bodyDate').text('가는날');
+			$('#date').children('#startDate').val('');
 			$('#dateArr').show();
 		
 		}//if end

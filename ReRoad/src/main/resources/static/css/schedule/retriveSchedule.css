@@ -6,7 +6,7 @@ body{
 	cursor: default;
 	text-align: center;
 	font-family: 'DoHyeon', sans-serif;
-	font-weight: 900; 
+	font-weight: 700; 
 }
 
 .unFoldSc{
@@ -27,7 +27,7 @@ body{
 
 .infoPlace{
 	margin-top: 5%;
-	font-size: 2em;
+	font-size: 1.5em;
 	background-color: rgb(242,242,242);
 	
 }
@@ -88,6 +88,8 @@ body{
 	
 }
 
+
+
 .chargeBox{
 	
 	margin-top: 1%;
@@ -134,9 +136,13 @@ body{
 	text-align: center;
 	padding-top: 2%;
 	margin-bottom: 3%;
+	border-radius: 1%;
 }
 
+.scInfo:hover{
 
+	box-shadow: 1px 1px 1px 1px black;
+}
  
 
 

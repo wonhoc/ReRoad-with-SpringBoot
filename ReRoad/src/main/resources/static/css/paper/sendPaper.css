@@ -49,11 +49,11 @@
     float: left;
 }
 /* input 창 */
-#receiveId {
+#receiveNick {
     margin-bottom: 2em;
 }
 /* textarea*/
-#paperContent {
+#sendContent {
     resize: none;
     height: 200px;
     margin-bottom: 2em;
@@ -79,6 +79,4 @@
     background-color: #f1a534;
     border-color: #f1a534;
 }
-.paperCategory {
-    display: none;
-}
+

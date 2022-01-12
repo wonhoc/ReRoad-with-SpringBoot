@@ -37,31 +37,20 @@
                     </a>
                 </div>
                 <div id="addressAndWrite" class="col-sm-9">
-                    <div id="sendPaper" name="sendPaper" class="paperDiv">
-                        <form class="form-group" action="/removeSendPaper" method="POST" id="removeSendPaperForm">
-                            <table class="table table-hover">
-                                <thead>
-                                <tr>
-                                    <th>받은사람</th>
-                                    <th>작성내용</th>
-                                    <th>작성시간</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <div >
-                                    <tr>
-                                        <td>보낸 쪽지가 없습니다.</td>
-                                    </tr>
-                                </div>
-                                <div >
+                    <div id="writePaper" name="writePaper" class="paperDiv">
+                        <form class="form-group" action="/sendNewPaper" method="POST">
+                            <div id="address">
+                                <label for="receiveNick" class="upperInputText">받는 사람</label>
+                                <input type="text" class="form-control" id="receiveNick" name="receiveNick" placeholder="닉네임을 입력하세요">
+                            </div>
 
-                                </div>
+                            <div id="context">
+                                <label for="sendContent" class="upperInputText">내용</label>
+                                <textarea class="form-control" row="20" id="sendContent" name="sendContent" placeholder="내용을 입력하세요"></textarea>
 
-                                </tbody>
-                            </table>
-
+                            </div>
+                            <button type="submit" class="btn btn-default btn-lg btn-block" id="sendBtn" style="text-decoration: none">보내기</button>
                         </form>
-
                     </div>
                 </div>
             </div>

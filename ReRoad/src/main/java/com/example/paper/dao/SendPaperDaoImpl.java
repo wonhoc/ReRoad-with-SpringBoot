@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import java.math.BigInteger;
 import java.util.HashMap;
+import java.util.List;
 
 @Repository("sendPaperDao")
 public class SendPaperDaoImpl implements SendPaperDao {
@@ -31,5 +32,10 @@ public class SendPaperDaoImpl implements SendPaperDao {
         BigInteger tempPaperNo = (BigInteger)sendPaper.get("sendPaperNo");
         int sendPaperNo = tempPaperNo.intValue();
         return sendPaperNo;
+    }
+
+    @Override
+    public List<SendPaperVo> selectSendPaperList(String userNick) {
+        return this.sqlSession.selectList("Paper.selectSendPaperList", userNick);
     }
 }

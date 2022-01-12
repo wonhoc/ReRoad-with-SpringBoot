@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 @Service("paperService")
 public class PaperServiceImpl implements PaperService{
@@ -43,5 +44,10 @@ public class PaperServiceImpl implements PaperService{
         // ReceivePaper에 저장
         this.receivePaperDao.insertPaper(receivePaper,sendPaperNo);
 
+    }
+    // 보낸 쪽지 리스트 가져오기
+    @Override
+    public List<SendPaperVo> retrieveSendPaperList(String userNick) {
+        return this.sendPaperDao.selectSendPaperList(userNick);
     }
 }

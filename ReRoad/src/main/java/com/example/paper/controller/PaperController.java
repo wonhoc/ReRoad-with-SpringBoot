@@ -9,10 +9,13 @@ import com.example.paper.vo.SendPaperVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 @Controller
@@ -20,15 +23,36 @@ public class PaperController {
 
     @Autowired
     private PaperService paperService;
+    
+    // 쪽지 보내기 페이지로 이동
+    @GetMapping("/writePaper")
+    public String goWritePaper() {
+        return "/views/paper/writePaper";
+    }
 
-    @GetMapping("/paperPage")
-    public String goPaper() {
+    // 보낸 쪽지함 이동 시 리스트 수신
+    @GetMapping("/sendPaper")
+    public String sendPaperList(Model model, @AuthenticationPrincipal UserAccount user) {
+
+        String senderNick = user.getUser().getUserNick();
+        ArrayList<SendPaperVo> sendPaperList =
+                (ArrayList<SendPaperVo>) this.paperService.retrieveSendPaperList(senderNick);
+
+        model.addAttribute("sendPaperList",sendPaperList);
+
         return "/views/paper/sendPaper";
+
+    }
+
+
+    @GetMapping("/receivePaper")
+    public String goReceive() {
+        return "/views/paper/receivePaper";
     }
 
 
     // 작성한 쪽지 내용 저장
-    @PostMapping("/sendPaper")
+    @PostMapping("/sendNewPaper")
     public String sendPaper(@RequestParam("receiveNick") String receiveNick,
                           @RequestParam("sendContent") String sendPaperContent,
                           @AuthenticationPrincipal UserAccount user) {
@@ -70,8 +94,8 @@ public class PaperController {
         this.paperService.registerPaper(sendPaperVo,receiverVos);
 
         return "redirect:/paperPage";
-
-
     }
+
+
 
 }

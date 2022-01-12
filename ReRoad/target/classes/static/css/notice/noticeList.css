@@ -1,0 +1,50 @@
+.paging-div {
+    padding: 15px 0 5px 10px;
+    display: table;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+#pagination-div{
+    text-align: center;
+}
+#pagination-div2{
+    text-align: center;
+}
+thead{
+    text-align: center;
+}
+#keyfield{
+    width:100px; height: 40px; float:left;
+}
+#keyword{
+    height: 40px; width: 700px; float:left;
+}
+#searchBtn{
+    height: 40px;
+}
+#thead{
+    background-color: burlywood;
+}
+#noticeList td{
+    vertical-align: middle;
+}
+#wdate,#bc,#rc,#cc,span{
+    line-height: 3.5em;
+}
+.navBox {
+    margin-top: 2em;
+}
+input[type=search]{
+    width:850px;
+    margin-right: 10px;
+}
+select{
+    margin-right: 10px;
+}
+.btn-success{
+    margin-top: -5px;
+}
+input.form-control{
+    display: inline;
+}

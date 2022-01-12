@@ -1,0 +1,97 @@
+#detail-form{
+    padding-left: 60px;
+    padding-right: 60px;
+    padding-top: 20px;
+}
+table {
+    border-collapse: collapse;
+    border-radius: 20px;
+    border-style: hidden;
+}
+
+.filetable {
+    border-top: 1px solid teal;
+    border-bottom: 1px solid teal;
+    width: 420px;
+    height: 150px;
+}
+.filetable th{
+    vertical-align: middle;
+    height: 40px;
+    color: #555;
+    font-size: 1.35rem;
+}
+#boardTitle {
+    background-color: #fcf4de;
+}
+#head{
+   font-weight: 400;
+    font-size: 3.2rem;
+    height: 60px;
+    border-bottom: 2px solid teal;
+    margin-bottom: 3px;
+}
+#titi{
+    margin-bottom: 0.8rem;
+    font-family: '맑은 고딕';
+    font-size: 3.3rem;
+    color: #000;
+    font-weight: normal;
+    border-bottom: 1px solid white;
+}
+#subtitle{
+    border: 1px solid #dee2e6;
+}
+#wdate{
+    font-size: 1.4rem;
+    font-weight: normal;
+    color: #00256c;
+   width: 95px;
+}
+.hitcnt{
+    font-size: 1.4rem;
+    font-weight: normal;
+    color: #555;
+}
+.btnctrl{
+    float: right;
+    margin-top: -65px;
+}
+#cnttxt{
+ width: 60px;
+}
+#noticeContent{
+    vertical-align: middle;
+    height: 200px;
+}
+.list_title a{
+    color: darkseagreen;
+}
+#filehead{
+    border-bottom: 1px solid teal;
+}
+#modibtn{
+    background-color: darkseagreen;
+    border-color: darkseagreen;
+}
+#listbtn{
+    margin-top: 20px;
+}
+.table{
+    border-bottom: 1px solid #dee2e6;
+}
+#nofile{
+    text-align: center;
+    color: #5e5e5e;
+}
+h5{
+    font-size: 15px;
+    font-weight: 600;
+}
+pre{
+    background-color: white;
+    border: 1px solid white;
+    font-style: italic;
+    font-family: "맑은 고딕";
+    font-size: 14px;
+}

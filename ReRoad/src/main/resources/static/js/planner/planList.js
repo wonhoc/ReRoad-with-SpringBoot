@@ -6,8 +6,6 @@ $(document).ready(function () {
         method: 'GET',
         dataType: 'json',
         success: function (data) {
-            console.log(data);
-
             if (data.length == 0) {
                 let html3 = "<tr><td id='noPlan' colspan='6'>아직 등록된 일정이 없어요!</td></tr>";
                 $("tbody").html(html3);
@@ -63,7 +61,7 @@ $(document).ready(function () {
                                 html += '<td id="spot">' + data[i].spot + '</td>';
                                 html += '<td id="startDate">' + data[i].startDate + '</td>';
                                 html += '<td id="sign"> ~ </td>';
-                                html += '<td id="arriveDate">' + data[i].arriveDate + '&nbsp;&nbsp;<img src="/images/planner/ing.gif" alt="gif"' +
+                                html += '<td id="ing_arriveDate">' + data[i].arriveDate + '&nbsp;&nbsp;<img src="/images/planner/ing.gif" alt="gif"' +
                                     '                 class="ingimg"></td></tr>';
                             } else{
                                 html += '<tr>'
@@ -79,14 +77,11 @@ $(document).ready(function () {
                     }
                 });
             }
-
         },
         error: function (error) {
             console.log(error);
-
         }
     });
-
 
     //과거 플래너 목록 조회
     $.ajax({
@@ -94,7 +89,6 @@ $(document).ready(function () {
         method: 'GET',
         dataType: 'json',
         success: function (data) {
-            console.log(data);
             if (data.length == 0) {
                 let html3 = "<tr><td id='noPastPlan' colspan='6'>등록된 지난 여행이 없어요!</td></tr>";
                 $("#pastplanList").html(html3);
@@ -132,7 +126,7 @@ $(document).ready(function () {
                         }
                         let startPage = ((page - 1) / 5) * 5 + 1;
                         let endPage = startPage + 5 - 1;
-                        if (endPage > totalPages) {    //
+                        if (endPage > totalPages) {
                             endPage = totalPages;
                         }
                         for (let i = startRow; i < endRow; i++) {
@@ -147,11 +141,9 @@ $(document).ready(function () {
                     }
                 });
             }
-
         },
         error: function (error) {
             console.log(error);
-
         }
     });
 });

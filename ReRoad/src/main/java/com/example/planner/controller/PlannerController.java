@@ -38,10 +38,10 @@ public class PlannerController {
         if (nowUser.equals(writeUser)) {
             PlannerVO plan = this.plannerService.retrievePlan(planNo);
             model.addAttribute("plan", plan);
-
             return "views/planner/planDetail";
-        } else return "redirect:/member/planlist";
-
+        }
+        //내 글을 조회하려는 유저가 다른 사람이면, 플랜 목록 조회 페이지로 이동
+        else return "redirect:/member/planlist";
     }
 
     // 플랜 작성
@@ -52,12 +52,11 @@ public class PlannerController {
         return "views/planner/planWriteForm";
     }
 
-    //게시글 작성
+    //글 작성
     @PostMapping("/member/writeplan")
     public String planWrite(@Valid PlannerVO plan, @AuthenticationPrincipal User principal,
                             @RequestParam(value = "checkListContent", required = false) String[] checkListContents,
                             @RequestParam(value = "ready", required = false) int[] ready) {
-
 
         PlannerVO newPlan = new PlannerVO();
         newPlan.setTravelTitle(plan.getTravelTitle());
@@ -68,24 +67,20 @@ public class PlannerController {
         newPlan.setUserId(principal.getUsername());
         List<CheckListVO> checkList = new ArrayList<CheckListVO>();
 
-
         for (int i = 0; i < ready.length; i++) {
             CheckListVO checkListVO = new CheckListVO();
             String isNull = checkListContents[i].replaceAll("/ /gi", "");
             if (isNull != "" || !isNull.isEmpty()) {
                 checkListVO.setCheckListContent(checkListContents[i]);
-
                 checkListVO.setReady(ready[i]);
                 checkList.add(i, checkListVO);
             }
         }
-
         newPlan.setCheckList(checkList);
         this.plannerService.createPlan(newPlan);
 
         return "redirect:/member/planlist";
     }
-
 
     //플랜 수정
     //수정 폼으로 이동
@@ -100,8 +95,7 @@ public class PlannerController {
             plan.setPlanNo(planNo);
             model.addAttribute("plan", plan);
             return "views/planner/planModifyForm";
-        } else
-            return "redirect:/member/planlist";
+        } else return "redirect:/member/planlist";
     }
 
     //플래너 수정

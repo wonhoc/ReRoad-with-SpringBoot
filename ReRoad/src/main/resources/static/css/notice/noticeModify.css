@@ -1,0 +1,63 @@
+#form{
+    padding-left: 80px;
+    padding-right: 40px;
+    padding-top: 20px;
+}
+#noticeTitle{
+    margin-top: 20px;
+}
+#file_name{
+    margin-top: 3px;
+    margin-left: 1px;
+}
+ul{
+    list-style:none;
+    padding-left:0px;
+}
+li{
+    color: blue;
+}
+.errli{
+    color: red;
+}
+.fileBox{
+    margin-top: 25px;
+}
+.btnctl{
+    float: right;
+    margin-top: 5px;
+}
+#Isvalid{
+    text-align: end;
+}
+.foot{
+    display: inline;
+}
+#existFileTitle{
+    margin-top: 25px;
+    font-size: 1.5rem;
+    font-weight: 500;
+    border-bottom: 1px dashed #dee2e6;
+    width: fit-content;
+    height: 25px;
+}
+.list_title{
+    width: 250px;
+}
+#noticeContent{
+    resize: none;
+    overflow: hidden;
+    padding: 10px;
+}
+#removeFileBtn{
+    margin-left: 10px;
+    background-color: #ce8483;
+    border-color: #ce8483;
+    color: white;
+    border-style: outset;
+    margin-top: 3px;
+}
+
+#files{
+    width: fit-content;
+}

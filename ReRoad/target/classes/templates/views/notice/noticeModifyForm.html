@@ -6,17 +6,15 @@
   <link rel="stylesheet" th:href="@{/css/notice/noticeModify.css}">
 </th:block>
 <th:block layout:fragment="script">
-  <script th:src="@{/js/notice/noticeWrite.js}"></script>
+  <script th:src="@{/js/notice/noticeModify.js}"></script>
   <script th:src="@{/js/notice/noticeFileDelete.js}"></script>
 </th:block>
 
 <head>
 
-
 </head>
 <section layout:fragment="content">
-  <div>
-
+  <div class="container">
     <form name="form" id="form" role="form" method="post" th:action="@{/admin/modifynotice}" enctype="multipart/form-data">
       <input type="hidden" name="noticeNo" id="noticeNo" th:value="${notice.noticeNo}">
       <div class="mb-3">
@@ -26,42 +24,44 @@
       </div>
 
       <div class="mb-3">
-        <input type="text" class="form-control" name="noticeContent" id="noticeContent"
-               th:value="${notice.noticeContent}" style="height: 300px;" autocomplete="off">
+        <textarea class="form-control" name="noticeContent" id="noticeContent"
+                  th:value="${notice.noticeContent}" th:text="${notice.noticeContent}"
+                  style="height: 300px;" autocomplete="off" >
+        </textarea>
       </div>
-      <table id="fileList" class="filetable" th:if="${!(notice.getNoticeFileList().isEmpty())}">
-        <tr> 기존 파일 목록</tr>
-        <tr>
-          <th colspan="10">파일명</th>
-          <th colspan="6">파일크기</th>
-
-        </tr>
-      </table>
-      <table id ="files">
-        <tbody id="originFileList" th:each="file : ${notice.getNoticeFileList()}">
-        <tr th:id="${file.fileNo}">
-          <td colspan="6" th:text="${file.fileOrigin }" > </td>
-          <td colspan="6" th:text="${file.fileSize}"></td>
-          <td><button type="button"  id="removeFileBtn">파일 삭제</button></td>
-
-        </tr>
-        </tbody>
-
-
-      </table>
+      <span th:if="${(notice.getNoticeFileList().isEmpty())}">
+        <input type="hidden" name="originFileSize" id="originFileSize" th:value=0>
+      </span>
+      <h5 th:if="${!(notice.getNoticeFileList().isEmpty())}" id="existFileTitle"> 기존 파일 목록</h5>
+        <input type="hidden" name="originFileSize" id="originFileSize"
+               th:value="${notice.getNoticeFileList().size()}">
+        <table id ="files">
+          <tbody id="originFileList" th:each="file : ${notice.getNoticeFileList()}">
+            <tr class="origintr" th:id="${file.fileNo}">
+              <td th:if="${#strings.length(file.fileOrigin) < 20}" class="list_title" th:text="${file.fileOrigin }" />
+              <td th:if="${#strings.length(file.fileOrigin) >= 20}" class="list_title"
+                  th:text="${#strings.substring(file.fileOrigin,0,20)} + ... +
+                  ${#strings.substring(file.fileOrigin,#strings.length(file.fileOrigin)-3,#strings.length(file.fileOrigin))}" />
+              <td th:text="${file.fileSize}+bytes"></td>
+              <td><button type="button"  id="removeFileBtn">파일 삭제</button></td>
+            </tr>
+          </tbody>
+        </table>
 
       <div class="fileBox">
         <div class="form_imgBtn">
           <label for="noticeFileInput">파일 첨부</label>
           <input type="file" class="form-fileInput" id="noticeFileInput" name="noticeFileInput" multiple>
+          <div id="file_name"></div>
         </div>
       </div>
 
-
       <div>
         <div id="Isvalid"></div>
-        <button type="submit" class="btn btn-sm btn-primary" id="saveBtn">수정</button>
-        <a class="btn btn-default waves-effect waves-light" th:href="@{/noticelist}">목록</a>
+        <div class="btnctl">
+          <button type="submit" class="btn btn-sm btn-primary" id="saveBtn">수정</button>
+          <a class="btn btn-default waves-effect waves-light" th:href="@{/noticelist}">목록</a>
+        </div>
       </div>
     </form>
   </div>

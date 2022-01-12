@@ -1,6 +1,7 @@
 package com.example.notice.controller;
 
 import com.example.common.FileVO;
+import com.example.member.vo.UserAccount;
 import com.example.notice.service.NoticeService;
 import com.example.notice.vo.NoticeVO;
 import com.example.util.FileUploadService;
@@ -33,10 +34,9 @@ import java.util.List;
 @Controller
 @Slf4j
 public class NoticeController {
-
     @Autowired
     private NoticeService noticeService;
-
+    //파일이 저장되어있는 경로
     private String savePath = "/upload/";
 
     @Autowired
@@ -47,46 +47,15 @@ public class NoticeController {
     public String noticeList() {
 
         return "views/notice/noticeList.html";
-
-
     }
+
     // 공지글 상세보기
     @GetMapping("/noticedetail/{noticeNo}")
-    public String detailnotice(@PathVariable  int noticeNo, Model model, HttpServletRequest request, HttpServletResponse response) {
+    public String detailnotice(@PathVariable int noticeNo, Model model) {
 
-        Cookie[] cookies = request.getCookies();
-
-        //비교하기 위해 새로운 쿠키
-        Cookie viewCookie = null;
-
-        //쿠키가 있을 경우,
-        if (cookies != null && cookies.length > 0)
-        {
-            for (int i =0; i < cookies.length; i++)
-            {
-                // Cookie의 name이 cookie + noticeNo과 일치하는 쿠키를 viewCookie에 넣어줌
-                if (cookies[i].getName().equals("cookie"+noticeNo)) {
-                    viewCookie = cookies[i];
-                }
-            }
-        }
-
-        if (viewCookie == null) {
-
-            // 쿠키 생성(이름, 값)
-            Cookie newCookie = new Cookie("cookie"+noticeNo, "|" + noticeNo + "|");
-
-            // 쿠키 추가
-            response.addCookie(newCookie);
-
-            // 쿠키를 추가 시키고 조회수 증가시킴
-            this.noticeService.uphitCount(noticeNo);
-        }
-        // viewCookie가 null이 아닐경우 쿠키가 있으므로 조회수 증가 로직을 처리하지 않음.
-        else {
-            // 쿠키 값 받아옴.
-            String value = viewCookie.getValue();
-        }
+        //조회수 증가
+        this.noticeService.uphitCount(noticeNo);
+        //공지글번호에 맞는 공지사항 글 조회
         NoticeVO notice = this.noticeService.retrieveNotice(noticeNo);
         model.addAttribute("notice", notice);
         return "views/notice/noticeDetail";
@@ -99,22 +68,23 @@ public class NoticeController {
 
         NoticeVO notice = this.noticeService.retrieveNotice(noticeNo);
         notice.setNoticeNo(noticeNo);
-        model.addAttribute("notice",notice);
+        model.addAttribute("notice", notice);
         return "views/notice/noticeModifyForm";
     }
 
-    //게시글 수정
+    //공지사항 수정 처리
     @PostMapping("/admin/modifynotice")
-    public String noticeModify(@Valid NoticeVO notice,@RequestParam int noticeNo,
+    public String noticeModify(@Valid NoticeVO notice, @RequestParam int noticeNo,
                                @RequestPart(value = "noticeFileInput", required = false) List<MultipartFile> files,
                                HttpServletRequest request) {
-
+        //수정한 공지글을 저장할 객체 생성
         NoticeVO newNotice = new NoticeVO();
 
         newNotice.setNoticeTitle(notice.getNoticeTitle());
         newNotice.setNoticeContent(notice.getNoticeContent());
         newNotice.setNoticeNo(noticeNo);
 
+        //수정하며 새로 첨부한 파일을 저장할 파일리스트 생성
         List<FileVO> noticeFileVO = new ArrayList<FileVO>();
 
         for (MultipartFile file : files) {
@@ -127,21 +97,18 @@ public class NoticeController {
                 noticefile.setFileSize(file.getSize());
 
                 noticeFileVO.add(noticefile);
-
             }
         }
         newNotice.setNoticeFileList(noticeFileVO);
         this.noticeService.modifyNotice(newNotice);
 
-
         return "redirect:/noticelist";
-
     }
 
     // 공지글 작성
     // 작성폼불러오기
     @GetMapping("/admin/noticewriteform")
-    public String noticeWriteForm( ) {
+    public String noticeWriteForm() {
 
         return "views/notice/noticeWriteForm";
     }
@@ -152,24 +119,26 @@ public class NoticeController {
                               @AuthenticationPrincipal User principal,
                               @RequestPart(value = "noticeFileInput", required = false) List<MultipartFile> files,
                               HttpServletRequest request) {
-
+        //작성할 공지글 객체를 담을 새 객체 생성
         NoticeVO newNotice = new NoticeVO();
         newNotice.setNoticeTitle(notice.getNoticeTitle());
         newNotice.setNoticeContent(notice.getNoticeContent());
-        newNotice.setUserId( principal.getUsername());
+        newNotice.setUserId(principal.getUsername());
 
         List<FileVO> noticeFileVO = new ArrayList<FileVO>();
-        for(MultipartFile file : files) {
+
+        for (MultipartFile file : files) {
             FileVO noticefile = new FileVO();
             noticefile.setFileOrigin(file.getOriginalFilename());
             String noticeFileName = null;
+
+            //첨부 파일이 있다면,
             if (!file.getOriginalFilename().isEmpty()) {
                 noticeFileName = fileUploadService.noticeStore(file, request);
                 noticefile.setFileSys(noticeFileName);
                 noticefile.setFileSize(file.getSize());
 
                 noticeFileVO.add(noticefile);
-
             }
         }
         newNotice.setNoticeFileList(noticeFileVO);
@@ -186,11 +155,20 @@ public class NoticeController {
         FileVO file = this.noticeService.retrieveNoticeFile(fileNo);
         String storedFileName = file.getFileSys();
         String uploadFileName = file.getFileOrigin();
+
+        //prefix("file:") 로 프로토콜을 명시해주고 URL방식(절대경로)을 통해서 리소스의 위치를 알려줌
         UrlResource resource = new UrlResource("file:" + savePath + storedFileName);
-        log.info("uploadFileName = {}", uploadFileName);
+        //파일명이 한글일 경우를 위한 인코딩
         String encodedUploadFileName = UriUtils.encode(uploadFileName, StandardCharsets.UTF_8);
         String contentDispostion = "attachment; filename=\"" + encodedUploadFileName + "\"";
 
         return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION, contentDispostion).body(resource);
+    }
+
+    //공지사항 삭제
+    @PostMapping("/admin/noticedelete/{noticeNo}")
+    public String deleteNotice(@PathVariable int noticeNo) {
+        this.noticeService.removeNotice(noticeNo);
+        return "redirect:/noticelist";
     }
 }

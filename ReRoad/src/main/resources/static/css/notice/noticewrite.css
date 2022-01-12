@@ -1,3 +1,15 @@
+#form{
+    padding-left: 80px;
+    padding-right: 40px;
+    padding-top: 20px;
+}
+#noticeTitle{
+    margin-top: 20px;
+}
+#file_name{
+    margin-top: 3px;
+    margin-left: 1px;
+}
 ul{
     list-style:none;
     padding-left:0px;
@@ -8,5 +20,22 @@ li{
 .errli{
     color: red;
 }
-
-
+.fileBox{
+    margin-top: 25px;
+}
+.btnctl{
+    float: right;
+    margin-top: 5px;
+}
+#Isvalid{
+    text-align: end;
+}
+.foot{
+    display: inline;
+}
+#noticeContent{
+    resize: none;
+    height: 450px;
+    overflow: hidden;
+    padding: 10px;
+}

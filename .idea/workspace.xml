@@ -4,24 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="18869558-432e-4011-9d86-a59d03e83cff" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/views/paper/receivePaper.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/views/paper/writePaper.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/paper/controller/PaperController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/paper/controller/PaperController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/paper/dao/SendPaperDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/paper/dao/SendPaperDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/paper/dao/SendPaperDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/paper/dao/SendPaperDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/paper/service/PaperService.java" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/paper/service/PaperService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/paper/service/PaperServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/paper/service/PaperServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/resources/mapper/paper-mapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/mapper/paper-mapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/resources/static/css/paper/sendPaper.css" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/static/css/paper/sendPaper.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/resources/static/js/paper/sendPaper.js" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/static/js/paper/sendPaper.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/fragments/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/fragments/header.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/views/paper/sendPaper.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/views/paper/sendPaper.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/target/classes/mapper/config/mybatis-config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/classes/mapper/config/mybatis-config.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/target/classes/templates/fragments/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/classes/templates/fragments/header.html" afterDir="false" />
-    </list>
+
+    <list default="true" id="18869558-432e-4011-9d86-a59d03e83cff" name="Changes" comment="로그인 시 session 작업 변경" />
+
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -107,8 +92,10 @@
       <workItem from="1641548778947" duration="3080000" />
       <workItem from="1641773754740" duration="88000" />
       <workItem from="1641859728918" duration="16437000" />
+
       <workItem from="1641883256128" duration="13612000" />
       <workItem from="1641945210812" duration="34196000" />
+
     </task>
     <task id="LOCAL-00001" summary="수정">
       <created>1641550413516</created>

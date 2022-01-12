@@ -36,7 +36,7 @@ public class PlannerServiceImpl implements PlannerService{
     }
 
     @Override
-    @Transactional(propagation = Propagation.REQUIRED)
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public void createPlan(PlannerVO plan) {
         this.plannerDao.insertPlan(plan);
         int no = this.plannerDao.lastIdPlanner();
@@ -47,7 +47,7 @@ public class PlannerServiceImpl implements PlannerService{
     }
 
     @Override
-    @Transactional(propagation = Propagation.REQUIRED)
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public void modifyPlan(PlannerVO plan) {
         this.plannerDao.deleteCheckList(plan.getPlanNo());
         this.plannerDao.updatePlan(plan);
@@ -58,7 +58,7 @@ public class PlannerServiceImpl implements PlannerService{
     }
 
     @Override
-    @Transactional(propagation = Propagation.REQUIRED)
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public void removePlan(int planNo) {
         this.plannerDao.deleteCheckList(planNo);
         this.plannerDao.deletePlan(planNo);

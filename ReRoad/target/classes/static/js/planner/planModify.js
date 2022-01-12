@@ -36,14 +36,15 @@ $(function () {
     $('#arriveDate').datepicker("option", "onClose", function (selectedDate) {
         $("#startDate").datepicker("option", "maxDate", selectedDate);
     });
-
     $("input[name='allchk']").click(function () {
         var chk_listArr = $("input[name='chk']");
         for (var i = 0; i < chk_listArr.length; i++) {
             chk_listArr[i].checked = this.checked;
         }
     });
+
 });
+
 
 function item_Add() {
     addRow = document.all("itemList").insertRow();
@@ -54,7 +55,7 @@ function item_Add() {
 
     //아이템 내용
     var addCol_content = addRow.insertCell();
-    addCol_content.innerHTML = "<input type='text'  class='input' name='checkListContent' placeholder='아이템 입력..'  autocomplete='off' maxlength='10'>";
+    addCol_content.innerHTML = "<input type='text' name='checkListContent' placeholder='아이템 입력..' maxlength='10' autocomplete='off'>";
 
     //준비여부
     var addCol_radio = addRow.insertCell();
@@ -75,11 +76,12 @@ function item_del() {
         }
     }
 }
+
 //동적으로 생성된 체크리스트를 위한 유효성 검사 코드
 $(function () {
     $("#form").validate({
         errorElement: "label",
-        errorPlacement: function(error, element) {
+        errorPlacement: function (error, element) {
             error.insertAfter('#Isvalid');
             error.css("color", "red");
         },
@@ -92,12 +94,15 @@ $(function () {
         },
         //규칙체크 실패시 출력될 메시지
         messages: {
+
             checkListContent: {
-                spaceCheck: "체크리스트를 올바르게 입력 후 다시 시도하세요",
+                spaceCheck: "체크리스트에 공백은 입력 불가합니다.",
                 maxlength: "체크리스트 내용은 최대 10글자입니다."
             }
         }
+
     });
+
 
     $.validator.addMethod(
         "spaceCheck", //validate명
@@ -110,6 +115,7 @@ $(function () {
             //false 리턴 시 messages에 선언된 내용들 띄워줌
         }
     );
+
 
     //확장판 name 처리
     $.extend($.validator.prototype, {

@@ -17,7 +17,6 @@ public class NoticeDaoImpl implements NoticeDao{
 
     @Override
     public NoticeVO selectNotice(int noticeNo) {
-        System.out.println(noticeNo);
        return this.sqlSession.selectOne("selectNotice", noticeNo);
     }
 

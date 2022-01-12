@@ -1,16 +1,12 @@
-
-
 #travelTitle {
     border-bottom: 1px solid #dee2e6;
 }
-
 #plandiv {
     margin-top: 50px;
     margin-right: 86px;
     margin-left: 86px;
     padding-right: -400px;
 }
-
 .default{
     border-right: 1px solid #dee2e6;
     width: 88px;
@@ -32,22 +28,18 @@ td.default{
     font-style: italic;
     text-align: center;
 }
-
 #listBtn{
     float: right;
 }
-
 #btnctl{
     float: right;
     margin-left: 533px;
     margin-top: 75px;
 }
-
 #checkList{
     border-bottom: 1px solid #dee2e6;
     border-top:1px solid #dee2e6;
 }
-
 #left_table{
     float: left;
 }

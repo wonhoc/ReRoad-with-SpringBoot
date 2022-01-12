@@ -1,129 +1,130 @@
-$(document).ready(function () {
-    const saveBtn = document.getElementById('saveBtn');
-
-    //여행이름 유효성 체크
-    $('#travelTitle').bind('focusout', function () {
-        const travelTitle = $('#travelTitle').val();
-        if (travelTitle == "") {
-            $('#Isvalid').text('여행이름을 입력하세요');
-            $('#Isvalid').css('color', 'red');
-            $('#saveBtn').attr("disabled", true);
-        } else {
-            $('#Isvalid').css('color', 'white');
-            $('#saveBtn').attr("disabled", false);
-        }
-        ;
-    });
-//여행 이름란 클릭시 다시 버튼 활성화
-    $('#travelTitle').bind('click', function () {
-
-        $('#saveBtn').attr("disabled", false);
-
-    });
-    //여행지 유효성 체크
-    $('#spot').bind('focusout', function () {
-        const spot = $('#spot').val();
-        if (spot == "") {
-            $('#Isvalid').text('여행지를 입력하세요');
-            $('#Isvalid').css('color', 'red');
-            $('#saveBtn').attr("disabled", true);
-        } else {
-            $('#Isvalid').css('color', 'white');
-            $('#saveBtn').attr("disabled", false);
-        }
-        ;
+$.datepicker.setDefaults({
+    closeText: '닫기',
+    prevText: '이전달',
+    nextText: '다음달',
+    currentText: '오늘',
+    monthNames: ['1월(JAN)', '2월(FEB)', '3월(MAR)', '4월(APR)', '5월(MAY)', '6월(JUN)',
+        '7월(JUL)', '8월(AUG)', '9월(SEP)', '10월(OCT)', '11월(NOV)', '12월(DEC)'],
+    monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월',
+        '7월', '8월', '9월', '10월', '11월', '12월'],
+    dayNames: ['일', '월', '화', '수', '목', '금', '토'],
+    dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
+    dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+    weekHeader: 'Wk',
+    dateFormat: 'yy-mm-dd',
+    firstDay: 0,
+    isRTL: false,
+    showMonthAfterYear: true,
+    yearSuffix: '년',
+    showOn: 'both',
+    buttonText: "달력",
+    changeMonth: true,
+    changeYear: true,
+    showButtonPanel: true,
+    yearRange: 'c-99:c+99',
+    minDate: 0
+});
+$(function () {
+    $('#startDate').datepicker();
+    $('#startDate').datepicker("option", "maxDate", $("#arriveDate").val());
+    $('#startDate').datepicker("option", "onClose", function (selectedDate) {
+        $("#arriveDate").datepicker("option", "minDate", selectedDate);
     });
 
-    //여행지란 다시 클릭시 경고 메시지 지우기
-    $('#spot').bind('click', function () {
-        $('#saveBtn').attr("disabled", false);
+    $('#arriveDate').datepicker();
+    $('#arriveDate').datepicker("option", "minDate", $("#startDate").val());
+    $('#arriveDate').datepicker("option", "onClose", function (selectedDate) {
+        $("#startDate").datepicker("option", "maxDate", selectedDate);
     });
 
-
-    //여행시작일란 다시 클릭시 경고 메시지 지우기
-    $('#startDate').bind('onfocusin', function () {
-        $('#saveBtn').attr("disabled", false);
-
-    });
-
-
-    //여행도착일란 다시 클릭시 버튼 활성화
-    $('.datepicker').bind('click', function () {
-        $('#saveBtn').attr("disabled", false);
-
-    });
-
-//메모 유효성 체크
-    $('#memo').bind('focusout', function () {
-        const memo = $('#memo').val();
-        if (memo == "") {
-            $('#Isvalid').text('여행 메모를 입력하세요');
-            $('#Isvalid').css('color', 'red');
-            $('#saveBtn').attr("disabled", true);
-        } else {
-            $('#Isvalid').css('color', 'white');
-            $('#saveBtn').attr("disabled", false);
-        }
-        ;
-    });
-
-    //여행메모란 다시 클릭시 경고 메시지 지우기
-    $('#memo').bind('click', function () {
-        $('#saveBtn').attr("disabled", false);
-
-    });
-
-    $('#itemAdd').bind('click', function () {
-        const chkCnt = form.checkListContent.length;
-        if (chkCnt > 49) {
-            $('#Isvalid').text('체크리스트는 50개까지만 입력 가능합니다!');
-            $('#Isvalid').css('color', 'red');
-            $('#itemAdd').attr("disabled", true);
-        }
-
-    });
-
-    $('#itemDel').bind('click', function () {
-        const chkCnt = form.checkListContent.length;
-        if (chkCnt < 50) {
-            $('#Isvalid').css('color', 'white');
-            $('#itemAdd').attr("disabled", false);
+    $("input[name='allchk']").click(function () {
+        var chk_listArr = $("input[name='chk']");
+        for (var i = 0; i < chk_listArr.length; i++) {
+            chk_listArr[i].checked = this.checked;
         }
     });
+});
 
-    $('#saveBtn').bind('click', function () {
-        const travelTitle = $('#travelTitle').val();
-        const spot = $('#spot').val();
-        const startDate = $('#startDate').val();
-        const arriveDate = $('#arriveDate').val();
-        const memo = $('#memo').val();
-        const item = $("input[name='checkListContent']").val();
-       var regex = / /gi;
+function item_Add() {
+    addRow = document.all("itemList").insertRow();
 
-        if (travelTitle == "" || travelTitle.replace(regex, '') == "" || travelTitle == null) {
-            $('#Isvalid').text('여행 이름을 입력하세요!');
-            $('#Isvalid').css('color', 'red');
-            $('#saveBtn').attr("disabled", true);
-        } else if (spot == "" || spot.replace(regex, '') == "" || spot == null) {
-            $('#Isvalid').text('여행지를 입력하세요!');
-            $('#Isvalid').css('color', 'red');
-            $('#saveBtn').attr("disabled", true);
-        } else if (startDate == "" || startDate.replace(regex, '') == "" || startDate == null) {
-            $('#Isvalid').text('여행 출발일을 입력하세요!');
-            $('#Isvalid').css('color', 'red');
-            $('#saveBtn').attr("disabled", true);
-        } else if (arriveDate == "" || arriveDate.replace(regex, '') == "" || arriveDate == null) {
-            $('#Isvalid').text('여행 도착일을 입력하세요!');
-            $('#Isvalid').css('color', 'red');
-            $('#saveBtn').attr("disabled", true);
-        } else if (memo == "" || memo.replace(regex, '') == "" || memo == null) {
-            $('#Isvalid').text('여행 메모를 입력하세요!');
-            $('#Isvalid').css('color', 'red');
-            $('#saveBtn').attr("disabled", true);
-        }  /*else if (item == "" || item.replace(regex, '') == "" || item == null) {
-            $('#Isvalid').text('체크리스트를 입력하세요!');
-            $('#Isvalid').css('color', 'red');
-            $('#saveBtn').attr("disabled", true);
-        }*/
+    //체크박스
+    var addCol_chk = addRow.insertCell();
+    addCol_chk.innerHTML = "<input type='checkbox' name='chk' />";
+
+    //아이템 내용
+    var addCol_content = addRow.insertCell();
+    addCol_content.innerHTML = "<input type='text'  class='input' name='checkListContent' placeholder='아이템 입력..'  autocomplete='off' maxlength='10'>";
+
+    //준비여부
+    var addCol_radio = addRow.insertCell();
+    addCol_radio.innerHTML = "<select name='ready'>" +
+        "<option value='0'>준비 못함!</option>" +
+        "<option value='1'>준비 완료!</option>" +
+        "</select> ";
+}
+
+function item_del() {
+    var tableData = document.getElementById('itemTable');
+    for (var i = 1; i < tableData.rows.length; i++) {
+        var chkbox = tableData.rows[i].cells[0].childNodes[0].checked;
+
+        if (chkbox) {
+            tableData.deleteRow(i);
+            i--;
+        }
+    }
+}
+//동적으로 생성된 체크리스트를 위한 유효성 검사 코드
+$(function () {
+    $("#form").validate({
+        errorElement: "label",
+        errorPlacement: function(error, element) {
+            error.insertAfter('#Isvalid');
+            error.css("color", "red");
+        },
+        //규칙
+        rules: {
+            checkListContent: {
+                spaceCheck: true,
+                maxlength: 10
+            }
+        },
+        //규칙체크 실패시 출력될 메시지
+        messages: {
+            checkListContent: {
+                spaceCheck: "체크리스트를 올바르게 입력 후 다시 시도하세요",
+                maxlength: "체크리스트 내용은 최대 10글자입니다."
+            }
+        }
     });
-})
+
+    $.validator.addMethod(
+        "spaceCheck", //validate명
+        function (value, element) {
+            //검사하는  value가 공백이면 false리턴
+            var blank_pattern = /^\s+|\s+$/g;
+            if($(element).val()==''||$(element).val().replace(blank_pattern, '' ) == ""){
+                return false;
+            } else return true;
+            //false 리턴 시 messages에 선언된 내용들 띄워줌
+        }
+    );
+
+    //확장판 name 처리
+    $.extend($.validator.prototype, {
+        checkForm: function () {
+            this.prepareForm();
+            for (var i = 0, elements = (this.currentElements = this.elements()); elements[i]; i++) {
+                if (this.findByName(elements[i].name).length != undefined && this.findByName(elements[i].name).length > 1) {
+                    for (var cnt = 0; cnt < this.findByName(elements[i].name).length; cnt++) {
+                        this.check(this.findByName(elements[i].name)[cnt]);
+                    }
+                } else {
+                    this.check(elements[i]);
+                }
+            }
+            return this.valid();
+        }
+    });
+});

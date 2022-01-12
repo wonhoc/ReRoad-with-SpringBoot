@@ -194,7 +194,15 @@
         <parameter property="domesticName" javaType="string" jdbcType="VARCHAR" mode="IN" />
     </parameterMap>
 
-
+    <!-- 국내여행업데이트 -->
+    <parameterMap id="paramDomesticUpdate" type="DomesticVo">
+        <parameter property="prevdomesticName" javaType="string" jdbcType="VARCHAR" mode="IN" />
+        <parameter property="thumbnailOrigin" javaType="string" jdbcType="VARCHAR" mode="IN" />
+        <parameter property="thumbnailSystem" javaType="string" jdbcType="VARCHAR" mode="IN" />
+        <parameter property="thumbnailSize" javaType="long" jdbcType="INTEGER" mode="IN" />
+        <parameter property="domesticName" javaType="string" jdbcType="VARCHAR" mode="IN" />
+    </parameterMap>
+    
     <!-- 게시글 목록 -->
     <!-- 게시글 목록조회 -->
     <select id="selectList" statementType="CALLABLE" resultMap="resultMapSelectList">
@@ -329,18 +337,20 @@
 
 
     <!-- 국내여행 -->
-    <select id="domesticMain" statementType="CALLABLE" resultType="String">
+    <select id="domesticMain" statementType="CALLABLE" resultMap="resultMapDomestic">
         { call sp_domestic_main() }
     </select>
 
     <!-- 국내여행지 전체 조회 -->
-    <select id="domesticAll" statementType="CALLABLE" resultType="String">
+    <select id="domesticAll" statementType="CALLABLE" resultMap="resultMapDomestic">
         { call sp_domestic_all() }
     </select>
 
-
-
-
+    <!-- 국내여행 업데이트 -->
+    <update id="updateDomestic" statementType="CALLABLE"  parameterType="DomesticVo" parameterMap="paramDomesticUpdate">
+        { call  sp_domestic_update(?,?,?,?,?) }
+    </update>
+            
     <!-- 날시조회 -->
     <select id="domestic" statementType="CALLABLE" parameterType="string" parameterMap="paramDomestic" resultMap="resultMapDomestic">
         { call sp_domestic_weather(?) }

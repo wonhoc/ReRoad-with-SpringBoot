@@ -31,17 +31,19 @@
 	height: 80%;
 	position: absolute;
 	left: 5%;
-	top:20%;	
+	top:20%;
+	padding: 0;
 }
 
 #headWrapper{
-	width: 100%;
 	height: 10%;
+	padding: 0;
 }
 
 .searchBoxHead{
 	font-weight: 900;
 	height: 100%;
+	cursor: pointer;
 }
 
 .searchBoxHead:hover{
@@ -80,6 +82,8 @@
 	background-color: rgb(233,233,233);
 	height: 100%;
 	border-top-left-radius: 15px;
+	padding: 0;
+	cursor: pointer;
 	
 }
 
@@ -87,6 +91,7 @@
 	background-color: teal;
 	height: 100%;
 	border-top-right-radius: 15px;
+	cursor: pointer;
 }
 
 #bodyWrapper{
@@ -108,7 +113,10 @@
      height: 100%;
      color: white;
      border: 3px solid rgb(233,233,233);
-	
+     background-color: teal;
+     font-size: 30px;
+     font-family: 'DoHyeon', sans-serif;
+    	
 }
 
 .searchBody:hover{
@@ -117,23 +125,47 @@
 	cursor: pointer;
 }
 
-#dep{
-	background-color: teal;
+.searchBodyDate{
+	
+	 float: left;
+     width:18%;
+     box-sizing: border-box;
+     left: 1px;
+     height: 100%;
+     color: white;
+     border: 3px solid rgb(233,233,233);
+     background-color: teal;
+     
 }
 
-#arr{
-	background-color: teal;
+.searchBodyDate:hover{
+	
+	color: #ff7f7f;
+	cursor: pointer;
 }
 
-#date{
-	background-color: teal;
+#dateArr{
+	 
+	 display: none;
+}
+
+
+.datePikcer{
+	margin-top: 40%;
+	right: 65%;
+	position: absolute;
+	padding: 0;
+	border: 0;
+	width: 0;
+	height: 0;
 }
 
 #btnSearch{
-	position: absolute;
-	top: 92%;
-	right: 30%;
+	height : 15%;
 	z-index: 0;
+	position: absolute;
+	top: 90%;
+	right: 25%;
 }
 
 .btn-primary {
@@ -168,9 +200,14 @@
     z-index: 9;
 }
 
+/*
+	팝오버 설정
+*/
 
-
-
+.popover-content{
+	font-size: 10px;
+	color: black;
+}
 
 
 #hideOnbush{
@@ -196,13 +233,25 @@
 	margin-left: 0;
 	padding-left: 0;
 	text-align: left;
+	/* background-color: #ffffea; */
 	background-color: teal;
+	/*color: black;*/
 	color: white;
 }
 
 .stNameIn{
 	font-size: 20px;
 	display: inline-block;
+	 margin: 0 0 0 0;
+    padding: 0 0 0 0;
+    border : 0;
+}
+
+.olSt{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	
 }
 
 .stNameIn:hover{
@@ -210,12 +259,6 @@
 	color: #ff7f7f;
 	cursor: pointer
 }
-
-.stNameBk{	
-	font-size: 20px;
-	display: block;
-}
-
 
 .content{
     width: 250px;
@@ -235,64 +278,84 @@
     border-radius: 50%;
     border: 3px solid teal;
     width: 150px;
+	height: 150px;
     padding-bottom: 0.1%;
     margin-top: 60px;
 }
 .tableempty{
     width: 30px;
 }
-#domesticname{
+.domesticname{
     text-align: center;
     font-size: 18px;
 }
 
 
 #right_table  a{
-	color: #ce8483;
+	color: teal;
 }
 
-#center_title a{
-	color: #ce8483;
-}
+
 #noti_wDate{
 	font-size: smaller;
 	color: #5e5e5e;
+	text-align: end;
 }
 
 #left_table{
 	width: 53%;
 	float: left;
+	margin-left: 20px;
 }
 
 #right_table{
-	width: 23%;
-	float: right;
-	margin-top: 72px;
-	margin-right: -24px;
-	text-align: -webkit-center;
-	border-left: 1px dashed #dee2e6;
-}
-
-#center_title{
+	width: 490px;
 	float: left;
-	margin-top: 4em;
-	margin-right: -69px;
-	margin-left: 25px;
+	margin-top: 60px;
 }
 
 #notice_list{
 	line-height: 1.8;
 	font-size: 17px;
+	margin-top: 20px;
+	width: inherit;
+	border-bottom: 1px solid white;
 }
-
-#message {
-	line-height: 73px;
+.notiTitle{
+	border-bottom: 1px dashed #dee2e6;
 }
 
 #noti_text {
 	font-weight: bold;
+	margin-left: -1px;
+	display: inline;
 }
-
+#morenoti{
+	margin-left: 5px;
+	font-size: 15px;
+}
+#notiCnt{
+	font-size: smaller;
+	color: #8a8989;
+}
+#notitxt{
+	font-size: smaller;
+	color: #8a8989;
+	width:50px;
+}
 #managerDomestic{
 	margin-left: 1000px;
+}
+.list_title{
+	width: 320px;
+}
+
+.manage{
+	width: 20px;
+	height: 20px;
+}
+#domestic{
+
+	margin-left: 1px;
+	margin-bottom: 30px;
 }

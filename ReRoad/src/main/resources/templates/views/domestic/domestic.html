@@ -15,16 +15,16 @@
 </head>
 <section layout:fragment="content">
     <div class="container">
-            <img src="/images/domestic/서울.jpg" alt="image" class="mainImage">
-
+            <img th:if="${domestic.thumbnailSystem != null}" th:src="@{'/upload/' + ${domestic.thumbnailSystem}}" alt="image" class="mainImage">
+            <img th:if="${domestic.thumbnailSystem == null}" src="/images/메인페이지버스.png" alt="image" class="mainImage">
         <div class="map_wrap">
-            <div id="map" style="width:800px;height:500px;position:relative;overflow:hidden;"></div>
+            <div id="map" style="width:100%;height:500px;position:relative;overflow:hidden;"></div>
 
             <div id="menu_wrap" class="bg_white">
                 <div class="option">
                     <div>
                         <form onsubmit="searchPlaces(); return false;">
-                            <input type="hidden" value="서울 관광지" id="keyword" size="15">
+                            <input type="hidden" th:value="${domestic.domesticName}" id="keyword" size="15">
                         </form>
                     </div>
                 </div>

@@ -15,4 +15,6 @@ public interface DomesticDao {
     //국내여행
     DomesticVo selectRain(String domesticName);
 
+    //국내여행 관리
+    void updateDomestic(DomesticVo domestic);
 }

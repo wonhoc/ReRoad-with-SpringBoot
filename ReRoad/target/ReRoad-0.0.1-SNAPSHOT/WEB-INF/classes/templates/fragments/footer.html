@@ -5,21 +5,30 @@
 <link rel="stylesheet" href="/css/footer.css" />
 </head>
 <div th:fragment="footerFragment">
-	<div class="footer">
-		<div class="container">
-	<div id="whole">
-		<p class="footer_title">Re Road</p>
-		<div>
-			<p class="footer_text">클라우드 기반 자바 개발자 양성 과정 1팀</p>
-			<p class="footer_text">팀장 : 최원호 | 팀원 : 김민우, 김성진, 김수빈, 배양수</p>
-			<p class="footer_text">©Re Road. All Rights Reserved</p>
-		</div>
-		<div class="footer_emogi">
-			<a href="https://github.com/wonhoc/ReRoad-with-SpringBoot/tree/main/ReRoad"><i
-				class="fab fa-github footer_icon"></i></a> <i
-				class="far fa-comments footer_icon"></i>
-		</div>
-		</div>
+	<div class="container" id="footerContainer">
+		<div class="footer">
+
+			<div id="whole">
+				<div id="siteName">
+					Re<br>
+					Road
+
+				</div>
+				<div id="siteInfo">
+					클라우드 기반 자바 개발자 양성 과정 1팀<br>
+					팀장 : 최원호 | 팀원 : 김민우, 김성진, 김수빈, 배양수<br>
+					©Re Road. All Rights Reserved
+
+				</div>
+				<div id="links">
+					<a href="https://github.com/wonhoc/ReRoad-with-SpringBoot/tree/main/ReRoad">
+						<i class="fab fa-github footer_icon" id="gitIcon"></i>
+					</a>
+					<i class="far fa-comments footer_icon" id="commIcon"></i>
+				</div>
+
+
+			</div>
 		</div>
 	</div>
 </div>

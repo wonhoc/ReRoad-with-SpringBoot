@@ -278,13 +278,14 @@
     border-radius: 50%;
     border: 3px solid teal;
     width: 150px;
+	height: 150px;
     padding-bottom: 0.1%;
     margin-top: 60px;
 }
 .tableempty{
     width: 30px;
 }
-#domesticname{
+.domesticname{
     text-align: center;
     font-size: 18px;
 }
@@ -347,4 +348,14 @@
 }
 .list_title{
 	width: 320px;
+}
+
+.manage{
+	width: 20px;
+	height: 20px;
+}
+#domestic{
+
+	margin-left: 1px;
+	margin-bottom: 30px;
 }

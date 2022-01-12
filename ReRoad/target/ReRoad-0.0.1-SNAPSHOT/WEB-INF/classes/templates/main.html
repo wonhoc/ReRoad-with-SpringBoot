@@ -1,153 +1,168 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-	  xmlns:th="http://www.thymeleaf.org"
-	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	  layout:decorate="layout/defaultLayout">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout/defaultLayout">
 <th:block layout:fragment="css">
-	<link rel="stylesheet" th:href="@{/css/jquery-ui.min.css}" />
-	<link rel="stylesheet" th:href="@{/css/main.css}">
+    <link rel="stylesheet" th:href="@{/css/jquery-ui.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/main.css}">
 </th:block>
 <th:block layout:fragment="script">
-	
-	<script th:src="@{/js/main.js}"></script>
-	<script th:src="@{/js/jquery-ui.min.js}"></script>
+    <script th:src="@{/js/main.js}"></script>
+    <script th:src="@{/js/jquery-ui.min.js}"></script>
+    <script th:src="@{/js/tooltip.js}"></script>
+    <script th:src="@{/js/popover.js}"></script>
+    <script th:src="@{/js/popper.min.js}"></script>
 </th:block>
 <head>
 </head>
-<section layout:fragment="content" >
-	<div class="container" data-spy="affix">
-
-	
-		<div id="mainwrapper">
-			<img src="/images/메인페이지버스.png" alt="image" id="mainImage">
-			<div id="searchBox" class="row text-center">
-				<!-- 헤드 -->
-				<div id="headWrapper">
-					<div class="searchBoxHead col-sm-6" id="headTrain">열차</div>	
-			        <div class="searchBoxHead col-sm-6" id="headBus">버스</div>
-			    </div>
-			     <div class="tempWrapper">
-				    <!-- 왕복 -->
-				    <div id="selWrapper">
-				    	<div id="selOneway" class="col-sm-6 tripType">
-				    		<div class="selTextdiv">편도</div>
-				    		</div>
-				        <div id="selTurn" class="col-sm-6 tripType">
-				        	<div class="selTextdiv">왕복</div>
-				        </div>
-				    </div>
-			   
-			    <!-- 바디 -->
-				    <div id="bodyWrapper">	    
-					    <div id="dep" class="searchBody">
-					    	<div class="bodyTextdiv">출발지</div>
-					    </div>
-					    <div id="arr" class="searchBody">
-					    	<div class="bodyTextdiv">도착지</div>
-					    </div>
-					    <div id="date" class="searchBody">
-					    	<div class="bodyTextDatediv">날짜</div>				    	
-					    </div>	
-					    <div id="hideOnbush">
-					    
-					    <input class="form-control" id="searchInput" type="text" placeholder="Search..">
-					    
-					    <div th:if="${#lists.size(trainStList) == 0}">
-					    	<p><strong>API불러오기 실패</strong></p>
-					    </div>
-					    
-					     <div th:if="${#lists.size(trainStList) > 0}">
-					   
-					     	<div class="listWrapper" th:each="trainSt:${trainStList}">
-					     		<div class="cityName" th:text="${trainSt.cityName}"></div>			     		
-						     	<div class="stNameWrapper" >					     		
-				     				<div class="stNameIn" th:each="trainSts:${trainSt.trainStInfo}">[[${trainSts.trainStName} +'역' + '&nbsp;']]</div>	      							     								     				     						     		  							     					     				     									   					     						    							     			     				     									   		     	  												     						    							     	
-						     	</div>					     					
-					     	</div>				    	
-					    </div>     		
-				    	</div>				   		  
-				    </div>
-				   
-				 </div>
-			</div>
-			 <button type="button" id="btnSearch" class="btn btn-primary">검색</button>
-		</div>
-
-		<div id="left_table">
-			<table>
-				<tr>
-					<td><a th:href="@{/boardList}"><img src="/images/tavleReview.jpg" alt="image" class="content"></a>
-					</td>
-					<td class="empty"></td>
-					<td><a th:href="@{/member/planlist}"><img src="/images/tavlePlanner.jpg" alt="image"
-															  class="content"></a></td>
-				</tr>
-				<tr>
-					<td class="menu">여행리뷰</td>
-					<td></td>
-					<td class="menu">여행일정 플래너</td>
-				</tr>
-			</table>
-		</div>
-		<!-- 공지사항 글 리스트-->
-		<div id="center_title">
-			<table>
-				<tr><h3 id="noti_text">공지사항</h3></tr>
-				<tr>
-					<td id="message">Re Road의 새로운 소식을 알려드립니다.</td>
-				</tr>
-				<tr>
-					<td><a th:href="@{/noticelist}"/> + 더보기</td>
-				</tr>
-			</table>
-		</div>
-		<div id="right_table">
-			<table id="notice_list">
-				<tr th:each="list : ${noticeList}">
-					<td th:if="${#strings.length(list.noticeTitle) < 15}" class="list_title"><a
-							th:href="@{/noticedetail/{noticeNo}(noticeNo=${list.noticeNo})}"
-							th:text="${list.noticeTitle}"></a></td>
-					<td th:if="${#strings.length(list.noticeTitle) >= 15}" class="list_title"><a
-							th:href="@{/noticedetail/{noticeNo}(noticeNo=${list.noticeNo})}"
-							th:text="${#strings.substring(list.noticeTitle,0,15)} + ..."></a></td>
-					<td></td>
-					<td id="noti_wDate" th:text="${#strings.substring(list.writeDate,2)}"></td>
-				</tr>
-			</table>
-		</div>
+<section layout:fragment="content">
+    <div class="container" data-spy="affix">
 
 
+        <div id="mainwrapper">
+            <img src="/images/메인페이지버스.png" alt="image" id="mainImage">
+            <form action="/retriveSchedule" method="POST" id="ScSelectForm">
+                <input type="hidden" id="pageNo" name="pageNo" value="1">
+                <div id="searchBox" class="row text-center">
+                    <!-- 헤드 -->
+                    <div id="headWrapper">
+                        <input type="hidden" id="vehiclType" name="vehiclType" value="train">
+                        <div class="searchBoxHead col-sm-6" id="headTrain">열차</div>
+                        <div class="searchBoxHead col-sm-6" id="headBus">버스</div>
+                    </div>
+                    <div class="tempWrapper">
+                        <!-- 왕복 -->
+                        <div id="selWrapper">
+                            <div id="selOneway" class="col-sm-6 tripType">
+                                <div class="selTextdiv">편도</div>
+                            </div>
+                            <div id="selTurn" class="col-sm-6 tripType">
+                                <div class="selTextdiv">왕복</div>
+                            </div>
+                        </div>
 
-		<table>
-			<tr>
-				<td><img src="images/main/main서울.jpg" alt="image" class="domestic"></td>
-				<td class="tableempty"></td>
-				<td><img src="images/main/main강릉.jpg" alt="image" class="domestic"></td>
-				<td class="tableempty"></td>
-				<td><img src="images/main/main전주.jpg" alt="image" class="domestic"></td>
-				<td class="tableempty"></td>
-				<td><img src="images/main/main여수.jpg" alt="image" class="domestic"></td>
-				<td class="tableempty"></td>
-				<td><img src="images/main/main부산.jpg" alt="image" class="domestic"></td>
-				<td class="tableempty"></td>
-				<td><img src="images/main/main동대구.jpg" alt="image" class="domestic"></td>
-			</tr>
-			<tr id="domesticname">
-				<td><a href="/deomestic">서울</a></td>
-				<td class="tableempty"></td>
-				<td>강릉</td>
-				<td class="tableempty"></td>
-				<td>전주</td>
-				<td class="tableempty"></td>
-				<td>여수</td>
-				<td class="tableempty"></td>
-				<td>부산</td>
-				<td class="tableempty"></td>
-				<td>동대구</td>
-			</tr>
-		</table>
+                        <!-- 바디 -->
+                        <div id="bodyWrapper">
+                            <div id="dep" class="searchBody">
 
-		<a id="manageDomestic" href="/manageDomestic">+ 국내여행 관리</a>
-	</div>
+                                <div class="bodyTextdiv" id="bodyDep" data-toggle="popover" data-placement="top">출발지
+                                </div>
+                                <input type="hidden" class="selLo" id="depLo" name="depLo">
+                                <input type="hidden" id="depLoName" name="depLoName" class="selLoName">
+                            </div>
+
+                            <div id="arr" class="searchBody">
+                                <div class="bodyTextdiv" id="bodyArr" data-toggle="popover" data-placement="top">도착지
+                                </div>
+                                <input type="hidden" class="selLo" id="arrLo" name="arrLo">
+                                <input type="hidden" id="arrLoName" name="arrLoName" class="selLoName">
+                            </div>
+
+                            <div id="date" class="searchBody">
+                                <div class="bodyTextDatediv" id="bodyDate" data-toggle="popover" data-placement="top">
+                                    날짜
+                                </div>
+                                <input type="text" id="inputDatepicker" class="datePikcer">
+                                <input type="hidden" id="startDate" name="startDate">
+
+                            </div>
+
+                            <div id="dateArr" class="searchBodyDate">
+                                <div class="bodyTextDatediv" id="bodyDateArr" data-toggle="popover"
+                                     data-placement="top">오는날
+                                </div>
+                                <input type="text" id="inputDatepickerArr" class="datePikcer">
+                                <input type="hidden" id="arrDate" name="arrDate" value="none">
+                            </div>
+
+
+                            <div id="hideOnbush">
+
+                                <input class="form-control" id="searchInput" type="text" placeholder="역 검색..">
+
+                                <div th:if="${#lists.size(trainStList) == 0}">
+                                    <p><strong>API불러오기 실패</strong></p>
+                                </div>
+
+                                <div th:if="${#lists.size(trainStList) > 0}">
+
+                                    <div class="listWrapper" th:each="trainSt:${trainStList}">
+                                        <div class="cityName" th:text="${trainSt.cityName}"></div>
+                                        <div class="stNameWrapper">
+                                            <ol class="olSt">
+                                                <li class="stNameIn" th:each="trainSts:${trainSt.trainStInfo}"
+                                                    th:value="${trainSts.trainStId}">[[${trainSts.trainStName} +'역' + '&nbsp;']]
+                                                </li>
+                                            </ol>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button" id="btnSearch" class="btn btn-primary" data-toggle="popover"
+                                data-placement="top">검색
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div> -->
+
+        <div id="left_table">
+            <table>
+                <tr>
+                    <td><a th:href="@{/boardList}"><img src="/images/tavleReview.jpg" alt="image" class="content"></a>
+                    </td>
+                    <td class="empty"></td>
+                    <td><a th:href="@{/member/planlist}"><img src="/images/tavlePlanner.jpg" alt="image"
+                                                              class="content"></a></td>
+                    <td class="empty"></td>
+                </tr>
+                <tr>
+                    <td class="menu">여행리뷰</td>
+                    <td></td>
+                    <td class="menu">여행일정 플래너</td>
+                </tr>
+            </table>
+        </div>
+        <!-- 공지사항 글 리스트-->
+        <div id="right_table">
+            <h3 id="noti_text">공지사항</h3>
+            <a id="morenoti" th:href="@{/noticelist}"> + 더보기</a>
+            <table id="notice_list">
+                <tr class="notiTitle" th:each="list : ${noticeList}">
+                    <td th:if="${#strings.length(list.noticeTitle) < 15}" class="list_title"><a
+                            th:href="@{/noticedetail/{noticeNo}(noticeNo=${list.noticeNo})}"
+                            th:text="${list.noticeTitle}"></a></td>
+                    <td th:if="${#strings.length(list.noticeTitle) >= 15}" class="list_title"><a
+                            th:href="@{/noticedetail/{noticeNo}(noticeNo=${list.noticeNo})}"
+                            th:text="${#strings.substring(list.noticeTitle,0,15)} + ..."></a></td>
+                    <td id="notitxt">조회수</td>
+                    <td id="notiCnt" th:text="${list.hitCount}"></td>
+                    <td id="noti_wDate" th:text="${#strings.substring(list.writeDate,2)}"></td>
+                </tr>
+            </table>
+        </div>
+
+
+        <table>
+            <tr>
+                <div th:each="city :${domestic}">
+                    <td><a th:href="@{/domestic/{domesticName}(domesticName=${city.domesticName})}"><img class="domestic" th:if="${city.thumbnailSystem == null}" src="images/noImage.png">
+                        <img class="domestic" th:if="${city.thumbnailSystem != null}" th:src="@{'/upload/' + ${city.thumbnailSystem}}"></a></td>
+                    <td class="tableempty"></td>
+                </div>
+            </tr>
+            <tr  class="domesticname">
+                <div th:each="city :${domestic}">
+                    <td><a th:href="@{/domestic/{domesticName}(domesticName=${city.domesticName})}"><p th:text="${city.domesticName}"></p></a></td>
+                    <td class="tableempty"><a th:href="@{/manageDomestic/{domesticName}(domesticName=${city.domesticName})}"><img class="manage" src="images/main/톱니바퀴.png" style="display: none"></a></td>
+
+                </div>
+            </tr>
+
+        </table>
+        <button style="width: 100px;" id="setting" class="btn btn-primary">관리</button>
+    </div>
 </section>
 </html>

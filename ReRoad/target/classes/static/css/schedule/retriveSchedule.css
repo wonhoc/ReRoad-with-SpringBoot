@@ -2,12 +2,59 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
 
-#scBoxWrapper{
-	
-	margin-top: 10%;
+body{
+	cursor: default;
+	text-align: center;
+	font-family: 'DoHyeon', sans-serif;
+	font-weight: 900; 
 }
 
-#timeAndAw{
+.unFoldSc{
+	
+	display: none;
+}
+
+.ftRight:hover{
+	
+	color: teal;
+}
+
+.ftRight{
+	
+	float: right;
+	cursor: pointer;
+}
+
+.infoPlace{
+	margin-top: 5%;
+	font-size: 2em;
+	background-color: rgb(242,242,242);
+	
+}
+
+.catImg{
+	height: 30em;
+	display: inline;
+	border-radius: 1%;
+}
+
+.noSearchdata{
+	
+	font-size: 1.5em;
+}
+
+.scNotinfo{
+	
+	border: 2px solid teal;
+	border-radius: 1%;
+}
+
+.scBoxWrapper{
+	
+	margin-top: 3%;
+}
+
+.timeAndAw{
 	
 	margin-left: 5%;
 	height: auto;
@@ -41,21 +88,21 @@
 	
 }
 
-#chargeBox{
+.chargeBox{
 	
-	margin-top: 2%;
+	margin-top: 1%;
 	margin-left: 10%;
 	font-size: 3em;
 	height: auto;
 	color: teal;	
 }
 
-#won{
+.won{
 	
 	font-size: 0.3em;
 }
 
-#trainTypeNoBox{
+.trainTypeNoBox{
 	
 	
 	margin-top: 2%;
@@ -63,24 +110,24 @@
 	width: 10%;
 }
 
-#trainType{
+.trainType{
 	font-weight: 700;
 	font-size: 1em;
 }
 
-#trainNo{
+.trainNo{
 	
 	font-size: 1em;
 }
 
 
-#spanTimeBox{
+.spanTimeBox{
 	margin-top: 2%;
 	margin-left: 5%;
 	padding-top : 1%;
 }
 
-#scInfo{
+.scInfo{
 	
 	background-color: #F2F2F2;
 	height:	8em;
@@ -90,67 +137,9 @@
 }
 
 
-/* 
-body{
-	cursor: default;
-	text-align: center;
-	font-family: 'DoHyeon', sans-serif;
-	font-weight: 900; 
-}
+ 
 
-thead{
-	
-	background-color: #052d36;
-	color: white;
-}
 
-tbody{
-	
-	background-color: #1bc4b6;
-	
-}
-
-h1{
-	background-color: rgb(242,242,242);
-	color: black;
-	margin: 0;
-}
- */
-#scListBox{
-	
-	width: auto;
-	background-color: rgb(242,242,242);
-	height: auto;
-	margin-top: 10%;
-	overflow: auto;
-	border-radius: 2%;
-}
-
-.innerBox{
-	
-	display: inline-block;
-	width: auto;
-	height: auto;
-	margin-top: 5%;
-	background-color: rgb(233, 233, 233);
-	margin-left: 1%;
-	border-radius: 2%;
-}
-
-.centerInnerBox{
-	display:inline-block;
-	height: auto;
-	width: auto;
-	margin-top: 5%;
-	background-color: rgb(233, 233, 233);
-	padding: 0;
-}
-
-#box2{
-	padding: 0;
-	float: right;
-	margin-right: 1%;
-}
 
 #mainwrapper{
 	 width: 100%;

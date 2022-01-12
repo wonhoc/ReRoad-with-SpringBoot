@@ -44,8 +44,9 @@
                     <td class="userinput" th:text="${plan.arriveDate}"></td>
                 </tr>
                 <tr class="plan">
-                    <td id="memo" height="150px;" colspan="8"
-                        th:text="${plan.memo}"></td>
+                    <td id="memo" height="150px;" colspan="8">
+                        <pre  th:text="${plan.memo}"></pre>
+                    </td>
                 </tr>
             </table>
             <h3>체크리스트</h3>

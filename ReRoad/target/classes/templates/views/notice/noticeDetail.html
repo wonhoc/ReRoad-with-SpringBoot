@@ -53,7 +53,9 @@
                         <td class="hitcnt" id="cnt" th:text="${notice.hitCount}"></td>
                     </tr>
                     <tr class="notice">
-                        <td colspan="7" id="noticeContent" th:text="${notice.noticeContent}"></td>
+                        <td colspan="7" id="noticeContent">
+                            <pre  th:text="${notice.noticeContent}"></pre>
+                        </td>
                     </tr>
                 </table>
                 <h5>첨부파일</h5>

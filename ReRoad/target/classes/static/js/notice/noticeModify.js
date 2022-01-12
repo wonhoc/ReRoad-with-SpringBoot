@@ -1,6 +1,4 @@
 $(document).ready(function () {
-    const saveBtn = document.getElementById('saveBtn');
-
     //공지글 제목 유효성 체크
     $('#noticeTitle').bind('focusout', function () {
         const noticeTitle = $('#noticeTitle').val();
@@ -14,13 +12,13 @@ $(document).ready(function () {
             $('#Isvalid').css('color', 'white');
             $('#saveBtn').attr("disabled", false);
         }
-        ;
     });
-//공지글 제목 클릭시 다시 버튼 활성화
+
+    //공지글 제목 클릭시 다시 버튼 활성화
     $('#noticeTitle').bind('click', function () {
         $('#saveBtn').attr("disabled", false);
-
     });
+
     //공지글 본문 유효성 체크
     $('#noticeContent').bind('focusout', function () {
         const noticeContent = $('#noticeContent').val();
@@ -33,13 +31,11 @@ $(document).ready(function () {
             $('#Isvalid').css('color', 'white');
             $('#saveBtn').attr("disabled", false);
         }
-        ;
     });
 
     //공지글 본문
     $('#noticeContent').bind('click', function () {
         $('#saveBtn').attr("disabled", false);
-
     });
 
     //파일 이름 띄우기 및 유효성 검사
@@ -52,9 +48,8 @@ $(document).ready(function () {
         let html = "<ul>";
 
         if(files.length==1){
-            console.log(files[0].size);
-            if(files[0].size>41943040){
-                const sizeErr = '파일크기 초과!(최대 40MB)';
+            if(files[0].size>10485760){
+                const sizeErr = '  파일크기 초과!(최대 10MB)';
                 html += "<li class='errli' id='fileName["+i+"]'>"+sizeErr+"</li>";
                 $('#saveBtn').attr("disabled", true);
                 $("#file_name").html(html);
@@ -62,11 +57,10 @@ $(document).ready(function () {
         } else {
             for (var i = 0; i < files.length; i++) {
                 file = files[i];
-                if (file.size > 41943040)  //파일이 40MB이상이면
+                if (file.size > 10485760)  //파일이 10MB이상이면
                 {
-                    const sizeErr = '파일크기 초과!(최대 40MB)';
+                    const sizeErr = '  파일크기 초과!(최대 10MB)';
                     html += "<li class='errli' id='fileName[" + i + "]'>" + file.name + sizeErr + "</li>";
-
                     $('#saveBtn').attr("disabled", true);
                 } else {
                     html += "<li id='fileName[" + i + "]'>" + file.name + "</li>";

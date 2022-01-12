@@ -14,7 +14,6 @@ import java.util.List;
 public class PlannerVO {
     private int planNo;
     private String userId;
-
     @NotEmpty(message = "여행 제목은 필수값입니다.")
     @Size(max=16, message = "여행 제목은 최대 16글자까지만 입력 가능합니다.")
     private String travelTitle;

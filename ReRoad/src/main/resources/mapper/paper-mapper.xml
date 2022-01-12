@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Paper">
+    <!--Send Paper 저장 -->
+    <insert id="insertSendPaper" parameterType="hashMap" statementType="PREPARED" useGeneratedKeys="true" keyProperty="sendPaperNo">
+        INSERT INTO send_paper(writeNick, sendPaperContent, sendDate)
+        VALUES (#{senderNick}, #{sendPaperContent}, NOW())
+    </insert>
+
+    <!-- Address 테이블에 저장  -->
+    <insert id="insertAddress" parameterType="hashMap" statementType="PREPARED">
+        INSERT INTO address(sendPaperNo, receiveNick)
+        VALUES (#{sendPaperNo}, #{receiveNick})
+    </insert>
+
+    <!-- ReceivePaper에 저장 -->
+    <insert id="insertReceivePaper" parameterType="receivePaperVo">
+        INSERT INTO receive_paper(receivePaperNo,receivePaperContent, sendPaperNo,writeNick, isRead)
+        VALUES (#{receivePaperNo},#{receivePaperContent},#{sendPaperNo},#{senderNick},#{isRead})
+    </insert>
+
+    <!-- SendPaper List resultMap-->
+    <resultMap id="sendPaperList" type="sendPaperVo" autoMapping="true">
+        <result property="sendPaperNo" javaType="int" jdbcType="INTEGER" column="sendPaperNo" />
+        <result property="sendPaperContent" javaType="string" jdbcType="VARCHAR" column="sendPaperContent"/>
+        <result property="sendDate" javaType="string" jdbcType="VARCHAR" column="sendDate"/>
+            <collection property="receiveInfo" ofType="addressVo">
+                <result property="receiveNick" javaType="string" jdbcType="VARCHAR" column="receiveNick"/>
+                <result property="isRead" javaType="int" jdbcType="INTEGER" column="isRead" />
+            </collection>
+
+    </resultMap>
+
+    <!-- SendPaper 리스트 가져오기-->
+    <select id="selectSendPaperList" parameterType="string" resultMap="sendPaperList">
+        SELECT s.sendPaperNo, s.sendPaperContent, s.sendDate, a.receiveNick as receiveNick
+        FROM send_paper s INNER JOIN address a USING(sendPaperNo)
+        WHERE writeNick = #{userNick}
+        ORDER BY sendDate DESC
+
+    </select>
+
+
+
+</mapper>

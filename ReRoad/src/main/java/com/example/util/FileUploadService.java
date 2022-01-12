@@ -66,29 +66,22 @@ public class FileUploadService {
 		return result;
 	}
 	
-public String noticeStore(MultipartFile multipartFile, HttpServletRequest req) {
+	public String noticeStore(MultipartFile multipartFile, HttpServletRequest req) {
 		
 		String url = null;
-		
 		try {
 			String fileOrigin = multipartFile.getOriginalFilename();
 			String extName = fileOrigin.substring(fileOrigin.lastIndexOf("."),
 					fileOrigin.length());
 			Long size = multipartFile.getSize();
-			
 			// 서버에서 저장 할 파일 이름
 			String fileSys = genSaveFileName(extName);
-			
-		
 			//file저장
 			writeFile(multipartFile, fileSys);
-	
 			url = fileSys;
-	
 		}catch(IOException e) {
 			throw new RuntimeException(e);
 		}
-		
 		return url;
 	}
 }

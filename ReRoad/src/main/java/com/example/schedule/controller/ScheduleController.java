@@ -46,14 +46,24 @@ public class ScheduleController {
 		//api에서 스케줄 조회
 		HashMap<String, Object> ScList =  this.trainScheduleService.parseUserRequestInfoBeforeResponeScList(usrv);
 		
-		TrainScVo getSc = (TrainScVo)ScList.get("startSc");
+		TrainScVo startSc = (TrainScVo)ScList.get("startSc");
 		
-		System.out.println("sc : " + getSc.toString());
+		
+		
+		
+		
+		System.out.println("startSc : " + startSc.toString());
+		
 		
 		//model에 스케줄 조회 add
-		 model.addAttribute("startSc", getSc); //가는날 데이터
-		 model.addAttribute("arrSc", "ㅋㅋㅋㅋㅋ"); //가는날 데이터
+		 model.addAttribute("startSc", startSc); //가는날 데이터
 		 
+		 //왕복일경우 왕복 정보 add
+		 TrainScVo turnSc = (TrainScVo)ScList.get("turnSc");
+		 if(turnSc != null) {
+			 System.out.println("turnSc : " + turnSc.toString());
+			 model.addAttribute("turnSc", turnSc); //가는날 데이터
+		 }//if end
 		 
 		return PATH + "retriveSchedule";
 		

@@ -112,3 +112,15 @@
 #road{
     float:left;
 }
+
+/*쪽지 보내기 버튼 디자인 */
+#myPaperBtn {
+    font-weight: bolder;
+    border-color: teal;
+
+}
+#myPaperBtn:hover {
+    background-color: #d58512;
+    border-color: #d58512;
+    color: white;
+}

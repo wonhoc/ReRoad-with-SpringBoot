@@ -9,8 +9,8 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 public class TrainScInfoVo {
 	
 	
@@ -24,8 +24,7 @@ public class TrainScInfoVo {
 	private String arrplandtime;	//도착시간
 	private String depplandtime;	//출발 시간
 	private String traingradename;	//열차 종류
-	private String trainno;			//해당 열차의 번호
-	
-	
+	private String trainno;			//해당 열차의 번호	
+	private String spenTime;	//소요시간
 	
 }//class end

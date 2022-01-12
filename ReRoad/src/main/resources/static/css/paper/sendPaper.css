@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
+
+/* 메인 div */
+#paperPageMain {
+    background-color: RGB(242,242,242);
+    border-radius: 15px;
+    width: 43em;
+    height: 50em;
+    padding: 2em;
+    margin : 5em auto 0 auto;
+
+}
+/* 쪽지 관리 텍스트+설명글 div*/
+#welcomeDiv {
+    margin-right:1em;
+}
+/* 쪽지 관리 텍스트 */
+#welcome_paper {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 900;
+}
+/* '쪽지관리' 하단 구분선*/
+#title_devide {
+    width: 26%;
+    height: 5px;
+    background-color: #414141;
+    margin-top: -0.5em;
+}
+/* '쪽지관리' 하단 설명글 */
+#welcome_paper_text {
+    font-family: 'Noto Sans KR', sans-serif;
+    color:#d58512;
+    font-weight: 500;
+    font-size: small;
+    margin-bottom: 1em;
+}
+
+/* 하단 메뉴 + 작성부분 div*/
+#paperMain {
+    margin-top: 4em;
+    height: 60%
+}
+/* 좌측 메뉴*/
+#paperMenu {
+    float: left;
+}
+/* 우측 본 내용 div*/
+#addressAndWrite {
+    float: left;
+}
+/* input 창 */
+#receiveNick {
+    margin-bottom: 2em;
+}
+/* textarea*/
+#sendContent {
+    resize: none;
+    height: 200px;
+    margin-bottom: 2em;
+
+}
+/* input, textarea 상단 제목*/
+.upperInputText {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: bold;
+    font-size: large;
+}
+
+/* 보내기 버튼 */
+#sendBtn {
+    background-color: #d58512;
+    color: white;
+    border-color: #d58512;
+    font-weight: bolder;
+
+}
+/* 보내기 버튼 마우스 오버시 */
+#sendBtn:hover {
+    background-color: #f1a534;
+    border-color: #f1a534;
+}
+

@@ -7,8 +7,8 @@
     margin-top: 20px;
 }
 #file_name{
-    margin-top: -23px;
-    margin-left: 145px;
+    margin-top: 3px;
+    margin-left: 1px;
 }
 ul{
     list-style:none;
@@ -46,6 +46,8 @@ li{
 }
 #noticeContent{
     resize: none;
+    overflow: hidden;
+    padding: 10px;
 }
 #removeFileBtn{
     margin-left: 10px;

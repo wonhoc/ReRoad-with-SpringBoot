@@ -21,11 +21,11 @@ public class NoticeServiceImpl implements NoticeService{
     public NoticeVO retrieveNotice(int noticeNo) {
         NoticeVO notice = this.noticeDao.selectNotice(noticeNo);
         notice.setNoticeFileList(this.noticeDao.selectNoticeFileList(noticeNo));
-      return  notice;
+        return  notice;
     }
 
     @Override
-    @Transactional(propagation = Propagation.REQUIRED)
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public void createNotice(NoticeVO notice) {
         this.noticeDao.insertNotice(notice);
         int no = this.noticeDao.lastIdNotice();
@@ -35,9 +35,8 @@ public class NoticeServiceImpl implements NoticeService{
         }
     }
 
-
     @Override
-    @Transactional(propagation = Propagation.REQUIRED)
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public void modifyNotice(NoticeVO notice) {
         this.noticeDao.updateNotice(notice);
         for (FileVO file : notice.getNoticeFileList()) {
@@ -47,18 +46,16 @@ public class NoticeServiceImpl implements NoticeService{
     }
 
     @Override
-    @Transactional(propagation = Propagation.REQUIRED)
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public void removeNotice(int noticeNo) {
         this.noticeDao.deleteNoticeFile(noticeNo);
         this.noticeDao.deleteNotice(noticeNo);
-
     }
 
     @Override
     public List<NoticeVO> retrieveNoticeList() {
         return this.noticeDao.selectNoticeList();
     }
-
 
     @Override
     public List<NoticeVO> searchNotice(SearchVO search) {
@@ -82,7 +79,7 @@ public class NoticeServiceImpl implements NoticeService{
     }
 
     @Override
-    @Transactional(propagation = Propagation.REQUIRED)
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public void removeOnlyNoticeFile(int fileNo) {
         this.noticeDao.deleteOnlyNoticeFile(fileNo);
     }

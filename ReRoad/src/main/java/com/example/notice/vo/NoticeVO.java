@@ -15,13 +15,12 @@ import java.util.List;
 public class NoticeVO {
     private int noticeNo;
     private String userId;
-    @NotEmpty(message = "필수값입니다.")
+    @NotEmpty(message = "제목은 필수값입니다.")
     @Size(max = 16, message = "최대 16글자입니다.")
     private String noticeTitle;
-    @NotEmpty(message = "필수값입니다.")
+    @NotEmpty(message = "본문은 필수값입니다.")
     private String noticeContent;
     private int hitCount;
     private String writeDate;
-
     private  List<FileVO> noticeFileList = new ArrayList<>();
 }

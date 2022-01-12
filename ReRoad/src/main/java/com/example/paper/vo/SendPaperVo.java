@@ -1,21 +1,19 @@
 package com.example.paper.vo;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
-@Getter
-@Setter
 public class SendPaperVo {
 
-    private int sendPaperNo; // 보낸 쪽지 PK
-    private String sendPaperContent; // 보낸 쪽지 내용
-    private String sendPaperDate; // 쪽지 보낸 일자
-    private String senderNick; // 보내는 사람 닉네임
-    private ArrayList<AddressVo> receiverNicks; // 받는 사람 닉네임
-
-
+    private int sendPaperNo; // 쪽지 고유 번호
+    private String senderNick; // 쓴 사람
+    private ArrayList<AddressVo> receiveInfo; //받는 사람과 확연 여부
+    private String paperContent; // 쪽지 내용
+    private String sendDate; // 작성 일자
 }

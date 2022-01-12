@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Paper">
+    <!--Send Paper 저장 -->
+    <insert id="insertSendPaper" parameterType="hashMap" statementType="PREPARED" useGeneratedKeys="true" keyProperty="sendPaperNo">
+        INSERT INTO send_paper(writeNick, sendPaperContent, sendDate)
+        VALUES (#{senderNick}, #{sendPaperContent}, NOW())
+    </insert>
+
+    <!-- Address 테이블에 저장  -->
+    <insert id="insertAddress" parameterType="hashMap" statementType="PREPARED">
+        INSERT INTO address(sendPaperNo, receiveNick)
+        VALUES (#{sendPaperNo}, #{receiveNick})
+    </insert>
+
+    <!-- ReceivePaper에 저장 -->
+    <insert id="insertReceivePaper" parameterType="receivePaperVo">
+        INSERT INTO receive_paper(receivePaperNo,receivePaperContent, sendPaperNo,writeNick, isRead)
+        VALUES (#{receivePaperNo},#{receivePaperContent},#{sendPaperNo},#{senderNick},#{isRead})
+
+
+    </insert>
+
+
+
+</mapper>

@@ -1,12 +1,14 @@
 package com.example.paper.vo;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@AllArgsConstructor
-@NoArgsConstructor
-@ToString
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class AddressVo {
-    private String receivedNicks; // 받는 아이디
-    private int isRead; // 조회 여부
+
+    private String receiveNick; // 받는 사람
+    private int isRead; // 읽기 여부
 }

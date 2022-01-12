@@ -1,62 +1,77 @@
 package com.example.paper.controller;
 
 import com.example.member.vo.UserAccount;
+import com.example.paper.dao.SendPaperDao;
+import com.example.paper.service.PaperService;
 import com.example.paper.vo.AddressVo;
 import com.example.paper.vo.ReceivePaperVo;
 import com.example.paper.vo.SendPaperVo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 
 @Controller
 public class PaperController {
 
-    //헤더 버튼 클릭 시 쪽지 메인으로 이동
-    @GetMapping("/defaultPaper")
+    @Autowired
+    private PaperService paperService;
+
+    @GetMapping("/paperPage")
     public String goPaper() {
         return "/views/paper/sendPaper";
     }
 
-    // 쪽지 전송
+
+    // 작성한 쪽지 내용 저장
     @PostMapping("/sendPaper")
-    public @ResponseBody void sendPaper(@AuthenticationPrincipal UserAccount user,
-                                          @RequestParam("receiveNick") String receiveNick,
-                                          @RequestParam("sendContent") String content) {
-        //보낼 사람 닉네임
-        String userNick = user.getUser().getUserNick();
-        // 받을 사람 String Array로 나눠서 받기
-        String[] receiverArray = receiveNick.split(",");
+    public String sendPaper(@RequestParam("receiveNick") String receiveNick,
+                          @RequestParam("sendContent") String sendPaperContent,
+                          @AuthenticationPrincipal UserAccount user) {
+        //SenderVo 채우기
 
-        // 보낸 쪽지함 관련 생성
+        SendPaperVo sendPaperVo = new SendPaperVo();
+        // 1.작성자 닉네임 받는 변수 만들기
+        String senderNick = user.getUser().getUserNick();
+        // 2. 작성 내용 변수 만들기
+        String sendContent = sendPaperContent;
 
-        // insert 할 객체 생성
-        SendPaperVo sendPaper = new SendPaperVo();
-        // 보낸 쪽지함 - 닉네임
-        sendPaper.setSenderNick(user.getUser().getUserNick());
-        // 보낸 쪽지함 - 쪽지 내용
-        sendPaper.setSendPaperContent(content);
 
-        // 받은 쪽지함 관련
-        //받을 사람 닉네임 배열 생성
-        ArrayList<AddressVo> addrs = new ArrayList<AddressVo>();
-         //받은 쪽지함 관련 - VO 생성
-        ArrayList<ReceivePaperVo> receivePapers = new ArrayList<ReceivePaperVo>();
-        // 반복문으로 입력
-        for(String nick: receiverArray) {
-            AddressVo addr = new AddressVo(); //addr에 넣을 객체 새롭게 생성
-            addr.setReceivedNicks(nick); // addr에 닉네임 넣기
-            addrs.add(addr); // addrs에 addr
+        // 3. receiveInfo  내용 채우기
+        // 3-1. send +receiver 에서 쓸 ArrayList 먼저 생성해두기
+        ArrayList<AddressVo> addressArray = new ArrayList<AddressVo>();
+        ArrayList<ReceivePaperVo> receiverVos = new ArrayList<ReceivePaperVo>();
 
-            ReceivePaperVo receivePaper = new ReceivePaperVo();
-            receivePaper.setWriter(userNick); // 보낼 사람 입력
-            receivePaper.setReceivePaperContent(content);
 
-            receivePaper.setReceiveNick(nick);
-            receivePapers.add(receivePaper);
+        // 3-2 받는 사람 "," 단위로 쪼개서 배열로 받기
+        String[] receivers = receiveNick.split(",");
+        // 3-2 사람 수 만큼 반복해서 AddressVo 객체 만들기
+        for(String tempReceiver: receivers) {
+            AddressVo address = new AddressVo();
+            address.setReceiveNick(tempReceiver);
+            addressArray.add(address);
+
+            //ReceivePaper에 정보 미리 저장
+            ReceivePaperVo receivePaperVo = new ReceivePaperVo();
+            receivePaperVo.setSenderNick(senderNick);
+            receivePaperVo.setReceivePaperContent(sendPaperContent);
+            receivePaperVo.setReceiveNick(tempReceiver);
+            receiverVos.add(receivePaperVo);
         }
-        sendPaper.setReceiverNicks(addrs);
+        sendPaperVo.setReceiveInfo(addressArray);
+        sendPaperVo.setSenderNick(senderNick);
+        sendPaperVo.setPaperContent(sendPaperContent);
+
+        //DB에 전송
+        this.paperService.registerPaper(sendPaperVo,receiverVos);
+
+        return "redirect:/paperPage";
+
 
     }
+
 }

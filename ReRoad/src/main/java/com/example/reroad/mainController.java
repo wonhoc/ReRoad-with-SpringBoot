@@ -3,6 +3,7 @@ package com.example.reroad;
 import java.util.List;
 
 import com.example.domestic.service.DomesticService;
+import com.example.domestic.vo.DomesticVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,6 +31,11 @@ public class mainController {
         //지역별 기차역리스트 add
         model.addAttribute("trainStList", trainScheduleService.retrieveTrainStinfo());
 
+        List domestic = this.domesticService.boardMain();
+
+        System.out.println("List : " + domestic);
+
+        model.addAttribute("domestic", domestic);
 
         return "main";
     }

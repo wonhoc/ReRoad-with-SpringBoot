@@ -1,33 +1,57 @@
 @charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700;900&display=swap');
 
-.footer{
-	display: flex;
-
+/* footer Container*/
+#footerContainer {
+	position: relative;
+	height: 10em;
+	margin-top: 5em;
 }
 
-.footer_title {
-	margin: 0 2em;
-	font-size: 30px;
-}
-
-.footer_text {
-	margin: 0;
-	font-size: 14px;
-}
-
-.footer_emogi {
-	margin: 0 2em;
-}
-
-.footer_icon {
-	color: #b1b1b1;
-	font-size: 30px;
-	cursor: pointer;
-}
-.footer{
-	align-content: center;
-}
+/* footer 전체 */
 #whole{
-	margin-top: 60px;
-	margin-left: 40%;
+	width: 97.4%;
+	height: 10em;
+	bottom: 0px;
+	position: absolute;
+	background-color: #F2F2F2;
+	padding: 2em 0 2em 3em;
 }
+
+/*사이트 이름 */
+#siteName {
+	width: 15%;
+	float: left;
+
+	font-family: 'Noto Sans KR', sans-serif;
+	font-weight: bolder;
+	font-size: xxx-large;
+	color: darkgray;
+	line-height: 80%;
+}
+/* 팀이름, 구성원 정보 */
+#siteInfo {
+	width: 27%;
+	float: left;
+
+	font-family: 'Noto Sans KR', sans-serif;
+	font-weight: 400;
+	font-size: small;
+	color: darkgray;
+	margin-top: 2em;
+
+}
+
+/* 외부 링크*/
+#links {
+	width: 20%;
+	float: left;
+	margin-top: 3em;
+}
+#gitIcon, #commIcon {
+	color: darkgray;
+	font-size: 3em;
+
+
+}
+

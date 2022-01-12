@@ -27,4 +27,9 @@ public class DomesticDaoImpl implements DomesticDao {
     public DomesticVo selectRain(String domesticName) {
         return this.sqlSession.selectOne("Board.domestic", domesticName);
     }
+
+    @Override
+    public void updateDomestic(DomesticVo domestic) {
+        this.sqlSession.update("Board.updateDomestic",domestic);
+    }
 }

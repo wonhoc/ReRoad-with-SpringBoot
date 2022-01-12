@@ -203,10 +203,11 @@ $(document).ready(function(){
 		});
 		$('#inputDatepickerArr').show().focus().hide();	
 	});
-	
-	
-	
-	
+
+	$('#setting').on('click',function (){
+		$('.manage').toggle(500)
+	})
+
 });//ready() end
 
 

@@ -4,52 +4,75 @@ $(document).ready(function () {
 
     let cityList = [];
 
-    let selectedLength = $('#entire').children().length;
+    let selected = $('#selected').children('div').text().trim();
 
-    let selectedList = [];
 
 
     for (var i = 0; i < length; i++) {
-        const id = $('#search').children().eq(i).attr('id');
+        const id = $('#search').find('span').eq(i).attr('id');
         cityList.push(id);
     }
 
-    for (var i = 0; i < selectedLength; i++) {
-        const id = $('#entire').children().eq(i).attr('id');
-        selectedList.push(id);
-
-    }
-
     for (var i = 0; i < cityList.length; i++) {
-        for (var j = 0; j < selectedList.length; j++) {
-            if (cityList[i] == "whole" + selectedList[j]) {
-                $('#' + cityList[i]).remove();
+        if (cityList[i] == selected) {
+            $('#' + selected).hide();
 
-            }
         }
     }
 
+    $(document).on('click', "#searchDomestic", function (){
 
-    $('#domesticname').on("click", function () {
 
         $('#search').show()
-        list = $(this);
-
-    });
-
-
-    $('.entireDomesticName').click(function () {
-        let temp = $(this).children('.name').text();
-
-    });
-
-
-    $(document).on('click', '.entireDomesticName', function () {
-        $('#search').hide()
     })
 
+    $(document).on('click', ".name", function (){
 
-    $('#domesticname').on("keyup", function () {
+        var el = $('#searchDomestic');
+
+        for(var i=0; i<el.length; i++){
+
+            el[i].value = '';
+        }
+
+
+
+        let region = $(this).text();
+
+        let currentRegion = $('#domesticName').val();
+
+        $('#'+region).hide();
+
+        $('#selected').html("");
+
+        let str = '<div id="currentDomestic">' + region +'</div>';
+            str += '<input type="hidden" name = "domesticName" id = "domesticName" value="'+ region +'">';
+
+        $('#selected').html(str);
+        $('#'+currentRegion).show();
+
+        let length = $('#search').children().length
+
+        for (let i = 0 ; i<length ; i++){
+            const id = $('#search').find('span').eq(i).attr('id');
+                cityList.push(id);
+
+        }
+
+        for (var i = 0; i < cityList.length; i++) {
+
+            if(cityList[i] != region){
+                $('#'+cityList[i]).show()
+            }
+
+
+        }
+
+        $('#search').hide();
+
+    })
+
+    $('#searchDomestic').on("keyup", function () {
 
         let searchKeyword = $(this).val().trim();
 
@@ -60,60 +83,30 @@ $(document).ready(function () {
 
     });
 
-    $(document).on('click', '.name', function () {
-
-        let number = $('#entire').children().length;
-
-        let region = $(this).text();
-
-        $('#whole' + region).remove();
-
-
-        if (number > 5) {
-            alert("6개 이상입니다.")
-        } else {
-            list = '<div id="' + $(this).text() + '"><input type="checkbox" name="domesticName" value="' + $(this).text() + '">' + $(this).text() + '</div>';
-            $('#entire').append(list);
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                $('#imgArea').attr('src', e.target.result);
+            }
+            $('.thumnail').hide()
+            reader.readAsDataURL(input.files[0]);
         }
+    }
 
-        $('#search').hide()
-
-
+    $(":input[name='boardFileInput']").change(function() {
+        if( $(":input[name='boardFileInput']").val() == '' ) {
+            $('#imgArea').attr('src' , '');
+            $('.thumnail').hide()
+        }
+        $('.thumnail').hide()
+        $('#imgViewArea').css({ 'display' : '' });
+        readURL(this);
     });
 
-    $('#removeList').on('click', function () {
-
-
-        var arr = [];
-
-
-        $("input:checkbox[name='domesticName']:checked").each(function () {
-            const id = $(this).parent().attr('id');
-            arr.push(id);
-
-        });
-
-
-        for (var i = 0; i < arr.length; i++) {
-            $('#' + arr[i]).remove();
-
-            let html = '<div id="whole' + arr[i] + '" className="entireDomesticName">' +
-                '<span class="name">' + arr[i] + '</span></div>';
-
-            $('#search').append(html);
-
-        }
-
-    });
-
-    $(document).on('click', '.maincity',function (){
-       let citytext = $(this).text().trim();
-
-
-
-
-
-    })
-
+    // 이미지 에러 시 미리보기영역 미노출
+    function imgAreaError(){
+        $('#imgViewArea').css({ 'display' : 'none' });
+    }
 
 });

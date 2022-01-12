@@ -10,6 +10,7 @@
 <head>
     <script>
         let planNo = null;
+
         function plan_delete() {
             planNo = location.search.substring(1).split("=")[1];
             $.ajax({
@@ -56,15 +57,15 @@
                 <span th:if="${i.index}%3==0">
                     <tr th:id="${item.getCheckListNo()}">
                         <span class="unReady_tr" th:if="${item.getReady() ==0}">
-        <td ><img src="/images/planner/unready.png" alt="png"
-                  class="isReady"></td>
+        <td><img src="/images/planner/unready.png" alt="png"
+                 class="isReady"></td>
         <td class="unReady" th:text="${item.getCheckListContent()}"></td>
                             <td class="empty"></td>
     </span>
      <span class="ready_tr" th:if="${item.getReady() ==1}">
         <td><img src="/images/planner/ready.png" alt="png"
                  class="isReady"></td>
-        <td  class="ready" th:text="${item.getCheckListContent()}"></td>
+        <td class="ready" th:text="${item.getCheckListContent()}"></td>
         <td class="empty"></td>
      </span>
                     </tr>
@@ -83,8 +84,8 @@
          <td class="empty"></td>
     </span>
      <span class="ready_tr" th:if="${item.getReady() ==1}">
-        <td ><img src="/images/planner/ready.png" alt="png"
-                  class="isReady"></td>
+        <td><img src="/images/planner/ready.png" alt="png"
+                 class="isReady"></td>
         <td class="ready" th:text="${item.getCheckListContent()}"></td>
         <td class="empty"></td>
      </span>
@@ -100,7 +101,7 @@
     <span class="unReady_tr" th:if="${item.getReady() ==0}">
         <td><img src="/images/planner/unready.png" alt="png"
                  class="isReady"></td>
-        <td  class="unReady" th:text="${item.getCheckListContent()}"></td>
+        <td class="unReady" th:text="${item.getCheckListContent()}"></td>
         <td class="empty"></td>
     </span>
      <span class="ready_tr" th:if="${item.getReady() ==1}">

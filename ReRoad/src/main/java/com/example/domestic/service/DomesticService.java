@@ -195,4 +195,12 @@ public class DomesticService {
         return this.domesticDao.selectEntireDomestic();
     }
 
+    public DomesticVo manageDomestic(String domesticName){
+
+        return this.domesticDao.selectRain(domesticName);
+    }
+
+    public void settingDome(DomesticVo domestic){
+    this.domesticDao.updateDomestic(domestic);
+    }
 }

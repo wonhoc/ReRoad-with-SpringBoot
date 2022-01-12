@@ -2,54 +2,91 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
 
+#scBoxWrapper{
+	
+	margin-top: 10%;
+}
+
+#timeAndAw{
+	
+	margin-left: 5%;
+	height: auto;
+	
+}
 
 
+.time{
+	font-size: 3em;
+}
+
+#infoDepLoName{
+	
+	width: 50%;
+	text-align: left;
+	float: left;
+}
+
+#infoArrLoName{
+	
+	width: 50%;
+	text-align: right;
+	float: left;
+}
 
 .scInfoEl{
 	
-	display: inline-block;
+	
+	float: left;
+	height: 50px;
 	
 }
 
 #chargeBox{
 	
-	background-color: green;
+	margin-top: 2%;
+	margin-left: 10%;
+	font-size: 3em;
+	height: auto;
+	color: teal;	
 }
 
-#trainTypeNo{
+#won{
 	
-	background-color: blue;
-	
+	font-size: 0.3em;
 }
 
-#spanTime{
+#trainTypeNoBox{
 	
-	background-color: orange;
+	
+	margin-top: 2%;
+	margin-left: 5%;
+	width: 10%;
 }
 
-#clock{
-	
-	height: 50px;
-	widows: 50px;
-	
+#trainType{
+	font-weight: 700;
+	font-size: 1em;
 }
 
-#timeAndAw{
+#trainNo{
 	
-	background-color: yellow;
-	
+	font-size: 1em;
 }
 
-#rightAw{
-	
-	height: 50px;
-	widows: 50px;
+
+#spanTimeBox{
+	margin-top: 2%;
+	margin-left: 5%;
+	padding-top : 1%;
 }
 
 #scInfo{
 	
-	background-color: red;
-	
+	background-color: #F2F2F2;
+	height:	8em;
+	text-align: center;
+	padding-top: 2%;
+	margin-bottom: 3%;
 }
 
 

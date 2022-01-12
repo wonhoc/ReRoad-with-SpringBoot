@@ -10,6 +10,7 @@
 	<script th:src="@{/js/tooltip.js}"></script>
 	<script th:src="@{/js/popover.js}"></script>
 	<script th:src="@{/js/popper.min.js}"></script>
+	<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 </th:block>
 <th:block layout:fragment="css">
 	<link rel="stylesheet" th:href="@{/css/schedule/retriveSchedule.css}">
@@ -102,26 +103,27 @@
 		
 		<div id="scBoxWrapper">
 			<div id="scBox">
-				<div id="scInfo">
-					<div>
+			
+					<div id="scInfo" th:each="sc:${startSc.ScList}">
 					
 						<div id="timeAndAw" class="scInfoEl">
-							<span>06</span>
-							<span><img id="rightAw" src="/images/schedule/right-arrow.png"></span>
-							<span>07</span>
-							<span></span>
+							<span class="time" th:text="${#strings.concat(#strings.substring(sc.depplandtime, 8,10),':',#strings.substring(sc.depplandtime, 10,12))}"></span>
+							<i class="fas fa-arrow-right fa-3x"></i>
+							<span class="time" th:text="${#strings.concat(#strings.substring(sc.arrplandtime, 8,10),':',#strings.substring(sc.arrplandtime, 10,12))}"></span>
+							<div id="place"><div id="infoDepLoName" th:text="${depLoName}"></div> <div id="infoArrLoName" th:text="${arrLoName}"></div></div>
 						</div>
 						
-						<div id="spanTime" class="scInfoEl">
-							<span>2시간23분</span><span><img id="clock" src="/images/schedule/clock.png"></span>
+						<div id="spanTimeBox" class="scInfoEl">
+							<i class="far fa-clock"></i>	
+							<span id="spanTime" th:text="${sc.spanTime}"></span>
 						</div>
 						
-						<div id="trainTypeNo" class="scInfoEl">
-							<span>ktx</span><span>321</span>
+						<div id="trainTypeNoBox" class="scInfoEl">
+							<div id="trainType" th:text="${sc.traingradename}"></div><div id="trainNo" th:text="${sc.trainno}"></div>
 						</div>
 						
 						<div id="chargeBox" class="scInfoEl">
-							<span>35000</span>
+							<span th:text="${#numbers.formatInteger(sc.adultcharge, 3,'COMMA')}"></span><span id="won">원</span>
 						</div>
 						
 					</div>
@@ -130,7 +132,7 @@
 				
 				
 			</div>
-		</div>
+
  </div>
 </section>
 </html>

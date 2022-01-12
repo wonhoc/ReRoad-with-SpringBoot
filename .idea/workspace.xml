@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+
     <list default="true" id="18869558-432e-4011-9d86-a59d03e83cff" name="Changes" comment="로그인 시 session 작업 변경" />
+
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -13,8 +15,13 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="CSS File" />
         <option value="JavaScript File" />
+        <option value="Tag Library Descriptor" />
+        <option value="spring-beans.schema" />
+        <option value="Interface" />
         <option value="Class" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -25,6 +32,14 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -42,6 +57,8 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="mysql" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RequestMappingsPanelOrder0" value="0" />
     <property name="RequestMappingsPanelOrder1" value="1" />
     <property name="RequestMappingsPanelWidth0" value="75" />
@@ -51,6 +68,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/ReRoad" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
   </component>
   <component name="RunManager">
@@ -74,7 +92,10 @@
       <workItem from="1641548778947" duration="3080000" />
       <workItem from="1641773754740" duration="88000" />
       <workItem from="1641859728918" duration="16437000" />
-      <workItem from="1641885269882" duration="22000" />
+
+      <workItem from="1641883256128" duration="13612000" />
+      <workItem from="1641945210812" duration="34196000" />
+
     </task>
     <task id="LOCAL-00001" summary="수정">
       <created>1641550413516</created>
@@ -118,7 +139,21 @@
       <option name="project" value="LOCAL" />
       <updated>1641863510298</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="쪽지 기능 구현">
+      <created>1641898403132</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1641898403132</updated>
+    </task>
+    <task id="LOCAL-00008" summary="쪽지기능 구현 중">
+      <created>1641973476515</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1641973476515</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -129,6 +164,8 @@
     <MESSAGE value="헤더 CSS 수정" />
     <MESSAGE value="메일 예외 처리" />
     <MESSAGE value="로그인 시 session 작업 변경" />
-    <option name="LAST_COMMIT_MESSAGE" value="로그인 시 session 작업 변경" />
+    <MESSAGE value="쪽지 기능 구현" />
+    <MESSAGE value="쪽지기능 구현 중" />
+    <option name="LAST_COMMIT_MESSAGE" value="쪽지기능 구현 중" />
   </component>
 </project>

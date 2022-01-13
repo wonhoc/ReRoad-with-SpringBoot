@@ -7,4 +7,11 @@ $(document).ready(function () {
     }else {
         $("#plus_btn").attr("disabled", false);
     }
+
+    // let role = document.getElementById('role');
+    // if(role == 'ROLE_ADMIN') {
+    //     $("#list_btn").show();
+    // }else {
+    //     $("#list_btn").hide();
+    // }
 });

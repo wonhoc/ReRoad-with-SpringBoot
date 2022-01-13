@@ -68,6 +68,7 @@ public class UserController {
 
         // 로그인 후 세션에 UserAccount(UserVo+Role) 객체 등록
         session.setAttribute("loginUser", prin.getUser());
+
         return "redirect:/";
     }
 
@@ -287,17 +288,13 @@ public class UserController {
 
     //회원 자진 탈퇴 시 회원정보 삭제
     @PostMapping("/member/deleteUser")
-    public String deleteUser(Authentication authentication, HttpSession session){
+    public String deleteUser(Authentication authentication){
         UserDetails userDetails = (UserDetails)authentication.getPrincipal();
         String userId = userDetails.getUsername();
 
         this.userService.removeUser(userId);
 
-        session.getAttribute("loginUser");
-        session.removeAttribute("loginUser");
-        session.invalidate();
-
-        return "redirect:/";
+        return "redirect:/logout";
     }
 
     //회원 정보 상세 조회
@@ -317,7 +314,7 @@ public class UserController {
     @PostMapping("/member/modifyUser")
     public String modifyUser(@Valid @ModelAttribute UserVo user, BindingResult bindingResult,
                              Model model, HttpServletRequest request,
-                             @AuthenticationPrincipal User prin) {
+                             @AuthenticationPrincipal UserAccount prin) {
 
         //DB 유효성 체크 결과 에러가 발생할 경우 수정폼으로 돌아감
         if (bindingResult.hasErrors()) {
@@ -342,20 +339,31 @@ public class UserController {
             if (!user.getPhoto().getOriginalFilename().isEmpty()) {
                 imgname = fileUploadService.restore(photo, request);
 
-            } else {
-                imgname = "default.png";
             }
             modifyUser.setPhotoSys(imgname);
 
             this.userService.modifyUser(modifyUser);
 
-            String userId = prin.getUsername();
-            UserVo user2 = this.userService.getInfo(userId);
-            String userNick = user2.getUserNick();
-            String userRole = user2.getRole();
 
-            session.setAttribute("loginUser", user2);
-            return "redirect:/";
+//            UserVo user2 = this.userService.getInfo(userId);
+//            String userNick = user2.getUserNick();
+//            String userRole = user2.getRole();
+
+//            session.setAttribute("loginUser", prin.getUser().getUserNick());
+//            session.setAttribute("loginUser", prin.getUser().getPhotoSys());
+
+            String userId = prin.getUsername();
+
+            UserVo user2 = this.userService.retrieveUser(userId);
+            model.addAttribute("user", user2);
+
+            List<BoardVo> board = this.boardService.retrieveRecentBoardList(userId);
+            model.addAttribute("board", board);
+
+            List<CommentVo> com = this.boardService.retrieveUserComList(userId);
+            model.addAttribute("com", com);
+
+            return "views/member/myPage";
         }
     }
 
@@ -372,9 +380,28 @@ public class UserController {
         List<BoardVo> board = this.boardService.retrieveRecentBoardList(userId);
         model.addAttribute("board", board);
 
-
+        List<CommentVo> com = this.boardService.retrieveUserComList(userId);
+        model.addAttribute("com", com);
 
         return "views/member/myPage";
     }
 
+    //관리자 마이페이지
+    @GetMapping("/admin/myPage")
+    public String adminMyPage(Authentication authentication, Model model) {
+
+        UserDetails userDetails = (UserDetails)authentication.getPrincipal();
+        String userId = userDetails.getUsername();
+
+        UserVo user = this.userService.retrieveUser(userId);
+        model.addAttribute("user", user);
+
+        List<BoardVo> board = this.boardService.retrieveRecentBoardList(userId);
+        model.addAttribute("board", board);
+
+        List<CommentVo> com = this.boardService.retrieveUserComList(userId);
+        model.addAttribute("com", com);
+
+        return "views/member/adminMyPage";
+    }
 }

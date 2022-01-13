@@ -3,6 +3,7 @@
 <!--<th:block layout:fragment="script">-->
 <!--	<script th:src="@{/js/header.js}"></script>-->
 <!--</th:block>-->
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href="/css/header.css" />
@@ -50,6 +51,7 @@
 								<span th:text="${session.loginUser.getUserNick()}" id="showNick" />
 							</button>
 							</a>
+
 							<a th:href="@{/writePaper}" style="text-decoration: none">
 								<button class="btn btn-default" type="button" id="myPaperBtn">
 									쪽지관리

@@ -47,6 +47,6 @@ public interface BoardDao {
     //회원 게시글 보기
     List<BoardVo> readRecentList(String userId);
     List<BoardVo> readUserBoardList(String userId);
-
+    List<CommentVo> readUserComList(String userId);
 
 }

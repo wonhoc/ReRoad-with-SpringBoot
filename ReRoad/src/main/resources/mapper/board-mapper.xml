@@ -97,7 +97,7 @@
 
     <!-- 신고 게시글 목록 조회 -->
     <select id="selectReport" resultMap="resultMapReport" statementType="CALLABLE">
-        SELECT reporter, (SELECT boardTitle FROM board b WHERE b.boardNo = r.boardNo) AS boardTitle, userId
+        SELECT reporter, (SELECT boardTitle FROM board b WHERE b.boardNo = r.boardNo) AS boardTitle, userId, r.boardNo
         FROM report r
         WHERE userId = #{userId}
     </select>

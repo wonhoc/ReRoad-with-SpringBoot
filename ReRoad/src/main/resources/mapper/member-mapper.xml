@@ -109,12 +109,12 @@
         <result property="joinDate" javaType="string" column="joinDate" jdbcType="VARCHAR" />
         <result property="boardCount" javaType="int" column="boardCount" jdbcType="INTEGER" />
         <result property="comCount" javaType="int" column="comCount" jdbcType="INTEGER" />
+        <result property="role" javaType="string" column="role" jdbcType="VARCHAR" />
     </resultMap>
     <select id="selectOne" statementType="CALLABLE"
             resultMap="userOneResultMap" parameterType="string">
         SELECT u.userId, u.userNick, u.photoOrigin, u.photoSys, u.joinDate,(SELECT COUNT(*) FROM board b WHERE b.userId = u.userId )
-            as boardCount, (SELECT COUNT(*) FROM comment c WHERE c.userId = u.userId )
-            as comCount
+            as boardCount, (SELECT COUNT(*) FROM comment c WHERE c.userId = u.userId )as comCount, u.role
         FROM user_info u
         WHERE u.userId = #{userId};
     </select>

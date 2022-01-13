@@ -4,7 +4,7 @@
       "name": "spring.datasource.hikari",
       "type": "com.zaxxer.hikari.HikariConfig",
       "sourceType": "com.example.reroad.DatabaseConfiguration",
-      "sourceMethod": "public com.zaxxer.hikari.HikariConfig hikariConfig() throws java.lang.Exception"
+      "sourceMethod": "hikariConfig()"
     }
   ],
   "properties": [

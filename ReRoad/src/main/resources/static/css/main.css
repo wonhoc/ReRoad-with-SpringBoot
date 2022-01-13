@@ -290,60 +290,6 @@
     font-size: 18px;
 }
 
-
-#right_table  a{
-	color: #ce8483;
-}
-
-#center_title a{
-	color: #ce8483;
-}
-#noti_wDate{
-	font-size: smaller;
-	color: #5e5e5e;
-}
-
-#left_table{
-	width: 53%;
-	float: left;
-}
-
-#right_table{
-	width: 23%;
-	float: right;
-	margin-top: 72px;
-	margin-right: -24px;
-	text-align: -webkit-center;
-	border-left: 1px dashed #dee2e6;
-}
-
-#center_title{
-	float: left;
-	margin-top: 4em;
-	margin-right: -69px;
-	margin-left: 25px;
-}
-
-#notice_list{
-	line-height: 1.8;
-	font-size: 17px;
-}
-
-#message {
-	line-height: 73px;
-}
-
-#noti_text {
-	font-weight: bold;
-}
-
-#managerDomestic{
-	margin-left: 1000px;
-}
-.list_title{
-	width: 320px;
-}
-
 .manage{
 	width: 20px;
 	height: 20px;
@@ -354,3 +300,57 @@
 	margin-bottom: 30px;
 }
 
+/* 공지사항 css 0113추가한 코드! */
+#right_table  a{
+   color: teal;
+}
+#noti_wDate{
+   font-size: smaller;
+   color: #5e5e5e;
+   text-align: end;
+}
+#left_table{
+   width: 53%;
+   float: left;
+   margin-left: 20px;
+}
+#right_table{
+   width: 490px;
+   float: left;
+   margin-top: 60px;
+}
+#notice_list{
+   line-height: 1.8;
+   font-size: 17px;
+   margin-top: 20px;
+   width: inherit;
+   border-bottom: 1px solid white;
+}
+.notiTitle{
+   border-bottom: 1px dashed #dee2e6;
+}
+#noti_text {
+   font-weight: bold;
+   margin-left: -1px;
+   display: inline;
+}
+#morenoti{
+   margin-left: 5px;
+   font-size: 15px;
+}
+#notiCnt{
+   font-size: smaller;
+   color: #8a8989;
+}
+#notitxt{
+   font-size: smaller;
+   color: #8a8989;
+   width:50px;
+}
+#managerDomestic{
+   margin-left: 1000px;
+}
+.list_title{
+   width: 320px;
+}
+/* 공지사항 css 끝 */

@@ -53,24 +53,31 @@ $(document).ready(function(){
 	
 	//출발지 선택
 	$('#dep').click(function(){
-	
-		if ($('#hideOnbush').css('display') === 'none' ){
+		//열차 출발지 선택
+		if ($('#hideOnbush').css('display') === 'none' &&  vehicl == "열차"){
 		
 			$('#hideOnbush').show();
 			tripSel = $(this);
 		}else {
-			$('#hideOnbush').hide(); }//if end
+			$('#hideOnbush').hide(); 
+		}//if end
 	});
+	
+		//고속버스 출발지 선택
+		
+	
 	
 	//도착지 선택
 	$('#arr').click(function(){
-	
-		if ($('#hideOnbush').css('display') === 'none' ){ 
+		//열차 도착지 선택
+		if ($('#hideOnbush').css('display') === 'none' && vehicl == "열차"){ 
 				$('#hideOnbush').show();
 				tripSel = $(this);
 			}else {
 				$('#hideOnbush').hide(); 
 		}//if end
+		
+		//고속버스 도착지 선택
 	});
 	
 	//선택창 숨기기
@@ -203,11 +210,23 @@ $(document).ready(function(){
 		});
 		$('#inputDatepickerArr').show().focus().hide();	
 	});
+	
+	
+	//선택창 숨기기
+	$(document).not($('.searchBody')).click(function(){
+	
+		
+			alert();
 
-	$('#setting').on('click',function (){
-		$('.manage').toggle(500)
-	})
+		if($('#hideOnbush').css('display') != 'none'){
+					
+			//$('#hideOnbush').hide();
 
+		}//if end
+		
+		
+	});	
+	
 });//ready() end
 
 

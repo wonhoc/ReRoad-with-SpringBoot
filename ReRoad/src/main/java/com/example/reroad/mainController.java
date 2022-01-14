@@ -4,7 +4,13 @@ import java.util.List;
 
 import com.example.domestic.service.DomesticService;
 import com.example.domestic.vo.DomesticVo;
+import com.example.member.service.UserService;
+import com.example.member.vo.UserAccount;
+import com.example.member.vo.UserVo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +24,9 @@ import com.example.schedule.service.TrainScheduleService;
 public class mainController {
     @Autowired
     private NoticeService noticeService;
+
+    @Autowired
+    private UserService userService;
     
     @Autowired
     private TrainScheduleService trainScheduleService;
@@ -29,7 +38,7 @@ public class mainController {
     private DomesticService domesticService;
 
     @GetMapping("/")
-    public String main(Model model) throws Exception {
+    public String main(Model model, @AuthenticationPrincipal UserAccount prin) throws Exception {
         List<NoticeVO> noticeList  = this.noticeService.retrieveLastNotices();
         model.addAttribute("noticeList", noticeList);
         //지역별 기차역리스트 add
@@ -43,6 +52,12 @@ public class mainController {
 
         model.addAttribute("domestic", domestic);
 
+
+//        if(prin != null && prin.getUsername() != null) {
+//            String userId = prin.getUsername();
+//            UserVo user = this.userService.retrieveUser(userId);
+//            model.addAttribute("user", user);
+//        }
         return "main";
     }
 

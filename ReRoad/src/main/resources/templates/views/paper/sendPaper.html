@@ -45,13 +45,40 @@
                                     <th>받은사람</th>
                                     <th>작성내용</th>
                                     <th>작성시간</th>
+                                    <div th:if ="${#lists.size(sendPaperList) > 0}">
+                                        <th>
+                                            <input type="checkbox" id="allChecked">선택
+                                        </th>
+
+                                    </div>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <div >
-                                    <tr>
-                                        <td>보낸 쪽지가 없습니다.</td>
+                                    <!-- 보낸 쪽지가 없다면-->
+                                    <div th:if="${#lists.size(sendPaperList) == 0}">
+                                        <tr>
+                                            <td>보낸 쪽지가 없습니다.</td>
+                                        </tr>
+                                    </div>
+                                    <!-- 보낸 쪽지가 있다면 -->
+                                <div th:if="${#lists.size(sendPaperList) > 0}">
+                                    <tr th:each="sendPaper : ${sendPaperList}"}>
+                                        <!-- 받는 사람이 1명일 경우 -->
+                                        <span th:if="${#lists.size(sendPaper.receiveInfo) < 2}">
+                                            <td>
+                                                <span th:text="${#lists.size(sendPaper.receiveInfo[0].receiveNick)}"
+                                            </td>
+                                        </span>
+                                        <!-- 받는 사람이 여러 명일 경우-->
+                                        <span th:if="${#lists.size(sendPaper.receiveInfo) >= 2}">
+                                            <td>
+                                                <span th:text="${#lists.size(sendPaper.receiveInfo[0].receiveNick} + '외 ' +
+                                                ${#lists.size(sendPaper.receiveInfo) -1 } + '명' " />
+                                            </td>
+                                        </span>
+
                                     </tr>
+
                                 </div>
                                 <div >
 

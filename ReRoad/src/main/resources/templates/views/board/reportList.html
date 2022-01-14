@@ -60,7 +60,7 @@
                                 for (let i = startRow; i < endRow; i++) {
                                     html += '<td>' + index++ + '</td>';
                                     html += '<td>' + data[i].reporter + '</td>';
-                                    html += '<td> ' + data[i].boardTitle + ' </td></tr>';
+                                    html += '<td><a href="/detailBoard/' + data[i].boardNo + '">' + data[i].boardTitle + ' </td></tr>';
                                 }
                                 $("#users").empty();
                                 $("tbody").html(html);

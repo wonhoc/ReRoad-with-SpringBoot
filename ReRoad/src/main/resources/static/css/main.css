@@ -384,53 +384,65 @@
 	height: 20px;
 }
 #domestic{
-
 	margin-left: 1px;
 	margin-bottom: 30px;
 }
 
 /* 공지사항 css 0113추가한 코드! */
 #right_table  a{
-   color: teal;
+	color: teal;
 }
 #noti_wDate{
-   font-size: smaller;
-   color: #5e5e5e;
-   text-align: end;
+	font-size: smaller;
+	color: #5e5e5e;
+	text-align: end;
 }
 #left_table{
-   width: 53%;
-   float: left;
-   margin-left: 20px;
+	width: 53%;
+	float: left;
+	margin-left: 20px;
 }
 #right_table{
-   width: 490px;
-   float: left;
-   margin-top: 60px;
+	width: 490px;
+	float: left;
+	margin-top: 60px;
 }
 #notice_list{
-   line-height: 1.8;
-   font-size: 17px;
-   margin-top: 20px;
-   width: inherit;
-   border-bottom: 1px solid white;
+	line-height: 1.8;
+	font-size: 17px;
+	margin-top: 20px;
+	width: inherit;
+	border-bottom: 1px solid white;
 }
 .notiTitle{
-   border-bottom: 1px dashed #dee2e6;
+	border-bottom: 1px dashed #dee2e6;
 }
 #noti_text {
-   font-weight: bold;
-   margin-left: -1px;
-   display: inline;
+	font-weight: bold;
+	margin-left: -1px;
+	display: inline;
 }
 #morenoti{
-   margin-left: 5px;
-   font-size: 15px;
+	margin-left: 5px;
+	font-size: 15px;
+}
+#notiCnt{
+	font-size: smaller;
+	color: #8a8989;
+}
+#notitxt{
+	font-size: smaller;
+	color: #8a8989;
+	width:50px;
+}
+#managerDomestic{
+	margin-left: 1000px;
 }
 #notiCnt{
    font-size: smaller;
    color: #8a8989;
 }
+
 #notitxt{
    font-size: smaller;
    color: #8a8989;

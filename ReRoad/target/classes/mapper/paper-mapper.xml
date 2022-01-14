@@ -24,7 +24,7 @@
     <!-- SendPaper List resultMap-->
     <resultMap id="sendPaperList" type="sendPaperVo" autoMapping="true">
         <result property="sendPaperNo" javaType="int" jdbcType="INTEGER" column="sendPaperNo" />
-        <result property="sendPaperContent" javaType="string" jdbcType="VARCHAR" column="sendPaperContent"/>
+        <result property="paperContent" javaType="string" jdbcType="VARCHAR" column="sendPaperContent"/>
         <result property="sendDate" javaType="string" jdbcType="VARCHAR" column="sendDate"/>
             <collection property="receiveInfo" ofType="addressVo">
                 <result property="receiveNick" javaType="string" jdbcType="VARCHAR" column="receiveNick"/>

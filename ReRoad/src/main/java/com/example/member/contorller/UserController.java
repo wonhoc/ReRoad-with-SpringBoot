@@ -67,7 +67,7 @@ public class UserController {
 //        String userRole = user.getRole();
 
         // 로그인 후 세션에 UserAccount(UserVo+Role) 객체 등록
-        session.setAttribute("loginUser", prin.getUser());
+//        session.setAttribute("loginUser", prin.getUser());
 
         return "redirect:/";
     }

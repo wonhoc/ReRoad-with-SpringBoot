@@ -5,12 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="18869558-432e-4011-9d86-a59d03e83cff" name="Changes" comment="로그인 시 session 작업 변경">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/ReRoad_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/ReRoad_war_exploded.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/resources/mapper/paper-mapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/mapper/paper-mapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/views/paper/sendPaper.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/views/paper/sendPaper.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/ReRoad.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/ReRoad.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/member/contorller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/member/contorller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/member/oauth/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/member/oauth/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/member/vo/UserAccount.java" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/member/vo/UserAccount.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/fragments/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/fragments/header.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/main.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ReRoad/target/classes/META-INF/spring-configuration-metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/classes/META-INF/spring-configuration-metadata.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/target/classes/static/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/classes/static/css/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/target/classes/mapper/paper-mapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/classes/mapper/paper-mapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/target/classes/templates/fragments/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/classes/templates/fragments/header.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/target/classes/templates/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/classes/templates/main.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/target/classes/templates/views/paper/sendPaper.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/classes/templates/views/paper/sendPaper.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,8 +33,8 @@
         <option value="Tag Library Descriptor" />
         <option value="spring-beans.schema" />
         <option value="Interface" />
-        <option value="Class" />
         <option value="HTML File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -100,6 +108,10 @@
       <workItem from="1641883256128" duration="13612000" />
       <workItem from="1641945210812" duration="34196000" />
       <workItem from="1642031133371" duration="1876000" />
+      <workItem from="1642062558264" duration="753000" />
+      <workItem from="1642078841822" duration="4000" />
+      <workItem from="1642078871157" duration="8719000" />
+      <workItem from="1642116705594" duration="13142000" />
     </task>
     <task id="LOCAL-00001" summary="수정">
       <created>1641550413516</created>

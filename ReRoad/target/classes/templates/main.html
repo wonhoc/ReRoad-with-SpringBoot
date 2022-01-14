@@ -44,7 +44,7 @@
 
                         <!-- 바디 -->
                         <div id="bodyWrapper">
-                            <div id="dep" class="searchBody bush">
+                            <div id="dep" class="searchBody">
 
                                 <div class="bodyTextdiv" id="bodyDep" data-toggle="popover" data-placement="top">출발지
                                 </div>
@@ -99,7 +99,88 @@
                                     </div>
                                 </div>
                             </div>
+                            
+                             <div id="TmlList">
+                              <input class="form-control" id="searchTml" type="text" placeholder="터미널 검색..">
+	                        	<ul id="showCityBox">
+	                        		<li class="showCity" id="showAllTml">
+	                        		전체
+	                        		</li>
+	                        		<li class="showCity" id="showSe">
+	                        		서울
+	                        		</li>
+	                        		<li class="showCity" id="showIn">
+	                        		인천/경기
+	                        		</li>
+	                        		<li class="showCity" id="showKa">
+	                        		강원
+	                        		</li>
+	                        		<li class="showCity" id="showDe">
+	                        		대전/충남
+	                        		</li>
+	                        		<li class="showCity" id="showCh">
+	                        		충북
+	                        		</li>
+	                        		<li class="showCity" id="showKh">
+	                        		광주/전남
+	                        		</li>
+	                        		<li class="showCity"id="showJb">
+	                        		전북
+	                        		</li>
+	                        		<li class="showCity" id="showBu">
+	                        		부산/경남
+	                        		</li>
+	                        		<li class="showCity" id="showDk">
+	                        		대구/경북
+	                        		</li>
+	                        			                    		
+	                        	</ul>   
+	                        	<div id="temptmep">
+	                        		<ul  class="ulTml" id="se">
+	                        			<li th:text="${tml.tmName}" th:if="${tml.city == '서울'}" th:each="tml:${expTmlList}" th:value="${tml.tmId}" class="liTml"></li>
+	                        		</ul>
+	                        		
+	                        		<ul class="ulTml" id="in">
+	                        			<li th:text="${tml.tmName}" th:if="${tml.city == '인천/경기'}" th:each="tml:${expTmlList}" th:value="${tml.tmId}" class="liTml"></li>
+	                        		</ul>
+	                        		                        		
+	                        		<ul class="ulTml" id="ka">
+	                        			<li th:text="${tml.tmName}" th:if="${tml.city == '강원'}" th:each="tml:${expTmlList}" th:value="${tml.tmId}" class="liTml"></li>
+	                        		</ul>
+	                        		
+	                        		<ul class="ulTml" id="de">
+	                        			<li th:each="tml:${expTmlList}" th:text="${tml.tmName}" th:if="${tml.city == '대전/충남'}" th:value="${tml.tmId}" class="liTml"></li>
+	                        		</ul>
+	                        		
+	                        		<ul class="ulTml" id="ch">
+	                        			<li th:each="tml:${expTmlList}" th:text="${tml.tmName}" th:if="${tml.city == '충북'}" th:value="${tml.tmId}" class="liTml"></li>
+	                        		</ul>
+	                        		
+	                        		<ul class="ulTml" id="kh">
+	                        			<li th:each="tml:${expTmlList}" th:text="${tml.tmName}" th:if="${tml.city == '광주/전남'}" th:value="${tml.tmId}" class="liTml"></li>
+	                        		</ul>
+	                        		
+	                        		<ul class="ulTml" id="jb">
+	                        			<li th:each="tml:${expTmlList}" th:text="${tml.tmName}" th:if="${tml.city == '전북'}" th:value="${tml.tmId}" class="liTml"></li>
+	                        		</ul>
+	                        		
+	                        		<ul class="ulTml" id="bu">
+	                        			<li th:each="tml:${expTmlList}" th:text="${tml.tmName}" th:if="${tml.city == '부산/경남'}" th:value="${tml.tmId}" class="liTml"></li>
+	                        		</ul>
+	                        		
+	                        		<ul class="ulTml" id="dk">
+	                        			<li th:each="tml:${expTmlList}" th:text="${tml.tmName}" th:if="${tml.city == '대구/경북'}" th:value="${tml.tmId}" class="liTml"></li>
+	                        		</ul>
+	                        		
+	                        		
+	                        	</div>          
+	                        </div>
+                            
                         </div>
+                        
+                       
+                        
+                        
                         <button type="button" id="btnSearch" class="btn btn-primary" data-toggle="popover"
                                 data-placement="top">검색
                         </button>

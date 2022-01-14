@@ -15,7 +15,6 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 </head>
-
 <div th:fragment="headerFragment">
 	<div class="container" id="headerContainer">
 		<div id="wrapper">
@@ -58,6 +57,7 @@
 							<a th:href="@{/logout}" style="text-decoration: none">
 								<button class="btn btn-default" type="button" id="logoutBtn">로그아웃</button>
 							</a>
+						<input type="hidden" id="username" th:value="${session.loginUser.getUserId()}">
 					</span>
 				</div>
 			</span>

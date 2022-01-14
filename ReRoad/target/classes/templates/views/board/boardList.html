@@ -38,7 +38,7 @@
                             <button class="btn btn-primary" type="submit" id="searchBtn">
                                 <i class="fas fa-search"></i>
                             </button>
-                        <button sec:authorize="hasRole('ROLE_MEMBER')" type="button" class="btn btn-primary" id="writeBtn">글쓰기 </button>
+                        <button sec:authorize = "hasAnyRole('ROLE_MEMBER', 'ROLE_ADMIN')" type="button" class="btn btn-primary" id="writeBtn">글쓰기 </button>
                     </div>
                 </div>
             </nav>
@@ -65,7 +65,7 @@
             </tr>
             <tr>
                 <td width="70px;"><img class="boardImg" src="/images/board/view.png"><span th:text="${board.boardCount}"></span></td>
-                <td width="70px;"><img class="boardImg" src="/images/board/commentCount.png"><span th:text="${board.commentCount}"></span></td>
+                <td width="70px;"><img class="boardImg" src="/images/board/comment.png"><span th:text="${board.commentCount}"></span></td>
                 <td width="70px;"><img class="boardImg" src="/images/board/reComcount.png"><span th:text="${board.recomCount}"></span></td>
             </tr>
             <tr id="imgs">

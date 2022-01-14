@@ -7,7 +7,7 @@ import java.util.List;
 public interface DomesticDao {
 
     //국내여행메인
-    List selectDomesticMain();
+    List selectDomesticMain();//
 
     //국내여행지 전체조회
     List selectEntireDomestic();

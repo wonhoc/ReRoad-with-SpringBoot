@@ -15,8 +15,8 @@
 </head>
 <section layout:fragment="content">
     <div class="container">
-            <img th:if="${weather.thumbnailSystem != null}" th:src="@{'/upload/' + ${weather.thumbnailSystem}}" alt="image" class="mainImage">
-            <img th:if="${weather.thumbnailSystem == null}" src="/images/메인페이지버스.png" alt="image" class="mainImage">
+            <img th:if="${domestic.thumbnailSystem != null}" th:src="@{'/upload/' + ${domestic.thumbnailSystem}}" alt="image" class="mainImage">
+            <img th:if="${domestic.thumbnailSystem == null}" src="/images/메인페이지버스.png" alt="image" class="mainImage">
         <div class="map_wrap">
             <div id="map" style="width:100%;height:500px;position:relative;overflow:hidden;"></div>
 
@@ -24,7 +24,7 @@
                 <div class="option">
                     <div>
                         <form onsubmit="searchPlaces(); return false;">
-                            <input type="hidden" th:value="${weather.domesticName}+' 관광지'" id="keyword" size="15">
+                            <input type="hidden" th:value="${domestic.domesticName}" id="keyword" size="15">
                         </form>
                     </div>
                 </div>
@@ -34,7 +34,61 @@
             </div>
 
 
-            <div id="roadview" style="width:500px;height:500px;"></div>
+            <table th:each="weather : ${weather}" id ="table">
+                <tr class="temp" >
+                    <td colspan="4" th:text="${weather.date}"></td>
+                </tr>
+                <tr class="temp" >
+                    <td colspan="2">오전</td>
+                    <td colspan="2">오후</td>
+                </tr>
+                <tr class="status">
+                    <td th:if="${weather.wfAm} == '구름많음'"><img  class="img" src="/images/weather/구름.png"></td>
+                    <td th:if="${weather.wfAm} == '맑음'"><img class="img" src="/images/weather/태양.png"></td>
+                    <td th:if="${weather.wfAm} == '흐리고 비/눈'"><img class="img" src="/images/weather/눈.png"></td>
+                    <td th:if="${weather.wfAm} == '구름많고 비/눈'"><img class="img" src="/images/weather/눈.png"></td>
+                    <td><img class="water" src="/images/weather/물방울.png"><span th:text="${weather.rnStAM}"></span></td>
+
+                    <td th:if="${weather.wfPm} == '구름많음'"><img  class="img" src="/images/weather/구름.png"></td>
+                    <td th:if="${weather.wfPm} == '맑음'"><img class="img" src="/images/weather/태양.png"></td>
+                    <td th:if="${weather.wfPm} == '흐리고 비/눈'"><img class="img" src="/images/weather/눈.png"></td>
+                    <td th:if="${weather.wfPm} == '구름많고 비/눈'"><img class="img" src="/images/weather/눈.png"></td>
+                    <td><img class="water" src="/images/weather/물방울.png"><span th:text="${weather.rnStPM}"></span></td>
+
+                </tr>
+                <tr class="temp" style="border-bottom: 2px solid #337ab7">
+                    <td colspan="4" th:text="${weather.taMin}+ '℃ ~ ' + ${weather.taMax} + '℃' "></td>
+
+                </tr>
+                <tr class="temp" >
+                    <td colspan="4" th:text="${weather.date2}"></td>
+                </tr>
+                <tr class="temp">
+                    <td colspan="2">오전</td>
+                    <td colspan="2">오후</td>
+                </tr>
+                <tr class="status">
+                    <td th:if="${weather.wfAm2} == '구름많음'"><img  class="img" src="/images/weather/구름.png"></td>
+                    <td th:if="${weather.wfAm2} == '맑음'"><img class="img" src="/images/weather/태양.png"></td>
+                    <td th:if="${weather.wfAm2} == '흐리고 비/눈'"><img class="img" src="/images/weather/눈.png"></td>
+                    <td th:if="${weather.wfAm2} == '구름많고 비/눈'"><img class="img" src="/images/weather/눈.png"></td>
+                    <td><img class="water" src="/images/weather/물방울.png"><span th:text="${weather.rnStAM2}"></span></td>
+
+                    <td th:if="${weather.wfPm2} == '구름많음'"><img  class="img" src="/images/weather/구름.png"></td>
+                    <td th:if="${weather.wfPm2} == '맑음'"><img class="img" src="/images/weather/태양.png"></td>
+                    <td th:if="${weather.wfPm2} == '흐리고 비/눈'"><img class="img" src="/images/weather/눈.png"></td>
+                    <td th:if="${weather.wfPm2} == '구름많고 비/눈'"><img class="img" src="/images/weather/눈.png"></td>
+                    <td><img class="water" src="/images/weather/물방울.png"><span th:text="${weather.rnStPM2}"></span></td>
+
+                </tr>
+                <tr class="temp" >
+                    <td colspan="4" th:text="${weather.taMin2}+ '℃ ~ ' + ${weather.taMax2} + '℃' "></td>
+
+                </tr>
+            </table>
+
+
+            <div id="roadview" style="position: relative; width:400px;height:400px;"></div>
         </div>
 
         <script>

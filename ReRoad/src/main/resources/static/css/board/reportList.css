@@ -69,3 +69,8 @@ input[type=checkbox] {
     transform : scale(1.5);
 
 }
+
+.pwd_btn {
+    margin-left: 68em;
+    color: black;
+}

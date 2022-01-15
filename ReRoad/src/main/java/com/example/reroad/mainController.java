@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import com.example.notice.service.NoticeService;
 import com.example.notice.vo.NoticeVO;
+import com.example.schedule.service.ExpBusScheduleService;
 import com.example.schedule.service.TrainScheduleService;
 
 @Controller
@@ -29,6 +30,9 @@ public class mainController {
     
     @Autowired
     private TrainScheduleService trainScheduleService;
+    
+    @Autowired
+    private ExpBusScheduleService expBusScheduleService;
 
     @Autowired
     private DomesticService domesticService;
@@ -38,8 +42,10 @@ public class mainController {
         List<NoticeVO> noticeList  = this.noticeService.retrieveLastNotices();
         model.addAttribute("noticeList", noticeList);
         //지역별 기차역리스트 add
-        model.addAttribute("trainStList", trainScheduleService.retrieveTrainStinfo());
-
+        model.addAttribute("trainStList", this.trainScheduleService.retrieveTrainStinfo());
+        //고속버스 터미널 리스트 add
+        model.addAttribute("expTmlList", this.expBusScheduleService.getTmlInfo());
+        
         List domestic = this.domesticService.boardMain();
 
         System.out.println("List : " + domestic);

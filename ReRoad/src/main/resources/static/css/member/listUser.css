@@ -62,6 +62,13 @@ th {
 }
 .btn-outline-info {
     margin : 3em 70em;
+    color: black;
+    border-color: black;
+}
+.btn-outline-info:hover {
+    background-color: teal;
+    color: white;
+    border-color: teal;
 }
 
 input[type=checkbox] {

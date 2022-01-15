@@ -48,7 +48,9 @@
                                     <th>작성시간</th>
                                     <div th:if ="${#lists.size(sendPaperList) > 0}">
                                         <th>
+
                                             <input type="checkbox" id="allChecked">
+
                                         </th>
 
                                     </div>
@@ -63,16 +65,19 @@
                                     </div>
                                     <!-- 보낸 쪽지가 있다면 -->
                                 <div th:if="${#lists.size(sendPaperList) > 0}">
+
                                     <tr th:each="sendPaper:${sendPaperList}">
                                         <!-- 받는 사람이 1명일 경우 -->
                                         <span th:if="${#lists.size(sendPaper.receiveInfo) < 2}">
                                             <td>
                                                 <span th:text="${sendPaper.receiveInfo[0].receiveNick}"/>
+
                                             </td>
                                         </span>
                                         <!-- 받는 사람이 여러 명일 경우-->
                                         <span th:if="${#lists.size(sendPaper.receiveInfo) >= 2}">
                                             <td>
+
                                                 <span th:text="${sendPaper.receiveInfo[0].receiveNick} + '외 ' +
                                                 ${#lists.size(sendPaper.receiveInfo)-1} + '명' " />
                                             </td>
@@ -95,6 +100,7 @@
                                         <td>
                                             <input type="checkbox" name="removeCheckBox" th:value="${sendPaper.sendPaperNo}">
                                         </td>
+
                                     </tr>
 
                                 </div>

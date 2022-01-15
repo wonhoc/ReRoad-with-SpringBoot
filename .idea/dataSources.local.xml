@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal" created-in="IU-213.5744.223">
+    <data-source name="reroad@ec2-15-164-164-88.ap-northeast-2.compute.amazonaws.com" uuid="c89779cd-961b-4706-b956-8d0274d21d6a">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="MYSQL" exact-version="0" />
+      <secret-storage>forget</secret-storage>
+      <schema-mapping />
+    </data-source>
+  </component>
+</project>

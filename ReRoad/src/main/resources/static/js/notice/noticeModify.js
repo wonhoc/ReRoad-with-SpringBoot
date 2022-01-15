@@ -18,7 +18,10 @@ $(document).ready(function () {
     $('#noticeTitle').bind('click', function () {
         $('#saveBtn').attr("disabled", false);
     });
-
+    //파일삭제시 다시 버튼 활성화
+    $('#removeFileBtn').bind('click', function () {
+        $('#saveBtn').attr("disabled", false);
+    });
     //공지글 본문 유효성 체크
     $('#noticeContent').bind('focusout', function () {
         const noticeContent = $('#noticeContent').val();

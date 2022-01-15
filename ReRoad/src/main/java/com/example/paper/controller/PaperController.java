@@ -10,10 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -59,7 +56,8 @@ public class PaperController {
         //SenderVo 채우기
 
         SendPaperVo sendPaperVo = new SendPaperVo();
-        // 1.작성자 닉네임 받는 변수 만들기
+        // 1.작성자 아이디,닉네임 받는 변수 만들기
+        String senderId = user.getUser().getUserId();
         String senderNick = user.getUser().getUserNick();
         // 2. 작성 내용 변수 만들기
         String sendContent = sendPaperContent;
@@ -75,18 +73,25 @@ public class PaperController {
         String[] receivers = receiveNick.split(",");
         // 3-2 사람 수 만큼 반복해서 AddressVo 객체 만들기
         for(String tempReceiver: receivers) {
+            // 받는 사람의 닉네임으로 일치하는 아이디 찾아오기
+            String tempReceiverId = this.paperService.retrieveReceiveId(tempReceiver);
+
             AddressVo address = new AddressVo();
+            address.setReceiveId(tempReceiverId);
             address.setReceiveNick(tempReceiver);
             addressArray.add(address);
 
             //ReceivePaper에 정보 미리 저장
             ReceivePaperVo receivePaperVo = new ReceivePaperVo();
+            receivePaperVo.setSenderId(senderId);
             receivePaperVo.setSenderNick(senderNick);
             receivePaperVo.setReceivePaperContent(sendPaperContent);
+            receivePaperVo.setReceiveId(tempReceiverId);
             receivePaperVo.setReceiveNick(tempReceiver);
             receiverVos.add(receivePaperVo);
         }
         sendPaperVo.setReceiveInfo(addressArray);
+        sendPaperVo.setSenderId(senderId);
         sendPaperVo.setSenderNick(senderNick);
         sendPaperVo.setPaperContent(sendPaperContent);
 
@@ -94,6 +99,14 @@ public class PaperController {
         this.paperService.registerPaper(sendPaperVo,receiverVos);
 
         return "redirect:/paperPage";
+    }
+    @GetMapping("/sendPaperDetail/{sendPaperNo}")
+    public String sendPaperDetail(@PathVariable int sendPaperNo, Model model) {
+        SendPaperVo sendPaper = this.paperService.retrieveSendPaper(sendPaperNo);
+        model.addAttribute("sendPaper",sendPaper);
+        return "/views/paper/sendPaperDetail";
+
+
     }
 
 

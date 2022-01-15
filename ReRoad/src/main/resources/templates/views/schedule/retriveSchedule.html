@@ -17,7 +17,7 @@
 	<link rel="stylesheet" th:href="@{/css/jquery-ui.min.css}" />	
 </th:block>
 <head>
-	<title>ㅋㅋㅋㅋ</title>
+	<title>스케줄조회 서비스</title>
 </head>
 
 
@@ -93,7 +93,85 @@
 						     	</div>					     					
 					     	</div>				    	
 					    </div>     		
-				    	</div>				   		  
+				    	</div>
+				    	
+				    	<div id="TmlList">
+                              <input class="form-control" id="searchTml" type="text" placeholder="터미널 검색..">
+	                        	<ul id="showCityBox">
+	                        		<li class="showCity" id="showAllTml">
+	                        		전체
+	                        		</li>
+	                        		<li class="showCity" id="showSe">
+	                        		서울
+	                        		</li>
+	                        		<li class="showCity" id="showIn">
+	                        		인천/경기
+	                        		</li>
+	                        		<li class="showCity" id="showKa">
+	                        		강원
+	                        		</li>
+	                        		<li class="showCity" id="showDe">
+	                        		대전/충남
+	                        		</li>
+	                        		<li class="showCity" id="showCh">
+	                        		충북
+	                        		</li>
+	                        		<li class="showCity" id="showKh">
+	                        		광주/전남
+	                        		</li>
+	                        		<li class="showCity"id="showJb">
+	                        		전북
+	                        		</li>
+	                        		<li class="showCity" id="showBu">
+	                        		부산/경남
+	                        		</li>
+	                        		<li class="showCity" id="showDk">
+	                        		대구/경북
+	                        		</li>
+	                        			                    		
+	                        	</ul>   
+	                        	<div id="temptmep">
+	                        		<ul  class="ulTml" id="se">
+	                        			<li th:text="${tml.tmName}" th:if="${tml.city == '서울'}" th:each="tml:${expTmlList}" th:value="${tml.tmId}" class="liTml"></li>
+	                        		</ul>
+	                        		
+	                        		<ul class="ulTml" id="in">
+	                        			<li th:text="${tml.tmName}" th:if="${tml.city == '인천/경기'}" th:each="tml:${expTmlList}" th:value="${tml.tmId}" class="liTml"></li>
+	                        		</ul>
+	                        		                        		
+	                        		<ul class="ulTml" id="ka">
+	                        			<li th:text="${tml.tmName}" th:if="${tml.city == '강원'}" th:each="tml:${expTmlList}" th:value="${tml.tmId}" class="liTml"></li>
+	                        		</ul>
+	                        		
+	                        		<ul class="ulTml" id="de">
+	                        			<li th:each="tml:${expTmlList}" th:text="${tml.tmName}" th:if="${tml.city == '대전/충남'}" th:value="${tml.tmId}" class="liTml"></li>
+	                        		</ul>
+	                        		
+	                        		<ul class="ulTml" id="ch">
+	                        			<li th:each="tml:${expTmlList}" th:text="${tml.tmName}" th:if="${tml.city == '충북'}" th:value="${tml.tmId}" class="liTml"></li>
+	                        		</ul>
+	                        		
+	                        		<ul class="ulTml" id="kh">
+	                        			<li th:each="tml:${expTmlList}" th:text="${tml.tmName}" th:if="${tml.city == '광주/전남'}" th:value="${tml.tmId}" class="liTml"></li>
+	                        		</ul>
+	                        		
+	                        		<ul class="ulTml" id="jb">
+	                        			<li th:each="tml:${expTmlList}" th:text="${tml.tmName}" th:if="${tml.city == '전북'}" th:value="${tml.tmId}" class="liTml"></li>
+	                        		</ul>
+	                        		
+	                        		<ul class="ulTml" id="bu">
+	                        			<li th:each="tml:${expTmlList}" th:text="${tml.tmName}" th:if="${tml.city == '부산/경남'}" th:value="${tml.tmId}" class="liTml"></li>
+	                        		</ul>
+	                        		
+	                        		<ul class="ulTml" id="dk">
+	                        			<li th:each="tml:${expTmlList}" th:text="${tml.tmName}" th:if="${tml.city == '대구/경북'}" th:value="${tml.tmId}" class="liTml"></li>
+	                        		</ul>
+	                        		
+	                        		
+	                        	</div>          
+	                        </div>
+				    	
+				    				   		  
 				    </div>			  
 				    <button type="button" id="btnSearch" class="btn btn-primary" data-toggle="popover" data-placement="top">검색</button>				
 				 </div>
@@ -107,8 +185,8 @@
 						<i class="fas fa-chevron-circle-up fa-lg unFoldSc" id="unFoldStartSc"></i>
 						</span>
 					</div>
-		
-		<div id="scBoxWrapper" class="scBoxWrapper">
+		<!-- train start -->
+		<div id="scBoxWrapper" class="scBoxWrapper" th:if="${vehiclType == 'train'}">
 			<div id="scBox">
 					<div class="scNotinfo" th:if="${#lists.size(startSc.ScList) == 0}">
 					<img src="/images/schedule/cat2.jpg" class="catImg">			
@@ -143,6 +221,46 @@
 	
 				
 		</div>
+		<!-- expbus start -->
+		<div id="scBoxWrapper" class="scBoxWrapper" th:if="${vehiclType == 'expBus'}">
+			<div id="scBox">
+					<div class="scNotinfo" th:if="${#lists.size(startSc.ScList) == 0}">
+					<img src="/images/schedule/cat2.jpg" class="catImg">			
+					<span class="noSearchdata"> 조회된 스케줄이 없습니다.</span>		
+					<img src="/images/schedule/cat.jpg" class="catImg">			
+					</div>				
+					
+					<div class="scInfo" th:each="sc:${startSc.ScList}"  th:if="${#lists.size(sc) > 0}">								
+						<div class="scInfoEl timeAndAw">
+							<span class="time" th:text="${#strings.concat(#strings.substring(sc.depPlandTime, 8,10),':',#strings.substring(sc.depPlandTime, 10,12))}"></span>
+							<i class="fas fa-arrow-right fa-3x"></i>
+							<span class="time" th:text="${#strings.concat(#strings.substring(sc.arrPlandTime, 8,10),':',#strings.substring(sc.arrPlandTime, 10,12))}"></span>
+							<div id="place"><div id="infoDepLoName" th:text="${depLoName}"></div> <div id="infoArrLoName" th:text="${arrLoName}"></div></div>
+						</div>
+						
+						<div class="scInfoEl spanTimeBox">
+							<i class="far fa-clock"></i>	
+							<span class="spanTime" th:text="${sc.spanTime}"></span>
+						</div>
+						
+						<div class="scInfoEl trainTypeNoBox">
+							<div class="trainType" th:text="${sc.gradeNm}"></div>
+						</div>
+						
+						<div class="scInfoEl chargeBox">
+							<span th:text="${#numbers.formatInteger(sc.charge, 3,'COMMA')}"></span><span class="won">원</span>
+						</div>
+						
+					</div>
+				</div>
+				
+	
+				
+		</div>
+		
+		
+		
+		
 		
 		<div class="infoPlace" th:if="${arrDate != 'none'}">[[${arrLoName}]] <i class="fas fa-arrow-right fa-lg"></i>[[${depLoName}]]
 						<span class="ftRight" >
@@ -151,8 +269,8 @@
 						</span>
 		</div>
 		
-		
-		<div id="ArrscBoxWrapper" class="scBoxWrapper" th:if="${arrDate != 'none'}">
+		<!-- train turn -->
+		<div id="ArrscBoxWrapper" class="scBoxWrapper" th:if="${arrDate != 'none' && vehiclType == 'train'}">
 			<div id="arrScBox">
 					<div class="scNotinfo" th:if="${#lists.size(turnSc.ScList) == 0}">
 					<img src="/images/schedule/cat2.jpg" class="catImg">			
@@ -187,6 +305,44 @@
 	
 				
 		</div>
+		<!-- expbus turn -->	 	
+		<div id="ArrscBoxWrapper" class="scBoxWrapper" th:if="${arrDate != 'none' && vehiclType == 'expBus'}">
+			<div id="arrScBox">
+					<div class="scNotinfo" th:if="${#lists.size(turnSc.ScList) == 0}">
+					<img src="/images/schedule/cat2.jpg" class="catImg">			
+					<span class="noSearchdata"> 조회된 스케줄이 없습니다.</span>		
+					<img src="/images/schedule/cat.jpg" class="catImg">			
+					</div>				
+					
+					<div class="scInfo" th:each="sc:${turnSc.ScList}"  th:if="${#lists.size(sc) > 0}">								
+						<div class="scInfoEl timeAndAw">
+							<span class="time" th:text="${#strings.concat(#strings.substring(sc.depPlandTime, 8,10),':',#strings.substring(sc.depPlandTime, 10,12))}"></span>
+							<i class="fas fa-arrow-right fa-3x"></i>
+							<span class="time" th:text="${#strings.concat(#strings.substring(sc.arrPlandTime, 8,10),':',#strings.substring(sc.arrPlandTime, 10,12))}"></span>
+							<div id="place"><div id="infoDepLoName" th:text="${arrLoName}"></div> <div id="infoArrLoName" th:text="${depLoName}"></div></div>
+						</div>
+						
+						<div class="scInfoEl spanTimeBox">
+							<i class="far fa-clock"></i>	
+							<span class="spanTime" th:text="${sc.spanTime}"></span>
+						</div>
+						
+						<div class="scInfoEl trainTypeNoBox">
+							<div class="trainType" th:text="${sc.gradeNm}"></div></div>
+							
+							<div class="scInfoEl chargeBox">
+							<span th:text="${#numbers.formatInteger(sc.charge, 3,'COMMA')}"></span><span class="won">원</span>
+						</div>
+								
+					</div>
+						
+						
+						
+					</div>
+		</div>
+			
+	
+				
 
  </div>
 </section>

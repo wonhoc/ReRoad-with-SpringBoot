@@ -15,12 +15,13 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="CSS File" />
-        <option value="JavaScript File" />
         <option value="Tag Library Descriptor" />
         <option value="spring-beans.schema" />
         <option value="Interface" />
         <option value="Class" />
+        <option value="CSS File" />
+        <option value="JavaScript File" />
+        <option value="Kotlin Script" />
         <option value="HTML File" />
       </list>
     </option>
@@ -92,9 +93,11 @@
       <workItem from="1641548778947" duration="3080000" />
       <workItem from="1641773754740" duration="88000" />
       <workItem from="1641859728918" duration="16437000" />
-
       <workItem from="1641883256128" duration="13612000" />
       <workItem from="1641945210812" duration="34196000" />
+      <workItem from="1642031133371" duration="1876000" />
+
+      <workItem from="1642157204123" duration="19000" />
 
     </task>
     <task id="LOCAL-00001" summary="수정">
@@ -153,7 +156,14 @@
       <option name="project" value="LOCAL" />
       <updated>1641973476515</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Header 정보 표시 방식 변경">
+      <created>1642130055457</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1642130055457</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -166,6 +176,18 @@
     <MESSAGE value="로그인 시 session 작업 변경" />
     <MESSAGE value="쪽지 기능 구현" />
     <MESSAGE value="쪽지기능 구현 중" />
-    <option name="LAST_COMMIT_MESSAGE" value="쪽지기능 구현 중" />
+    <MESSAGE value="Header 정보 표시 방식 변경" />
+    <MESSAGE value="Header 정보 표시 방식 변경 / 쪽지 송수신에 UserId 추가" />
+    <option name="LAST_COMMIT_MESSAGE" value="Header 정보 표시 방식 변경 / 쪽지 송수신에 UserId 추가" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="org.thymeleaf.exceptions.TemplateInputException" package="org.thymeleaf.exceptions" />
+          <option name="timeStamp" value="2" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

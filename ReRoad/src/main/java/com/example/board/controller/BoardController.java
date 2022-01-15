@@ -5,6 +5,7 @@ import com.example.board.vo.BoardFileVo;
 import com.example.board.vo.BoardVo;
 import com.example.board.vo.CommentVo;
 import com.example.board.vo.ReportVo;
+import com.example.member.vo.UserAccount;
 import com.example.member.vo.UserVo;
 import com.example.util.FileUtils;
 import lombok.extern.slf4j.Slf4j;
@@ -34,20 +35,20 @@ public class BoardController {
 
         List<BoardVo> list = this.boardService.retrieveList();
 
-        for (BoardVo board : list){
-            board.setRecomCount(this.boardService.ReComCount(board.getBoardNo()));
-            board.setCommentCount(this.boardService.countCommemt(board.getBoardNo()));
-        }
-
         model.addAttribute("boardList", list);
+        model.addAttribute("content","views/board/boardList");
 
-        return "views/board/boardList";
+        return "/templates";
     }
 
     @GetMapping("/detailBoard/{boardNo}")
-    public String boardDetail(@PathVariable int boardNo, Model model, HttpServletRequest request) {
-        HttpSession session = request.getSession();
-        UserVo user = (UserVo) session.getAttribute("userInfo");
+    public String boardDetail(@PathVariable int boardNo, Model model, @AuthenticationPrincipal UserAccount user) {
+        String UserId = user.getUser().getUserId();
+        String userNick = user.getUser().getUserNick();
+
+        UserVo currnetUser = new UserVo();
+        currnetUser.setUserId(UserId);
+        currnetUser.setUserNick(userNick);
 
         this.boardService.updateUphit(boardNo);
         BoardVo board = boardService.retrieveDetail(boardNo);
@@ -56,9 +57,11 @@ public class BoardController {
         int recomCount = this.boardService.ReComCount(boardNo);
         board.setRecomCount(recomCount);
 
+        System.out.println("comlist : "+comlist);
+
         log.info("board dd :" + board);
 
-        model.addAttribute("user",user);
+        model.addAttribute("user",currnetUser);
         model.addAttribute("board", board);
         model.addAttribute("commentList", comlist);
 
@@ -165,5 +168,13 @@ public class BoardController {
         map.put("boards", boards);
         return map;
     }
+
+
+    @GetMapping("/hihi")
+    public String hihihi(){
+        return "views/board/아아";
+    }
+
+
 }
 

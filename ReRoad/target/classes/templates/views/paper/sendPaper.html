@@ -26,6 +26,7 @@
             </div>
             <div id="paperMain">
                 <div id="paperMenu" class="col-sm-3">
+
                     <a th:href="@{/writePaper}">
                         <button type="button" class="btn btn-default" id="write" name="write">쪽지 보내기</button>
                     </a>
@@ -33,19 +34,23 @@
                         <button type="button" class="btn btn-default" id="send" name="send">보낸 쪽지함</button>
                     </a>
                     <a th:href="@{/receivePaper}">
+
                         <button type="button" class="btn btn-default" id="receive" name="receive">받은 쪽지함</button>
                     </a>
                 </div>
                 <div id="addressAndWrite" class="col-sm-9">
                     <div id="sendPaper" name="sendPaper" class="paperDiv">
                         <form class="form-group" action="/removeSendPaper" method="POST" id="removeSendPaperForm">
+
                             <div>
                                 <table class="table table-hover">
+
                                 <thead>
                                 <tr>
                                     <th>받은사람</th>
                                     <th>작성내용</th>
                                     <th>작성시간</th>
+
                                     <div th:if ="${#lists.size(sendPaperList) > 0}">
                                         <th>
 
@@ -103,6 +108,7 @@
 
                                     </tr>
 
+
                                 </div>
                                 <div >
 
@@ -110,6 +116,7 @@
 
                                 </tbody>
                             </table>
+
                             </div>
                             <!-- 삭제 버튼-->
                             <div th:if="${sendPaperList != null}">
@@ -117,6 +124,7 @@
 
                             </div>
                         </form>
+
                     </div>
                 </div>
             </div>

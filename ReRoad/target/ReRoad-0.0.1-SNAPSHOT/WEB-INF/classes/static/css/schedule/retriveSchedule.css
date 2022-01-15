@@ -2,45 +2,150 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
 
-h1{
+body{
+	cursor: default;
+	text-align: center;
+	font-family: 'DoHyeon', sans-serif;
+	font-weight: 700; 
+}
+
+.unFoldSc{
+	
+	display: none;
+}
+
+.ftRight:hover{
 	
 	color: teal;
 }
 
-#scListBox{
+.ftRight{
 	
-	width: 100%;
-	background-color: coral;
-	height: 30em;
-	margin-top: 10%;
+	float: right;
+	cursor: pointer;
+}
+
+.infoPlace{
+	margin-top: 5%;
+	font-size: 1.5em;
+	background-color: rgb(242,242,242);
 	
 }
 
-.innerBox{
+.catImg{
+	height: 30em;
+	display: inline;
+	border-radius: 1%;
+}
+
+.noSearchdata{
+	
+	font-size: 1.5em;
+}
+
+.scNotinfo{
+	
+	border: 2px solid teal;
+	border-radius: 1%;
+}
+
+.scBoxWrapper{
+	
+	margin-top: 3%;
+}
+
+.timeAndAw{
+	
+	margin-left: 5%;
+	height: auto;
+	
+}
+
+
+.time{
+	font-size: 3em;
+}
+
+#infoDepLoName{
+	
+	width: 50%;
+	text-align: left;
+	float: left;
+}
+
+#infoArrLoName{
+	
+	width: 50%;
+	text-align: right;
+	float: left;
+}
+
+.scInfoEl{
+	
 	
 	float: left;
-	width: 40%;
-	height: 80%;
-	margin-top: 5%;
-	background-color: red;
+	height: 50px;
+	
+}
+
+
+
+.chargeBox{
+	
+	margin-top: 1%;
+	margin-left: 10%;
+	font-size: 3em;
+	height: auto;
+	color: teal;	
+}
+
+.won{
+	
+	font-size: 0.3em;
+}
+
+.trainTypeNoBox{
+	
+	
+	margin-top: 2%;
 	margin-left: 5%;
+	width: 10%;
 }
 
-.centerInnerBox{
-	display:inline-block;
-	height: 80%;
-	width: 40%;
-	margin-left: 30%;
-	margin-top: 5%;
-	background-color: yellow;
+.trainType{
+	font-weight: 700;
+	font-size: 1em;
 }
 
-#box2{
-	background-color: blue;
-	padding: 0;
-	float: right;
-	margin-right: 5%;
+.trainNo{
+	
+	font-size: 1em;
 }
+
+
+.spanTimeBox{
+	margin-top: 2%;
+	margin-left: 5%;
+	padding-top : 1%;
+}
+
+.scInfo{
+	
+	background-color: #F2F2F2;
+	height:	8em;
+	text-align: center;
+	padding-top: 2%;
+	margin-bottom: 3%;
+	border-radius: 1%;
+}
+
+.scInfo:hover{
+
+	box-shadow: 1px 1px 1px 1px black;
+}
+ 
+
+
 
 #mainwrapper{
 	 width: 100%;

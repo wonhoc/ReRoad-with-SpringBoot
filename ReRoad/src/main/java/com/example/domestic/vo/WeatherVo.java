@@ -7,13 +7,12 @@ public class WeatherVo {
 
     String domesticName;
 
-    //날씨
+    //강우량
     int rnSt3Am;
     int rnSt3Pm;
 
     int rnSt4Am;
     int rnSt4Pm;
-
 
     int rnSt5Am;
     int rnSt5Pm;
@@ -29,7 +28,7 @@ public class WeatherVo {
     int rnSt9;
 
 
-    //강우량
+    //날씨
     String wf3Am;
     String wf3Pm;
 

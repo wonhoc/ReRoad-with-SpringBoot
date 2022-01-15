@@ -41,6 +41,8 @@
 #memo{
     width:650px;
     resize: none;
+    overflow: hidden;
+    padding: 15px;
 }
 .twoline input{
     height: 33px;
@@ -139,10 +141,8 @@ select option {
 #saveBtn{
     background-color: teal;
 }
-#Isvalid{
-    margin-left: -41px;
-}
+
 label#checkListContent-error{
-    margin-left: -195px;
+
     width:555px;
 }

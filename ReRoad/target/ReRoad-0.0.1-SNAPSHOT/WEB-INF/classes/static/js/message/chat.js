@@ -1,6 +1,6 @@
 const url = 'http://localhost:8080';
 let stompClient;
-let username;
+let username = $('#username').val();
 let newMessage = new Map();
 
 toastr.options = {
@@ -24,9 +24,9 @@ toastr.options = {
 $(document).ready(function () {
 
 
-
-
     let username = $('#username').val();
+
+
 
     console.log(username);
 
@@ -41,10 +41,11 @@ $(document).ready(function () {
 
 
         stompClient.connect({}, function (frame) {
-
+            let username = $('#username').val();
             stompClient.subscribe("/topic/messages/" + username, function (message) {
                 let data = JSON.parse(message.body);
 
+                console.log(username);
                 let boardNo = data.boardNo;
 
                 toastr.options.onclick = function() { location.href='/detailBoard/'+boardNo }

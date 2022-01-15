@@ -21,6 +21,10 @@
 		<typeAlias type="com.example.planner.vo.PlannerVO" alias="planVO"/>
 		<typeAlias type="com.example.planner.vo.CheckListVO" alias="chkVO"/>
 
+		<typeAlias type="com.example.paper.vo.SendPaperVo" alias="SendPaperVo" />
+		<typeAlias type="com.example.paper.vo.ReceivePaperVo" alias="ReceivePaperVo" />
+		<typeAlias type="com.example.paper.vo.AddressVo" alias="AddressVo" />
+
 
 
  	</typeAliases>

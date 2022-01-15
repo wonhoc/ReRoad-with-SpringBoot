@@ -1,5 +1,11 @@
 $(document).ready(function() {
 
+    $(document).on('click', '#writeBtn', function(){
+
+        location.href='/writeboardForm';
+
+    })
+
 
     $('#searchBtn').on('click',function () {
         $.ajax({

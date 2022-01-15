@@ -379,6 +379,7 @@
     font-size: 18px;
 }
 
+
 .manage{
 	width: 20px;
 	height: 20px;
@@ -387,6 +388,7 @@
 	margin-left: 1px;
 	margin-bottom: 30px;
 }
+
 
 /* 공지사항 css 0113추가한 코드! */
 #right_table  a{
@@ -447,6 +449,7 @@
    font-size: smaller;
    color: #8a8989;
    width:50px;
+
 }
 #managerDomestic{
    margin-left: 1000px;

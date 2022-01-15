@@ -8,25 +8,15 @@
 #pagination-div{
     text-align: center;
 }
-#pagination-div{
-    text-align: center;
-}
 #pagination-div2{
     text-align: center;
 }
 thead{
     text-align: center;
 }
-
-#UK{
-    width: 150px;
-    line-height: 3.5em;
-}
-
 #keyfield{
     width:100px; height: 40px; float:left;
 }
-
 #keyword{
     height: 40px; width: 700px; float:left;
 }

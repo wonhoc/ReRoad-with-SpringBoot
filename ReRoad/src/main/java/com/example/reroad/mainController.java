@@ -3,10 +3,12 @@ package com.example.reroad;
 import java.util.List;
 
 import com.example.domestic.service.DomesticService;
+
 import com.example.domestic.vo.DomesticVo;
 import com.example.member.service.UserService;
 import com.example.member.vo.UserAccount;
 import com.example.member.vo.UserVo;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -37,6 +39,7 @@ public class mainController {
     @Autowired
     private DomesticService domesticService;
 
+
     @GetMapping("/")
     public String main(Model model, @AuthenticationPrincipal UserAccount prin) throws Exception {
         List<NoticeVO> noticeList  = this.noticeService.retrieveLastNotices();
@@ -53,6 +56,7 @@ public class mainController {
         model.addAttribute("domestic", domestic);
 
 
+
 //        if(prin != null && prin.getUsername() != null) {
 //            String userId = prin.getUsername();
 //            UserVo user = this.userService.retrieveUser(userId);
@@ -61,9 +65,8 @@ public class mainController {
         return "main";
     }
 
-    @GetMapping("/test")
-    public String error() {
-        throw new RuntimeException("hello");
+
+        return "/templates";
     }
 
 }

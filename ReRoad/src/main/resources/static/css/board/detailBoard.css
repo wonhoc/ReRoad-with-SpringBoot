@@ -1,10 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
+.container{
+    font-family: 'Noto Sans KR', sans-serif;
+}
 .images{
     width: 30px;
     height: 30px;
 }
 #boardTitle{
-    font-size: 60px;
-
+    font-size: 40px;
+    font-family: 'Noto Sans KR', sans-serif;
 }
 #table{
     margin-top: 80px;
@@ -28,9 +32,55 @@
     margin-top: 5px;
 }
 #wdate{
-    margin-left: 660px;
+    margin-left: 582px;
 }
 #modi{
     margin-left: 660px;
     margin-top: 50px;
+}
+#modiBtn{
+    margin-top: 10px;
+    margin-left: 900px;
+    height: 35px;
+}
+#deleteBtn{
+    margin-top: 10px;
+    height: 35px;
+}
+#recomBtn{
+    margin-left: 900px;
+    margin-top: 10px;
+    height: 35px;
+}
+#reportBtn{
+    margin-top: 10px;
+    height: 35px;
+}
+#info{
+    background-color: teal;
+    color: white;
+    font-size: 17px;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+#count{
+    margin-left: 20px;
+}
+
+#listComment{
+    text-align: center;
+}
+#commentDiv{
+    background-color: #0d6efd52;
+    width: 812px;
+    margin-left: 135px;
+    border-radius: 4%;
+    border: 2px solid teal;
+    margin-top: 16px;
+}
+#comContent{
+    margin-top: 5px;
+    margin-left: 191px;
+}
+#addComBtn{
+    margin-left: 609px;
 }

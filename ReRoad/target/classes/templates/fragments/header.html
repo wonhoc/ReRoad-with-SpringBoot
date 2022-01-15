@@ -5,6 +5,7 @@
 <!--<th:block layout:fragment="script">-->
 <!--	<script th:src="@{/js/header.js}"></script>-->
 <!--</th:block>-->
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href="/css/header.css" />
@@ -23,7 +24,7 @@
 	</script>
 </head>
 
-<div th:fragment="headerFragment">
+<div class="header">
 	<div class="container" id="headerContainer">
 		<div id="wrapper">
 			<span class="header_logo">
@@ -80,13 +81,5 @@
 		</div>
 		<div id ="bar"></div>
 	</div>
-
-
-
-
-
-
-
-
 </div>
 </html>

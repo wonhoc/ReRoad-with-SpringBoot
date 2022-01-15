@@ -16,6 +16,11 @@
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+	<script>
+		function loadchat(){
+			window.open("/chatting", "_blank", "toolbar=use, menubar=yes, width=800, height=900").focus();
+		}
+	</script>
 </head>
 
 <div th:fragment="headerFragment">
@@ -62,6 +67,9 @@
 									쪽지관리
 								</button>
 							</a>
+						<button class="btn btn-info" type="button" id="chatBtn" onclick="loadchat()">
+								채팅
+							</button>
 							<a th:href="@{/logout}" style="text-decoration: none">
 								<button class="btn btn-default" type="button" id="logoutBtn">로그아웃</button>
 							</a>

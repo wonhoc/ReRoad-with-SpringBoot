@@ -41,30 +41,19 @@ public class mainController {
 
 
     @GetMapping("/")
-    public String main(Model model, @AuthenticationPrincipal UserAccount prin) throws Exception {
+    public String main(Model model) throws Exception {
         List<NoticeVO> noticeList  = this.noticeService.retrieveLastNotices();
         model.addAttribute("noticeList", noticeList);
         //지역별 기차역리스트 add
-        model.addAttribute("trainStList", this.trainScheduleService.retrieveTrainStinfo());
-        //고속버스 터미널 리스트 add
-        model.addAttribute("expTmlList", this.expBusScheduleService.getTmlInfo());
-        
+        model.addAttribute("trainStList", trainScheduleService.retrieveTrainStinfo());
+
         List domestic = this.domesticService.boardMain();
 
         System.out.println("List : " + domestic);
 
         model.addAttribute("domestic", domestic);
 
-
-
-//        if(prin != null && prin.getUsername() != null) {
-//            String userId = prin.getUsername();
-//            UserVo user = this.userService.retrieveUser(userId);
-//            model.addAttribute("user", user);
-//        }
-        return "main";
-    }
-
+        model.addAttribute("content","/main");
 
         return "/templates";
     }

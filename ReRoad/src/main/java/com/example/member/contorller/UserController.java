@@ -58,16 +58,16 @@ public class UserController {
     public String login() { return "views/member/loginForm"; }
 
     // 로그인 성공
-    @GetMapping("/loginOk")
+    @PostMapping("/loginOk")
     public String loginSuccess(@AuthenticationPrincipal UserAccount prin, Model model) {
 
-//        String userId = prin.getUsername();
+        String userId = prin.getUsername();
 //        UserVo user = this.userService.getInfo(userId);
 //        String userNick = user.getUserNick();
 //        String userRole = user.getRole();
 
         // 로그인 후 세션에 UserAccount(UserVo+Role) 객체 등록
-        session.setAttribute("loginUser", prin.getUser());
+        session.setAttribute("loginUser", userId);
 
         return "redirect:/";
     }
@@ -145,6 +145,8 @@ public class UserController {
             Map<String, String> map = userService.validate(bindingResult);
             for(String key: map.keySet()) {
                 model.addAttribute(key,map.get(key));
+                // 가입 실패 후 되돌아가는 화면으로 아이디 값을 다시 되돌려줌
+                model.addAttribute("userId",user.getUserId());
             }return "views/member/JoinUserSe";
         } else {
             // 에러가 없을 경우 Password 암호화 후 DB에 등록

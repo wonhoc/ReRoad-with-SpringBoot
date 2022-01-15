@@ -7,4 +7,6 @@ import java.util.List;
 public interface SendPaperDao {
     int insertSendPaper(SendPaperVo sendVo);
     List<SendPaperVo> selectSendPaperList(String userNick);
+    String getReceiverId(String receiveNick);
+    SendPaperVo selectSendPaper(int sendPaperNo);
 }

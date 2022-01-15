@@ -26,20 +26,21 @@
             </div>
             <div id="paperMain">
                 <div id="paperMenu" class="col-sm-3">
-                    <a th:href="@{writePaper}">
+                    <a th:href="@{/writePaper}">
                         <button type="button" class="btn btn-default" id="write" name="write">쪽지 보내기</button>
                     </a>
-                    <a th:href="@{sendPaper}">
+                    <a th:href="@{/sendPaper}">
                         <button type="button" class="btn btn-default" id="send" name="send">보낸 쪽지함</button>
                     </a>
-                    <a th:href="@{receivePaper}">
+                    <a th:href="@{/receivePaper}">
                         <button type="button" class="btn btn-default" id="receive" name="receive">받은 쪽지함</button>
                     </a>
                 </div>
                 <div id="addressAndWrite" class="col-sm-9">
                     <div id="sendPaper" name="sendPaper" class="paperDiv">
                         <form class="form-group" action="/removeSendPaper" method="POST" id="removeSendPaperForm">
-                            <table class="table table-hover">
+                            <div>
+                                <table class="table table-hover">
                                 <thead>
                                 <tr>
                                     <th>받은사람</th>
@@ -47,7 +48,9 @@
                                     <th>작성시간</th>
                                     <div th:if ="${#lists.size(sendPaperList) > 0}">
                                         <th>
-                                            <input type="checkbox" id="allChecked">선택
+
+                                            <input type="checkbox" id="allChecked">
+
                                         </th>
 
                                     </div>
@@ -62,20 +65,41 @@
                                     </div>
                                     <!-- 보낸 쪽지가 있다면 -->
                                 <div th:if="${#lists.size(sendPaperList) > 0}">
-                                    <tr th:each="sendPaper : ${sendPaperList}"}>
+
+                                    <tr th:each="sendPaper:${sendPaperList}">
                                         <!-- 받는 사람이 1명일 경우 -->
                                         <span th:if="${#lists.size(sendPaper.receiveInfo) < 2}">
                                             <td>
-                                                <span th:text="${#lists.size(sendPaper.receiveInfo[0].receiveNick)}"
+                                                <span th:text="${sendPaper.receiveInfo[0].receiveNick}"/>
+
                                             </td>
                                         </span>
                                         <!-- 받는 사람이 여러 명일 경우-->
                                         <span th:if="${#lists.size(sendPaper.receiveInfo) >= 2}">
                                             <td>
-                                                <span th:text="${#lists.size(sendPaper.receiveInfo[0].receiveNick} + '외 ' +
-                                                ${#lists.size(sendPaper.receiveInfo) -1 } + '명' " />
+
+                                                <span th:text="${sendPaper.receiveInfo[0].receiveNick} + '외 ' +
+                                                ${#lists.size(sendPaper.receiveInfo)-1} + '명' " />
                                             </td>
                                         </span>
+                                        <!-- 받는 내용이 10글자가 넘으면 -->
+                                        <span th:if="${#strings.length(sendPaper.paperContent) > 10}">
+                                            <td>
+                                                <a th:text="${#strings.substring(sendPaper.paperContent, 0, 10) + '...'}"
+                                                   th:href="@{/sendPaperDetail/{sendPaperNo}(sendPaperNo=${sendPaper.sendPaperNo})}"/>
+                                            </td>
+                                        </span>
+                                        <!-- 받는 내용이 10글자가 넘지 않을 경우-->
+                                        <span th:if="${#strings.length(sendPaper.paperContent) <= 10}">
+                                            <td>
+                                                <a th:text="${sendPaper.paperContent}"
+                                                   th:href="@{/sendPaperDetail/{sendPaperNo}(sendPaperNo=${sendPaper.sendPaperNo})}" />
+                                            </td>
+                                        </span>
+                                        <td th:text="${#strings.substring(sendPaper.sendDate, 0, 10)}"></td>
+                                        <td>
+                                            <input type="checkbox" name="removeCheckBox" th:value="${sendPaper.sendPaperNo}">
+                                        </td>
 
                                     </tr>
 
@@ -86,9 +110,13 @@
 
                                 </tbody>
                             </table>
+                            </div>
+                            <!-- 삭제 버튼-->
+                            <div th:if="${sendPaperList != null}">
+                                <button class="btn btn-default" type="submit" id="removeSendPaperBtn">삭제</button>
 
+                            </div>
                         </form>
-
                     </div>
                 </div>
             </div>

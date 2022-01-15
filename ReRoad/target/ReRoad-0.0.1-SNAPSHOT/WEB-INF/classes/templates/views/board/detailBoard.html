@@ -16,6 +16,8 @@
 </head>
 <section layout:fragment="content">
 
+    <!-- 사용자 -->
+    <input type="hidden" id="username" th:value="${user.userId}">
 
     <!-- 작성자 -->
     <input type="hidden" th:value="${board.userId}" id="userId">
@@ -23,9 +25,10 @@
     <div class="container">
 
         <input type="hidden" name="boardNo" th:value="${board.boardNo}" id="boardNo">
-        <form method="post">
-                <button style="height: 30px;" id="modiBtn" class="btn btn-default waves-effect waves-light">수정</button>
-                <button style="height: 30px;" id="deleteBtn" class="btn btn-primary">삭제</button>
+        <form method="post" th:action="@{/deleteBoard/{boardNo}(boardNo=${board.boardNo})}">
+
+            <a th:href="@{/modifyBoardForm/{boardNo}(boardNo=${boardNo})}"  id ="modiBtn" class="btn btn-outline-warning">수정</a>
+            <button id="deleteBtn" class="btn btn-outline-secondary">삭제</button>
 
             <div id="main">
                 <div th:if="${#lists.size(board.boardFiles) >= 1}">
@@ -33,22 +36,26 @@
                 </div>
 
                 <div id="boardTitle" th:text="${board.boardTitle}"></div>
-
+                <div id = "info">
                 <span th:text="${board.userNick}"></span>
 
                 <span id="wdate" th:text="${board.boardWdate}"></span>
-                <img class="images" src="/images/board/commentCount.png"><span th:text="${board.boardCount}"></span>
+                <img id="count" class="images" src="/images/board/view.png" ><span th:text="${board.boardCount}"></span>
+                <img class="images" src="/images/board/comment.png"><span th:text="${board.commentCount}"></span>
                 <img class="images" src="/images/board/reComcount.png"><span id="recomCount"><span th:text="${board.recomCount}" /></span>
-
+                </div>
                 <div style="height: 300px;" th:text="${board.boardContent}"></div>
 
             </div>
 
+
+
         </form>
-        <button type="button" class="btn btn-success" id="recomBtn">추천</button>
-        <button type="button" class="btn btn-warning" id="reportBtn">신고</button>
+        <button type="button" class="btn btn-primary" id="recomBtn">추천</button>
+        <button type="button" class="btn btn-danger" id="reportBtn">신고</button>
 
 
+    <div id="commentDiv">
 
         <table id="listComment">
             <thead>
@@ -60,7 +67,12 @@
                 <td></td>
             </tr>
             </thead>
-            <tbody th:each="comment : ${commentList}" th:id="${comment.comNo}">
+
+
+            <tbody th:if="${commentList != null}" th:each="comment : ${commentList}" th:id="${comment.comNo}">
+            <tr th:if="${comment.comContent == null}">
+                <td colspan="5">등록된 댓글이 없습니다.</td>
+            </tr>
             <tr>
                 <td  th:text="${comment.userNick}"></td>
                 <td  th:text="${comment.comWdate}"></td>
@@ -77,11 +89,13 @@
                 <textarea id="comContent" rows="5" cols="50"
                               placeholder="댓글을 입력해주세요 ."></textarea>
             </div>
-            <button id="addComBtn">댓글 달기</button>
+            <button id="addComBtn" class="btn btn-outline-success">댓글 작성</button>
             <div id="resultCom">
 
             </div>
         </div>
+
+
         <div id="modifyComment" style="display: none;">
             <div>
                 <input type="hidden" id="comNo">
@@ -96,18 +110,7 @@
         </div>
 
 
-        <div class="toast" data-autohide="false" role="alert" aria-live="assertive" aria-atomic="true">
-            <div class="toast-header">
-                <img src="..." class="rounded me-2" alt="...">
-                <strong class="me-auto">Bootstrap</strong>
-                <small class="text-muted">11 mins ago</small>
-                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-            </div>
-            <div class="toast-body">
-                Hello, world! This is a toast message.
-            </div>
-
-        </div>
+    </div>
     </div>
 </section>
 </html>

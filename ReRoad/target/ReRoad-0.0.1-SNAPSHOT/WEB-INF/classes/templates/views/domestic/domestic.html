@@ -36,10 +36,10 @@
 
             <table th:each="weather : ${weather}" id ="table">
                 <tr class="temp" >
-                    <td colspan="4" th:text="${weather.date}"></td>
+                    <td class="date" colspan="4" th:text="${weather.date}"></td>
                 </tr>
                 <tr class="temp" >
-                    <td colspan="2">오전</td>
+                    <td class="time" colspan="2">오전</td>
                     <td colspan="2">오후</td>
                 </tr>
                 <tr class="status">
@@ -61,10 +61,10 @@
 
                 </tr>
                 <tr class="temp" >
-                    <td colspan="4" th:text="${weather.date2}"></td>
+                    <td class="date" colspan="4" th:text="${weather.date2}"></td>
                 </tr>
                 <tr class="temp">
-                    <td colspan="2">오전</td>
+                    <td class="time" colspan="2">오전</td>
                     <td colspan="2">오후</td>
                 </tr>
                 <tr class="status">

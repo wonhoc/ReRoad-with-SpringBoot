@@ -58,7 +58,7 @@ function previewImage(targetObj, View_area) {
             //     preview.removeChild(prevImg);
             // }
 
-            var span=document.createElement('span');
+            var span=$('#imagebox').children('div');
             span.id="img_id_" +i;
             span.style.width = '100px';
             span.style.height = '100px';

@@ -38,7 +38,7 @@
                             <button class="btn btn-primary" type="submit" id="searchBtn">
                                 <i class="fas fa-search"></i>
                             </button>
-                        <button sec:authorize="hasRole('ROLE_MEMBER')" type="button" class="btn btn-primary" id="writeBtn">글쓰기 </button>
+                        <button sec:authorize = "hasAnyRole('ROLE_MEMBER', 'ROLE_ADMIN')" type="button" class="btn btn-primary" id="writeBtn">글쓰기 </button>
                     </div>
                 </div>
             </nav>
@@ -61,12 +61,11 @@
                 <td width="210px;" id="title" colspan="3"><a th:href="@{/detailBoard/{boardNo}(boardNo=${board.boardNo})}"><p th:text="${board.boardTitle}"></p></a></td>
             </tr>
             <tr id="Nick">
-                <td width="210px;" colspan="3"><img class="boardImg" src="/images/board/user.png"><span id="font" th:text="${board.userNick}"></span></td>
+                <td colspan="2"><img class="boardImg" src="/images/board/user.png"><span id="font" th:text="${board.userNick}"></span></td>
+                <td><img class="boardImg" src="/images/board/view.png"><span th:text="${board.boardCount}"></span></td>
             </tr>
             <tr>
-                <td width="70px;"><img class="boardImg" src="/images/board/view.png"><span th:text="${board.boardCount}"></span></td>
-                <td width="70px;"><img class="boardImg" src="/images/board/commentCount.png"><span th:text="${board.commentCount}"></span></td>
-                <td width="70px;"><img class="boardImg" src="/images/board/reComcount.png"><span th:text="${board.recomCount}"></span></td>
+                <td colspan="3" th:text="${board.boardWdate}">
             </tr>
             <tr id="imgs">
                 <td height="50px;" id="content" colspan="5" th:text="${board.boardContent}"></td>

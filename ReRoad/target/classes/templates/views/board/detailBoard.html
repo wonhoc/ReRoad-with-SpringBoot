@@ -27,7 +27,7 @@
         <input type="hidden" name="boardNo" th:value="${board.boardNo}" id="boardNo">
         <form method="post" th:action="@{/deleteBoard/{boardNo}(boardNo=${board.boardNo})}">
 
-            <button id="modiBtn" class="btn btn-outline-warning">수정</button>
+            <a th:href="@{/modifyBoardForm/{boardNo}(boardNo=${boardNo})}"  id ="modiBtn" class="btn btn-outline-warning">수정</a>
             <button id="deleteBtn" class="btn btn-outline-secondary">삭제</button>
 
             <div id="main">

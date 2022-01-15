@@ -35,16 +35,10 @@ public class BoardController {
 
         List<BoardVo> list = this.boardService.retrieveList();
 
-        for (BoardVo board : list){
-            board.setRecomCount(this.boardService.ReComCount(board.getBoardNo()));
-            board.setCommentCount(this.boardService.countCommemt(board.getBoardNo()));
-        }
-
-
-
         model.addAttribute("boardList", list);
+        model.addAttribute("content","views/board/boardList");
 
-        return "views/board/boardList";
+        return "/templates";
     }
 
     @GetMapping("/detailBoard/{boardNo}")
@@ -174,5 +168,13 @@ public class BoardController {
         map.put("boards", boards);
         return map;
     }
+
+
+    @GetMapping("/hihi")
+    public String hihihi(){
+        return "views/board/아아";
+    }
+
+
 }
 

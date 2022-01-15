@@ -3,7 +3,6 @@ package com.example.reroad;
 import java.util.List;
 
 import com.example.domestic.service.DomesticService;
-import com.example.domestic.vo.DomesticVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,6 +23,7 @@ public class mainController {
     @Autowired
     private DomesticService domesticService;
 
+
     @GetMapping("/")
     public String main(Model model) throws Exception {
         List<NoticeVO> noticeList  = this.noticeService.retrieveLastNotices();
@@ -37,12 +37,9 @@ public class mainController {
 
         model.addAttribute("domestic", domestic);
 
-        return "main";
-    }
+        model.addAttribute("content","/main");
 
-    @GetMapping("/test")
-    public String error() {
-        throw new RuntimeException("hello");
+        return "/templates";
     }
 
 }

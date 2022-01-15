@@ -8,7 +8,7 @@ function fileRemove(index) {
 
     var imgId="#img_id_"+index;
     $(imgId).remove();
-    console.log(fileInfoArr);
+    console.log(fileInfoArr+"삭제되었습니다.");
 }
 
 //썸네일 미리보기.

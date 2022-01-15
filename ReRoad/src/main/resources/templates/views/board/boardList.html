@@ -2,9 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
-      layout:decorate="layout/defaultLayout">
 <th:block layout:fragment="css">
     <link rel="stylesheet" th:href="@{/css/board/boardList.css}">
 </th:block>
@@ -18,11 +17,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.0/handlebars.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.1.1/list.min.js"></script>
 </head>
-<section layout:fragment="content">
 
     <div class="container">
-
-
             <nav class="navbar navbar-default">
                 <div class="container-fluid">
                     <div class="collapse navbar-collapse"
@@ -61,12 +57,11 @@
                 <td width="210px;" id="title" colspan="3"><a th:href="@{/detailBoard/{boardNo}(boardNo=${board.boardNo})}"><p th:text="${board.boardTitle}"></p></a></td>
             </tr>
             <tr id="Nick">
-                <td width="210px;" colspan="3"><img class="boardImg" src="/images/board/user.png"><span id="font" th:text="${board.userNick}"></span></td>
+                <td colspan="2"><img class="boardImg" src="/images/board/user.png"><span id="font" th:text="${board.userNick}"></span></td>
+                <td><img class="boardImg" src="/images/board/view.png"><span th:text="${board.boardCount}"></span></td>
             </tr>
             <tr>
-                <td width="70px;"><img class="boardImg" src="/images/board/view.png"><span th:text="${board.boardCount}"></span></td>
-                <td width="70px;"><img class="boardImg" src="/images/board/comment.png"><span th:text="${board.commentCount}"></span></td>
-                <td width="70px;"><img class="boardImg" src="/images/board/reComcount.png"><span th:text="${board.recomCount}"></span></td>
+                <td colspan="3" th:text="${board.boardWdate}">
             </tr>
             <tr id="imgs">
                 <td height="50px;" id="content" colspan="5" th:text="${board.boardContent}"></td>
@@ -76,5 +71,4 @@
 
         </div>
     </div>
-</section>
 </html>

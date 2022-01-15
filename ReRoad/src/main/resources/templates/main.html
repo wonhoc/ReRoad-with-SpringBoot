@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="layout/defaultLayout">
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
 <th:block layout:fragment="css">
     <link rel="stylesheet" th:href="@{/css/jquery-ui.min.css}"/>
     <link rel="stylesheet" th:href="@{/css/main.css}">
@@ -16,10 +16,7 @@
 </th:block>
 <head>
 </head>
-<section layout:fragment="content">
     <div class="container" data-spy="affix">
-
-
         <div id="mainwrapper">
             <img src="/images/메인페이지버스.png" alt="image" id="mainImage">
             <form action="/retriveSchedule" method="POST" id="ScSelectForm">
@@ -164,5 +161,6 @@
         </table>
         <button style="width: 100px;" id="setting" class="btn btn-primary">관리</button>
     </div>
-</section>
+
+
 </html>

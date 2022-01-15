@@ -1,10 +1,9 @@
 $(document).ready(function() {
 
-    $('#deleteBtn').on('click',function (){
-        let boardNo = $('#boardNo').val();
-        console.log("dddd")
-        location.href = '/deleteBoard/' + boardNo;
+    $(document).on('click','#deleteBtn', function (){
+        confirm("정말 삭제하시겠습니까?");
     })
+
 
 
     $('#listComment').on('click', '.modifyComReqBtn', function() {
@@ -58,6 +57,13 @@ $(document).ready(function() {
                     str += '</tbody>';
                 }
                 $("#listComment").html(str);
+
+                var el = $('#comContent');
+
+                for(var i=0; i<el.length; i++){
+
+                    el[i].value = '';
+                }
 
             },
             error : function (err){
@@ -113,7 +119,7 @@ $(document).ready(function() {
         });
     });
 
-    $('.removeBtn').on('click',function () {
+    $(document).on('click','.removeBtn', function (){
 
         let comNo = $(this).parents('tbody').attr('id');
         $.ajax({

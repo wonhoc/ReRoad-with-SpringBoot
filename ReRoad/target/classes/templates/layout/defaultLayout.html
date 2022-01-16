@@ -5,13 +5,13 @@
 <meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<th:block th:replace="config :: configFragment"></th:block>
+	<th:block layout:fragment="head"></th:block>
 </head>
 <body>
-		<header th:insert="fragments/header.html"></header>
-		<main>
-			<section layout:fragment="content"></section>
-		</main>
-<footer th:insert="fragments/footer.html"></footer>
+<div>
+	<div layout:fragment="header"></div>
+		<div layout:fragment="content"></div>
+	<div layout:fragment="footer"></div>
+</div>
 </body>
 </html>

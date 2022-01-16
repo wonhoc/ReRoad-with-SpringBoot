@@ -43,7 +43,9 @@ public class mainController {
 
         model.addAttribute("domestic", domestic);
 
-        return "main";
+        model.addAttribute("content",",/");
+        
+        return "templates";
     }
 
     @GetMapping("/test")

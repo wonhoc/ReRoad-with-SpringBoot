@@ -139,7 +139,7 @@ $(document).ready(function(){
 	
 	
 	//기차역 검색어 입력
-	$("#searchInput").on("keyup", function() {
+	$("#searchSt").on("keyup", function() {
 	    let searchKeyword = $(this).val().trim();
 	    $(".stNameIn").filter(function() {
 	      $(this).toggle($(this).text().trim().indexOf(searchKeyword) > -1)

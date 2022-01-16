@@ -327,6 +327,11 @@ body{
 	background-color: tear;
 }
 
+#dateArr{
+	
+	display: none;
+}
+
 /*
 	datapicker zindex setting
 */
@@ -389,7 +394,7 @@ body{
 .showSt{
 	
 	cursor: pointer;
-	margin: 2% 0 0 0
+	margin: 2% 0 0 0;
 }
 
 .showSt:hover{

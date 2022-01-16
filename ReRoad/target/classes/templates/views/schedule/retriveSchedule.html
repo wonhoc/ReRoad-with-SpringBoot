@@ -1,8 +1,7 @@
 	<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layout/defaultLayout}">
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <th:block layout:fragment="script">
 	<script th:src="@{/js/main.js}"></script>
     <script th:src="@{/js/schedule/retriveSchedule.js}"></script>
@@ -19,10 +18,6 @@
 <head>
 	<title>스케줄조회 서비스</title>
 </head>
-
-
-
-<section layout:fragment="content">
 	<div class="container">
 
 		<div id="mainwrapper">		
@@ -339,5 +334,4 @@
 				
 
  </div>
-</section>
 </html>

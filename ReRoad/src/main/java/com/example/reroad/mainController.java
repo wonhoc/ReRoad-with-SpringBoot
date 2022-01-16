@@ -42,8 +42,9 @@ public class mainController {
         System.out.println("List : " + domestic);
 
         model.addAttribute("domestic", domestic);
+        model.addAttribute("content", "/main");
 
-        return "main";
+        return "/templates";
     }
 
     @GetMapping("/test")

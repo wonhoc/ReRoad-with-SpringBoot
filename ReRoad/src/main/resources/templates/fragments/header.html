@@ -5,6 +5,10 @@
 		xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
+
+	<th:block>
+		<script src="/js/message/chat.js"></script>
+	</th:block>
 	<meta charset="UTF-8" />
 
 	<link rel="stylesheet" href="/css/header.css" />
@@ -44,7 +48,7 @@
 					<span th:if="${#authentication.principal.getUser.getPhotoSys} != null" class = "photoSpan">
 						<img class= "showPho" th:src="@{'/upload/' + ${#authentication.principal.getUser.getPhotoSys}}">
 					</span>
-					
+					<input type="hidden" id="username" th:value="${#authentication.principal.getUser.getUserId}">
 
 					<span id="buttons">
 							<a th:if="${#authentication.principal.getUser.getRole} == 'ROLE_ADMIN'" th:href="@{/admin/myPage}" style="text-decoration: none">

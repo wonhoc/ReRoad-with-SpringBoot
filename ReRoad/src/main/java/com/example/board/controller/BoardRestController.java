@@ -77,19 +77,22 @@ public class BoardRestController {
     }
 
     @PostMapping("/modityComment")
-    public Map updateComment(@RequestBody CommentVo comment, @AuthenticationPrincipal UserAccount principal){
+    public Map updateComment(@RequestBody CommentVo comment, @AuthenticationPrincipal UserAccount user){
         HashMap<String, Object> map = new HashMap<String, Object>();
         int boardNo = comment.getBoardNo();
-        comment.setUserId(principal.getUsername());
 
-        System.out.println("commentgetComNo : "+comment.getComNo());
+
         this.boardService.modifyComment(comment);
         List<CommentVo> list = this.boardService.retrieveComList(boardNo);
         map.put("results",list);
 
+        System.out.println("list : " +list);
 
+        UserVo currnetUser = new UserVo();
+        currnetUser.setUserNick(user.getUser().getUserNick());
+        currnetUser.setRole(user.getUser().getRole());
 
-
+        map.put("currnetUser",currnetUser);
         return map;
     }
 

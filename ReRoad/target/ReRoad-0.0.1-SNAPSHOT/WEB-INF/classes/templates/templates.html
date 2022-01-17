@@ -5,17 +5,17 @@
 <th:block layout:fragment="head"><title>Spring Boot</title> <!--/* css */-->
 
     <th:block th:replace="config :: configFragment"></th:block>
-    <script type="text/javascript" src="/js/message/chat.js"></script>
+
     <link th:href="@{/css/common.css}" rel="stylesheet" />
 
 </th:block>
 <body>
  <th:block layout:fragment="header" th:include="@{/fragments/header}"></th:block>
-    <th:block layout:fragment="content" th:include="@{${content}}"></th:block>
+
+ <th:block layout:fragment="content" th:include="@{${content}}"></th:block>
 
 <th:block layout:fragment="footer" th:include="@{/fragments/footer}"></th:block>
 
- <input type="hidden" id="username" th:value="${session.loginUser.getUserId()}">
 </body>
 </html>
 

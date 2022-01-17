@@ -21,9 +21,11 @@
 }
 #search{
     position: absolute;
-    width: 600px;
+
+    width: 699px;
     font-size: 20px;
-    margin-left: 280px;
+    margin-left: 216px;
+
     background-color: teal;
 }
 #searchDomestic{
@@ -60,5 +62,13 @@
     background-repeat : no-repeat;
     background-size : cover;
     background-image: url("/images/메인페이지버스.png");
+
+
+}
+.name{
+    cursor: pointer;
+}
+.name:hover{
+    color: #ff7f7f;
 
 }

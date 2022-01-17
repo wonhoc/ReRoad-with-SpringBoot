@@ -95,7 +95,7 @@ public class DomesticController {
 
             this.domesticService.settingDome(domestic);
 
-        return "redirect:/";
+        return "redirect:/main";
     }
 
 

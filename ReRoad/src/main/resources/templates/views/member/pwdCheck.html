@@ -6,15 +6,9 @@
 <th:block layout:fragment="css">
     <link rel="stylesheet" th:href="@{/css/member/pwdCheck.css}">
 </th:block>
-
-
 <head>
-<!--    <meta name="_csrf" th:content="${_csrf.token}"/>-->
-<!--    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>-->
 </head>
 <script>
-    // var token = $("meta[name='_csrf']").attr("content");
-    // var header = $("meta[name='_csrf_header']").attr("content");
 </script>
 <section layout:fragment="content">
     <section class="pwd">
@@ -24,7 +18,6 @@
             개인정보 보호를 위해 비밀번호를 다시 한번 입력해주세요.
         </h3>
         <form action="/member/pwdCheck" method="POST">
-<!--            <input type="hidden" name="XSRF-TOKEN" value="ef292f61-148b-4d32-b105-55cce1978b8f" />-->
             <div class="pwdInput_box">
                 <input
                         class="pwd_input"
@@ -34,11 +27,12 @@
                 />
             </div>
             <div class="pwdBtn_box">
+                <a th:href="@{/member/myPage}">
+                <button class="pwd_btn" type="button" >취소</button>
+                </a>
                 <button class="pwd_btn" type="submit">확인</button>
             </div>
-
         </form>
     </section>
 </section>
-
 </html>

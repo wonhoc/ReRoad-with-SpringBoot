@@ -254,6 +254,9 @@ public class BoardServiceImpl implements BoardService{
         return this.boardDao.readUserBoardList(userId);
     }
 
-
+    @Override
+    public List<CommentVo> retrieveUserComList(String userId) {
+        return this.boardDao.readUserComList(userId);
+    }
 
 }

@@ -3,25 +3,34 @@ package com.example.reroad;
 import java.util.List;
 
 import com.example.domestic.service.DomesticService;
+
 import com.example.member.vo.UserAccount;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.parameters.P;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.example.notice.service.NoticeService;
 import com.example.notice.vo.NoticeVO;
+import com.example.schedule.service.ExpBusScheduleService;
 import com.example.schedule.service.TrainScheduleService;
 
 @Controller
 public class mainController {
     @Autowired
     private NoticeService noticeService;
+
+    @Autowired
+    private UserService userService;
     
     @Autowired
     private TrainScheduleService trainScheduleService;
+    
+    @Autowired
+    private ExpBusScheduleService expBusScheduleService;
 
     @Autowired
     private DomesticService domesticService;

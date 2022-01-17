@@ -4,6 +4,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -24,7 +25,8 @@ public class TrainScheduleServiceImpl implements TrainScheduleService {
 	private final RestTemplate restTemplate;
 	
 	//서버 DNS주소
-	private final String SERVER_URL = "http://ec2-15-164-164-88.ap-northeast-2.compute.amazonaws.com";
+	@Value("${apiURL}")
+	private String SERVER_URL;
 	//도시별 기차역 정보를 요청 path
 	private final String GET_TRAIN_INFO_URL = "/api/citytrainstinfo";
 	//기차 스케줄 조회 요청 path
@@ -40,8 +42,6 @@ public class TrainScheduleServiceImpl implements TrainScheduleService {
 	@Override
 	public ArrayList<CityTrainStInfoVo> retrieveTrainStinfo() throws Exception {
 		ResponseEntity<ApiResponseObject> responseEntity = restTemplate.getForEntity(SERVER_URL + GET_TRAIN_INFO_URL, ApiResponseObject.class); 
-		
-		//System.out.println("class : " + responseEntity.getClass());
 		
 		String json = responseEntity.getBody().get_embedded().get("cityTrainStInfoVoes").toString();
 		
@@ -63,17 +63,12 @@ public class TrainScheduleServiceImpl implements TrainScheduleService {
 	@Override
 	public HashMap<String, Object> parseUserRequestInfoBeforeResponeScList(UserScRequsetVo usrv) {
 		
-		System.out.println("info begin");
+		System.out.println("train info begin");
 		
 		//리턴할객체
 		HashMap<String, Object> scList = new HashMap<String, Object>();
 		
-		System.out.println("train?");
-		//열차 정보 조회하기
-		if(usrv.getVehiclType().equals("train")) {	
-			
-			System.out.println("dd tain");
-					
+			//열차 정보 조회하기		
 			TrainSetInfoVo setting = new TrainSetInfoVo();
 			
 			//출발지 세팅
@@ -112,13 +107,7 @@ public class TrainScheduleServiceImpl implements TrainScheduleService {
 				scList.put("turnSc", null);
 			}//end
 			
-		}//if end
-		
-		
-		
-		//버스 정보 조회하기
-		
-		System.out.println("info end");
+		System.out.println("train info end");
 		return scList;
 		
 	}//parseUserRequestInfoBeforeResponeScList() end
@@ -143,7 +132,7 @@ public class TrainScheduleServiceImpl implements TrainScheduleService {
 		ResponseEntity<ApiResponseObject> responseEntity = restTemplate.getForEntity(SERVER_URL + GET_TRAIN_SC, ApiResponseObject.class, params);
 		
 		System.out.println("get json");
-		ArrayList<TrainScInfoVo> list = responseEntity.getBody().getScList();
+		ArrayList<TrainScInfoVo> list = (ArrayList<TrainScInfoVo>)responseEntity.getBody().getScList();
 		
 		//리턴할 객체에 set
 		//스케즐 정보 set

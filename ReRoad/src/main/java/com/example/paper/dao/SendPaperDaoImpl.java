@@ -22,6 +22,7 @@ public class SendPaperDaoImpl implements SendPaperDao {
         HashMap<String, Object> sendPaper = new HashMap<String, Object>();
         sendPaper.put("senderNick", sendVo.getSenderNick());
         sendPaper.put("sendPaperContent", sendVo.getPaperContent());
+        sendPaper.put("senderId", sendVo.getSenderId());
 
         //DB 에 insert하기
         this.sqlSession.insert("Paper.insertSendPaper", sendPaper);
@@ -37,5 +38,16 @@ public class SendPaperDaoImpl implements SendPaperDao {
     @Override
     public List<SendPaperVo> selectSendPaperList(String userNick) {
         return this.sqlSession.selectList("Paper.selectSendPaperList", userNick);
+    }
+    // 닉네임으로 아이디 조회하기
+    @Override
+    public String getReceiverId(String receiveNick) {
+        return this.sqlSession.selectOne("Paper.searchNickForId", receiveNick);
+
+    }
+
+    @Override
+    public SendPaperVo selectSendPaper(int sendPaperNo) {
+        return this.sqlSession.selectOne("Paper.selectSendPaper", sendPaperNo);
     }
 }

@@ -3,6 +3,7 @@
 		xmlns:th="https://www.thymeleaf.org/"
 	  	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 		xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
 <head>
 	<meta charset="UTF-8" />
 
@@ -14,14 +15,13 @@
 			window.open("/chatting", "_blank", "toolbar=use, menubar=yes, width=800, height=900").focus();
 		}
 	</script>
-
 </head>
 
 <div class="header">
 	<div class="container" id="headerContainer">
 		<div id="wrapper">
 			<span class="header_logo">
-				<a th:href="@{/}">
+				<a th:href="@{/main}">
 					<img id="logo" src="/images/mainLogo.png">
 				</a>
 			</span>
@@ -63,11 +63,9 @@
 									쪽지관리
 								</button>
 							</a>
-
-<!--						<button class="btn btn-info" type="button" id="chatBtn" onclick="loadchat()">-->
-<!--								채팅-->
-<!--							</button>-->
-
+						<button class="btn btn-info" type="button" id="chatBtn" onclick="loadchat()">
+								채팅
+							</button>
 							<a th:href="@{/logout}" style="text-decoration: none">
 								<button class="btn btn-default" type="button" id="logoutBtn">로그아웃</button>
 							</a>

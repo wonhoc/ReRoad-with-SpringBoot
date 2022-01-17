@@ -129,7 +129,7 @@
 
 /* 채팅 버튼 디자인 */
 #chatBtn {
-    font-weight: bolder;
+    font-weight: 600;
     border-color: teal;
 
 }

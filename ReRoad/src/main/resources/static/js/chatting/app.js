@@ -1,5 +1,15 @@
 
+function dateFormat(date) {
+  let hour = date.getHours();
+  let minute = date.getMinutes();
+  let second = date.getSeconds();
 
+  hour = hour >= 10 ? hour : '0' + hour;
+  minute = minute >= 10 ? minute : '0' + minute;
+  second = second >= 10 ? second : '0' + second;
+
+  return  hour + ':' + minute + ':' + second;
+}
 $(document).ready(function () {
 
   $(document).on('keydown', '#chat-message-input', function (key) {
@@ -153,14 +163,16 @@ $(document).ready(function () {
         console.log('>> success to receive message\n', resultObj.body);
         var result = JSON.parse(resultObj.body);
         var message = '';
+        let today = new Date();
+        let sendTime = dateFormat(today);
+
 
         if (result.messageType == 'CHAT') {
           if (result.senderSessionId === ChatManager.sessionId) {
-            message += '[나] : ';
+            message += '[나](' +sendTime+') : ';
           } else {
-            message += '[' + result.username + '] : ';
+            message += '[' + result.username + '](' +sendTime+') : ';
           }
-
           message += result.message + '\n';
         } else if (result.messageType == 'DISCONNECTED') {
           const chaturl = 'http://localhost:8080';
@@ -208,6 +220,7 @@ $(document).ready(function () {
         ChatManager.textarea.val(ChatManager.textarea.val() + message);
       } else {
         ChatManager.textarea.val(message);
+
       }
     };
 
@@ -242,6 +255,7 @@ $(document).ready(function () {
   $(document).on('click', '#btnSend', function () {
     const msg = $('#chat-message-input').val();
     var regex = / /gi;
+    const top = $('#chat-content').prop('scrollHeight');
 
     if (msg == "" || msg.replace(regex, '') == ""){
       $('#isValid').text('채팅 내용을 입력하세요');
@@ -252,6 +266,7 @@ $(document).ready(function () {
       $('#isValid').css('color', '#434651');
       $('#btnSend').attr("disabled", false);
       ChatManager.sendMessage();
+      $('#chat-content').scrollTop(top);
     }
   });
 

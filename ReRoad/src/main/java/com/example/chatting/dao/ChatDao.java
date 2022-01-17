@@ -11,7 +11,7 @@ public class ChatDao {
     private SqlSession sqlSession;
 
     public String findNick(String userId){
-        System.out.println("다오"+userId+this.sqlSession.selectOne("findNick", userId));
+
         return this.sqlSession.selectOne("findNick", userId);
     }
 }

@@ -62,12 +62,12 @@ $(document).ready(function(){
 	//출발지 선택
 	$('#dep').click(function(){
 		//열차 출발지 선택
-		if ($('#hideOnbush').css('display') === 'none' &&  vehicl == "열차"){
+		if ($('#stListBox').css('display') === 'none' &&  vehicl == "열차"){
 		
-			$('#hideOnbush').show();
+			$('#stListBox').show();
 			tripSel = $(this);
 		}else {
-			$('#hideOnbush').hide(); 
+			$('#stListBox').hide(); 
 		}//if end
 		
 		//고속버스 출발지 선택
@@ -88,11 +88,11 @@ $(document).ready(function(){
 	//도착지 선택
 	$('#arr').click(function(){
 		//열차 도착지 선택
-		if ($('#hideOnbush').css('display') === 'none' && vehicl == "열차"){ 
-				$('#hideOnbush').show();
+		if ($('#stListBox').css('display') === 'none' && vehicl == "열차"){ 
+				$('#stListBox').show();
 				tripSel = $(this);
 			}else {
-				$('#hideOnbush').hide(); 
+				$('#stListBox').hide(); 
 		}//if end
 		
 		//고속버스 도착지 선택
@@ -107,8 +107,8 @@ $(document).ready(function(){
 	});
 	
 	//선택창 숨기기
-	$('.listWrapper').click(function(){
-		$('#hideOnbush').hide();
+	$('.stNameWrapper').click(function(){
+		$('#stListBox').hide();
 	});
 	
 	$('.liTml').click(function(){
@@ -260,9 +260,9 @@ $(document).ready(function(){
 	//선택창 숨기기
 	$('#headBus').click(function(){	
 			
-		if($('#hideOnbush').css('display') != 'none'){
+		if($('#stListBox').css('display') != 'none'){
 					
-			$('#hideOnbush').hide();
+			$('#stListBox').hide();
 
 		}//if end
 		
@@ -278,6 +278,23 @@ $(document).ready(function(){
 		}//if end
 		
 		
+	});
+	
+	
+	//열차역 전체 보여주기
+	$('#showAllSt').click(function(){
+		
+		$('.stNameWrapper').children('.ulSt').show();
+		
+	});
+	
+	//특정 지역의 열차역만 보여주기
+	$('.showSt').click(function(){
+		
+		let showStText = $(this).text().trim();
+		
+		$('.stNameWrapper').children('.ulSt').not('#' + showStText).hide();
+		$('.stNameWrapper').children('.ulSt').filter('#' + showStText).show();
 	});
 	
 	

@@ -105,7 +105,9 @@ public class ScheduleController {
         }//if end
         
         
-		return PATH + "retriveSchedule";
+        model.addAttribute("content", PATH + "retriveSchedule");
+        
+        return "/templates";
 		
 	}//retriveSchedule() end
 	

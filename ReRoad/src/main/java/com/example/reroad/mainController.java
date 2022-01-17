@@ -53,7 +53,9 @@ public class mainController {
 
         model.addAttribute("domestic", domestic);
 
+
         model.addAttribute("content","/main");
+
 
         return "/templates";
     }

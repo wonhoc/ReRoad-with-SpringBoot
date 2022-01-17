@@ -76,29 +76,24 @@
                             </div>
 
 
-                            <div id="hideOnbush" class="bush">
 
-                                <input class="form-control" id="searchInput" type="text" placeholder="역 검색..">
-
-                                <div th:if="${#lists.size(trainStList) == 0}">
-                                    <p><strong>API불러오기 실패</strong></p>
-                                </div>
-
-                                <div th:if="${#lists.size(trainStList) > 0}">
-
-                                    <div class="listWrapper" th:each="trainSt:${trainStList}">
-                                        <div class="cityName" th:text="${trainSt.cityName}"></div>
-                                        <div class="stNameWrapper">
-                                            <ol class="olSt">
-                                                <li class="stNameIn" th:each="trainSts:${trainSt.trainStInfo}"
-                                                    th:value="${trainSts.trainStId}">[[${trainSts.trainStName} +'역' + '&nbsp;']]
-                                                </li>
-                                            </ol>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
+                           <div id="stListBox">
+				    	
+					    	<div id="cityNameBox">
+					    		<ul class="cityName">
+					    			<li id="showAllSt">전체</li>
+					    			<li class="showSt" th:each="cityName:${trainStList}" th:text="${cityName.cityName}"></li>
+					    		</ul>
+					    	</div>
+					    	
+					    	<div class="stNameWrapper">
+					    		<ul class="ulSt" th:each="trainSts:${trainStList}" th:id="${trainSts.cityName}"> 						    	
+				    				<li class="stNameIn" th:each="trainStInfo:${trainSts.trainStInfo}" th:text="${trainStInfo.trainStName}" th:value="${trainStInfo.trainStId}"></li>
+					    		</ul>		    		
+					    	</div>	
+					    				    				    		
+				    	</div>
+                            
                              <div id="TmlList">
                               <input class="form-control" id="searchTml" type="text" placeholder="터미널 검색..">
 	                        	<ul id="showCityBox">

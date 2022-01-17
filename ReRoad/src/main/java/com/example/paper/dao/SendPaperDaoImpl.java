@@ -1,5 +1,6 @@
 package com.example.paper.dao;
 
+import com.example.paper.vo.ReceivePaperVo;
 import com.example.paper.vo.SendPaperVo;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +35,7 @@ public class SendPaperDaoImpl implements SendPaperDao {
         int sendPaperNo = tempPaperNo.intValue();
         return sendPaperNo;
     }
-
+    //보낸 쪽지 리스트
     @Override
     public List<SendPaperVo> selectSendPaperList(String userNick) {
         return this.sqlSession.selectList("Paper.selectSendPaperList", userNick);
@@ -45,9 +46,17 @@ public class SendPaperDaoImpl implements SendPaperDao {
         return this.sqlSession.selectOne("Paper.searchNickForId", receiveNick);
 
     }
-
+    // 쪽지 상세 조회
     @Override
     public SendPaperVo selectSendPaper(int sendPaperNo) {
         return this.sqlSession.selectOne("Paper.selectSendPaper", sendPaperNo);
+    }
+    //쪽지 삭제
+    @Override
+    public void deleteSendPaper(int[] sendPaperNoS) {
+        for (int sendPaperNo : sendPaperNoS) {
+            this.sqlSession.delete("Paper.deleteSendPaperNoS",sendPaperNo);
+        }
+
     }
 }

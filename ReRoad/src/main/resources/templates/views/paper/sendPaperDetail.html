@@ -3,7 +3,7 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" lang="ko">
 <th:block layout:fragment="css">
-    <link rel="stylesheet" th:href="@{css/paper/sendPaperDetail.css}">
+    <link rel="stylesheet" th:href="@{/css/paper/sendPaperDetail.css}">
 </th:block>
 <th:block layout:fragment="script">
     <script th:src="@{/js/paper/sendPaperDetail.js}"></script>
@@ -11,7 +11,7 @@
 <head>
 </head>
     <div class="container">
-        <div id="paperPageMain">
+        <div id="detailPaperMain">
             <div id="welcomeDiv">
                 <h1 id="welcome_paper">쪽지관리</h1>
                 <div id="title_devide"></div>
@@ -33,10 +33,45 @@
                         <button type="button" class="btn btn-default" id="receive" name="receive">받은 쪽지함</button>
                     </a>
                 </div>
-            </div>
-            <div id="viewDetail" class="col-sm-9">
 
+                <div id="viewDetail" class="col-sm-9">
+                    <form class="form-group" action="/removeSendPaper" method="POST" id="viewDetailForm">
+                        <div id="firstDiv">
+                            <div>
+                                <div>
+                                    <button type="button" class="btn btn-sm" id="showAllReceiver">전체 보기</button>
+                                </div>
+                                <label for="receiveNick" class="senderText">받는 사람</label>
+                                <div class="well well-sm" id="receiveNick">
+                                    <!--받는 사람이 한명일 경우 -->
+                                    <span th:if="${#lists.size(sendPaper.receiveInfo) < 2}"
+                                          th:text="${sendPaper.receiveInfo[0].receiveNick}"/>
+                                    </span>
+                                    <!-- 받는 사람이 여러명일 경우 -->
+                                    <span th:if="${#lists.size(sendPaper.receiveInfo) >= 2}"
+                                          th:text="${sendPaper.receiveInfo[0].receiveNick} + ' 외 ' +
+                                            ${#lists.size(sendPaper.receiveInfo)-1} + '명' "/>
+                                    </span>
+                                </div>
 
+                            </div>
+                        </div>
+                        <div id="sendDate">
+                            <label for="sendPaperDate" class="sendDate"> 보낸 시간</label>
+                            <div class="well well-sm" id="sendPaperDate">
+                                <span th:text="${sendPaper.sendDate}"></span>
+                            </div>
+                        </div>
+                        <div id="paperContent">
+                            <label for="paperContext" class="paperContext">내용</label>
+                            <div class="well well-lg" id="paperContext">
+                                <span th:text="${sendPaper.paperContent}"></span>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-default btn-lg btn-block" id="delBtn" style="text-decoration: none"> 삭제하기</button>
+                    </form>
+
+                </div>
             </div>
 
 

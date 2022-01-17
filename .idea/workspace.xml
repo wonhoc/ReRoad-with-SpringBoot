@@ -10,8 +10,30 @@
   </component>
   <component name="ChangeListManager">
 
-    <list default="true" id="18869558-432e-4011-9d86-a59d03e83cff" name="Changes" comment="로그인 시 session 작업 변경" />
-
+    <list default="true" id="18869558-432e-4011-9d86-a59d03e83cff" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/static/css/paper/receivePaper.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/static/js/paper/receivePaper.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/views/paper/receivePaperDetail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/paper/controller/PaperController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/paper/controller/PaperController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/paper/dao/ReceivePaperDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/paper/dao/ReceivePaperDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/paper/dao/ReceivePaperDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/paper/dao/ReceivePaperDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/paper/dao/SendPaperDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/paper/dao/SendPaperDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/paper/service/PaperService.java" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/paper/service/PaperService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/paper/service/PaperServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/paper/service/PaperServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/resources/mapper/paper-mapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/mapper/paper-mapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/resources/static/css/paper/sendPaperDetail.css" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/static/css/paper/paperDetail.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/resources/static/js/paper/sendPaperDetail.js" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/static/js/paper/sendPaperDetail.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/views/paper/receivePaper.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/views/paper/receivePaper.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/views/paper/sendPaperDetail.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/views/paper/sendPaperDetail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/target/classes/mapper/paper-mapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/classes/mapper/paper-mapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/target/classes/static/css/paper/sendPaperDetail.css" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/classes/static/css/paper/sendPaperDetail.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/target/classes/static/js/paper/sendPaper.js" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/classes/static/js/paper/sendPaper.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/target/classes/static/js/paper/sendPaperDetail.js" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/classes/static/js/paper/sendPaperDetail.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/target/classes/templates/views/paper/receivePaper.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/classes/templates/views/paper/receivePaper.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/target/classes/templates/views/paper/sendPaper.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/classes/templates/views/paper/sendPaper.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/target/classes/templates/views/paper/sendPaperDetail.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/classes/templates/views/paper/sendPaperDetail.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -26,6 +48,8 @@
         <option value="Class" />
         <option value="JavaScript File" />
         <option value="Kotlin Script" />
+        <option value="JavaScript File" />
+        <option value="CSS File" />
         <option value="HTML File" />
         <option value="CSS File" />
       </list>
@@ -208,9 +232,11 @@
       <workItem from="1642031133371" duration="1876000" />
       <workItem from="1642157204123" duration="19000" />
       <workItem from="1642248106347" duration="11003000" />
-
       <workItem from="1642380110401" duration="23000" />
-      <workItem from="1642387201575" duration="34000" />
+      <workItem from="1642387152104" duration="337000" />
+      <workItem from="1642387524176" duration="268000" />
+      <workItem from="1642387819007" duration="25899000" />
+      <workItem from="1642425689465" duration="1756000" />
 
     </task>
     <task id="LOCAL-00001" summary="수정">
@@ -283,7 +309,16 @@
       <option name="project" value="LOCAL" />
       <updated>1642383682751</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+
+    <task id="LOCAL-00011" summary="쪽지 보내기, 보낸 쪽지함 삭제, 전체 삭제 기능">
+      <created>1642398641386</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1642398641386</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
+
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -309,7 +344,9 @@
     <MESSAGE value="Header 정보 표시 방식 변경" />
     <MESSAGE value="Header 정보 표시 방식 변경 / 쪽지 송수신에 UserId 추가" />
     <MESSAGE value="로그인 시 session 작업 변경" />
-    <option name="LAST_COMMIT_MESSAGE" value="로그인 시 session 작업 변경" />
+    <MESSAGE value="쪽지 보내기, 보낸 쪽지함 삭제, 전체 삭제 기능" />
+    <option name="LAST_COMMIT_MESSAGE" value="쪽지 보내기, 보낸 쪽지함 삭제, 전체 삭제 기능" />
+
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

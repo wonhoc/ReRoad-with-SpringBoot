@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 @Controller
 public class PaperController {
@@ -24,7 +26,7 @@ public class PaperController {
     // 쪽지 보내기 페이지로 이동
     @GetMapping("/writePaper")
     public String goWritePaper(Model model) {
-        model.addAttribute("content","/views/paper/writePaper");
+        model.addAttribute("content","views/paper/writePaper");
         return "/templates";
     }
 
@@ -37,16 +39,21 @@ public class PaperController {
                 (ArrayList<SendPaperVo>) this.paperService.retrieveSendPaperList(senderNick);
 
         model.addAttribute("sendPaperList",sendPaperList);
-        model.addAttribute("content","/views/paper/sendPaper");
+        model.addAttribute("content","views/paper/sendPaper");
 
         return "/templates";
 
     }
 
-
+    //받은 쪽지함 이동 시 리스트 수신
     @GetMapping("/receivePaper")
-    public String goReceive(Model model) {
-        model.addAttribute("content","/views/paper/receivePaper");
+    public String goReceive(Model model, @AuthenticationPrincipal UserAccount user) {
+
+        String receiveId = user.getUser().getUserId();
+
+        List<ReceivePaperVo> receivePaperList = this.paperService.retrieveReceivePaperList(receiveId);
+        model.addAttribute("receivePaperList",receivePaperList);
+        model.addAttribute("content","views/paper/receivePaper");
         return "/templates";
     }
 
@@ -100,18 +107,42 @@ public class PaperController {
         //DB에 전송
         this.paperService.registerPaper(sendPaperVo,receiverVos);
 
-        model.addAttribute("content","redirect:/paperPage");
+        model.addAttribute("content","views/paper/writePaper");
 
         return "/templates";
     }
+    // 보낸 편지함 리스트에서 상세 조회
     @GetMapping("/sendPaperDetail/{sendPaperNo}")
     public String sendPaperDetail(@PathVariable int sendPaperNo, Model model) {
         SendPaperVo sendPaper = this.paperService.retrieveSendPaper(sendPaperNo);
         model.addAttribute("sendPaper",sendPaper);
-        model.addAttribute("content","/views/paper/sendPaperDetail");
+        model.addAttribute("content","views/paper/sendPaperDetail");
         return "/templates";
 
 
+    }
+
+    //받은 편지함 리스트에서 상세 조회
+    @GetMapping("/receivePaperDetail/{receivePaperNo}/{isRead}")
+    public String receivePaperDetail(@PathVariable int receivePaperNo,@PathVariable int isRead, Model model) {
+        HashMap<String,Object> receivePaperMap = new HashMap<String,Object>();
+
+        receivePaperMap.put("receiveId",)
+    }
+    @PostMapping("/removeSendPaper")
+    public String removeSendPaper(@RequestParam int[] removeCheckBox, @AuthenticationPrincipal UserAccount user, Model model) {
+        // 체크박스 선택된 쪽지 삭제
+        this.paperService.removeSendPaper(removeCheckBox);
+
+        // 닉네임 값을 다시 받아와서 리스트 생성 후 페이지로 이동
+        String senderNick = user.getUser().getUserNick();
+        ArrayList<SendPaperVo> sendPaperList =
+                (ArrayList<SendPaperVo>) this.paperService.retrieveSendPaperList(senderNick);
+
+        model.addAttribute("sendPaperList",sendPaperList);
+        model.addAttribute("content","views/paper/sendPaper");
+
+        return "/templates";
     }
 
 

@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 @Controller
 public class PaperController {
@@ -43,9 +45,14 @@ public class PaperController {
 
     }
 
-
+    //받은 쪽지함 이동 시 리스트 수신
     @GetMapping("/receivePaper")
-    public String goReceive(Model model) {
+    public String goReceive(Model model, @AuthenticationPrincipal UserAccount user) {
+
+        String receiveId = user.getUser().getUserId();
+
+        List<ReceivePaperVo> receivePaperList = this.paperService.retrieveReceivePaperList(receiveId);
+        model.addAttribute("receivePaperList",receivePaperList);
         model.addAttribute("content","views/paper/receivePaper");
         return "/templates";
     }
@@ -104,14 +111,23 @@ public class PaperController {
 
         return "/templates";
     }
+    // 보낸 편지함 리스트에서 상세 조회
     @GetMapping("/sendPaperDetail/{sendPaperNo}")
     public String sendPaperDetail(@PathVariable int sendPaperNo, Model model) {
         SendPaperVo sendPaper = this.paperService.retrieveSendPaper(sendPaperNo);
         model.addAttribute("sendPaper",sendPaper);
-        model.addAttribute("content","redirect:/sendPaperDetail");
+        model.addAttribute("content","views/paper/sendPaperDetail");
         return "/templates";
 
 
+    }
+
+    //받은 편지함 리스트에서 상세 조회
+    @GetMapping("/receivePaperDetail/{receivePaperNo}/{isRead}")
+    public String receivePaperDetail(@PathVariable int receivePaperNo,@PathVariable int isRead, Model model) {
+        HashMap<String,Object> receivePaperMap = new HashMap<String,Object>();
+
+        receivePaperMap.put("receiveId",)
     }
     @PostMapping("/removeSendPaper")
     public String removeSendPaper(@RequestParam int[] removeCheckBox, @AuthenticationPrincipal UserAccount user, Model model) {

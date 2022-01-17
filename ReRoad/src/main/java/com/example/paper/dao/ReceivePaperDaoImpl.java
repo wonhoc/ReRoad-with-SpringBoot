@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Repository("receivePaperDao")
 public class ReceivePaperDaoImpl implements ReceivePaperDao{
@@ -19,6 +20,10 @@ public class ReceivePaperDaoImpl implements ReceivePaperDao{
             this.sqlSession.insert("Paper.insertReceivePaper",receivePaper);
         }
 
+    }
+    @Override
+    public List<ReceivePaperVo> selectReceivePaperList(String receiveId) {
+        return this.sqlSession.selectList("Paper.selectReceivePaperList",receiveId);
     }
 
 }

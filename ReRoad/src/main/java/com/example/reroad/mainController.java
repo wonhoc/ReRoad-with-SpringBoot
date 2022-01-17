@@ -48,8 +48,7 @@ public class mainController {
         System.out.println("List : " + domestic);
 
         model.addAttribute("domestic", domestic);
-
-        model.addAttribute("content","/main");
+        model.addAttribute("content", "/main");
 
         return "/templates";
     }

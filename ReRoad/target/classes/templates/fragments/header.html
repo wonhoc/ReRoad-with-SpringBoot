@@ -3,7 +3,6 @@
 		xmlns:th="https://www.thymeleaf.org/"
 	  	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 		xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-
 <head>
 	<meta charset="UTF-8" />
 
@@ -64,9 +63,11 @@
 									쪽지관리
 								</button>
 							</a>
+
 <!--						<button class="btn btn-info" type="button" id="chatBtn" onclick="loadchat()">-->
 <!--								채팅-->
 <!--							</button>-->
+
 							<a th:href="@{/logout}" style="text-decoration: none">
 								<button class="btn btn-default" type="button" id="logoutBtn">로그아웃</button>
 							</a>

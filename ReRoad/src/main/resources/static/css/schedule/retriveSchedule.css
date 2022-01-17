@@ -9,6 +9,8 @@ body{
 	font-weight: 700; 
 }
 
+
+
 .unFoldSc{
 	
 	display: none;
@@ -325,6 +327,11 @@ body{
 	background-color: tear;
 }
 
+#dateArr{
+	
+	display: none;
+}
+
 /*
 	datapicker zindex setting
 */
@@ -343,75 +350,119 @@ body{
 }
 
 
-#hideOnbush{
-	overflow: auto;
+#stListBox{
+	
 	position: absolute;
 	top: 100%;
 	width: 100%;
-	height: auto;
 	background-color: white;
 	z-index: 1;
+	border:  3px solid #006480;
+	height: 45.5em;
 	display: none;
-	border:  3px solid teal;
+}
+
+#cityNameBox{
+	
+	float: left; 
+	width: 30%; 
+	background-color: teal;
+	color: white;
+	height: 45.3em;
+	font-size: 1em;
 }
 
 .cityName{
 	font-weight: 700;
 	font-size: 150%;
-	text-align: left;	
-	border: 2px solid gray;
+	list-style: none;
+	padding: 0;		
+}
+
+#showAllSt{
 	
+	cursor: pointer;
+	margin: 2% 0 0 0
+}
+
+#showAllSt:hover{
+	
+	color: #ff7f7f;
+}
+
+.showSt{
+	
+	cursor: pointer;
+	margin: 2% 0 0 0;
+}
+
+.showSt:hover{
+
+	color: #ff7f7f;
 }
 
 .stNameWrapper{
-	margin-left: 0;
-	padding-left: 0;
-	text-align: left;
-	/* background-color: #ffffea; */
-	background-color: teal;
-	/*color: black;*/
-	color: white;
+	
+	float: left; 
+	width: 70%; 
+	background-color: white; 
+	height: 45.2em; 
+	overflow: auto;
+}
+
+.stNameWrapper::-webkit-scrollbar{
+	
+	width: 0px;
+}
+
+
+.ulSt{
+	
+	list-style: none;
+	padding: 0;
+	height: 30em;
+	height: auto;
 }
 
 .stNameIn{
-	font-size: 20px;
-	display: inline-block;
-	 margin: 0 0 0 0;
-    padding: 0 0 0 0;
-    border : 0;
-}
-
-.olSt{
-	margin: 0;
-	padding: 0;
-	list-style: none;
+	
+	margin: 2%;
+	float: left;
+	font-size: 1.5em;
+	cursor: pointer;
 	
 }
 
 .stNameIn:hover{
-	display: inline-block;
+	
 	color: #ff7f7f;
-	cursor: pointer
 }
 
 
-/*
-	datapicker zindex setting
-*/
-.hasDatepicker {
-    position: relative;
-    z-index: 9;
+#showCityBox{
+	width: 20%;
+	float: left;
+	height: 28.5em;
+	margin-bottom: 0;
+	padding: 0;
+	
 }
 
-/*
-	팝오버 설정
-*/
-
-.popover-content{
-	font-size: 10px;
-	color: black;
+.showCity{
+	cursor: pointer;
+	list-style: none;
+	background-color: teal;
+	color : white;
+	margin: 1% 1% 1% 1%;
+	font-size: 2em;
+	width: auto;
+	
 }
 
+.showCity:hover{
+	
+	color: #ff7f7f;
+}
 
 #temptmep{
 	overflow: auto;
@@ -466,27 +517,4 @@ body{
 	display: none;
 }
 
-#showCityBox{
-	width: 20%;
-	float: left;
-	height: 28.5em;
-	margin-bottom: 0;
-	padding: 0;
-	
-}
 
-.showCity{
-	cursor: pointer;
-	list-style: none;
-	background-color: teal;
-	color : white;
-	margin: 1% 1% 1% 1%;
-	font-size: 2em;
-	width: auto;
-	
-}
-
-.showCity:hover{
-	
-	color: #ff7f7f;
-}

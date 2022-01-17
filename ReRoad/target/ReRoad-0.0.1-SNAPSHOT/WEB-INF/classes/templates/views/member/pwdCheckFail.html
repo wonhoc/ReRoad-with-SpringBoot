@@ -1,13 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<th:block layout:fragment="css">
+    <link rel="stylesheet" th:href="@{/css/member/pwdCheck.css}">
+</th:block>
 <head>
-    <meta charset="UTF-8">
-<script>
-    alert("비밀번호가 일치하지 않습니다. 다시 입력해주세요");
-    location.href = "/member/exitUser";
-</script>
 </head>
-<body>
+<script>
+    $(document).ready(function () {
+        Swal.fire({ icon: 'warning', title: '경고', text: '비밀번호가 일치하지 않습니다.' });
+        return;
+    });
 
-</body>
+</script>
+<div class="container">
+    <section class="pwd">
+        <h1 class="pwd_title">Password 입력</h1>
+        <div class="pwd_divide"></div>
+        <h3 class="pwd_notice">
+            개인정보 보호를 위해 비밀번호를 다시 한번 입력해주세요.
+        </h3>
+        <form action="/member/pwdCheck" method="POST">
+            <div class="pwdInput_box">
+                <input
+                        class="pwd_input"
+                        type="password"
+                        name="userPwd"
+                        id="userPwd"
+                />
+            </div>
+            <div class="pwdBtn_box">
+                <a th:href="@{/member/myPage}">
+                    <button class="pwd_btn" type="button" >취소</button>
+                </a>
+                <button class="pwd_btn" type="submit">확인</button>
+            </div>
+        </form>
+    </section>
+</div>
 </html>

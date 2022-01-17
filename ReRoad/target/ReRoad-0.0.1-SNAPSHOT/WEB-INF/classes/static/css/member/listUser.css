@@ -62,10 +62,29 @@ th {
 }
 .btn-outline-info {
     margin : 3em 70em;
+    color: black;
+    border-color: black;
+}
+.btn-outline-info:hover {
+    background-color: teal;
+    color: white;
+    border-color: teal;
 }
 
 input[type=checkbox] {
 
     transform : scale(1.5);
 
+}
+
+.swal2-title {
+    font-size: 20px;
+}
+
+.swal2-content {
+    font-size: 15px;
+}
+
+.swal2-styled.swal2-confirm {
+    font-size: 1em;
 }

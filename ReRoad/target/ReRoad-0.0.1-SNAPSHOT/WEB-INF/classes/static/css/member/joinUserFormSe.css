@@ -1,5 +1,5 @@
 /*회원가입 화면 폼 디자인 */
-.joinUserContainer {
+.joinUserContainerSe {
     padding-right: 15px;
     padding-left: 15px;
     padding-bottom: 15px;
@@ -18,7 +18,7 @@
 
 }
 /*회원가입 + 상세 설명 Div */
-.welcome_join_Text {
+.welcome_join_Text_Se {
     margin-left: 1.5em;
 }
 /*회원 가입 텍스트 */

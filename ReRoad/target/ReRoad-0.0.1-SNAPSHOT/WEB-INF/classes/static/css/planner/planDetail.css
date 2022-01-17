@@ -1,11 +1,10 @@
 #travelTitle {
     border-bottom: 1px solid #dee2e6;
 }
-#plandiv {
-    margin-top: 50px;
-    margin-right: 86px;
-    margin-left: 86px;
-    padding-right: -400px;
+#detail-form{
+    padding-left: 60px;
+    padding-right: 60px;
+    padding-top: 20px;
 }
 .default{
     border-right: 1px solid #dee2e6;

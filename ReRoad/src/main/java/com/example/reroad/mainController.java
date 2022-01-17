@@ -8,7 +8,7 @@ import com.example.member.service.UserService;
 import com.example.member.vo.UserAccount;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.parameters.P;
+
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +18,8 @@ import com.example.notice.service.NoticeService;
 import com.example.notice.vo.NoticeVO;
 import com.example.schedule.service.ExpBusScheduleService;
 import com.example.schedule.service.TrainScheduleService;
+
+import javax.servlet.http.HttpSession;
 
 @Controller
 public class mainController {
@@ -38,14 +40,15 @@ public class mainController {
 
 
     @GetMapping("/main")
+
     public String main(Model model) throws Exception {
+
         List<NoticeVO> noticeList  = this.noticeService.retrieveLastNotices();
         model.addAttribute("noticeList", noticeList);
         //지역별 기차역리스트 add
         model.addAttribute("trainStList", trainScheduleService.retrieveTrainStinfo());
 
         List domestic = this.domesticService.boardMain();
-
 
 
         model.addAttribute("domestic", domestic);

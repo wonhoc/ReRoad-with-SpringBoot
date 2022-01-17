@@ -3,13 +3,15 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" lang="ko">
 <th:block layout:fragment="css">
-    <link rel="stylesheet" th:href="@{css/paper/sendPaper.css}">
+    <link rel="stylesheet" th:href="@{css/paper/sendPaperDetail.css}">
 </th:block>
 <th:block layout:fragment="script">
-    <script th:src="@{/js/paper/sendPaper.js}"></script>
+    <script th:src="@{/js/paper/sendPaperDetail.js}"></script>
 </th:block>
 <head>
 </head>
+
+<section layout:fragment="content">
     <div class="container">
         <div id="paperPageMain">
             <div id="welcomeDiv">
@@ -23,34 +25,24 @@
             </div>
             <div id="paperMain">
                 <div id="paperMenu" class="col-sm-3">
-                    <a th:href="@{writePaper}">
+                    <a th:href="@{/writePaper}">
                         <button type="button" class="btn btn-default" id="write" name="write">쪽지 보내기</button>
                     </a>
-                    <a th:href="@{sendPaper}">
+                    <a th:href="@{/sendPaper}">
                         <button type="button" class="btn btn-default" id="send" name="send">보낸 쪽지함</button>
                     </a>
-                    <a th:href="@{receivePaper}">
+                    <a th:href="@{/receivePaper}">
                         <button type="button" class="btn btn-default" id="receive" name="receive">받은 쪽지함</button>
                     </a>
                 </div>
-                <div id="addressAndWrite" class="col-sm-9">
-                    <div id="writePaper" name="writePaper" class="paperDiv">
-                        <form class="form-group" action="/sendNewPaper" method="POST">
-                            <div id="address">
-                                <label for="receiveNick" class="upperInputText">받는 사람</label>
-                                <input type="text" class="form-control" id="receiveNick" name="receiveNick" placeholder="닉네임을 입력하세요">
-                            </div>
-
-                            <div id="context">
-                                <label for="sendContent" class="upperInputText">내용</label>
-                                <textarea class="form-control" row="20" id="sendContent" name="sendContent" placeholder="내용을 입력하세요"></textarea>
-
-                            </div>
-                            <button type="submit" class="btn btn-default btn-lg btn-block" id="sendBtn" style="text-decoration: none">보내기</button>
-                        </form>
-                    </div>
-                </div>
             </div>
+            <div id="viewDetail" class="col-sm-9">
+
+
+            </div>
+
+
         </div>
     </div>
+</section>
 </html>

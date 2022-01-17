@@ -101,7 +101,11 @@
 
                 var list = $("input[name='rowCheck']:checked").length;
                 if (list == 0)  {
-                    Swal.fire({ icon: 'warning', title: '경고', text: '선택된 회원이 없습니다.' });
+                    Swal.fire({
+                        icon: 'warning',
+                        title: '경고',
+                        text: '선택된 회원이 없습니다.'
+                    });
                     return;
                 }
                 var valueArr = [];
@@ -169,7 +173,6 @@
 
                     //클릭 이벤트
                     let html = "<tr>";
-                    let report;
                     let startRow = (page - 1) * 10 ;
                     let endRow = page * 10;
                     let totalCount = data.length

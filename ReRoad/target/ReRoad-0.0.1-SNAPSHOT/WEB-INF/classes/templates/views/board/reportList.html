@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="layout/defaultLayout">
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <th:block layout:fragment="css">
     <link rel="stylesheet" th:href="@{/css/board/reportList.css}">
 </th:block>
@@ -60,7 +59,7 @@
                                 for (let i = startRow; i < endRow; i++) {
                                     html += '<td>' + index++ + '</td>';
                                     html += '<td>' + data[i].reporter + '</td>';
-                                    html += '<td> ' + data[i].boardTitle + ' </td></tr>';
+                                    html += '<td><a href="/member/detailBoard/' + data[i].boardNo + '">' + data[i].boardTitle + ' </td></tr>';
                                 }
                                 $("#users").empty();
                                 $("tbody").html(html);
@@ -74,7 +73,6 @@
         });
     </script>
 </head>
-<section layout:fragment="content">
     <div class="container">
         <input type="hidden" id="users" th:value="${users}">
         <div class="list_title_box">
@@ -98,10 +96,14 @@
                 <tbody id="users">
                 </tbody>
             </table>
+
+            <a th:href="@{/admin/listUser}">
+                <button class="pwd_btn" type="button" >회원목록</button>
+            </a>
+
             <div id="page-content">
                 <div id="pagination-div"></div>
             </div>
         </div>
     </div>
-</section>
 </html>

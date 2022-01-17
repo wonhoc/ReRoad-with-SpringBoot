@@ -7,7 +7,7 @@
     background-color: teal;
     height: 5px;
     width: 158px;
-    margin-left: 73px;
+    margin-left: 134px;
 }
 
 #write{
@@ -15,11 +15,11 @@
     margin-bottom: 0px;
     color: teal;
 
-    margin-left: 73px;
+    margin-left: 134px;
 }
 
 #boardTitle{
-    margin-left: 73px;
+    margin-left: 134px;
     width: 634px;
     border: 2px solid teal;
     margin-top: 30px
@@ -28,7 +28,7 @@
 #boardContent{
     height: 300px;
     width: 634px;
-    margin-left: 73px;
+    margin-left: 134px;
     margin-top: 18px;
     border: 2px solid;
 }
@@ -36,16 +36,33 @@
     background-color: rgb(233,233,233);
     border-radius: 3%;
     margin-top: 73px;
-    width: 781px;
-    height: 593px;
+    width: 891px;
+
     margin-left: 152px;
 }
 #image{
     width: 100px;
     height: 100px;
     cursor: pointer;
-    margin-left: 73px;
+    margin-left: 134px;
 }
 #saveBtn{
-    margin-left: 647px;
+    margin-left: 743px;
+    height: 35px;
+}
+#att_zone {
+    width: 835px;
+    min-height: 150px;
+    padding: 10px;
+    border: 1px dotted teal;
+    margin-left: 33px;
+}
+
+#att_zone:empty:before {
+    content: attr(data-placeholder);
+    color: teal;
+    font-size: .9em;
+}
+#listBtn{
+    height: 35px;
 }

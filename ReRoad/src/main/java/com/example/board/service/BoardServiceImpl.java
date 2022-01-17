@@ -5,6 +5,8 @@ import com.example.board.vo.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -150,16 +152,19 @@ public class BoardServiceImpl implements BoardService{
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public void remove(int boardNo) {
         this.boardDao.deleteBoard(boardNo);
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public void modifyBoard(BoardVo board) {
         this.boardDao.updateBoard(board);
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public void registerBoard(BoardVo board) {
         this.boardDao.insertBoard(board);
         int no = this.boardDao.lastId();
@@ -179,16 +184,19 @@ public class BoardServiceImpl implements BoardService{
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public void registerComment(CommentVo comment) {
         this.boardDao.insertCom(comment);
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public void modifyComment(CommentVo comment) {
         this.boardDao.updateCom(comment);
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public void removeComment(int comNo) {
         this.boardDao.deleteCom(comNo);
     }
@@ -199,6 +207,7 @@ public class BoardServiceImpl implements BoardService{
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public void registerRecom(RecomVo recom) {
         this.boardDao.insertRecom(recom);
     }
@@ -209,6 +218,7 @@ public class BoardServiceImpl implements BoardService{
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public void removeRecom(RecomVo recom) {
         this.boardDao.deleteRecom(recom);
     }
@@ -219,6 +229,7 @@ public class BoardServiceImpl implements BoardService{
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public void registerReport(ReportVo report) {
         this.boardDao.insertReport(report);
     }

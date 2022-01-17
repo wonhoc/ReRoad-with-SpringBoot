@@ -41,31 +41,35 @@ public class BoardController {
         return "/templates";
     }
 
-    @GetMapping("/detailBoard/{boardNo}")
+    @GetMapping("/member/detailBoard/{boardNo}")
     public String boardDetail(@PathVariable int boardNo, Model model, @AuthenticationPrincipal UserAccount user) {
         String UserId = user.getUser().getUserId();
         String userNick = user.getUser().getUserNick();
+        String userRole = user.getUser().getRole();
 
         UserVo currnetUser = new UserVo();
         currnetUser.setUserId(UserId);
         currnetUser.setUserNick(userNick);
+        currnetUser.setRole(userRole);
 
         this.boardService.updateUphit(boardNo);
         BoardVo board = boardService.retrieveDetail(boardNo);
         List<CommentVo> comlist = this.boardService.retrieveComList(boardNo);
 
         int recomCount = this.boardService.ReComCount(boardNo);
+        int comCount = this.boardService.countCommemt(boardNo);
+
         board.setRecomCount(recomCount);
+        board.setCommentCount(comCount);
 
-        System.out.println("comlist : "+comlist);
-
-        log.info("board dd :" + board);
 
         model.addAttribute("user",currnetUser);
         model.addAttribute("board", board);
         model.addAttribute("commentList", comlist);
+        model.addAttribute("content","views/board/detailBoard");
 
-        return "views/board/detailBoard";
+
+        return "/templates";
     }
 
     @PostMapping("/deleteBoard/{boardNo}")
@@ -93,9 +97,12 @@ public class BoardController {
     }
 
     @GetMapping("/writeboardForm")
-    public String boardWriteForm() {
+    public String boardWriteForm(Model model) {
 
-        return "views/board/boardWrite";
+        model.addAttribute("content","views/board/boardWrite");
+
+
+        return "/templates";
     }
 
     @PostMapping("/boardWrite")

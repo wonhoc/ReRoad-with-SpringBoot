@@ -1,21 +1,18 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-
-      layout:decorate="layout/defaultLayout">
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <th:block layout:fragment="css">
-    <link rel="stylesheet" th:href="@{/css/board/detailBoard.css}">
+    <link rel="stylesheet" th:href="@{/css/board/boardDetail.css}">
 </th:block>
 <th:block layout:fragment="script">
     <script th:src="@{/js/message/sendMsg.js}"></script>
     <script th:src="@{/js/board/detailBoard.js}"></script>
+    <script th:src="@{/js/board/slide.js}"></script>
 </th:block>
 <head>
 
 </head>
-<section layout:fragment="content">
-
     <!-- 사용자 -->
     <input type="hidden" id="username" th:value="${user.userId}">
 
@@ -23,63 +20,84 @@
     <input type="hidden" th:value="${board.userId}" id="userId">
 
     <div class="container">
+        <div id = "boardMain">
 
-        <input type="hidden" name="boardNo" th:value="${board.boardNo}" id="boardNo">
+            <div id="margin">
+            <div id="slideShow">
+                <ul class="slides">
+                    <li th:each="boardfile : ${board.boardFiles}"><img class="boardImg" th:src="@{'/upload/'+${boardfile.systemFileName}}" alt=""></li>
+                </ul>
+
+
+                <p class="controller"> <!-- &lang: 왼쪽 방향 화살표 &rang: 오른쪽 방향 화살표 -->
+                    <span class="prev">&lang;</span>
+                    <span class="next">&rang;</span>
+                </p>
+            </div>
+            </div>
+
+
+
+           <!-- <div class="album">
+                <div class="fileimage" th:each="boardfile : ${board.boardFiles}">
+                    <img class="boardImg" th:src="@{'/upload/'+${boardfile.systemFileName}}">
+                </div>
+            </div>
+
+            <button class="prev">PREV</button>
+            <button class="next">NEXT</button> -->
+
+            <input type="hidden" name="boardNo" th:value="${board.boardNo}" id="boardNo">
         <form method="post" th:action="@{/deleteBoard/{boardNo}(boardNo=${board.boardNo})}">
 
             <a th:href="@{/modifyBoardForm/{boardNo}(boardNo=${boardNo})}"  id ="modiBtn" class="btn btn-outline-warning">수정</a>
             <button id="deleteBtn" class="btn btn-outline-secondary">삭제</button>
 
             <div id="main">
-                <div th:if="${#lists.size(board.boardFiles) >= 1}">
-                    <div th:each="boardfile : ${board.boardFiles}" ><img class="fileimage" th:src="@{'/upload/'+${boardfile.systemFileName}}"></div>
-                </div>
+
 
                 <div id="boardTitle" th:text="${board.boardTitle}"></div>
                 <div id = "info">
-                <span th:text="${board.userNick}"></span>
-
-                <span id="wdate" th:text="${board.boardWdate}"></span>
-                <img id="count" class="images" src="/images/board/view.png" ><span th:text="${board.boardCount}"></span>
-                <img class="images" src="/images/board/comment.png"><span th:text="${board.commentCount}"></span>
-                <img class="images" src="/images/board/reComcount.png"><span id="recomCount"><span th:text="${board.recomCount}" /></span>
+                <span id="userNick" th:text="${board.userNick}"></span>
                 </div>
-                <div style="height: 300px;" th:text="${board.boardContent}"></div>
-
+                <span id="wdate" th:text="${board.boardWdate}"></span>
+                <img id="count" class="images" src="/images/board/views.png" ><span class="others" th:text="${board.boardCount}"></span>
+                <img class="images" src="/images/board/comments.png"><span id="comCount" class="others"  th:text="${board.commentCount}"></span>
+                <img class="images" src="/images/board/reComcount.png"><span class="others"  id="recomCount"><span th:text="${board.recomCount}" /></span>
             </div>
 
-
+            <div id="contentForm">
+                <div id="boardContent" th:text="${board.boardContent}"></div>
+            </div>
 
         </form>
         <button type="button" class="btn btn-primary" id="recomBtn">추천</button>
         <button type="button" class="btn btn-danger" id="reportBtn">신고</button>
 
 
-    <div id="commentDiv">
+
+
+        <div id="commentForm">
+            <span class="comUserNick">작성자</span>
+            <span class="comWdate">날짜</span>
+            <span class="comContent">내용</span>
+        </div>
+
 
         <table id="listComment">
-            <thead>
-            <tr>
-                <td align="center" width="100px;" class="comW">작성자</td>
-                <td align="center" width="100px;" class="comWda">날짜</td>
-                <td align="center" width="400px;" class="comCt">내용</td>
-                <td></td>
-                <td></td>
-            </tr>
-            </thead>
-
-
             <tbody th:if="${commentList != null}" th:each="comment : ${commentList}" th:id="${comment.comNo}">
-            <tr th:if="${comment.comContent == null}">
-                <td colspan="5">등록된 댓글이 없습니다.</td>
-            </tr>
-            <tr>
-                <td  th:text="${comment.userNick}"></td>
-                <td  th:text="${comment.comWdate}"></td>
-                <td  class="comContent" th:text="${comment.comContent}"></td>
-                <td ><button id="updateComBtn" class="modifyComReqBtn" type="button">수정</button></td>
-                <td><button class="removeBtn">삭제</button></td>
-            </tr>
+                <tr th:if="${comment.comContent == null}">
+                    <td colspan="5">등록된 댓글이 없습니다.</td>
+                </tr>
+                <tr th:if="${comment.comContent != null}">
+                    <td id="comNick" th:text="${comment.userNick}"></td>
+                    <td id="comWdate" th:text="${comment.comWdate}"></td>
+                    <td id="com" class="comContent" th:text="${comment.comContent}"></td>
+                    <td th:if="${user.userNick == comment.userNick || user.role == 'ROLE_ADMIN'}"><button id="updateComBtn" class="modifyComReqBtn" type="button">수정</button></td>
+                    <td th:if="${user.userNick} != ${comment.userNick}"></td>
+                    <td th:if="${user.userNick == comment.userNick || user.role == 'ROLE_ADMIN'}"><button class="removeBtn">삭제</button></td>
+                    <td th:if="${user.userNick} != ${comment.userNick}"></td>
+                </tr>
             </tbody>
         </table>
 
@@ -87,7 +105,7 @@
         <div id="addComment">
             <div>
                 <textarea id="comContent" rows="5" cols="50"
-                              placeholder="댓글을 입력해주세요 ."></textarea>
+                              placeholder="댓글을 입력해주세요.(40자 이내)"></textarea>
             </div>
             <button id="addComBtn" class="btn btn-outline-success">댓글 작성</button>
             <div id="resultCom">
@@ -112,5 +130,4 @@
 
     </div>
     </div>
-</section>
 </html>

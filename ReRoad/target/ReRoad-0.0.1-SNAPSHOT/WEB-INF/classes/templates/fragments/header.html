@@ -3,19 +3,14 @@
 <!--<th:block layout:fragment="script">-->
 <!--	<script th:src="@{/js/header.js}"></script>-->
 <!--</th:block>-->
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href="/css/header.css" />
 	<link rel="script" href="/js/header.js">
-	<script type="text/javascript" src="/js/message/chat.js"></script>
-
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.0/handlebars.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.1.1/list.min.js"></script>
-
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 </head>
-<div th:fragment="headerFragment">
+
+<div class="header">
 	<div class="container" id="headerContainer">
 		<div id="wrapper">
 			<span class="header_logo">
@@ -24,6 +19,7 @@
 				</a>
 			</span>
 			<span class="loginAndInfo">
+
 				<!-- session에 로그인 유저 정보가 없다면 -->
 				<div th:if="${session.loginUser == null}">
 					<a th:href="@{/loginForm}" style="text-decoration: none">
@@ -41,6 +37,7 @@
 					<span th:unless = "${session.loginUser.getPhotoSys() == null}" class = "photoSpan">
 						<img class= "showPho" th:src="@{/images/member/user.png}">
 					</span>
+					
 
 					<span id="buttons">
 							<a th:href="@{/member/myPage}" style="text-decoration: none">
@@ -49,6 +46,7 @@
 								<span th:text="${session.loginUser.getUserNick()}" id="showNick" />
 							</button>
 							</a>
+
 							<a th:href="@{/writePaper}" style="text-decoration: none">
 								<button class="btn btn-default" type="button" id="myPaperBtn">
 									쪽지관리
@@ -57,7 +55,6 @@
 							<a th:href="@{/logout}" style="text-decoration: none">
 								<button class="btn btn-default" type="button" id="logoutBtn">로그아웃</button>
 							</a>
-						<input type="hidden" id="username" th:value="${session.loginUser.getUserId()}">
 					</span>
 				</div>
 			</span>
@@ -65,13 +62,5 @@
 		</div>
 		<div id ="bar"></div>
 	</div>
-
-
-
-
-
-
-
-
 </div>
 </html>

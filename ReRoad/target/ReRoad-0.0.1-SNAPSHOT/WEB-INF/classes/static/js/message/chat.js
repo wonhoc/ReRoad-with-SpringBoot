@@ -28,8 +28,6 @@ $(document).ready(function () {
 
 
 
-    console.log(username);
-
     if (username != null) {
 
         console.log("connecting to chat...");
@@ -37,15 +35,18 @@ $(document).ready(function () {
         let socket = new SockJS(url + '/chat');
         stompClient = Stomp.over(socket);
 
-
-
+        let username = $('#username').val();
+        console.log(username)
 
         stompClient.connect({}, function (frame) {
+
+            console.log(`frame : {}`, frame);
             let username = $('#username').val();
-            stompClient.subscribe("/topic/messages/" + username, function (message) {
+            console.log(username)
+
+            stompClient.subscribe("/topic/messages/"+username, function (message) {
                 let data = JSON.parse(message.body);
 
-                console.log(username);
                 let boardNo = data.boardNo;
 
                 toastr.options.onclick = function() { location.href='/detailBoard/'+boardNo }

@@ -2,7 +2,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="layout/defaultLayout">
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+     
+
 <th:block layout:fragment="css">
     <link rel="stylesheet" th:href="@{/css/jquery-ui.min.css}"/>
     <link rel="stylesheet" th:href="@{/css/main.css}">
@@ -16,10 +18,7 @@
 </th:block>
 <head>
 </head>
-<section layout:fragment="content">
     <div class="container" data-spy="affix">
-
-
         <div id="mainwrapper">
             <img src="/images/메인페이지버스.png" alt="image" id="mainImage">
             <form action="/retriveSchedule" method="POST" id="ScSelectForm">
@@ -77,6 +76,7 @@
                             </div>
 
 
+
                            <div id="stListBox">
 				    	
 					    	<div id="cityNameBox">
@@ -127,54 +127,54 @@
 	                        		<li class="showCity" id="showDk">
 	                        		대구/경북
 	                        		</li>
-	                        			                    		
-	                        	</ul>   
+
+	                        	</ul>
 	                        	<div id="temptmep">
 	                        		<ul  class="ulTml" id="se">
 	                        			<li th:text="${tml.tmName}" th:if="${tml.city == '서울'}" th:each="tml:${expTmlList}" th:value="${tml.tmId}" class="liTml"></li>
 	                        		</ul>
-	                        		
+
 	                        		<ul class="ulTml" id="in">
 	                        			<li th:text="${tml.tmName}" th:if="${tml.city == '인천/경기'}" th:each="tml:${expTmlList}" th:value="${tml.tmId}" class="liTml"></li>
 	                        		</ul>
-	                        		                        		
+
 	                        		<ul class="ulTml" id="ka">
 	                        			<li th:text="${tml.tmName}" th:if="${tml.city == '강원'}" th:each="tml:${expTmlList}" th:value="${tml.tmId}" class="liTml"></li>
 	                        		</ul>
-	                        		
+
 	                        		<ul class="ulTml" id="de">
 	                        			<li th:each="tml:${expTmlList}" th:text="${tml.tmName}" th:if="${tml.city == '대전/충남'}" th:value="${tml.tmId}" class="liTml"></li>
 	                        		</ul>
-	                        		
+
 	                        		<ul class="ulTml" id="ch">
 	                        			<li th:each="tml:${expTmlList}" th:text="${tml.tmName}" th:if="${tml.city == '충북'}" th:value="${tml.tmId}" class="liTml"></li>
 	                        		</ul>
-	                        		
+
 	                        		<ul class="ulTml" id="kh">
 	                        			<li th:each="tml:${expTmlList}" th:text="${tml.tmName}" th:if="${tml.city == '광주/전남'}" th:value="${tml.tmId}" class="liTml"></li>
 	                        		</ul>
-	                        		
+
 	                        		<ul class="ulTml" id="jb">
 	                        			<li th:each="tml:${expTmlList}" th:text="${tml.tmName}" th:if="${tml.city == '전북'}" th:value="${tml.tmId}" class="liTml"></li>
 	                        		</ul>
-	                        		
+
 	                        		<ul class="ulTml" id="bu">
 	                        			<li th:each="tml:${expTmlList}" th:text="${tml.tmName}" th:if="${tml.city == '부산/경남'}" th:value="${tml.tmId}" class="liTml"></li>
 	                        		</ul>
-	                        		
+
 	                        		<ul class="ulTml" id="dk">
 	                        			<li th:each="tml:${expTmlList}" th:text="${tml.tmName}" th:if="${tml.city == '대구/경북'}" th:value="${tml.tmId}" class="liTml"></li>
 	                        		</ul>
-	                        		
-	                        		
-	                        	</div>          
+
+
+	                        	</div>
 	                        </div>
-                            
+
                         </div>
-                        
-                       
-                        
-                        
+
+
+
+
                         <button type="button" id="btnSearch" class="btn btn-primary" data-toggle="popover"
                                 data-placement="top">검색
                         </button>
@@ -239,5 +239,6 @@
         </table>
         <button style="width: 100px;" id="setting" class="btn btn-primary">관리</button>
     </div>
-</section>
+
+
 </html>

@@ -3,8 +3,16 @@ package com.example.reroad;
 import java.util.List;
 
 import com.example.domestic.service.DomesticService;
+
 import com.example.domestic.vo.DomesticVo;
+import com.example.member.service.UserService;
+import com.example.member.vo.UserAccount;
+import com.example.member.vo.UserVo;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +26,9 @@ import com.example.schedule.service.TrainScheduleService;
 public class mainController {
     @Autowired
     private NoticeService noticeService;
+
+    @Autowired
+    private UserService userService;
     
     @Autowired
     private TrainScheduleService trainScheduleService;
@@ -28,29 +39,25 @@ public class mainController {
     @Autowired
     private DomesticService domesticService;
 
+
     @GetMapping("/")
     public String main(Model model) throws Exception {
         List<NoticeVO> noticeList  = this.noticeService.retrieveLastNotices();
         model.addAttribute("noticeList", noticeList);
         //지역별 기차역리스트 add
-        model.addAttribute("trainStList", this.trainScheduleService.retrieveTrainStinfo());
-        //고속버스 터미널 리스트 add
-        model.addAttribute("expTmlList", this.expBusScheduleService.getTmlInfo());
-        
+        model.addAttribute("trainStList", trainScheduleService.retrieveTrainStinfo());
+
         List domestic = this.domesticService.boardMain();
 
         System.out.println("List : " + domestic);
 
         model.addAttribute("domestic", domestic);
 
-        model.addAttribute("content",",/");
-        
-        return "templates";
-    }
 
-    @GetMapping("/test")
-    public String error() {
-        throw new RuntimeException("hello");
+        model.addAttribute("content","/main");
+
+
+        return "/templates";
     }
 
 }

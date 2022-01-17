@@ -1,6 +1,4 @@
 $(document).ready(function () {
-
-
     $.ajax({
         url : '/getNoticeList',
         method: 'GET',
@@ -49,15 +47,11 @@ $(document).ready(function () {
                     }else{
                         for (let i = startRow; i < endRow ; i++) {
 
-                            //html += '<p each="board : ${list}">';
-                            //<td><a href='view.html?userid=" + userid + "'>" + userid + "</a></td>
                             html += '<td><a href= "/noticedetail/' + data[i].noticeNo  + '">' +  data[i].noticeTitle + '</a></td>';
-
                             html += '<td id="wdate">' + data[i].writeDate + '</td>';
-                            html += '<td id="bc">' + data[i].hitCount +  '</td></tr></p></p>';
-
+                            html += '<td id="bc">' + data[i].hitCount +  '</td></tr>';
                         }
-                        //}
+
                         $("#noticeList").empty();
                         $("tbody").html(html);
                     }
@@ -66,9 +60,6 @@ $(document).ready(function () {
         },
         error: function (error) {
             console.log(error);
-
         }
     });
-
-
 });

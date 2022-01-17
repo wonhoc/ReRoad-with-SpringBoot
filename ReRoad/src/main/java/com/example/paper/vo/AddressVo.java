@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class AddressVo {
 
-    private String receiveNick; // 받는 사람
+    private String receiveId; // 받는 회원의 아이디
+    private String receiveNick; // 받는 회원의 닉네임
     private int isRead; // 읽기 여부
 }

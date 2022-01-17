@@ -8,20 +8,7 @@
 </th:block>
 
 <head>
-    <script>
-        let planNo = null;
 
-        function plan_delete() {
-            planNo = location.search.substring(1).split("=")[1];
-            $.ajax({
-                url: "/deleteplan/" + planNo,
-                type: "DELETE",
-                success: function () {
-                    location.href = "/planlist";
-                }
-            });
-        }
-    </script>
 </head>
 <section class="container" layout:fragment="content">
     <div id="plandiv">
@@ -44,75 +31,80 @@
                     <td class="userinput" th:text="${plan.arriveDate}"></td>
                 </tr>
                 <tr class="plan">
-                    <td id="memo" height="150px;" colspan="8"
-                        th:text="${plan.memo}"></td>
+                    <td id="memo" height="150px;" colspan="8">
+                        <pre  th:text="${plan.memo}"></pre>
+                    </td>
                 </tr>
             </table>
             <h3>체크리스트</h3>
             <div id="chkTbl">
             <span th:each="item,i : ${plan.getCheckList()}">
                 <div id="left_table">
-            <table class="checktable">
-                <tbody id="left_chklist">
-                <span th:if="${i.index}%3==0">
-                    <tr th:id="${item.getCheckListNo()}">
-                        <span class="unReady_tr" th:if="${item.getReady() ==0}">
-        <td><img src="/images/planner/unready.png" alt="png"
-                 class="isReady"></td>
-        <td class="unReady" th:text="${item.getCheckListContent()}"></td>
+                <table class="checktable">
+                    <tbody id="left_chklist">
+                    <span th:if="${i.index}%3==0">
+                        <tr th:id="${item.getCheckListNo()}">
+                            <span class="unReady_tr" th:if="${item.getReady() ==0}">
+                                <td>
+                                    <img src="/images/planner/unready.png" alt="png" class="isReady">
+                                </td>
+                                <td class="unReady" th:text="${item.getCheckListContent()}"></td>
+                                <td class="empty"></td>
+                            </span>
+                            <span class="ready_tr" th:if="${item.getReady() ==1}">
+                            <td>
+                                <img src="/images/planner/ready.png" alt="png" class="isReady">
+                            </td>
+                            <td class="ready" th:text="${item.getCheckListContent()}"></td>
                             <td class="empty"></td>
-    </span>
-     <span class="ready_tr" th:if="${item.getReady() ==1}">
-        <td><img src="/images/planner/ready.png" alt="png"
-                 class="isReady"></td>
-        <td class="ready" th:text="${item.getCheckListContent()}"></td>
-        <td class="empty"></td>
-     </span>
-                    </tr>
-                </span>
+                            </span>
+                        </tr>
+                    </span>
                 </tbody>
             </table>
             </div>
             <div id="center_table">
                 <table class="checktable">
                     <tbody id="center_chklist">
-<tr th:if="${i.index}%3==1" th:id="${item.getCheckListNo()}">
-     <span class="unReady_tr" th:if="${item.getReady() ==0}">
-        <td><img src="/images/planner/unready.png" alt="png"
-                 class="isReady"></td>
-        <td class="unReady" th:text="${item.getCheckListContent()}"></td>
-         <td class="empty"></td>
-    </span>
-     <span class="ready_tr" th:if="${item.getReady() ==1}">
-        <td><img src="/images/planner/ready.png" alt="png"
-                 class="isReady"></td>
-        <td class="ready" th:text="${item.getCheckListContent()}"></td>
-        <td class="empty"></td>
-     </span>
-          </tr>
+                        <tr th:if="${i.index}%3==1" th:id="${item.getCheckListNo()}">
+                            <span class="unReady_tr" th:if="${item.getReady() ==0}">
+                                <td>
+                                    <img src="/images/planner/unready.png" alt="png" class="isReady">
+                                </td>
+                                <td class="unReady" th:text="${item.getCheckListContent()}"></td>
+                                <td class="empty"></td>
+                            </span>
+                            <span class="ready_tr" th:if="${item.getReady() ==1}">
+                                <td>
+                                    <img src="/images/planner/ready.png" alt="png" class="isReady">
+                                </td>
+                                <td class="ready" th:text="${item.getCheckListContent()}"></td>
+                                <td class="empty"></td>
+                            </span>
+                        </tr>
                     </tbody>
-
                 </table>
             </div>
             <div id="right_table">
                 <table class="checktable">
                     <tbody id="right_chklist">
-<tr th:if="${i.index}%3==2" th:id="${item.getCheckListNo()}">
-    <span class="unReady_tr" th:if="${item.getReady() ==0}">
-        <td><img src="/images/planner/unready.png" alt="png"
-                 class="isReady"></td>
-        <td class="unReady" th:text="${item.getCheckListContent()}"></td>
-        <td class="empty"></td>
-    </span>
-     <span class="ready_tr" th:if="${item.getReady() ==1}">
-        <td><img src="/images/planner/ready.png" alt="png"
-                 class="isReady"></td>
-        <td class="ready" th:text="${item.getCheckListContent()}"></td>
-        <td class="empty"></td>
-     </span>
-</tr>
+                        <tr th:if="${i.index}%3==2" th:id="${item.getCheckListNo()}">
+                            <span class="unReady_tr" th:if="${item.getReady() ==0}">
+                                <td>
+                                    <img src="/images/planner/unready.png" alt="png" class="isReady">
+                                </td>
+                                <td class="unReady" th:text="${item.getCheckListContent()}"></td>
+                                <td class="empty"></td>
+                            </span>
+                            <span class="ready_tr" th:if="${item.getReady() ==1}">
+                                <td>
+                                  <img src="/images/planner/ready.png" alt="png" class="isReady">
+                                </td>
+                                <td class="ready" th:text="${item.getCheckListContent()}"></td>
+                                <td class="empty"></td>
+                            </span>
+                        </tr>
                     </tbody>
-
                 </table>
             </div>
             </span>

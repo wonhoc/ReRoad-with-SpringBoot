@@ -6,9 +6,12 @@ import com.example.board.vo.CommentVo;
 import com.example.board.vo.RecomVo;
 import com.example.board.vo.ReportVo;
 import com.example.common.SearchVO;
+import com.example.member.vo.UserAccount;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -47,10 +50,15 @@ public class BoardRestController {
     }
 
     @PostMapping("/createComment")
-    public Map createComment(@RequestBody CommentVo comment, @AuthenticationPrincipal User principal){
+    public Map createComment(@RequestBody CommentVo comment, @AuthenticationPrincipal UserAccount user){
         HashMap<String, Object> map = new HashMap<String, Object>();
         int boardNo = comment.getBoardNo();
-        comment.setUserId(principal.getUsername());
+
+        String UserId = user.getUser().getUserId();
+        String userNick = user.getUser().getUserNick();
+
+        comment.setUserId(UserId);
+        comment.setUserNick(userNick);
 
         this.boardService.registerComment(comment);
         List<CommentVo> list = this.boardService.retrieveComList(boardNo);

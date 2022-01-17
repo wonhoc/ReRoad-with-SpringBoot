@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
+.container{
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+#bar2{
+    background-color: teal;
+    height: 5px;
+    width: 158px;
+    margin-left: 73px;
+}
+
+#write{
+    font-size: 30px;
+    margin-bottom: 0px;
+    color: teal;
+
+    margin-left: 73px;
+}
+
+#boardTitle{
+    margin-left: 73px;
+    width: 634px;
+    border: 2px solid teal;
+    margin-top: 30px
+}
+
+#boardContent{
+    height: 300px;
+    width: 634px;
+    margin-left: 73px;
+    margin-top: 18px;
+    border: 2px solid;
+}
+#main{
+    background-color: rgb(233,233,233);
+    border-radius: 3%;
+    margin-top: 73px;
+    width: 781px;
+    height: 593px;
+    margin-left: 152px;
+}
+#image{
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+    margin-left: 73px;
+}
+#saveBtn{
+    margin-left: 647px;
+}

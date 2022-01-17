@@ -2,9 +2,13 @@
 //검색 버튼 이벤트
 function getSearchList() {
     $.ajax({
-        type: 'GET',
-        url: "/noticesearch",
-        data: $('#bs-example-navbar-collapse-1').serialize(),
+        url: "/noticesearch",type: 'POST',
+        contentType: 'application/json;charset=utf-8',
+        dataType: 'json',
+        data: JSON.stringify({
+            "keyfield": $('#keyfield').val(),
+            "keyword": $('#keyword').val()
+        }),
         success: function (data) {
             //테이블 초기화
             $('#noticeList').empty();

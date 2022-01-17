@@ -46,11 +46,11 @@
 				<div th:unless="${session.loginUser} == null" class="showInfo">
 					<!--프로필 사진 -->
 					<!-- 회원의 프로필 사진 정보가 session에 없다면 -> default 이미지 지정-->
-					<span th:if="${#authentication.principal.getUser.getPhotoSys} == null" class="photoSpan" >
+					<span th:if="${photoSys} == null" class="photoSpan" >
 						<img class= "showPho" th:src="@{/images/member/happy_default.jpg}">
 					</span>
 					<!-- 회원의 프로필 사진 정보가 session에 있다면 -->
-					<span th:if="${#authentication.principal.getUser.getPhotoSys} != null" class = "photoSpan">
+					<span th:unless="${photoSys} == null" class = "photoSpan">
 						<img class= "showPho" th:src="@{/images/member/user.png}">
 					</span>
 
@@ -58,7 +58,7 @@
 							<a th:href="@{/member/myPage}" style="text-decoration: none">
 							<button class="btn btn-default" type="button" id="myPageBtn" >
 								<span id="showMyPage">마이페이지</span>
-								<span th:text="${#authentication.principal.getUser.userNick}" id="showNick" />
+								<span th:text="${userNick}" id="showNick" />
 							</button>
 							</a>
 

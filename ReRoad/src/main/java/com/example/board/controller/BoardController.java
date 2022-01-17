@@ -5,6 +5,7 @@ import com.example.board.vo.BoardFileVo;
 import com.example.board.vo.BoardVo;
 import com.example.board.vo.CommentVo;
 import com.example.board.vo.ReportVo;
+import com.example.member.vo.UserAccount;
 import com.example.member.vo.UserVo;
 import com.example.util.FileUtils;
 import lombok.extern.slf4j.Slf4j;
@@ -34,35 +35,41 @@ public class BoardController {
 
         List<BoardVo> list = this.boardService.retrieveList();
 
-        for (BoardVo board : list){
-            board.setRecomCount(this.boardService.ReComCount(board.getBoardNo()));
-            board.setCommentCount(this.boardService.countCommemt(board.getBoardNo()));
-        }
-
         model.addAttribute("boardList", list);
+        model.addAttribute("content","views/board/boardList");
 
-        return "views/board/boardList";
+        return "/templates";
     }
 
-    @GetMapping("/detailBoard/{boardNo}")
-    public String boardDetail(@PathVariable int boardNo, Model model, HttpServletRequest request) {
-        HttpSession session = request.getSession();
-        UserVo user = (UserVo) session.getAttribute("userInfo");
+    @GetMapping("/member/detailBoard/{boardNo}")
+    public String boardDetail(@PathVariable int boardNo, Model model, @AuthenticationPrincipal UserAccount user) {
+        String UserId = user.getUser().getUserId();
+        String userNick = user.getUser().getUserNick();
+        String userRole = user.getUser().getRole();
+
+        UserVo currnetUser = new UserVo();
+        currnetUser.setUserId(UserId);
+        currnetUser.setUserNick(userNick);
+        currnetUser.setRole(userRole);
 
         this.boardService.updateUphit(boardNo);
         BoardVo board = boardService.retrieveDetail(boardNo);
         List<CommentVo> comlist = this.boardService.retrieveComList(boardNo);
 
         int recomCount = this.boardService.ReComCount(boardNo);
+        int comCount = this.boardService.countCommemt(boardNo);
+
         board.setRecomCount(recomCount);
+        board.setCommentCount(comCount);
 
-        log.info("board dd :" + board);
 
-        model.addAttribute("user",user);
+        model.addAttribute("user",currnetUser);
         model.addAttribute("board", board);
         model.addAttribute("commentList", comlist);
+        model.addAttribute("content","views/board/detailBoard");
 
-        return "views/board/detailBoard";
+
+        return "/templates";
     }
 
     @PostMapping("/deleteBoard/{boardNo}")
@@ -90,9 +97,12 @@ public class BoardController {
     }
 
     @GetMapping("/writeboardForm")
-    public String boardWriteForm() {
+    public String boardWriteForm(Model model) {
 
-        return "views/board/boardWrite";
+        model.addAttribute("content","views/board/boardWrite");
+
+
+        return "/templates";
     }
 
     @PostMapping("/boardWrite")
@@ -165,5 +175,13 @@ public class BoardController {
         map.put("boards", boards);
         return map;
     }
+
+
+    @GetMapping("/hihi")
+    public String hihihi(){
+        return "views/board/아아";
+    }
+
+
 }
 

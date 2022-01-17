@@ -4,6 +4,7 @@ package com.example.domestic.service;
 import com.example.domestic.dao.DomesticDao;
 import com.example.domestic.vo.DomesticVo;
 import com.example.domestic.vo.WeatherVo;
+import com.example.domestic.vo.WeatherVo2;
 import net.minidev.json.JSONArray;
 import net.minidev.json.JSONObject;
 import net.minidev.json.parser.JSONParser;
@@ -16,9 +17,11 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -28,19 +31,22 @@ public class DomesticService {
     @Autowired
     private DomesticDao domesticDao;
 
-    public WeatherVo weather(String domesticName) throws Exception {
+    public List<WeatherVo2> weather(String domesticName) throws Exception {
 
         DomesticVo domestic = this.domesticDao.selectRain(domesticName);
 
         String rain = domestic.getDomesticRain();
 
-        SimpleDateFormat dtf = new SimpleDateFormat("yyyyMMdd");
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(new Date());
+        DateFormat df = new SimpleDateFormat("yyyyMMdd");
 
-        Date time = new Date();
 
-        String currentDate = dtf.format(time) + "0600";
 
-        System.out.println("시간 " + currentDate);
+        cal.add(Calendar.DATE, -1);
+
+        String currentDate = df.format(cal.getTime()) + "1800";
+
 
         List list = new ArrayList();
         StringBuilder urlBuilder = new StringBuilder("http://apis.data.go.kr/1360000/MidFcstInfoService/getMidLandFcst"); /*URL*/
@@ -77,45 +83,55 @@ public class DomesticService {
 
         WeatherVo rgWeather = new WeatherVo();
 
+        WeatherVo2 weatherVo1 = new WeatherVo2();
+        WeatherVo2 weatherVo2 = new WeatherVo2();
+        WeatherVo2 weatherVo3 = new WeatherVo2();
+
+
+
+
+        List<WeatherVo2> weatherList = new ArrayList<WeatherVo2>();
+
+
         for (int i = 0; i < weather.size(); i++) {
             JSONObject hi = (JSONObject) weather.get(i);
 
 
-            rgWeather.setRnSt3Am((int) hi.get("rnSt3Am"));
-            rgWeather.setRnSt3Pm((int) hi.get("rnSt3Pm"));
+            weatherVo1.setRnStAM((int) hi.get("rnSt3Am"));
+            weatherVo1.setRnStPM((int) hi.get("rnSt3Pm"));
 
-            rgWeather.setRnSt4Am((int) hi.get("rnSt4Am"));
-            rgWeather.setRnSt4Pm((int) hi.get("rnSt4Pm"));
+            weatherVo2.setRnStAM((int) hi.get("rnSt4Am"));
+            weatherVo2.setRnStPM((int) hi.get("rnSt4Pm"));
 
-            rgWeather.setRnSt4Am((int) hi.get("rnSt5Am"));
-            rgWeather.setRnSt4Pm((int) hi.get("rnSt5Pm"));
+            weatherVo3.setRnStAM((int) hi.get("rnSt5Am"));
+            weatherVo3.setRnStPM((int) hi.get("rnSt5Pm"));
 
-            rgWeather.setRnSt5Am((int) hi.get("rnSt6Am"));
-            rgWeather.setRnSt5Pm((int) hi.get("rnSt6Pm"));
+            weatherVo1.setRnStAM2((int) hi.get("rnSt6Am"));
+            weatherVo1.setRnStPM2((int) hi.get("rnSt6Pm"));
 
-            rgWeather.setRnSt6Am((int) hi.get("rnSt7Am"));
-            rgWeather.setRnSt6Am((int) hi.get("rnSt7Pm"));
+            weatherVo2.setRnStAM2((int) hi.get("rnSt7Am"));
+            weatherVo2.setRnStPM2((int) hi.get("rnSt7Pm"));
 
-            rgWeather.setRnSt8((int) hi.get("rnSt8"));
-            rgWeather.setRnSt9((int) hi.get("rnSt9"));
+            weatherVo3.setRnStAM2((int) hi.get("rnSt8"));
+            weatherVo3.setRnStPM2((int) hi.get("rnSt9"));
 
-            rgWeather.setWf3Am((String) hi.get("wf3Am"));
-            rgWeather.setWf3Pm((String) hi.get("wf3Pm"));
+            weatherVo1.setWfAm((String) hi.get("wf3Am"));
+            weatherVo1.setWfPm((String) hi.get("wf3Pm"));
 
-            rgWeather.setWf4Am((String) hi.get("wf4Am"));
-            rgWeather.setWf4Pm((String) hi.get("wf4Pm"));
+            weatherVo2.setWfAm((String) hi.get("wf4Am"));
+            weatherVo2.setWfPm((String) hi.get("wf4Pm"));
 
-            rgWeather.setWf5Am((String) hi.get("wf5Am"));
-            rgWeather.setWf5Pm((String) hi.get("wf5Pm"));
+            weatherVo3.setWfAm((String) hi.get("wf5Am"));
+            weatherVo3.setWfPm((String) hi.get("wf5Pm"));
 
-            rgWeather.setWf6Am((String) hi.get("wf6Am"));
-            rgWeather.setWf6Pm((String) hi.get("wf6Pm"));
+            weatherVo1.setWfAm2((String) hi.get("wf6Am"));
+            weatherVo1.setWfPm2((String) hi.get("wf6Pm"));
 
-            rgWeather.setWf7Am((String) hi.get("wf7Am"));
-            rgWeather.setWf7Pm((String) hi.get("wf7Pm"));
+            weatherVo2.setWfAm2((String) hi.get("wf7Am"));
+            weatherVo2.setWfPm2((String) hi.get("wf7Pm"));
 
-            rgWeather.setWf8((String) hi.get("wf8"));
-            rgWeather.setWf9((String) hi.get("wf9"));
+            weatherVo3.setWfAm2((String) hi.get("wf8"));
+            weatherVo3.setWfPm2((String) hi.get("wf9"));
 
         }
 
@@ -160,28 +176,63 @@ public class DomesticService {
         for (int i = 0; i < weather2.size(); i++) {
             JSONObject hi = (JSONObject) weather2.get(i);
 
-            rgWeather.setTaMin3((int) hi.get("taMin3"));
-            rgWeather.setTaMax3((int) hi.get("taMax3"));
+            weatherVo1.setTaMin((int) hi.get("taMin3"));
+            weatherVo1.setTaMax((int) hi.get("taMax3"));
 
-            rgWeather.setTaMin4((int) hi.get("taMin4"));
-            rgWeather.setTaMax4((int) hi.get("taMax4"));
+            weatherVo2.setTaMin((int) hi.get("taMin4"));
+            weatherVo2.setTaMax((int) hi.get("taMax4"));
 
-            rgWeather.setTaMin5((int) hi.get("taMin5"));
-            rgWeather.setTaMax5((int) hi.get("taMax5"));
+            weatherVo3.setTaMin((int) hi.get("taMin5"));
+            weatherVo3.setTaMax((int) hi.get("taMax5"));
 
-            rgWeather.setTaMin6((int) hi.get("taMin6"));
-            rgWeather.setTaMax6((int) hi.get("taMax6"));
+            weatherVo1.setTaMin2((int) hi.get("taMin6"));
+            weatherVo1.setTaMax2((int) hi.get("taMax6"));
 
-            rgWeather.setTaMin7((int) hi.get("taMin7"));
-            rgWeather.setTaMax7((int) hi.get("taMax7"));
+            weatherVo2.setTaMin2((int) hi.get("taMin7"));
+            weatherVo2.setTaMax2((int) hi.get("taMax7"));
 
-            rgWeather.setTaMin8((int) hi.get("taMin8"));
-            rgWeather.setTaMax8((int) hi.get("taMax8"));
+            weatherVo3.setTaMin2((int) hi.get("taMin8"));
+            weatherVo3.setTaMax2((int) hi.get("taMax8"));
         }
+
+
+        String[] dateList = new String[6];
+
+        Calendar cal1 = Calendar.getInstance();
+        cal1.setTime(new Date());
+        DateFormat dateFormat = new SimpleDateFormat("MM월dd일");
+        cal1.add(Calendar.DAY_OF_MONTH, +2);
+
+        Date date = cal1.getTime();
+
+        Calendar cal2 = Calendar.getInstance();
+
+        cal2.setTime(date);
+
+        System.out.println("cal2 : "+cal2);
+
+        for(int i = 0 ; i <6; i++){
+            cal2.add(Calendar.DATE, +1);
+            dateList[i] = dateFormat.format(cal2.getTime());
+        }
+
+        weatherVo1.setDate(dateList[0]);
+        weatherVo1.setDate2(dateList[3]);
+
+        weatherVo2.setDate(dateList[1]);
+        weatherVo2.setDate2(dateList[4]);
+
+        weatherVo3.setDate(dateList[2]);
+        weatherVo3.setDate2(dateList[5]);
+
+        weatherList.add(weatherVo1);
+        weatherList.add(weatherVo2);
+        weatherList.add(weatherVo3);
+
 
         rgWeather.setDomesticName(domestic.getDomesticName());
 
-        return rgWeather;
+        return weatherList;
     }
 
     //메인화면 국내여행조회

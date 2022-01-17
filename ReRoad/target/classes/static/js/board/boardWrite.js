@@ -1,98 +1,125 @@
-var fileArr;
-var fileInfoArr=[];
-
-//썸네일 클릭시 삭제.
-function fileRemove(index) {
-    console.log("index: "+index);
-    fileInfoArr.splice(index,1);
-
-    var imgId="#img_id_"+index;
-    $(imgId).remove();
-    console.log(fileInfoArr);
-}
-
-//썸네일 미리보기.
-function previewImage(targetObj, View_area) {
-    var files=targetObj.files;
-    fileArr=Array.prototype.slice.call(files);
-
-    var preview = document.getElementById(View_area); //div id
-    var ua = window.navigator.userAgent;
-
-    //ie일때(IE8 이하에서만 작동)
-    if (ua.indexOf("MSIE") > -1) {
-        targetObj.select();
-        try {
-            var src = document.selection.createRange().text; // get file full path(IE9, IE10에서 사용 불가)
-            var ie_preview_error = document.getElementById("ie_preview_error_" + View_area);
+$(document).ready(function (){
 
 
-            if (ie_preview_error) {
-                preview.removeChild(ie_preview_error); //error가 있으면 delete
-            }
+    ( /* att_zone : 이미지들이 들어갈 위치 id, btn : file tag id */
+        imageView = function imageView(att_zone, btn){
 
-            var img = document.getElementById(View_area); //이미지가 뿌려질 곳
+            var attZone = document.getElementById(att_zone);
+            var btnAtt = document.getElementById(btn)
+            var sel_files = [];
 
-            //이미지 로딩, sizingMethod는 div에 맞춰서 사이즈를 자동조절 하는 역할
-            img.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='"+src+"', sizingMethod='scale')";
-        } catch (e) {
-            if (!document.getElementById("ie_preview_error_" + View_area)) {
-                var info = document.createElement("<p>");
-                info.id = "ie_preview_error_" + View_area;
-                info.innerHTML = e.name;
-                preview.insertBefore(info, null);
-            }
-        }
-        //ie가 아닐때(크롬, 사파리, FF)
-    } else {
-        var files = targetObj.files;
-        for ( var i = 0; i < files.length; i++) {
-            var file = files[i];
-            fileInfoArr.push(file);
 
-            var imageType = /image.*/; //이미지 파일일경우만.. 뿌려준다.
-            if (!file.type.match(imageType))
-                continue;
-            // var prevImg = document.getElementById("prev_" + View_area); //이전에 미리보기가 있다면 삭제
-            // if (prevImg) {
-            //     preview.removeChild(prevImg);
-            // }
+            var div_style = 'display:inline-block;position:relative;'
+                + 'width:150px;height:120px;margin:5px;border:1px solid teal;z-index:1';
 
-            var span=document.createElement('span');
-            span.id="img_id_" +i;
-            span.style.width = '100px';
-            span.style.height = '100px';
-            preview.appendChild(span);
+            var img_style = 'width:100%;height:100%;z-index:none';
 
-            var img = document.createElement("img");
-            img.className="addImg";
-            img.classList.add("obj");
-            img.file = file;
-            img.style.width='inherit';
-            img.style.height='inherit';
-            img.style.cursor='pointer';
-            const idx=i;
-            img.onclick=()=>fileRemove(idx);   //이미지를 클릭했을 때.
-            span.appendChild(img);
+            var chk_style = 'width:30px;height:30px;position:absolute;font-size:24px;'
+                + 'right:0px;bottom:0px;z-index:999;background-color:rgba(255,255,255,0.1);color:teal';
 
-            if (window.FileReader) { // FireFox, Chrome, Opera 확인.
-                var reader = new FileReader();
-                reader.onloadend = (function(aImg) {
-                    return function(e) {
-                        aImg.src = e.target.result;
-                    };
-                })(img);
-                reader.readAsDataURL(file);
-            } else { // safari is not supported FileReader
-                //alert('not supported FileReader');
-                if (!document.getElementById("sfr_preview_error_"
-                    + View_area)) {
-                    var info = document.createElement("p");
-                    info.id = "sfr_preview_error_" + View_area;
-                    info.innerHTML = "not supported FileReader";
-                    preview.insertBefore(info, null);
+            btnAtt.onchange = function(e){
+                var files = e.target.files;
+                var fileArr = Array.prototype.slice.call(files)
+                for(f of fileArr){
+                    imageLoader(f);
                 }
             }
+
+
+
+            attZone.addEventListener('dragenter', function(e){
+                e.preventDefault();
+                e.stopPropagation();
+            }, false)
+
+            attZone.addEventListener('dragover', function(e){
+                e.preventDefault();
+                e.stopPropagation();
+
+            }, false)
+
+            attZone.addEventListener('drop', function(e){
+
+                var files = {};
+                e.preventDefault();
+                e.stopPropagation();
+                var dt = e.dataTransfer;
+                files = dt.files;
+                for(f of files){
+                    let name = f.name.split('.').pop().toLowerCase(); //확장자
+                    //배열에 추출한 확장자가 존재하는지 체크
+                    if($.inArray(name, ['gif', 'png', 'jpg', 'jpeg']) == -1) {
+                        Swal.fire({ icon: 'error', title: '경고', text: '이미지파일이 아닙니다.' ,});
+                        return;
+                    }else {
+                        imageLoader(f);
+                    }
+
+                    }
+
+            }, false)
+
+
+
+
+            imageLoader = function(file){
+                sel_files.push(file);
+                var reader = new FileReader();
+                reader.onload = function(ee){
+                    let img = document.createElement('img')
+                    img.setAttribute('style', img_style)
+                    img.src = ee.target.result;
+                    attZone.appendChild(makeDiv(img, file));
+                }
+
+                reader.readAsDataURL(file);
+            }
+
+
+            makeDiv = function(img, file){
+                var div = document.createElement('div')
+                div.setAttribute('style', div_style)
+
+                var btn = document.createElement('input')
+                btn.setAttribute('type', 'button')
+                btn.setAttribute('value', 'x')
+                btn.setAttribute('delFile', file.name);
+                btn.setAttribute('style', chk_style);
+                btn.onclick = function(ev){
+                    var ele = ev.srcElement;
+                    var delFile = ele.getAttribute('delFile');
+                    for(var i=0 ;i<sel_files.length; i++){
+                        if(delFile== sel_files[i].name){
+                            sel_files.splice(i, 1);
+                        }
+                    }
+
+                    dt = new DataTransfer();
+                    for(f in sel_files) {
+                        var file = sel_files[f];
+                        dt.items.add(file);
+                    }
+                    btnAtt.files = dt.files;
+                    var p = ele.parentNode;
+                    attZone.removeChild(p)
+                }
+                div.appendChild(img)
+                div.appendChild(btn)
+                return div
+            }
         }
-    }
-}
+    )('att_zone', 'fileList')
+
+
+    $(document).on('click', '#saveBtn', function (){
+        if(($('#boardTitle').val() == '')){
+            Swal.fire({ icon: 'warning', title: '경고', text: '제목을 입력해주세요' ,});
+            return false;
+        }
+        if ($('#boardContent').val() == ''){
+            Swal.fire({ icon: 'warning', title: '경고', text: '내용을 입력해주세요' ,});
+            return false;
+        }
+    })
+
+})

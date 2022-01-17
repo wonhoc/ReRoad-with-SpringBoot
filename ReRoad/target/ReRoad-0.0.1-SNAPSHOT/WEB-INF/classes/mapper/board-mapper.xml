@@ -173,6 +173,7 @@
     <!-- 댓글작성 -->
     <parameterMap type="commentVO" id="commentCreateMap">
         <parameter property="boardNo" javaType="int" jdbcType="INTEGER" mode="IN" />
+        <parameter property="userNick" javaType="string" jdbcType="VARCHAR" mode="IN" />
         <parameter property="userId" javaType="string" jdbcType="VARCHAR" mode="IN" />
         <parameter property="comContent" javaType="string" jdbcType="VARCHAR" mode="IN" />
     </parameterMap>
@@ -285,7 +286,7 @@
 
     <!-- 댓글 작성 -->
     <insert id="commmentInsert" parameterType="commentVO" statementType="CALLABLE" parameterMap="commentCreateMap">
-        {call sp_write_comment(?,?,?) }
+        {call sp_write_comment(?,?,?,?) }
     </insert>
 
     <!-- 댓글 수정 -->
@@ -343,7 +344,7 @@
 
     <!-- 국내여행지 전체 조회 -->
     <select id="domesticAll" statementType="CALLABLE" resultMap="resultMapDomestic">
-        { call sp_domestic_all() }
+        { call sp_domestic_withoutMain() }
     </select>
 
     <!-- 국내여행 업데이트 -->

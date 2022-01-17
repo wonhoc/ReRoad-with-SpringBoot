@@ -5,41 +5,56 @@
 <mapper namespace="Paper">
     <!--Send Paper 저장 -->
     <insert id="insertSendPaper" parameterType="hashMap" statementType="PREPARED" useGeneratedKeys="true" keyProperty="sendPaperNo">
-        INSERT INTO send_paper(writeNick, sendPaperContent, sendDate)
-        VALUES (#{senderNick}, #{sendPaperContent}, NOW())
+        INSERT INTO send_paper(writeUserId, writeNick, sendPaperContent, sendDate)
+        VALUES (#{senderId}, #{senderNick}, #{sendPaperContent}, NOW())
     </insert>
 
     <!-- Address 테이블에 저장  -->
     <insert id="insertAddress" parameterType="hashMap" statementType="PREPARED">
-        INSERT INTO address(sendPaperNo, receiveNick)
-        VALUES (#{sendPaperNo}, #{receiveNick})
+        INSERT INTO address(sendPaperNo, receiveUserId, receiveNick)
+        VALUES (#{sendPaperNo},#{receiveUserId}, #{receiveNick})
     </insert>
 
     <!-- ReceivePaper에 저장 -->
     <insert id="insertReceivePaper" parameterType="receivePaperVo">
-        INSERT INTO receive_paper(receivePaperNo,receivePaperContent, sendPaperNo,writeNick, isRead)
-        VALUES (#{receivePaperNo},#{receivePaperContent},#{sendPaperNo},#{senderNick},#{isRead})
+        INSERT INTO receive_paper(receivePaperNo,receivePaperContent, sendPaperNo,writeNick, writeUserId, receiveId, isRead)
+        VALUES (#{receivePaperNo},#{receivePaperContent},#{sendPaperNo},#{senderNick}, #{senderId}, #{receiveId},#{isRead})
     </insert>
 
     <!-- SendPaper List resultMap-->
     <resultMap id="sendPaperList" type="sendPaperVo" autoMapping="true">
         <result property="sendPaperNo" javaType="int" jdbcType="INTEGER" column="sendPaperNo" />
-        <result property="sendPaperContent" javaType="string" jdbcType="VARCHAR" column="sendPaperContent"/>
+        <result property="paperContent" javaType="string" jdbcType="VARCHAR" column="sendPaperContent"/>
         <result property="sendDate" javaType="string" jdbcType="VARCHAR" column="sendDate"/>
             <collection property="receiveInfo" ofType="addressVo">
                 <result property="receiveNick" javaType="string" jdbcType="VARCHAR" column="receiveNick"/>
                 <result property="isRead" javaType="int" jdbcType="INTEGER" column="isRead" />
+                <result property="receiveId" javaType="string" jdbcType="VARCHAR" column="receiveUserId" />
             </collection>
 
     </resultMap>
 
     <!-- SendPaper 리스트 가져오기-->
-    <select id="selectSendPaperList" parameterType="string" resultMap="sendPaperList">
+    <select id="selectSendPaperList" parameterType="string"  resultType="sendPaperVo" resultMap="sendPaperList">
         SELECT s.sendPaperNo, s.sendPaperContent, s.sendDate, a.receiveNick as receiveNick
         FROM send_paper s INNER JOIN address a USING(sendPaperNo)
         WHERE writeNick = #{userNick}
         ORDER BY sendDate DESC
 
+    </select>
+
+    <!-- 받는 사람의 닉네임으로 아이디 값 가져오기-->
+    <select id="searchNickForId" parameterType="string" resultType="string">
+        SELECT userId
+        FROM user_info
+        WHERE userNick = #{receiveNick}
+    </select>
+    
+    <!--  보낸 메시지의 리스트에서 상세 보기 요청-->
+    <select id="selectSendPaper" parameterType="int" resultMap="sendPaperList">
+        SELECT s.sendPaperNo, s.sendPaperContent, s.sendDate, a.receiveNick as receiveNick, a.isRead
+        FROM send_paper s INNER JOIN address a USING (sendPaperNo)
+        WHERE sendPaperNo = #{sendPaperNo}
     </select>
 
 

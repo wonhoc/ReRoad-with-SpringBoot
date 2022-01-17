@@ -12,7 +12,7 @@ $(document).ready(function(){
 		vehicl = $(this).text();
 		console.log(vehicl);
 		//#vehiclType에 value 추가
-		vehicl == "열차" ? $('#vehiclType').val('train') : $('vehiclType').val('expBus');
+		vehicl == "열차" ? $('#vehiclType').val('train') : $('#vehiclType').val('expBus');
 		console.log($('#vehiclType').val());
 		
 		
@@ -25,13 +25,14 @@ $(document).ready(function(){
 		$(this).nextAll().css('background-color', 'teal');
 		
 		tripType = $(this).children().text().trim();
-		console.log(tripType);
 		
 		//날짜선택 변경
 		if(tripType == "편도"){
 		
 			$('#date').attr('class', 'searchBody');
 			$('#date').children('#bodyDate').text('날짜');
+			$('#date').children('#startDate').val('');
+			$('#dateArr').children('#arrDate').val('none');
 			$('#dateArr').hide();
 			
 		}//if end
@@ -40,6 +41,7 @@ $(document).ready(function(){
 	
 			$('#date').attr('class', 'searchBodyDate');
 			$('#date').children('#bodyDate').text('가는날');
+			$('#date').children('#startDate').val('');
 			$('#dateArr').show();
 		
 		}//if end
@@ -167,6 +169,7 @@ $(document).ready(function(){
 			monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
 			dateFormat : 'yymmdd',
 			showButtonPanel: true,
+			showMonthAfterYear : true,
 			closeText: '닫기',		
 			onSelect : function(){
 				//선택시 선택창의 값이 바뀐다
@@ -188,6 +191,7 @@ $(document).ready(function(){
 			monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
 			dateFormat : 'yymmdd',
 			showButtonPanel: true,
+			showMonthAfterYear : true,
 			closeText: '닫기',		
 			onSelect : function(){
 				//선택시 선택창의 값이 바뀐다
@@ -212,7 +216,7 @@ $(document).ready(function(){
 //날짜 포멧 변환
 function dateCon(date){
 	
-	let mon = date.substr(5,1);
+	let mon = date.substr(4,2);
 	let day = date.substr(6,2);
 	let ymd = mon + '월' + day + '일';
 	

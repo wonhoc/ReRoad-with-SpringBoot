@@ -10,5 +10,7 @@ public interface PaperService {
 
     void registerPaper (SendPaperVo sendVo, ArrayList<ReceivePaperVo> receivePaper);
     List<SendPaperVo> retrieveSendPaperList(String userNick);
+    String retrieveReceiveId(String receiveNick);
+    SendPaperVo retrieveSendPaper(int sendPaperNo);
 
 }

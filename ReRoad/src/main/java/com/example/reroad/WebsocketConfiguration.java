@@ -13,14 +13,14 @@ public class WebsocketConfiguration implements WebSocketMessageBrokerConfigurer 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry){
         //stomp가 websocket과 핸드셰이킹을 위해 endpoint를 잡아준다.
-        registry.addEndpoint("/chat").withSockJS();
+        registry.addEndpoint("/chat","/chat-websocket").withSockJS();
     }
 
     @Override
     public void configureMessageBroker(MessageBrokerRegistry registry){
         // 메시지 브로커 구성
         // push and subscribe 사용
-        registry.setApplicationDestinationPrefixes("/app").enableSimpleBroker("/topic");
+        registry.setApplicationDestinationPrefixes("/app").enableSimpleBroker("/topic","/topic/chat");
     }
 
 }

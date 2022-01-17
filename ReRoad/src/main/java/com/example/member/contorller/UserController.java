@@ -55,20 +55,21 @@ public class UserController {
 
     //로그인 폼
     @GetMapping("/loginForm")
-    public String login() { return "views/member/loginForm"; }
+    public String login(Model model) {
+        model.addAttribute("content","/views/member/loginForm");
+        return "/templates"; }
 
     // 로그인 성공
-    @GetMapping("/loginOk")
+    @PostMapping("/loginOk")
     public String loginSuccess(@AuthenticationPrincipal UserAccount prin, Model model) {
 
-//        String userId = prin.getUsername();
-//        UserVo user = this.userService.getInfo(userId);
-//        String userNick = user.getUserNick();
-//        String userRole = user.getRole();
+        String userId = prin.getUsername();
 
         // 로그인 후 세션에 UserAccount(UserVo+Role) 객체 등록
-        session.setAttribute("loginUser", prin.getUser());
-        return "redirect:/";
+        session.setAttribute("loginUser", userId);
+        model.addAttribute("content","/");
+
+        return "/templates";
     }
 
     //로그인이 실패했을 경우
@@ -83,19 +84,24 @@ public class UserController {
             // 중복한 값이 있다면 비밀번호 오류로 안내
             // 중복한 값이 없다면 가입하지 않은 이메일로 안내
             if (checkNum == 1) {
-                model.addAttribute("loginFail","비밀번호가 잘못되었습니다.입력하신 정보를 확인해주세요.");
+                model.addAttribute("failMessage","비밀번호가 잘못되었습니다.입력하신 정보를 확인해주세요.");
             } else {
-                model.addAttribute("loginFail", "해당 이메일로 가입한 회원 정보를 찾을 수 없습니다.");
+                model.addAttribute("failMessage", "해당 이메일로 가입한 회원 정보를 찾을 수 없습니다.");
             }
+            model.addAttribute("content","views/member/loginForm");
         }
-        return "views/member/loginForm";
+        return "/templates";
     }
 
     @GetMapping("/joinUser")
-    public String forJoin() { return "views/member/JoinUser";}
+    public String forJoin(Model model) {
+        model.addAttribute("content","views/member/JoinUser");
+        return "/templates";}
 
     @GetMapping("/forgetPwd")
-    public String forForgetPwd() { return "views/member/forgetPwd";}
+    public String forForgetPwd(Model model) {
+        model.addAttribute("content","views/member/forgetPwd");
+        return "/templates";}
 
     // 회원 가입 과정에서 아이디 중복 체크
     @RequestMapping(value="/checkId", method = RequestMethod.POST)
@@ -133,7 +139,8 @@ public class UserController {
     @PostMapping("/moveJoinFormSe")
     public String moveSeForm(@RequestParam ("userId") String userId, Model model) {
         model.addAttribute("userId", userId);
-        return "views/member/JoinUserSe";
+        model.addAttribute("content","views/member/JoinUserSe");
+        return "/templates";
     }
 
     //회원가입
@@ -144,7 +151,10 @@ public class UserController {
             Map<String, String> map = userService.validate(bindingResult);
             for(String key: map.keySet()) {
                 model.addAttribute(key,map.get(key));
-            }return "views/member/JoinUserSe";
+                // 가입 실패 후 되돌아가는 화면으로 아이디 값을 다시 되돌려줌
+                model.addAttribute("userId",user.getUserId());
+                model.addAttribute("content","views/member/JoinUserSe");
+            }return "/templates";
         } else {
             // 에러가 없을 경우 Password 암호화 후 DB에 등록
             UserVo verifyUser = new UserVo();
@@ -154,7 +164,8 @@ public class UserController {
             verifyUser.setRole("ROLE_MEMBER");
 
             this.userService.registUser(verifyUser);
-            return "views/member/joinSuccess";
+            model.addAttribute("content","views/member/joinSuccess");
+            return "/templates";
         }
 
     }
@@ -188,7 +199,7 @@ public class UserController {
 
     // 임시 비밀번호 발급
     @PostMapping("/sendTempPwd")
-    public String sendTempPwd(@RequestParam("userId") String email) {
+    public String sendTempPwd(@RequestParam("userId") String email, Model model) {
         String tempPwd = "";
         Random random = new Random();
         for (int i=0; i<5; i++) {
@@ -208,8 +219,9 @@ public class UserController {
         user.setUserId(email);
         user.setUserPwd(passwordEncoder.encode(tempPwd));
         this.userService.updateTempPwd(user);
+        model.addAttribute("content","views/member/forgetPwdSuccess");
 
-        return "views/member/forgetPwdSuccess";
+        return "/templates";
     }
 
 
@@ -287,17 +299,13 @@ public class UserController {
 
     //회원 자진 탈퇴 시 회원정보 삭제
     @PostMapping("/member/deleteUser")
-    public String deleteUser(Authentication authentication, HttpSession session){
+    public String deleteUser(Authentication authentication){
         UserDetails userDetails = (UserDetails)authentication.getPrincipal();
         String userId = userDetails.getUsername();
 
         this.userService.removeUser(userId);
 
-        session.getAttribute("loginUser");
-        session.removeAttribute("loginUser");
-        session.invalidate();
-
-        return "redirect:/";
+        return "redirect:/logout";
     }
 
     //회원 정보 상세 조회
@@ -317,7 +325,7 @@ public class UserController {
     @PostMapping("/member/modifyUser")
     public String modifyUser(@Valid @ModelAttribute UserVo user, BindingResult bindingResult,
                              Model model, HttpServletRequest request,
-                             @AuthenticationPrincipal User prin) {
+                             @AuthenticationPrincipal UserAccount prin) {
 
         //DB 유효성 체크 결과 에러가 발생할 경우 수정폼으로 돌아감
         if (bindingResult.hasErrors()) {
@@ -342,20 +350,31 @@ public class UserController {
             if (!user.getPhoto().getOriginalFilename().isEmpty()) {
                 imgname = fileUploadService.restore(photo, request);
 
-            } else {
-                imgname = "default.png";
             }
             modifyUser.setPhotoSys(imgname);
 
             this.userService.modifyUser(modifyUser);
 
-            String userId = prin.getUsername();
-            UserVo user2 = this.userService.getInfo(userId);
-            String userNick = user2.getUserNick();
-            String userRole = user2.getRole();
 
-            session.setAttribute("loginUser", user2);
-            return "redirect:/";
+//            UserVo user2 = this.userService.getInfo(userId);
+//            String userNick = user2.getUserNick();
+//            String userRole = user2.getRole();
+
+//            session.setAttribute("loginUser", prin.getUser().getUserNick());
+//            session.setAttribute("loginUser", prin.getUser().getPhotoSys());
+
+            String userId = prin.getUsername();
+
+            UserVo user2 = this.userService.retrieveUser(userId);
+            model.addAttribute("user", user2);
+
+            List<BoardVo> board = this.boardService.retrieveRecentBoardList(userId);
+            model.addAttribute("board", board);
+
+            List<CommentVo> com = this.boardService.retrieveUserComList(userId);
+            model.addAttribute("com", com);
+
+            return "views/member/myPage";
         }
     }
 
@@ -372,9 +391,28 @@ public class UserController {
         List<BoardVo> board = this.boardService.retrieveRecentBoardList(userId);
         model.addAttribute("board", board);
 
-
+        List<CommentVo> com = this.boardService.retrieveUserComList(userId);
+        model.addAttribute("com", com);
 
         return "views/member/myPage";
     }
 
+    //관리자 마이페이지
+    @GetMapping("/admin/myPage")
+    public String adminMyPage(Authentication authentication, Model model) {
+
+        UserDetails userDetails = (UserDetails)authentication.getPrincipal();
+        String userId = userDetails.getUsername();
+
+        UserVo user = this.userService.retrieveUser(userId);
+        model.addAttribute("user", user);
+
+        List<BoardVo> board = this.boardService.retrieveRecentBoardList(userId);
+        model.addAttribute("board", board);
+
+        List<CommentVo> com = this.boardService.retrieveUserComList(userId);
+        model.addAttribute("com", com);
+
+        return "views/member/adminMyPage";
+    }
 }

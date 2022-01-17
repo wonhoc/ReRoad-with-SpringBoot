@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" lang="ko"
-      layout:decorate="~{layout/defaultLayout}" >
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <th:block layout:fragment="css">
     <link rel="stylesheet" th:href="@{css/member/joinUserForm.css}">
 </th:block>
@@ -11,9 +10,7 @@
 </th:block>
 <head>
 </head>
-
 <section layout:fragment="content">
-
     <form class="form-signin" method="POST" action="/moveJoinFormSe">
         <div id = "joinFormOne"class="joinUserContainer">
             <div class="welcome_join_Text">

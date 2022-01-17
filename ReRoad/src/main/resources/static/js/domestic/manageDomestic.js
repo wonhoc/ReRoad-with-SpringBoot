@@ -35,6 +35,7 @@ $(document).ready(function () {
             el[i].value = '';
         }
 
+        $("#thumb").remove();
 
 
         let region = $(this).text();
@@ -45,7 +46,7 @@ $(document).ready(function () {
 
         $('#selected').html("");
 
-        let str = '<div id="currentDomestic">' + region +'</div>';
+        let str = '<div id="currentDomestic" style="position: absolute; top : 570px;">' + region +'</div>';
             str += '<input type="hidden" name = "domesticName" id = "domesticName" value="'+ region +'">';
 
         $('#selected').html(str);

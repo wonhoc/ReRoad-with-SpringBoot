@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="layout/defaultLayout">
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
 <th:block layout:fragment="css">
     <link rel="stylesheet" th:href="@{/css/domestic/manageDomestic.css}">
 </th:block>
@@ -11,26 +11,31 @@
 </th:block>
 <head>
 </head>
-<section layout:fragment="content">
     <div class="container" data-spy="affix">
 
-
+        <div id="mainImage">
          <input type="text" id="searchDomestic"  placeholder="도시를 입력해주세요.">
 
         <div id="search" style="display: none" >
             <div class="entireDomesticName" th:each="list : ${entireList}" >
-                <span th:id="${list.domesticName}" class="name" th:text="${list.domesticName}"></span>
+                <span th:id="${list.domesticName}" class="name" th:text="${list.domesticName} +'  '"></span>
             </div>
         </div>
 
-
+        </div>
 <div id="main">
+
         <div id="images">
-            <img th:if="${domestic.thumbnailSystem == null}" class = "thumnail" src="/images/noImage.png">
-            <img th:if="${domestic.thumbnailSystem != null}" class="thumnail" th:src="@{'/upload/'+${domestic.thumbnailSystem}}">
+            <div class="thumb">
+                <img th:if="${domestic.thumbnailSystem == ''}" class = "thumnail" src="/images/noImage.png">
+                <img th:if="${domestic.thumbnailSystem != ''}" class="thumnail" th:src="@{'/upload/'+${domestic.thumbnailSystem}}">
+            </div>
+
             <div id="imgViewArea" style="margin-top:10px; display:none;">
+                <div class="thumb">
                 <img id="imgArea" style="margin-left: 250px; margin-bottom: 100px; margin-top: 70px; border-radius: 50%; border: 3px solid teal; width: 300px;
                         height: 300px;" onerror="imgAreaError()"/>
+                </div>
             </div>
         </div>
 
@@ -42,15 +47,13 @@
         </div>
 
     <label for="boardFileInput">
-        <img src="/images/board/poto.png" style="width:100px; height:100px; cursor: pointer;">
+        <img src="/images/board/image.png" style="margin-top:-70px; margin-left: 100px; width:70px; height:70px; cursor: pointer;">
     </label>
         <input style="display: none;" type="file" name="boardFileInput" id="boardFileInput">
-        <button type="submit" class="btn-default" >작성</button>
+        <button id="btn" type="submit" class="btn btn-primary" >작성</button>
     </form>
 
 </div>
 
-
     </div>
-</section>
 </html>

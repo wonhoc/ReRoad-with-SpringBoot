@@ -8,8 +8,7 @@ $(document).ready(function() {
                     'tr').attr('id');
                 const noticeNo = $('#noticeNo').val();
 
-                $
-                    .ajax({
+                $.ajax({
                         url: '/removeNoticeFile/'
                             + fileNo + "/" + noticeNo ,
                         type: 'DELETE',
@@ -17,7 +16,6 @@ $(document).ready(function() {
                         success: function (data) {
                             $("#originFileSize").remove();
                             $("#originFileList").remove();
-                            console.log(data.length);
                             if(data.length == 0){
                                 let html = '<input type="hidden" name="originFileSize" id="originFileSize" value=0>';
                                 $("#files").html(html);
@@ -35,8 +33,7 @@ $(document).ready(function() {
                             }},
                         error: function (err) {
                             console.log(err);
-                        }
-
+                            }
                     });
             });
 });

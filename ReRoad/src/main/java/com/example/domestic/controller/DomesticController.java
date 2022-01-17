@@ -7,6 +7,7 @@ import com.example.domestic.service.DomesticService;
 import com.example.domestic.vo.DomesticVo;
 import com.example.domestic.vo.WeatherVo;
 
+import com.example.domestic.vo.WeatherVo2;
 import com.example.util.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -19,6 +20,10 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 
@@ -31,16 +36,17 @@ public class DomesticController {
     @GetMapping("/domestic/{domesticName}")
     public String domectic(@PathVariable String domesticName, Model model) throws Exception {
 
-        WeatherVo weatherVo = this.domesticService.weather(domesticName);
+        List<WeatherVo2> weatherVo = this.domesticService.weather(domesticName);
 
         DomesticVo domestic = this.domesticService.manageDomestic(domesticName);
 
+        System.out.println(weatherVo);
 
         model.addAttribute("weather",weatherVo);
         model.addAttribute("domestic",domestic);
+        model.addAttribute("content","views/domestic/domestic");
 
-
-        return "views/domestic/domestic";
+        return "/templates";
     }
 
     @GetMapping("/manageDomestic/{domesticName}")
@@ -53,19 +59,18 @@ public class DomesticController {
 
         model.addAttribute("domestic", domestic);
         model.addAttribute("entireList", entireList);
+        model.addAttribute("content","views/domestic/manageDomestic");
 
 
-
-        return "views/domestic/manageDomestic";
+        return "/templates";
 
     }
 
     @PostMapping("/settingDomestic")
     public String settingDomestic(DomesticVo domestic, @RequestPart(value = "boardFileInput", required = false) List<MultipartFile> File,
                                   BindingResult bindingResult, Model model,
-                                  RedirectAttributes attributes, @AuthenticationPrincipal User principal ) throws Exception {
+                                  RedirectAttributes attributes, @AuthenticationPrincipal User principal) throws Exception {
 
-        System.out.println("File    : "+ File.size());
         if (File.size() != 0) {
 
             List<BoardFileVo> boardFile = FileUtils.uploadFiles(File);

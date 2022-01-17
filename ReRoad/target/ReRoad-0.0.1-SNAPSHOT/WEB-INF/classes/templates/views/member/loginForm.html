@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:width="http://www.w3.org/1999/xhtml" lang="ko"
-      layout:decorate="~{layout/defaultLayout}">
+      >
 <th:block layout:fragment="css">
     <link rel="stylesheet" th:href="@{css/member/loginForm.css}">
 </th:block>
@@ -15,7 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>로그인 페이지</title>
 </head>
-<section layout:fragment="content">
+
     <div class="loginContainer" style=" position:relative;z-index:2">
         <div class="welcome_login">
             <h1 class="form-signin-heading">로그인</h1>
@@ -57,5 +57,5 @@
             </div>
         </form>
     </div>
-</section>
+
 </html>

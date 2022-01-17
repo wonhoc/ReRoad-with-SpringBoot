@@ -1,6 +1,6 @@
 const url = 'http://localhost:8080';
 let stompClient;
-let username;
+let username = $('#username').val();
 let newMessage = new Map();
 
 toastr.options = {
@@ -24,11 +24,9 @@ toastr.options = {
 $(document).ready(function () {
 
 
-
-
     let username = $('#username').val();
 
-    console.log(username);
+
 
     if (username != null) {
 
@@ -37,12 +35,16 @@ $(document).ready(function () {
         let socket = new SockJS(url + '/chat');
         stompClient = Stomp.over(socket);
 
-
-
+        let username = $('#username').val();
+        console.log(username)
 
         stompClient.connect({}, function (frame) {
 
-            stompClient.subscribe("/topic/messages/" + username, function (message) {
+            console.log(`frame : {}`, frame);
+            let username = $('#username').val();
+            console.log(username)
+
+            stompClient.subscribe("/topic/messages/"+username, function (message) {
                 let data = JSON.parse(message.body);
 
                 let boardNo = data.boardNo;

@@ -5,6 +5,10 @@
 		xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
+
+	<th:block>
+		<script src="/js/message/chat.js"></script>
+	</th:block>
 	<meta charset="UTF-8" />
 
 	<link rel="stylesheet" href="/css/header.css" />
@@ -21,7 +25,7 @@
 	<div class="container" id="headerContainer">
 		<div id="wrapper">
 			<span class="header_logo">
-				<a th:href="@{/}">
+				<a th:href="@{/main}">
 					<img id="logo" src="/images/mainLogo.png">
 				</a>
 			</span>
@@ -48,7 +52,7 @@
 					<span th:if="${#authentication.principal.getUser.getPhotoSys} != null" class = "photoSpan">
 						<img class= "showPho" th:src="@{/images/member/user.png}">
 					</span>
-					
+					<input type="hidden" id="username" th:value="${#authentication.principal.getUser.getUserId}">
 
 					<span id="buttons">
 							<a th:href="@{/member/myPage}" style="text-decoration: none">

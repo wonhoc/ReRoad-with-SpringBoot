@@ -35,14 +35,8 @@ $(document).ready(function () {
             el[i].value = '';
         }
 
-        let tumb = '<img style="margin-left: 250px;\n' +
-            '    margin-bottom: 100px;\n' +
-            '    margin-top: 70px;\n' +
-            '    border-radius: 50%;\n' +
-            '    border: 3px solid teal;\n' +
-            '    width: 300px;\n' +
-            '    height: 300px;" class = "thumnail" src="/images/noImage.png">';
-        $(".thumb").html(tumb);
+        $("#thumb").remove();
+
 
         let region = $(this).text();
 
@@ -52,7 +46,7 @@ $(document).ready(function () {
 
         $('#selected').html("");
 
-        let str = '<div id="currentDomestic">' + region +'</div>';
+        let str = '<div id="currentDomestic" style="position: absolute; top : 570px;">' + region +'</div>';
             str += '<input type="hidden" name = "domesticName" id = "domesticName" value="'+ region +'">';
 
         $('#selected').html(str);

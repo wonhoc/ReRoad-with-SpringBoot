@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.example.domestic.service.DomesticService;
 
+import com.example.member.service.UserService;
 import com.example.member.vo.UserAccount;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -36,7 +37,7 @@ public class mainController {
     private DomesticService domesticService;
 
 
-    @GetMapping("/")
+    @GetMapping("/main")
     public String main(Model model, @AuthenticationPrincipal UserAccount user) throws Exception {
         List<NoticeVO> noticeList  = this.noticeService.retrieveLastNotices();
         model.addAttribute("noticeList", noticeList);

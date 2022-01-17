@@ -5,260 +5,6 @@
     height: 300px;
   
 }
-#mainwrapper{
-	 width: 100%;
-    height: 400px;
-    position: relative;
-    font-family: 'DoHyeon', sans-serif;
-}
-
-#searchBox{
-	width: 80%;
-	height: 300px;
-	background-color: rgb(242,242,242);
-	position: absolute;
-	left: 110px;
-	bottom: 10px;
-	border-radius: 15px;
-}
-
-
-.tempWrapper{
-	
-	border-radius: 15px;
-	background-color: rgb(233,233,233);
-	width: 90%;
-	height: 80%;
-	position: absolute;
-	left: 5%;
-	top:20%;
-	padding: 0;
-}
-
-#headWrapper{
-	height: 10%;
-	padding: 0;
-}
-
-.searchBoxHead{
-	font-weight: 900;
-	height: 100%;
-	cursor: pointer;
-}
-
-.searchBoxHead:hover{
-	box-shadow: 2px 2px 2px 2px gray;
-}
-
-#headTrain{
-	border-top-left-radius: 15px;
-	background-color: rgb(242,242,242);
-	
-}
-
-#headBus{
-	border-top-right-radius: 15px;
-	background-color:  teal;
-	
-}
-
-#selWrapper{
-	position: absolute;
-	width: 100%;
-	height: 13%;
-}
-
-.tripType:hover{
-	box-shadow: 2px 2px 2px 2px gray;
-}
-
-.selTextdiv{
-	font-weight: 700;
-	padding-top: 2%;
-	display: inline-block;
-}
-
-#selOneway{
-	background-color: rgb(233,233,233);
-	height: 100%;
-	border-top-left-radius: 15px;
-	padding: 0;
-	cursor: pointer;
-	
-}
-
-#selTurn{
-	background-color: teal;
-	height: 100%;
-	border-top-right-radius: 15px;
-	cursor: pointer;
-}
-
-#bodyWrapper{
-	
-	left: 5%;
-	top: 20%;
-	width: 99%;
-	position: absolute;
-	height: 40%;
-	
-}
-
-.searchBody{
-	
-	 float: left;
-     width:30%;
-     box-sizing: border-box;
-     left: 1px;
-     height: 100%;
-     color: white;
-     border: 3px solid rgb(233,233,233);
-     background-color: teal;
-     font-size: 30px;
-     font-family: 'DoHyeon', sans-serif;
-    	
-}
-
-.searchBody:hover{
-	
-	color: #ff7f7f;
-	cursor: pointer;
-}
-
-.searchBodyDate{
-	
-	 float: left;
-     width:18%;
-     box-sizing: border-box;
-     left: 1px;
-     height: 100%;
-     color: white;
-     border: 3px solid rgb(233,233,233);
-     background-color: teal;
-     
-}
-
-.searchBodyDate:hover{
-	
-	color: #ff7f7f;
-	cursor: pointer;
-}
-
-#dateArr{
-	 
-	 display: none;
-}
-
-
-.datePikcer{
-	margin-top: 40%;
-	right: 65%;
-	position: absolute;
-	padding: 0;
-	border: 0;
-	width: 0;
-	height: 0;
-}
-
-#btnSearch{
-	height : 15%;
-	z-index: 0;
-	position: absolute;
-	top: 90%;
-	right: 25%;
-}
-
-.btn-primary {
-    background-color: RGB(1,121,122);
-    border-color: RGB(1,121,122);
-    font-weight: bolder;
-    width: 50%;
-}
-
-
-.bodyTextdiv{
-	font-size: 25px;
-	font-weight: 700;
-	padding-top: 15%;
-	display: inline-block;
-	background-color: tear;
-}
-
-.bodyTextDatediv{
-	font-size: 25px;
-	font-weight: 700;
-	padding-top: 15%;
-	display: inline-block;
-	background-color: tear;
-}
-
-/*
-	datapicker zindex setting
-*/
-.hasDatepicker {
-    position: relative;
-    z-index: 9;
-}
-
-/*
-	팝오버 설정
-*/
-
-.popover-content{
-	font-size: 10px;
-	color: black;
-}
-
-
-#hideOnbush{
-	position: absolute;
-	top: 100%;
-	width: 100%;
-	height: auto;
-	background-color: white;
-	z-index: 1;
-	display: none;
-	border:  3px solid teal;
-}
-
-.cityName{
-	font-weight: 700;
-	font-size: 150%;
-	text-align: left;	
-	border: 2px solid gray;
-	
-}
-
-.stNameWrapper{
-	margin-left: 0;
-	padding-left: 0;
-	text-align: left;
-	/* background-color: #ffffea; */
-	background-color: teal;
-	/*color: black;*/
-	color: white;
-}
-
-.stNameIn{
-	font-size: 20px;
-	display: inline-block;
-	 margin: 0 0 0 0;
-    padding: 0 0 0 0;
-    border : 0;
-}
-
-.olSt{
-	margin: 0;
-	padding: 0;
-	list-style: none;
-	
-}
-
-.stNameIn:hover{
-	display: inline-block;
-	color: #ff7f7f;
-	cursor: pointer
-}
 
 .content{
     width: 250px;
@@ -289,6 +35,17 @@
     text-align: center;
     font-size: 18px;
 }
+
+
+.manage{
+	width: 20px;
+	height: 20px;
+}
+#domestic{
+	margin-left: 1px;
+	margin-bottom: 30px;
+}
+
 
 /* 공지사항 css 0113추가한 코드! */
 #right_table  a{
@@ -340,17 +97,21 @@
 #managerDomestic{
 	margin-left: 1000px;
 }
+#notiCnt{
+   font-size: smaller;
+   color: #8a8989;
+}
+
+#notitxt{
+   font-size: smaller;
+   color: #8a8989;
+   width:50px;
+
+}
+#managerDomestic{
+   margin-left: 1000px;
+}
 .list_title{
-	width: 320px;
+   width: 320px;
 }
 /* 공지사항 css 끝 */
-.manage{
-	width: 20px;
-	height: 20px;
-}
-#domestic{
-
-	margin-left: 1px;
-	margin-bottom: 30px;
-}
-

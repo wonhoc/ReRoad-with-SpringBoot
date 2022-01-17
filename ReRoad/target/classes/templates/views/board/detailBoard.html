@@ -21,7 +21,7 @@
 
     <div class="container">
         <div id = "boardMain">
-
+        <div th:if="${#lists.size(board.boardFiles) != 0}">
             <div id="margin">
             <div id="slideShow">
                 <ul class="slides">
@@ -35,7 +35,7 @@
                 </p>
             </div>
             </div>
-
+        </div>
 
 
            <!-- <div class="album">
@@ -49,10 +49,10 @@
 
             <input type="hidden" name="boardNo" th:value="${board.boardNo}" id="boardNo">
         <form method="post" th:action="@{/deleteBoard/{boardNo}(boardNo=${board.boardNo})}">
-
-            <a th:href="@{/modifyBoardForm/{boardNo}(boardNo=${boardNo})}"  id ="modiBtn" class="btn btn-outline-warning">수정</a>
-            <button id="deleteBtn" class="btn btn-outline-secondary">삭제</button>
-
+        <div th:if="${user.userNick == board.userNick || user.role == 'ROLE_ADMIN'}">
+            <a  th:href="@{/modifyBoardForm/{boardNo}(boardNo=${boardNo})}"  id ="modiBtn" class="btn btn-outline-warning">수정</a>
+            <button type="button" id="deleteBtn" class="btn btn-outline-secondary">삭제</button>
+        </div>
             <div id="main">
 
 
@@ -93,10 +93,15 @@
                     <td id="comNick" th:text="${comment.userNick}"></td>
                     <td id="comWdate" th:text="${comment.comWdate}"></td>
                     <td id="com" class="comContent" th:text="${comment.comContent}"></td>
-                    <td th:if="${user.userNick == comment.userNick || user.role == 'ROLE_ADMIN'}"><button id="updateComBtn" class="modifyComReqBtn" type="button">수정</button></td>
-                    <td th:if="${user.userNick} != ${comment.userNick}"></td>
-                    <td th:if="${user.userNick == comment.userNick || user.role == 'ROLE_ADMIN'}"><button class="removeBtn">삭제</button></td>
-                    <td th:if="${user.userNick} != ${comment.userNick}"></td>
+                    <td th:if="${user.userNick == comment.userNick || user.role == 'ROLE_ADMIN'}"><button style="width: 68px;" id="updateComBtn" class="modifyComReqBtn" type="button">수정</button></td>
+                    <td style="width: 68px;" th:if="${user.userNick} != ${comment.userNick}"></td>
+                    <td  th:if="${user.userNick == comment.userNick || user.role == 'ROLE_ADMIN'}"><button style="width: 68px;" class="removeBtn">삭제</button></td>
+                    <td style="width: 68px;" th:if="${user.userNick} != ${comment.userNick}"></td>
+                </tr>
+                <tr class="modi" style="display: none">
+                    <td class="modifyForm" colspan="3"><input style="width: 500px" class="modifyComContent" th:value="${comment.comContent}"></td>
+                    <td><button style="width: 68px;" class="modifyComBtn">수정하기</button></td>
+                    <td><button style="width: 68px;" class="cancel">취소</button></td>
                 </tr>
             </tbody>
         </table>
@@ -113,19 +118,6 @@
             </div>
         </div>
 
-
-        <div id="modifyComment" style="display: none;">
-            <div>
-                <input type="hidden" id="comNo">
-                <textarea id="modifyComContent" rows="5" cols="50"
-                          placeholder="댓글을 입력해주세오 ."></textarea>
-            </div>
-
-            <div>
-                <button id="cancel">취소</button>
-                <button id="modifyComBtn">수정하기</button>
-            </div>
-        </div>
 
 
     </div>

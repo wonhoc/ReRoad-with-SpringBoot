@@ -49,7 +49,7 @@ $(document).ready(function () {
 
                 let boardNo = data.boardNo;
 
-                toastr.options.onclick = function() { location.href='/detailBoard/'+boardNo }
+                toastr.options.onclick = function() { location.href='/member/detailBoard/'+boardNo }
                 toastr.info(data.fromLogin+"님이 댓글을 남기셨습니다.");
 
                 render(data.message, data.fromLogin,data.boardNo);

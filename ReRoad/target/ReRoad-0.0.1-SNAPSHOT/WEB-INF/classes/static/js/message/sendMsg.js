@@ -5,9 +5,7 @@ $(document).ready(function() {
     let selectedUser = $('#userId').val();
     let boardNo = $('#boardNo').val();
 
-    const url = 'http://localhost:8080';
-    let socket = new SockJS(url + '/chat');
-    stompClient = Stomp.over(socket);
+
 
 
 

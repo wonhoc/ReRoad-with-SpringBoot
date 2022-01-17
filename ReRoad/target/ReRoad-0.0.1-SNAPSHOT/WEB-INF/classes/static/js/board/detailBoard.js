@@ -4,17 +4,11 @@ $(document).ready(function() {
         confirm("정말 삭제하시겠습니까?");
     })
 
+    $(document).on('click', '.modifyComReqBtn', function (){
+       $(this).parents('tbody').children('.modi').show()
+    })
 
 
-    $('#listComment').on('click', '.modifyComReqBtn', function() {
-        let comNo = $(this).parents('tbody').attr('id');
-         alert(comNo);
-            $('#modifyComment').insertAfter('#' + comNo);
-            $('#modifyComContent').val(comContent);
-            $('#comNo').val(comNo);
-            $('#modifyComment').show();
-            $('#' + comNo).hide();
-        });
 
     //댓글 취소
     $('#cancel').on('click', function() {
@@ -106,9 +100,10 @@ $(document).ready(function() {
 
     });
 
-    $('.modifyComBtn').on('click',function () {
-
-        alert($('#comNo').val());
+    $(document).on('click','.modifyComBtn', function (){
+        let comNo = $(this).parents('tbody').attr('id');
+        let comContent = $(this).val();
+        console.log(comContent);
         $.ajax({
             url: '/modityComment',
             type: 'POST',
@@ -116,8 +111,8 @@ $(document).ready(function() {
             dataType: 'json',
             data: JSON.stringify({
                 "boardNo" : $('#boardNo').val(),
-                "comNo" : $('#comNo').val(),
-                "comContent" : $('#modifyComContent').val(),
+                "comNo" : comNo,
+                "comContent" : comContent,
                 "userId" : $('#userId').val()
             }),
             success : function (data){

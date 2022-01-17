@@ -1,4 +1,11 @@
-$(document).ready(function(){	
+$(document).ready(function(){
+
+	$('#setting').on('click',function (){
+		$('.manage').toggle(500)
+	})
+
+
+
 	var vehicl = "열차";
 	var tripType = "편도";
 	var tripSel;
@@ -416,3 +423,4 @@ function dateCon(date){
 	return ymd;
 	
 }//dateCon() end
+

@@ -97,6 +97,7 @@
 					    				    				    		
 				    	</div>
                             
+
                              <div id="TmlList">
                               <input class="form-control" id="searchTml" type="text" placeholder="터미널 검색..">
 	                        	<ul id="showCityBox">
@@ -240,7 +241,7 @@
             </tr>
 
         </table>
-        <button style="width: 100px;" id="setting" class="btn btn-primary">관리</button>
+        <button sec:authorize="hasRole('ROLE_ADMIN')" style="width: 100px;" id="setting" class="btn btn-primary">관리</button>
     </div>
 
 </html>

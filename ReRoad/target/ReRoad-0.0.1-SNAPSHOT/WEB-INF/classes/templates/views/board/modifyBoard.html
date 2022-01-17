@@ -1,11 +1,9 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-
-      layout:decorate="layout/defaultLayout">
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <th:block layout:fragment="css">
-    <link rel="stylesheet" th:href="@{/css/board/modifyBoard.css}">
+    <link rel="stylesheet" th:href="@{/css/board/boardModify.css}">
 </th:block>
 <th:block layout:fragment="script">
     <script th:src="@{/js/board/modifyBoard.js}"></script>
@@ -13,18 +11,21 @@
 <head>
 
 </head>
-<section layout:fragment="content">
     <div class="container">
 
-
+    <div id="main">
         <form name="form" id="form" role="form" method="post" th:action="@{/modifyboard}">
             <input type="hidden" name="boardNo" id="boardNo" th:value="${board.boardNo}">
+
+
+            <strong id ="write">게시글 수정</strong>
+            <div id="bar2"></div>
             <div class="mb-3">
                 <input type="text" class="form-control" name="boardTitle" id="boardTitle"  th:value="${board.boardTitle}">
             </div>
 
             <div class="mb-3">
-                <input type="" class="form-control" name="boardContent" id="boardContent" th:value="${board.boardContent}" style="height: 300px;">
+                <textarea class="form-control" name="boardContent" id="boardContent" th:value="${board.boardContent}"></textarea>
             </div>
 
             <div>
@@ -33,7 +34,6 @@
             </div>
         </form>
 
-
     </div>
-</section>
+    </div>
 </html>

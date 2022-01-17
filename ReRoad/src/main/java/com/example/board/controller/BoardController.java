@@ -72,7 +72,7 @@ public class BoardController {
         return "/templates";
     }
 
-    @PostMapping("/deleteBoard/{boardNo}")
+    @GetMapping("/deleteBoard/{boardNo}")
     public String boardDelete(@PathVariable int boardNo) {
 
         this.boardService.remove(boardNo);
@@ -85,7 +85,8 @@ public class BoardController {
 
         BoardVo board = boardService.retrieveDetail(boardNo);
         model.addAttribute("board", board);
-        return "views/board/modifyBoard";
+        model.addAttribute("content","views/board/modifyBoard");
+        return "/templates";
     }
 
     @PostMapping("/modifyboard")
@@ -175,13 +176,6 @@ public class BoardController {
         map.put("boards", boards);
         return map;
     }
-
-
-    @GetMapping("/hihi")
-    public String hihihi(){
-        return "views/board/아아";
-    }
-
 
 }
 

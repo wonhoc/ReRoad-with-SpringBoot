@@ -40,12 +40,13 @@ public class DomesticController {
 
         DomesticVo domestic = this.domesticService.manageDomestic(domesticName);
 
+        System.out.println(weatherVo);
 
         model.addAttribute("weather",weatherVo);
         model.addAttribute("domestic",domestic);
+        model.addAttribute("content","views/domestic/domestic");
 
-
-        return "views/domestic/domestic";
+        return "/templates";
     }
 
     @GetMapping("/manageDomestic/{domesticName}")
@@ -58,10 +59,10 @@ public class DomesticController {
 
         model.addAttribute("domestic", domestic);
         model.addAttribute("entireList", entireList);
+        model.addAttribute("content","views/domestic/manageDomestic");
 
 
-
-        return "views/domestic/manageDomestic";
+        return "/templates";
 
     }
 
@@ -70,7 +71,6 @@ public class DomesticController {
                                   BindingResult bindingResult, Model model,
                                   RedirectAttributes attributes, @AuthenticationPrincipal User principal) throws Exception {
 
-        System.out.println("File    : "+ File.size());
         if (File.size() != 0) {
 
             List<BoardFileVo> boardFile = FileUtils.uploadFiles(File);

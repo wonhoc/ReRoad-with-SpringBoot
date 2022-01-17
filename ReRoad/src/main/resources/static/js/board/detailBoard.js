@@ -26,6 +26,15 @@ $(document).ready(function() {
 
 
     $('#addComBtn').on('click',function () {
+
+        if($('#comContent').val().length > 40){
+            Swal.fire({ icon: 'warning', title: '경고', text: '40자 이내로 적어주세요' ,});
+            return false;
+        }else if($('#comContent').val() == ''){
+            Swal.fire({ icon: 'warning', title: '경고', text: '댓글을 입력해주세요.' ,});
+            return false;
+        }
+
         $.ajax({
             url: "/createComment",
             type: 'POST',
@@ -36,25 +45,48 @@ $(document).ready(function() {
                 "comContent" : $('#comContent').val()
             }),
             success : function (data){
+
+                let comCount = data.comCount;
+                let currnetUser = data.currnetUser;
+
+                $('#comCount').html("");
+
+                let html = ' <span id="comCount" class="others">' + comCount + '</span>';
+
+                $('#comCount').html(html);
+
                 let comment = data.results;
                 $("#listComment").html("");
-                let str = '<thead><tr><td align="center" >작성자</td><td align="center" >날짜</td><td align="center" >내용</td><td></td><td></td></tr><thead>'
+
+                let str = "";
                 for (let i = 0; i < comment.length; i++) {
-                    str += '<tbody id = "' + comment[i].comNo + '">'
-                        + '<tr>'
-                        + '<td align="center" width="100px;" >'
-                        + comment[i].userNick
-                        + '</td>'
-                        + '<td align="center" width="100px;" >'
-                        + comment[i].comWdate
-                        + '</td>'
-                        + '<td align="center" width="400px;" class="comContent">'
-                        + comment[i].comContent
-                        + '</td>';
-                        str	+= '<td><button class="modifyComReqBtn" type="button">수정</button></td>'
-                            +'<td><button class="removeBtn">삭제</button></td>'
-                            + '</tr>';
-                    str += '</tbody>';
+                    if(comment == null){
+                        str = '<tbody><tr><td colspan="5">등록된 댓글이 없습니다.</td></tr></tbody>'
+                    }else {
+                        str += '<tbody id = "' + comment[i].comNo + '">'
+                            + '<tr>'
+                            + '<td id="comNick" >'
+                            + comment[i].userNick
+                            + '</td>'
+                            + '<td id="comWdate" >'
+                            + comment[i].comWdate
+                            + '</td>'
+                            + '<td id="com" class="comContent">'
+                            + comment[i].comContent
+                            + '</td>';
+                            if(currnetUser.userNick == comment[i].userNick || currnetUser.role == "ROLE_ADMIN"){
+                                str += '<td><button class="modifyComReqBtn" type="button">수정</button></td>';
+                            }else{
+                                str += '<td></td>'
+                            }
+                            if(currnetUser.userNick == comment[i].userNick || currnetUser.role == "ROLE_ADMIN"){
+                                str += '<td><button class="removeBtn">삭제</button></td>';
+                            }else{
+                                str += '<td></td>';
+                            }
+                            str += '</tr>';
+                        str += '</tbody>';
+                    }
                 }
                 $("#listComment").html(str);
 
@@ -89,24 +121,34 @@ $(document).ready(function() {
                 "userId" : $('#userId').val()
             }),
             success : function (data){
+
+
                 let comment = data.results;
                 $("#listComment").html("");
                 let str = '<thead><tr><td align="center" >작성자</td><td align="center" >날짜</td><td align="center" >내용</td><td></td><td></td></tr><thead>';
                 for (let i = 0; i < comment.length; i++) {
                     str += '<tbody id = "' + comment[i].comNo + '">'
                         + '<tr>'
-                        + '<td align="center" width="100px;" >'
+                        + '<td id="comNick" >'
                         + comment[i].userNick
                         + '</td>'
-                        + '<td align="center" width="100px;" >'
+                        + '<td id="comWdate" >'
                         + comment[i].comWdate
                         + '</td>'
-                        + '<td align="center" width="400px;" class="comContent">'
+                        + '<td id="com" class="comContent">'
                         + comment[i].comContent
                         + '</td>';
-                        str	+= '<td><button class="modifyComReqBtn" type="button">수정</button></td>'
-                            +'<td><button class="removeBtn">삭제</button></td>'
-                            + '</tr>';
+                    if(currnetUser.userNick == comment[i].userNick || currnetUser.role == "ROLE_ADMIN"){
+                        str += '<td><button class="modifyComReqBtn" type="button">수정</button></td>';
+                    }else{
+                        str += '<td></td>'
+                    }
+                    if(currnetUser.userNick == comment[i].userNick || currnetUser.role == "ROLE_ADMIN"){
+                        str += '<td><button class="removeBtn">삭제</button></td>';
+                    }else{
+                        str += '<td></td>';
+                    }
+                    str += '</tr>';
                     str += '</tbody>';
                 }
                 $("#listComment").html(str);
@@ -132,26 +174,48 @@ $(document).ready(function() {
                     "comNo" : comNo
                 }),
             success : function (data) {
-                console.log("입력은 된다")
+                let comCount = data.comCount;
+                let currnetUser = data.currnetUser;
+
+
+                $('#comCount').html("");
+
+                let html = ' <span id="comCount" class="others">' + comCount + '</span>';
+
+                $('#comCount').html(html);
+
                 let comment = data.results;
                 $("#listComment").html("");
-                let str = '<thead><tr><td align="center" >작성자</td><td align="center" >날짜</td><td align="center" >내용</td><td></td><td></td></tr><thead>';
+                let str='';
+
                 for (let i = 0; i < comment.length; i++) {
-                    str += '<tbody id = "' + comment[i].comNo + '">'
-                        + '<tr>'
-                        + '<td align="center" width="100px;" >'
-                        + comment[i].userNick
-                        + '</td>'
-                        + '<td align="center" width="100px;" >'
-                        + comment[i].comWdate
-                        + '</td>'
-                        + '<td align="center" width="400px;" class="comContent">'
-                        + comment[i].comContent
-                        + '</td>';
-                    str	+= '<td><button class="modifyComReqBtn" type="button">수정</button></td>'
-                        +'<td><button class="removeBtn">삭제</button></td>'
-                        + '</tr>';
-                    str += '</tbody>';
+                    if(comment[i].userNick == null){
+                        str += '<tbody><tr><td colspan="5">등록된 댓글이 없습니다.</td></tr></tbody>'
+                    }else {
+                        str += '<tbody id = "' + comment[i].comNo + '">'
+                            + '<tr>'
+                            + '<td id="comNick" >'
+                            + comment[i].userNick
+                            + '</td>'
+                            + '<td id="comWdate" >'
+                            + comment[i].comWdate
+                            + '</td>'
+                            + '<td id="com" class="comContent">'
+                            + comment[i].comContent
+                            + '</td>';
+                        if(currnetUser.userNick == comment[i].userNick || currnetUser.role == "ROLE_ADMIN"){
+                            str += '<td><button class="modifyComReqBtn" type="button">수정</button></td>';
+                        }else{
+                            str += '<td></td>'
+                        }
+                        if(currnetUser.userNick == comment[i].userNick || currnetUser.role == "ROLE_ADMIN"){
+                            str += '<td><button class="removeBtn">삭제</button></td>';
+                        }else{
+                            str += '<td></td>';
+                        }
+                        str += '</tr>';
+                        str += '</tbody>';
+                    }
                 }
                 $("#listComment").html(str);
 

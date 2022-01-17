@@ -9,13 +9,6 @@
 
 	<link rel="stylesheet" href="/css/header.css" />
 	<link rel="script" href="/js/header.js">
-	<script type="text/javascript" src="/js/message/chat.js"></script>
-
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.0/handlebars.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.1.1/list.min.js"></script>
-
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 	<script>
 		function loadchat(){
 			window.open("/chatting", "_blank", "toolbar=use, menubar=yes, width=800, height=900").focus();
@@ -32,6 +25,7 @@
 				</a>
 			</span>
 			<span class="loginAndInfo">
+
 				<!-- session에 로그인 유저 정보가 없다면 -->
 				<div th:if="${session.loginUser} == null">
 <!--				<div sec:authorize="!isAuthenticated()">-->
@@ -53,6 +47,7 @@
 					<span th:if="${#authentication.principal.getUser.getPhotoSys} != null" class = "photoSpan">
 						<img class= "showPho" th:src="@{/images/member/user.png}">
 					</span>
+					
 
 					<span id="buttons">
 							<a th:href="@{/member/myPage}" style="text-decoration: none">

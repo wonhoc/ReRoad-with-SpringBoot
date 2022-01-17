@@ -35,7 +35,14 @@ $(document).ready(function () {
             el[i].value = '';
         }
 
-
+        let tumb = '<img style="margin-left: 250px;\n' +
+            '    margin-bottom: 100px;\n' +
+            '    margin-top: 70px;\n' +
+            '    border-radius: 50%;\n' +
+            '    border: 3px solid teal;\n' +
+            '    width: 300px;\n' +
+            '    height: 300px;" class = "thumnail" src="/images/noImage.png">';
+        $(".thumb").html(tumb);
 
         let region = $(this).text();
 

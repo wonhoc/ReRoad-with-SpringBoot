@@ -344,7 +344,7 @@
 
     <!-- 국내여행지 전체 조회 -->
     <select id="domesticAll" statementType="CALLABLE" resultMap="resultMapDomestic">
-        { call sp_domestic_all() }
+        { call sp_domestic_withoutMain() }
     </select>
 
     <!-- 국내여행 업데이트 -->

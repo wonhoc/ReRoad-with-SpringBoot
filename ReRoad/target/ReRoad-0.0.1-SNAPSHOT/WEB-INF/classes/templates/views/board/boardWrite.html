@@ -1,11 +1,9 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-
-      layout:decorate="layout/defaultLayout">
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <th:block layout:fragment="css">
-    <link rel="stylesheet" th:href="@{/css/board/boardWrite.css}">
+    <link rel="stylesheet" th:href="@{/css/board/boardWrites.css}">
 </th:block>
 <th:block layout:fragment="script">
     <script th:src="@{/js/board/boardWrite.js}"></script>
@@ -13,10 +11,9 @@
 <head>
 
 </head>
-<section layout:fragment="content">
+
     <div class="container">
         <form name="form" id="form" role="form" method="post" th:action="@{/boardWrite}" enctype="multipart/form-data">
-        <form id="addForm">
 
             <div id="main">
             <strong id ="write">게시글 작성</strong>
@@ -27,31 +24,28 @@
                 <input type="text" class="form-control" name="boardTitle" id="boardTitle">
             </div>
 
-
-
             <div class="mb-3">
                 <textarea class="form-control" name="boardContent" id="boardContent"> </textarea>
             </div>
 
-            <div id="imagebox" style="display: inline;">
-                <label for="fileList">
-                    <img id="image" src="/images/board/image.png">
-                </label>
-                <input type="file" name="fileList" id="fileList" onchange="previewImage(this,'View_area')" style="display: none;" multiple>
-                <span id='View_area'
-                      style='position:relative; color: black; border: 0px solid black;'>
-                </span>
-            </div>
 
 
-            <div>
-                <button type="submit" class="btn btn-sm btn-primary" id="saveBtn">글 작성</button>
-                <a class="btn btn-default waves-effect waves-light" th:href="@{/boardList}">목록</a>
+                <div id='image_preview'>
+                    <label for="fileList">
+                        <img id="image" src="/images/board/image.png">
+                    </label>
+                    <input type='file' accept="image/*" id='fileList' name="fileList" multiple='multiple' style="display: none;" />
+                    <div id='att_zone'
+                         data-placeholder='이미지를 첨부 하려면 카메라 이미지 클릭하거나 이미지를 드래그앤드롭 하세요'></div>
+                </div>
+                <div>
+                    <button type="submit" class="btn btn-info" id="saveBtn">글 작성</button>
+                    <a id="listBtn" class="btn btn-default waves-effect waves-light" th:href="@{/boardList}">목록</a>
+                </div>
+
             </div>
-            </div>
+
         </form>
 
-        </form>
     </div>
-</section>
 </html>

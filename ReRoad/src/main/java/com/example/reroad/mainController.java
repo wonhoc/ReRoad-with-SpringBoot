@@ -40,8 +40,8 @@ public class mainController {
 
 
     @GetMapping("/main")
-
     public String main(Model model) throws Exception {
+
 
         List<NoticeVO> noticeList  = this.noticeService.retrieveLastNotices();
         model.addAttribute("noticeList", noticeList);

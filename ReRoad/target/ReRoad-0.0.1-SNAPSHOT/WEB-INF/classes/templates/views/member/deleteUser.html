@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="layout/defaultLayout">
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <th:block layout:fragment="css">
     <link rel="stylesheet" th:href="@{/css/member/deleteUser.css}">
 </th:block>
 <head>
 </head>
-<section layout:fragment="content">
-    <div class="container">
+
+<div class="container">
     <section class="exit">
         <div class="exit_title_box">
             <h1 class="exit_title">회원탈퇴</h1>
@@ -33,7 +32,7 @@
             </div>
         </form>
     </section>
-    </div>
-</section>
+</div>
+
 
 </html>

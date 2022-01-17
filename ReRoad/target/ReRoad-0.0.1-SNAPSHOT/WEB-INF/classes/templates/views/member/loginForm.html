@@ -1,22 +1,14 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:width="http://www.w3.org/1999/xhtml" lang="ko"
-      >
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <th:block layout:fragment="css">
     <link rel="stylesheet" th:href="@{css/member/loginForm.css}">
 </th:block>
-<!--<th:block layout:fragment="script">-->
-<!--    <script th:src="@{/js/member/loginForm.js}"></script>-->
-<!--</th:block>-->
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>로그인 페이지</title>
-</head>
 
-    <div class="loginContainer" style=" position:relative;z-index:2">
+</head>
+     <div class="loginContainer" style=" position:relative;z-index:2">
         <div class="welcome_login">
             <h1 class="form-signin-heading">로그인</h1>
             <div class = "title_devide"></div>
@@ -29,7 +21,7 @@
 
         <form class="form_signin" method="POST">
             <div id="loginFailLog">
-                <span id = loginFailmessage th:text="${loginFail}"></span>
+                <span id = loginFailmessage th:text="${failMessage}"></span>
             </div>
             <div class="inputidpwd">
                 <label class = "idcss" for="userName">ID</label>
@@ -57,5 +49,5 @@
             </div>
         </form>
     </div>
-
 </html>
+

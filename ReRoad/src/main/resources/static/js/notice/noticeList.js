@@ -1,3 +1,11 @@
+$(document).on('keydown','#keyword' ,function (key) {
+
+    //키의 코드가 13번일 경우 (13번은 엔터키)
+    if (key.keyCode == 13) {
+       getSearchList();
+    }
+});
+
 $(document).ready(function () {
     $.ajax({
         url : '/getNoticeList',

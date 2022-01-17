@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" lang="ko">
+<th:block layout:fragment="css">
+    <link rel="stylesheet" th:href="@{css/paper/sendPaperDetail.css}">
+</th:block>
+<th:block layout:fragment="script">
+    <script th:src="@{/js/paper/sendPaperDetail.js}"></script>
+</th:block>
+<head>
+</head>
+    <div class="container">
+        <div id="paperPageMain">
+            <div id="welcomeDiv">
+                <h1 id="welcome_paper">쪽지관리</h1>
+                <div id="title_devide"></div>
+                <div id="welcome_paper_text">
+                    닉네임을 통해 쪽지를 주고 받을 수 있습니다.<br>
+                    쪽지에 자신의 연락처, 이름 등 개인정보를 쓰지 않도록 주의해주십시오.<br>
+                    타인에 대한 비방이나 욕설, 광고 등 부적절한 내용의 쪽지를 보낼 경우 강제탈퇴될 수 있습니다.<br>
+                </div>
+            </div>
+            <div id="paperMain">
+                <div id="paperMenu" class="col-sm-3">
+                    <a th:href="@{/writePaper}">
+                        <button type="button" class="btn btn-default" id="write" name="write">쪽지 보내기</button>
+                    </a>
+                    <a th:href="@{/sendPaper}">
+                        <button type="button" class="btn btn-default" id="send" name="send">보낸 쪽지함</button>
+                    </a>
+                    <a th:href="@{/receivePaper}">
+                        <button type="button" class="btn btn-default" id="receive" name="receive">받은 쪽지함</button>
+                    </a>
+                </div>
+            </div>
+            <div id="viewDetail" class="col-sm-9">
+
+
+            </div>
+
+
+        </div>
+    </div>
+</html>

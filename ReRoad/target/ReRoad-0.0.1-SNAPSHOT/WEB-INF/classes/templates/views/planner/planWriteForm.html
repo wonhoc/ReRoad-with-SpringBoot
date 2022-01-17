@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layout/defaultLayout}">
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <th:block layout:fragment="css">
     <link rel="stylesheet" th:href="@{/css/planner/planWrite.css}">
     <link rel="stylesheet" th:href="@{/css/jquery-ui.min.css}">
@@ -16,70 +15,70 @@
 <head>
 
 </head>
-<section layout:fragment="content">
-    <div class="container" id="writeForm">
-        <form name="form" id="form" role="form" method="post" th:action="@{/member/writeplan}">
-            <div class="mb-3">
-                <h3 class="text-title">여행일정 플랜 작성</h3>
-                <div class="oneline">
-                    <label for="travelTitle">여행 이름</label>
-                    <input type="text" class="input" name="travelTitle" id="travelTitle"
-                           autocomplete="off" maxlength="16">
-                </div>
-                    <label for="spot">여행지</label>
-                    <input type="text" class="input" name="spot" id="spot"
-                           autocomplete="off" maxlength="16">
-                <br>
-                <div class="twoline">
+<body>
+<div class="container" id="writeForm">
+    <form name="form" id="form" role="form" method="post" th:action="@{/member/writeplan}">
+        <div class="mb-3">
+            <h3 class="text-title">여행일정 플랜 작성</h3>
+            <div class="oneline">
+                <label for="travelTitle">여행 이름</label>
+                <input type="text" class="input" name="travelTitle" id="travelTitle"
+                       autocomplete="off" maxlength="16">
+            </div>
+            <label for="spot">여행지</label>
+            <input type="text" class="input" name="spot" id="spot"
+                   autocomplete="off" maxlength="16">
+            <br>
+            <div class="twoline">
                 <label id="duringlabel" for="startDate">여행기간</label>
                 <input type="text" class="datepicker" name="startDate" id="startDate" autocomplete="off"> &nbsp; ~&nbsp;
                 <input type="text" class="datepicker" name="arriveDate" id="arriveDate" autocomplete="off">
-                </div>
-                </div>
-            <br>
-            <div class="threeline">
-                <label  for="memo">메모</label>
-                <textarea class="input" name="memo" id="memo" placeholder="잊기 쉬운 정보들을 메모해보세요."
-                       style="height: 150px;" autocomplete="off" wrap="hard"></textarea>
             </div>
-            <br>
-            <br>
-               <div id="subtitle">
-                <h4 id="chkTitle">체크리스트</h4>
-                <input type="button" name="itemAdd" id="itemAdd" value="아이템 추가" onclick="item_Add()"/>
-               </div>
-                <div id="subcontent">
-                   <table id="itemTable" class="item_table">
-                    <thead class="table_head">
-                    <tr>
-                       <th><input type="checkbox" id="allchk" name="allchk"></th>
-                        <th><input type="button" name="itemDel" id="itemDel" value="선택 삭제" onclick="item_del()"/></th>
-                    </tr>
-                    </thead>
-                    <tr>
-                        <td id="empty">&empty;</td>
-                        <td><input class="input" type="text" id="checkListContent" name="checkListContent" placeholder="아이템 입력.."
-                                   autocomplete="off" maxlength="10"></td>
-                        <td><select name="ready">
-                            <option value="0">준비 못함!</option>
-                            <option value="1">준비 완료!</option>
-                        </select></td>
-                    </tr>
-                    <tbody id="itemList">
+        </div>
+        <br>
+        <div class="threeline">
+            <label  for="memo">메모</label>
+            <textarea class="input" name="memo" id="memo" placeholder="잊기 쉬운 정보들을 메모해보세요."
+                      style="height: 150px;" autocomplete="off" wrap="hard"></textarea>
+        </div>
+        <br>
+        <br>
+        <div id="subtitle">
+            <h4 id="chkTitle">체크리스트</h4>
+            <input type="button" name="itemAdd" id="itemAdd" value="아이템 추가" onclick="item_Add()"/>
+        </div>
+        <div id="subcontent">
+            <table id="itemTable" class="item_table">
+                <thead class="table_head">
+                <tr>
+                    <th><input type="checkbox" id="allchk" name="allchk"></th>
+                    <th><input type="button" name="itemDel" id="itemDel" value="선택 삭제" onclick="item_del()"/></th>
+                </tr>
+                </thead>
+                <tr>
+                    <td id="empty">&empty;</td>
+                    <td><input class="input" type="text" id="checkListContent" name="checkListContent" placeholder="아이템 입력.."
+                               autocomplete="off" maxlength="10"></td>
+                    <td><select name="ready">
+                        <option value="0">준비 못함!</option>
+                        <option value="1">준비 완료!</option>
+                    </select></td>
+                </tr>
+                <tbody id="itemList">
 
-                    </tbody>
-                </table>
-                    <div id="foot">
-                        <div class="errmsg">
-                        <div id="Isvalid"></div>
-                        </div>
-                        <h4></h4>
-                        <button type="submit" class="btn btn-sm btn-primary" id="saveBtn">저장</button>
-                        <a class="btn btn-default waves-effect waves-light" th:href="@{/member/planlist}">목록</a>
-                    </div>
+                </tbody>
+            </table>
+            <div id="foot">
+                <div class="errmsg">
+                    <div id="Isvalid"></div>
                 </div>
+                <h4></h4>
+                <button type="submit" class="btn btn-sm btn-primary" id="saveBtn">저장</button>
+                <a class="btn btn-default waves-effect waves-light" th:href="@{/member/planlist}">목록</a>
+            </div>
+        </div>
 
-        </form>
-    </div>
-</section>
+    </form>
+</div>
+</body>
 </html>

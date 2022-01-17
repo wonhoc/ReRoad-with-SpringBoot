@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" lang="ko"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" lang="ko">
+
 <th:block layout:fragment="css">
     <link rel="stylesheet" th:href="@{css/member/joinUserForm.css}">
 </th:block>
@@ -10,6 +11,7 @@
 </th:block>
 <head>
 </head>
+<section layout:fragment="content">
     <form class="form-signin" method="POST" action="/moveJoinFormSe">
         <div id = "joinFormOne"class="joinUserContainer">
             <div class="welcome_join_Text">
@@ -26,15 +28,14 @@
             <div class="inputEmailAndNum">
                 <label class = "idcss" for="userId">ID(Email)</label>
                 <input class="form-control" type="text" id="userId" name="userId" placeholder="example@email.com" />
-                <div id="checkDbId" >
-                </div>
+                <div id="checkDbId" ></div>
                 <button id="sendVeriNum" type="button" class="btn btn-primary btn-lg btn-block">인증번호발송</button>
                 <label class = "pwcss" for="veriNumber">인증번호</label>
                 <input class="form-control" type="text" id="veriNumber" name="veriNumber" placeholder="인증번호를 입력하세요" />
                 <div id="checkVeriNumber"></div>
                 <button id="nextButton" type="submit" class="btn btn-primary btn-lg btn-block"> 다음 </button>
-
             </div>
         </div>
     </form>
+</section>
 </html>

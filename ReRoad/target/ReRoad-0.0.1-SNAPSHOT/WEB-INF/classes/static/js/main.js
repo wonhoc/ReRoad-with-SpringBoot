@@ -1,6 +1,13 @@
-$(document).ready(function(){	
+$(document).ready(function(){
+
+	$('#setting').on('click',function (){
+		$('.manage').toggle(500)
+	})
+
+
+
 	var vehicl = "열차";
-	var tripType ="편도";
+	var tripType = "편도";
 	var tripSel;
 	
 	//열차, 버스 선택
@@ -15,6 +22,14 @@ $(document).ready(function(){
 		vehicl == "열차" ? $('#vehiclType').val('train') : $('#vehiclType').val('expBus');
 		console.log($('#vehiclType').val());
 		
+		//선택 바꿀때마다 초기화 시키기
+		$('#bodyDep').text('출발지');
+		$('#depLo').val('');
+		$('#depLoName').val('');
+		
+		$('#bodyArr').text('도착지');
+		$('#arrLo').val('');
+		$('#arrLoName').val('');
 		
 		
 	});
@@ -53,46 +68,98 @@ $(document).ready(function(){
 	
 	//출발지 선택
 	$('#dep').click(function(){
-	
-		if ($('#hideOnbush').css('display') === 'none' ){
+		//열차 출발지 선택
+		if ($('#stListBox').css('display') === 'none' &&  vehicl == "열차"){
 		
-			$('#hideOnbush').show();
+			$('#stListBox').show();
 			tripSel = $(this);
 		}else {
-			$('#hideOnbush').hide(); }//if end
+			$('#stListBox').hide(); 
+		}//if end
+
+		
+		//고속버스 출발지 선택
+		if ($('#TmlList').css('display') === 'none' &&  vehicl == "버스"){
+		
+			$('#TmlList').show();
+			tripSel = $(this);
+		}else {
+			$('#TmlList').hide(); 
+		}//if end
+		
 	});
+	
+		
+		
+	
 	
 	//도착지 선택
 	$('#arr').click(function(){
-	
-		if ($('#hideOnbush').css('display') === 'none' ){ 
-				$('#hideOnbush').show();
+		//열차 도착지 선택
+		if ($('#stListBox').css('display') === 'none' && vehicl == "열차"){ 
+				$('#stListBox').show();
 				tripSel = $(this);
 			}else {
-				$('#hideOnbush').hide(); 
+				$('#stListBox').hide(); 
+
 		}//if end
+		
+		//고속버스 도착지 선택
+		if ($('#TmlList').css('display') === 'none' &&  vehicl == "버스"){
+		
+			$('#TmlList').show();
+			tripSel = $(this);
+		}else {
+			$('#TmlList').hide(); 
+		}//if end
+		
+
 	});
 	
 	//선택창 숨기기
-	$('.listWrapper').click(function(){
-		$('#hideOnbush').hide();
+	$('.stNameWrapper').click(function(){
+		$('#stListBox').hide();
 	});
+	
+	$('.liTml').click(function(){
+		$('#TmlList').hide();
+
+	});
+	
+	$('#temptmep').click(function(){
+		$('#TmlList').hide();
+	});
+	
+
+	
 	
 	//역 선택 보여주기
 	$('.stNameIn').click(function(){	
 		tripSel.children('.bodyTextdiv').text($(this).text());
-		tripSel.children('.selLoNa-me').val($(this).text().trim());
+		tripSel.children('.selLoName').val($(this).text().trim());
 		tripSel.children('.selLo').val($(this).attr('value'));
 		tripSel.children('.selLoName').val($(this).text());
 	});
 	
-	//검색어 입력
-	$("#searchInput").on("keyup", function() {
+
+	//선택한 터미널 보여주기
+	$('.liTml').click(function(){	
+		tripSel.children('.bodyTextdiv').text($(this).text());
+		tripSel.children('.selLoName').val($(this).text().trim());
+		tripSel.children('.selLo').val($(this).attr('value'));
+		tripSel.children('.selLoName').val($(this).text());
+	});
+	
+
+	
+	//기차역 검색어 입력
+	$("#searchSt").on("keyup", function() {
 	    let searchKeyword = $(this).val().trim();
+	    $('.stNameWrapper').children('.ulSt').show();
 	    $(".stNameIn").filter(function() {
 	      $(this).toggle($(this).text().trim().indexOf(searchKeyword) > -1)
 	    });
-  });
+ 	 });
 	
 	
 	//검색버튼 클릭시 검사
@@ -148,6 +215,16 @@ $(document).ready(function(){
 			$('#bodyDateArr').attr("data-content","오는날을 선택 해주세요.");
 			$('#bodyDateArr').popover("show");
 			setTimeout(function() {$('#bodyDateArr').popover('hide');}, hideTime);
+			
+		}//if end
+		
+		//가는날 오는날 비교
+		if($('#dateArr').css('display') == 'block' && parseInt(letStartDate) >= parseInt(letArrDate)){
+			flag = false;
+			$('#btnSearch').attr("data-content","출발시간과 도착시간을 다시 확인해 주세요.");	
+			$('#btnSearch').popover("show");
+			$('#btnSearch').popover("disable");
+			setTimeout(function() {$('#btnSearch').popover('hide');}, hideTime);
 		}//if end
 		
 		
@@ -203,14 +280,144 @@ $(document).ready(function(){
 		});
 		$('#inputDatepickerArr').show().focus().hide();	
 	});
+	
+	
+	//선택창 숨기기
+	$('#headBus').click(function(){	
+			
+		if($('#stListBox').css('display') != 'none'){
+					
+			$('#stListBox').hide();
 
-	$('#setting').on('click',function (){
-		$('.manage').toggle(500)
-	})
+		}//if end
+		
+		
+	});
+	
+	$('#headTrain').click(function(){	
+			
+		if($('#TmlList').css('display') != 'none'){
+					
+			$('#TmlList').hide();
 
+		}//if end
+		
+		
+	});
+	
+	
+	//열차역 전체 보여주기
+	$('#showAllSt').click(function(){
+		
+		$('.stNameWrapper').children('.ulSt').show();
+		
+	});
+	
+	//특정 지역의 열차역만 보여주기
+	$('.showSt').click(function(){
+		
+		let showStText = $(this).text().trim();
+		
+		$('.stNameWrapper').children('.ulSt').not('#' + showStText).hide();
+		$('.stNameWrapper').children('.ulSt').filter('#' + showStText).show();
+	});
+	
+	
+	
+	//터미널 목록 전체 보여주기
+	$('#showAllTml').click(function(){
+	
+		$('#temptmep').children('.ulTml').show();
+	
+	});
+	
+	//터미널 목록 서울 지역만 보여주기
+	$('#showSe').click(function(){
+	
+		$('#temptmep').children('.ulTml').not('#se').hide();
+		$('#temptmep').children('.ulTml').filter('#se').show();
+		
+	});
+	
+	//터미널 목록 인천/경기 지역만 보여주기
+	$('#showIn').click(function(){
+	
+		$('#temptmep').children('.ulTml').not('#in').hide();
+		$('#temptmep').children('.ulTml').filter('#in').show();
+		
+	});
+	
+	//터미널 목록 강원지역만 보여주기
+	$('#showKa').click(function(){
+	
+		$('#temptmep').children('.ulTml').not('#ka').hide();
+		$('#temptmep').children('.ulTml').filter('#ka').show();
+		
+	});
+	
+	//터미널 목록 대전/충남만 보여주기
+	$('#showDe').click(function(){
+	
+		$('#temptmep').children('.ulTml').not('#de').hide();
+		$('#temptmep').children('.ulTml').filter('#de').show();
+		
+	});
+	
+	
+	//터미널 목록 충북지역만 보여주기
+	$('#showCh').click(function(){
+	
+		$('#temptmep').children('.ulTml').not('#ch').hide();
+		$('#temptmep').children('.ulTml').filter('#ch').show();
+		
+	});
+	
+	//터미널 목록 광주/전남 지역만 보여주기
+	$('#showKh').click(function(){
+	
+		$('#temptmep').children('.ulTml').not('#kh').hide();
+		$('#temptmep').children('.ulTml').filter('#kh').show();
+		
+	});
+	
+	//터미널 목록 전북 지역만 보여주기
+	$('#showJb').click(function(){
+	
+		$('#temptmep').children('.ulTml').not('#jb').hide();
+		$('#temptmep').children('.ulTml').filter('#jb').show();
+		
+	});
+	
+	
+	//터미널 목록 부산/경남 지역만 보여주기
+	$('#showBu').click(function(){
+	
+		$('#temptmep').children('.ulTml').not('#bu').hide();
+		$('#temptmep').children('.ulTml').filter('#bu').show();
+		
+	});
+	
+	//터미널 목록 대구/경북 지역만 보여주기
+	$('#showDk').click(function(){
+	
+		$('#temptmep').children('.ulTml').not('#dk').hide();
+		$('#temptmep').children('.ulTml').filter('#dk').show();
+		
+	});
+	
+	//터미널 검색
+	$("#searchTml").on("keyup", function() {
+	    let searchKeyword = $(this).val().trim();
+	    $(".liTml").filter(function() {
+	      $(this).toggle($(this).text().trim().indexOf(searchKeyword) > -1)
+	    });
+	    
+	    $('#temptmep').children('.ulTml').show();
+ 	 });
+	
+	
+	
 });//ready() end
-
-
 
 
 //날짜 포멧 변환
@@ -223,3 +430,4 @@ function dateCon(date){
 	return ymd;
 	
 }//dateCon() end
+

@@ -5,6 +5,10 @@
 		xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
+
+	<th:block>
+		<script src="/js/message/chat.js"></script>
+	</th:block>
 	<meta charset="UTF-8" />
 
 	<link rel="stylesheet" href="/css/header.css" />
@@ -42,12 +46,18 @@
 					</span>
 					<!-- 회원의 프로필 사진 정보가 session에 있다면 -->
 					<span th:if="${#authentication.principal.getUser.getPhotoSys} != null" class = "photoSpan">
-						<img class= "showPho" th:src="@{/images/member/user.png}">
+						<img class= "showPho" th:src="@{'/upload/' + ${#authentication.principal.getUser.getPhotoSys}}">
 					</span>
-					
+					<input type="hidden" id="username" th:value="${#authentication.principal.getUser.getUserId}">
 
 					<span id="buttons">
-							<a th:href="@{/member/myPage}" style="text-decoration: none">
+							<a th:if="${#authentication.principal.getUser.getRole} == 'ROLE_ADMIN'" th:href="@{/admin/myPage}" style="text-decoration: none">
+							<button class="btn btn-default" type="button" id="myPageBtn" >
+								<span id="showMyPage">마이페이지</span>
+								<span th:text="${#authentication.principal.getUser.userNick}" id="showNick" />
+							</button>
+							</a>
+							<a th:if="${#authentication.principal.getUser.getRole} != 'ROLE_ADMIN'" th:href="@{/member/myPage}" style="text-decoration: none">
 							<button class="btn btn-default" type="button" id="myPageBtn" >
 								<span id="showMyPage">마이페이지</span>
 								<span th:text="${#authentication.principal.getUser.userNick}" id="showNick" />

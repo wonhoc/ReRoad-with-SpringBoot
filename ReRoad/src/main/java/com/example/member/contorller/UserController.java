@@ -67,7 +67,7 @@ public class UserController {
 
         // 로그인 후 세션에 UserAccount(UserVo+Role) 객체 등록
         session.setAttribute("loginUser", userId);
-//        model.addAttribute("content","/main");
+
 
         return "redirect:/main";
     }
@@ -76,7 +76,9 @@ public class UserController {
     @PostMapping("/loginFail")
     public String forFailer(@RequestParam ("username") String userId,  Model model) {
         // 아이디를 입력하지 않았을 경우
+
         if(userId.equals("")){
+
             model.addAttribute("failMessage", "아이디를 입력해주세요");
         } else {
             // 아이디를 입력했을 경우 입력한 ID 값을 가져와서 DB에서 중복 검사

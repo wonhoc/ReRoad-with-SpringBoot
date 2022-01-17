@@ -66,7 +66,7 @@ public class UserController {
         String userId = prin.getUsername();
 
         // 로그인 후 세션에 UserAccount(UserVo+Role) 객체 등록
-//        session.setAttribute("loginUser", userId);
+        session.setAttribute("loginUser", userId);
         model.addAttribute("userNick",prin.getUser().getUserNick());
         model.addAttribute("photoSys",prin.getUser().getPhotoSys());
         model.addAttribute("content","redirect:/");

@@ -4,22 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="18869558-432e-4011-9d86-a59d03e83cff" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_thymeleaf_extras_thymeleaf_extras_springsecurity5_3_0_4_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/pom.xml" afterDir="false" />
+    <list default="true" id="18869558-432e-4011-9d86-a59d03e83cff" name="Changes" comment="탬플릿 변경">
       <change beforePath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/member/contorller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/member/contorller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/member/oauth/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/member/oauth/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/resources/static/css/member/joinUserFormSe.css" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/static/css/member/joinUserFormSe.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/fragments/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/fragments/header.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/views/member/JoinUser.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/views/member/JoinUser.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/views/member/JoinUserSe.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/views/member/JoinUserSe.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/target/classes/static/css/member/joinUserFormSe.css" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/classes/static/css/member/joinUserFormSe.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/target/classes/templates/fragments/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/classes/templates/fragments/header.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/target/classes/templates/views/member/JoinUser.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/classes/templates/views/member/JoinUser.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/target/classes/templates/views/member/JoinUserSe.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/classes/templates/views/member/JoinUserSe.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/target/classes/templates/views/paper/receivePaper.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/classes/templates/views/paper/receivePaper.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/target/classes/templates/views/paper/writePaper.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/classes/templates/views/paper/writePaper.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -113,7 +99,7 @@
       <workItem from="1642157204123" duration="19000" />
       <workItem from="1642248106347" duration="15457000" />
       <workItem from="1642344591837" duration="2358000" />
-      <workItem from="1642379167958" duration="313000" />
+      <workItem from="1642379167958" duration="535000" />
     </task>
     <task id="LOCAL-00001" summary="수정">
       <created>1641550413516</created>
@@ -185,7 +171,14 @@
       <option name="project" value="LOCAL" />
       <updated>1642264894802</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="탬플릿 변경">
+      <created>1642379534914</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1642379534914</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

@@ -8,7 +8,7 @@ import com.example.member.service.UserService;
 import com.example.member.vo.UserAccount;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.parameters.P;
+
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -47,8 +47,6 @@ public class mainController {
         model.addAttribute("trainStList", trainScheduleService.retrieveTrainStinfo());
 
         List domestic = this.domesticService.boardMain();
-
-        System.out.println("List : " + domestic);
 
         model.addAttribute("domestic", domestic);
         model.addAttribute("content", "/main");

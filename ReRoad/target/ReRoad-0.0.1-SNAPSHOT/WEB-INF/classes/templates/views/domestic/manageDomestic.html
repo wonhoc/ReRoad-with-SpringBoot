@@ -4,7 +4,7 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
 <th:block layout:fragment="css">
-    <link rel="stylesheet" th:href="@{/css/domestic/manageDomestic.css}">
+    <link rel="stylesheet" th:href="@{/css/domestic/domesticManage.css}">
 </th:block>
 <th:block layout:fragment="script">
     <script th:src="@{/js/domestic/manageDomestic.js}"></script>
@@ -18,7 +18,7 @@
 
         <div id="search" style="display: none" >
             <div class="entireDomesticName" th:each="list : ${entireList}" >
-                <span th:id="${list.domesticName}" class="name" th:text="${list.domesticName} +'  '"></span>
+                <span th:id="${list.domesticName}" class="name" th:text="${list.domesticName + '   '}"></span>
             </div>
         </div>
 
@@ -26,20 +26,20 @@
 <div id="main">
 
         <div id="images">
-            <div class="thumb">
+            <div id="thumb">
                 <img th:if="${domestic.thumbnailSystem == ''}" class = "thumnail" src="/images/noImage.png">
                 <img th:if="${domestic.thumbnailSystem != ''}" class="thumnail" th:src="@{'/upload/'+${domestic.thumbnailSystem}}">
             </div>
 
             <div id="imgViewArea" style="margin-top:10px; display:none;">
-                <div class="thumb">
-                <img id="imgArea" style="margin-left: 250px; margin-bottom: 100px; margin-top: 70px; border-radius: 50%; border: 3px solid teal; width: 300px;
+                <img id="imgArea" style="margin-left: 350px; margin-bottom: 100px; margin-top: 68px; border-radius: 50%; border: 3px solid teal; width: 300px;
                         height: 300px;" onerror="imgAreaError()"/>
-                </div>
             </div>
         </div>
 
     <form th:action="@{/settingDomestic}" name="form" id="form" role="form" method="post" enctype="multipart/form-data">
+
+
         <input type="hidden" name="prevdomesticName" th:value="${domestic.domesticName}">
         <div id="selected">
             <div id="currentDomestic" th:text="${domestic.domesticName}"></div>
@@ -47,7 +47,7 @@
         </div>
 
     <label for="boardFileInput">
-        <img src="/images/board/image.png" style="margin-top:-70px; margin-left: 100px; width:70px; height:70px; cursor: pointer;">
+        <img src="/images/board/image.png" style="position: absolute; top: 691px; margin-left: 155px; width:70px; height:70px; cursor: pointer;">
     </label>
         <input style="display: none;" type="file" name="boardFileInput" id="boardFileInput">
         <button id="btn" type="submit" class="btn btn-primary" >작성</button>

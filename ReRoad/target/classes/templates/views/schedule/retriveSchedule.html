@@ -68,8 +68,8 @@
 					    </div>
 					    				 
 				    	<div id="stListBox">
-				    		<input class="form-control" id="searchInput" type="text" placeholder="역 검색..">
 					    	<div id="cityNameBox">
+					    	<input class="form-control" id="searchSt" type="text" placeholder="역 검색..">
 					    		<ul class="cityName">
 					    			<li id="showAllSt">전체</li>
 					    			<li class="showSt" th:each="cityName:${trainStList}" th:text="${cityName.cityName}"></li>
@@ -168,10 +168,11 @@
 			</form>	
 		</div>
 		
-		<div class="infoPlace"> [[${depLoName}]]<i class="fas fa-arrow-right fa-lg"></i>[[${arrLoName}]]
+		<div class="infoPlace"> [[${depLoName}]]<i class="fas fa-arrow-right fa-lg"></i>[[${arrLoName}]]					
+						<span class="infoTotal">전체 <span class="total">[[${startSc.totalCnt}]]</span>건</span>
 						<span class="ftRight" >
 						<i class="fas fa-chevron-circle-down fa-lg" id="foldStartSc"></i>
-						<i class="fas fa-chevron-circle-up fa-lg unFoldSc" id="unFoldStartSc"></i>
+						<i class="fas fa-chevron-circle-up fa-lg unFoldSc" id="unFoldStartSc"></i>					
 						</span>
 					</div>
 		<!-- train start -->
@@ -205,9 +206,17 @@
 						</div>
 						
 					</div>
+					
+					<!--  페이징 -->
+					<th:block th:with="totalPage = ${#numbers.formatInteger(startSc.totalCnt, 0)} / ${#numbers.formatInteger(startSc.numOfRows, 0)} + 1">
+						<th:block th:each="num : ${#numbers.sequence(1, totalPage)}">
+							<span th:attr="class=${startSc.pageNo == #strings.toString(num) ? 'cPage' : 'page'}" th:text="${num}"></span>			
+						</th:block>
+					</th:block>  	
+					
 				</div>
 				
-	
+			
 				
 		</div>
 		<!-- expbus start -->
@@ -252,6 +261,7 @@
 		
 		
 		<div class="infoPlace" th:if="${arrDate != 'none'}">[[${arrLoName}]] <i class="fas fa-arrow-right fa-lg"></i>[[${depLoName}]]
+						<span class="infoTotal">전체 <span class="total">[[${turnSc.totalCnt}]]</span>건</span>
 						<span class="ftRight" >
 						<i class="fas fa-chevron-circle-down fa-lg" id="foldArrSc"></i>
 						<i class="fas fa-chevron-circle-up fa-lg unFoldSc" id="unFoldArrSc"></i>
@@ -327,7 +337,8 @@
 						
 						
 						
-					</div>
+			</div>
+								
 		</div>
 			
 	

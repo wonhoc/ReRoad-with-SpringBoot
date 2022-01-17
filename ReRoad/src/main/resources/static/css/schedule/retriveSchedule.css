@@ -10,6 +10,17 @@ body{
 }
 
 
+.cPage{
+	
+	color : teal;
+}
+
+.page{
+	
+	margin-right: 1em;
+	margin-left: 1em;
+	cursor: pointer;
+}
 
 .unFoldSc{
 	
@@ -80,6 +91,19 @@ body{
 	width: 50%;
 	text-align: right;
 	float: left;
+}
+
+
+.infoTotal{
+	
+	margin-left: 1em;
+	
+	
+}
+
+.total{
+	
+	color: teal;
 }
 
 .scInfoEl{

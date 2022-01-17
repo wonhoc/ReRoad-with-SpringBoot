@@ -131,6 +131,8 @@ public class TrainScheduleServiceImpl implements TrainScheduleService {
 		
 		ResponseEntity<ApiResponseObject> responseEntity = restTemplate.getForEntity(SERVER_URL + GET_TRAIN_SC, ApiResponseObject.class, params);
 		
+		System.out.println("responseEntity : " +  responseEntity.toString());
+		
 		System.out.println("get json");
 		ArrayList<TrainScInfoVo> list = (ArrayList<TrainScInfoVo>)responseEntity.getBody().getScList();
 		
@@ -141,6 +143,8 @@ public class TrainScheduleServiceImpl implements TrainScheduleService {
 		trainSc.setTotalCnt(responseEntity.getBody().getTotalCnt());
 		//페이징 처리에 필요한 조회한 현재 페이지 번호
 		trainSc.setPageNo(responseEntity.getBody().getPageNo());
+		
+		trainSc.setNumOfRows((responseEntity.getBody().getNumOfRows()));
 		
 		return trainSc;
 

@@ -21,6 +21,7 @@ public class ApiResponseObject {
 	private LinkedHashMap _links;
 	private String pageNo;
 	private String totalCnt;
+	private String numOfRows;
 	private Object scList;
 	
 	

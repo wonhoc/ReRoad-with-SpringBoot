@@ -67,7 +67,7 @@ public class UserController {
 
         // 로그인 후 세션에 UserAccount(UserVo+Role) 객체 등록
         session.setAttribute("loginUser", userId);
-        model.addAttribute("content","/main");
+       // model.addAttribute("content","/main");
 
         return "redirect:/main";
     }

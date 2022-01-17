@@ -13,4 +13,5 @@ public interface TrainScheduleService {
 	ArrayList<CityTrainStInfoVo> retrieveTrainStinfo() throws Exception;
 	HashMap<String, Object> parseUserRequestInfoBeforeResponeScList(UserScRequsetVo usrv);
 	TrainScVo getTrainSc (TrainSetInfoVo setting);
+	
 }//interface end

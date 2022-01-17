@@ -1,17 +1,21 @@
 package com.example.schedule.controller;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.schedule.service.ExpBusScheduleService;
 import com.example.schedule.service.TrainScheduleService;
 import com.example.schedule.vo.UserScRequsetVo;
 import com.example.schedule.vo.expBus.ExpBusScVo;
 import com.example.schedule.vo.train.TrainScVo;
+import com.example.schedule.vo.train.TrainSetInfoVo;
 
 @Controller
 public class ScheduleController {
@@ -67,6 +71,8 @@ public class ScheduleController {
 			//model에 스케줄 조회 add
 			 model.addAttribute("startSc", startSc); //가는날 데이터
 			 
+			 System.out.println(startSc.toString());
+			 
 			 //왕복일경우 왕복 정보 add
 			 TrainScVo turnSc = (TrainScVo)ScList.get("turnSc");
 			 if(turnSc != null) {
@@ -99,9 +105,6 @@ public class ScheduleController {
 				 
 			 }//if end
 			 
-			 
-			 
-			 
         }//if end
         
         model.addAttribute("content", PATH + "retriveSchedule");
@@ -109,5 +112,4 @@ public class ScheduleController {
 		
 	}//retriveSchedule() end
 	
-
 }//class end

@@ -13,7 +13,6 @@
 <head>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.0/handlebars.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.1.1/list.min.js"></script>
 </head>
@@ -39,36 +38,19 @@
                 </div>
             </nav>
 
-        <table th:if="${boardList==null}">
 
-          <tr>
-              <td>등록된 글이 없습니다.</td>
-          </tr>
-
-        </table>
-
-        <div id="html" >
-        <table id="boardTable" th:if="${boardList != null}" th:each="board : ${boardList}">
-
-            <tr>
-                <td rowspan="3" ><a th:href="@{/member/detailBoard/{boardNo}(boardNo=${board.boardNo})}">
-                                                <img th:if="${#lists.size(board.boardFiles) >= 1}" class="thumnail" th:src="@{'/upload/'+${board.boardFiles[0].systemFileName}}">
-                    <img th:if="${#lists.size(board.boardFiles) == 0}" class="thumnail" src="/images/board/king.png"></a></td>
-                <td width="210px;" id="title" colspan="3"><a th:href="@{/member/detailBoard/{boardNo}(boardNo=${board.boardNo})}"><p th:text="${board.boardTitle}"></p></a></td>
-            </tr>
-            <tr id="Nick">
-                <td colspan="2"><img class="boardImg" src="/images/board/user.png"><span id="font" th:text="${board.userNick}"></span></td>
-                <td><img class="boardImg" src="/images/board/view.png"><span th:text="${board.boardCount}"></span></td>
-            </tr>
-            <tr>
-                <td colspan="3" th:text="${board.boardWdate}">
-            </tr>
-            <tr id="imgs">
-                <td height="50px;" id="content" colspan="5" th:text="${board.boardContent}"></td>
-            </tr>
-
-        </table>
+		 	
+		 	<div id="html">
+		 	
+		 	</div>
+		 	 	
+			<div id="paging">
+	            <div id="pagination-div">
+	                <div id="page-content"></div>
+	            </div>
+            </div>
+            
+          
 
         </div>
-    </div>
 </html>

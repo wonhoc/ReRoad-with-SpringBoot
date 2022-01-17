@@ -401,6 +401,9 @@ $(document).ready(function(){
 	    $('#temptmep').children('.ulTml').show();
  	 });
 	
+	$('#setting').on('click',function (){
+      $('.manage').toggle(500)
+   })
 	
 	
 });//ready() end

@@ -3,9 +3,17 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <th:block layout:fragment="css">
+	<link rel="stylesheet" th:href="@{/css/schedule/retriveSchedule.css}">
+	<link rel="stylesheet" th:href="@{/css/jquery-ui.min.css}" />	
     <link rel="stylesheet" th:href="@{/css/domestic/domestic.css}">
 </th:block>
 <th:block layout:fragment="script">
+	<script th:src="@{/js/main.js}"></script>
+    <script th:src="@{/js/schedule/retriveSchedule.js}"></script>
+    <script th:src="@{/js/jquery-ui.min.js}"></script>
+	<script th:src="@{/js/tooltip.js}"></script>
+	<script th:src="@{/js/popover.js}"></script>
+	<script th:src="@{/js/popper.min.js}"></script>
     <script th:src="@{/js/domestic/domestic.js}"></script>
 </th:block>
 <head>
@@ -13,10 +21,181 @@
 </head>
 
     <div class="container">
-            <img th:if="${domestic.thumbnailSystem != null}" th:src="@{'/upload/' + ${domestic.thumbnailSystem}}" alt="image" class="mainImage">
-            <img th:if="${domestic.thumbnailSystem == null}" src="/images/메인페이지버스.png" alt="image" class="mainImage">
+           
+           <!--  검색 -->
+           <div id="mainwrapper">
+            <img src="/images/메인페이지버스.png" alt="image" class="mainImage">
+            <form action="/retriveSchedule" method="POST" id="ScSelectForm">
+                <input type="hidden" id="pageNo" name="pageNo" value="1">
+                <div id="searchBox" class="row text-center">
+                    <!-- 헤드 -->
+                    <div id="headWrapper">
+                        <input type="hidden" id="vehiclType" name="vehiclType" value="train">
+                        <div class="searchBoxHead col-sm-6" id="headTrain">열차</div>
+                        <div class="searchBoxHead col-sm-6" id="headBus">버스</div>
+                    </div>
+                    <div class="tempWrapper">
+                        <!-- 왕복 -->
+                        <div id="selWrapper">
+                            <div id="selOneway" class="col-sm-6 tripType">
+                                <div class="selTextdiv">편도</div>
+                            </div>
+                            <div id="selTurn" class="col-sm-6 tripType">
+                                <div class="selTextdiv">왕복</div>
+                            </div>
+                        </div>
+
+                        <!-- 바디 -->
+                        <div id="bodyWrapper">
+                            <div id="dep" class="searchBody">
+
+                                <div class="bodyTextdiv" id="bodyDep" data-toggle="popover" data-placement="top">출발지
+                                </div>
+                                <input type="hidden" class="selLo" id="depLo" name="depLo">
+                                <input type="hidden" id="depLoName" name="depLoName" class="selLoName">
+                            </div>
+
+                            <div id="arr" class="searchBody bush">
+                                <div class="bodyTextdiv" id="bodyArr" data-toggle="popover" data-placement="top" th:text="${domesticName}">도착지</div>
+                               	<th:block th:each="trainSt:${trainStList}">
+	                               	<th:block th:each="cityInfo:${trainSt.trainStInfo}" th:if="${cityInfo.trainStName == domesticName}">
+	                                	<input type="hidden" class="selLo" id="arrLo" name="arrLo" th:value="${cityInfo.trainStId}">
+	                                	<input type="hidden" id="arrLoName" name="arrLoName" class="selLoName" th:value="${cityInfo.trainStName}">
+	                                </th:block>
+                                </th:block>
+                            </div>
+
+                            <div id="date" class="searchBody">
+                                <div class="bodyTextDatediv" id="bodyDate" data-toggle="popover" data-placement="top">
+                                    날짜
+                                </div>
+                                <input type="text" id="inputDatepicker" class="datePikcer">
+                                <input type="hidden" id="startDate" name="startDate">
+
+                            </div>
+
+                            <div id="dateArr" class="searchBodyDate">
+                                <div class="bodyTextDatediv" id="bodyDateArr" data-toggle="popover"
+                                     data-placement="top">오는날
+                                </div>
+                                <input type="text" id="inputDatepickerArr" class="datePikcer">
+                                <input type="hidden" id="arrDate" name="arrDate" value="none">
+                            </div>
+
+
+
+                           <div id="stListBox">
+				    		
+					    	<div id="cityNameBox">
+					    		<input class="form-control" id="searchSt" type="text" placeholder="역 검색..">
+					    		<ul class="cityName">			    			
+					    			<li id="showAllSt">전체</li>
+					    			<li class="showSt" th:each="cityName:${trainStList}" th:text="${cityName.cityName}"></li>
+					    		</ul>
+					    	</div>
+					    	
+					    	<div class="stNameWrapper">
+					    		<ul class="ulSt" th:each="trainSts:${trainStList}" th:id="${trainSts.cityName}"> 						    	
+				    				<li class="stNameIn" th:each="trainStInfo:${trainSts.trainStInfo}" th:text="${trainStInfo.trainStName}" th:value="${trainStInfo.trainStId}"></li>
+					    		</ul>		    		
+					    	</div>	
+					    				    				    		
+				    	</div>
+                            
+
+                             <div id="TmlList">
+                              <input class="form-control" id="searchTml" type="text" placeholder="터미널 검색..">
+	                        	<ul id="showCityBox">
+	                        		<li class="showCity" id="showAllTml">
+	                        		전체
+	                        		</li>
+	                        		<li class="showCity" id="showSe">
+	                        		서울
+	                        		</li>
+	                        		<li class="showCity" id="showIn">
+	                        		인천/경기
+	                        		</li>
+	                        		<li class="showCity" id="showKa">
+	                        		강원
+	                        		</li>
+	                        		<li class="showCity" id="showDe">
+	                        		대전/충남
+	                        		</li>
+	                        		<li class="showCity" id="showCh">
+	                        		충북
+	                        		</li>
+	                        		<li class="showCity" id="showKh">
+	                        		광주/전남
+	                        		</li>
+	                        		<li class="showCity"id="showJb">
+	                        		전북
+	                        		</li>
+	                        		<li class="showCity" id="showBu">
+	                        		부산/경남
+	                        		</li>
+	                        		<li class="showCity" id="showDk">
+	                        		대구/경북
+	                        		</li>
+
+	                        	</ul>
+	                        	<div id="temptmep">
+	                        		<ul  class="ulTml" id="se">
+	                        			<li th:text="${tml.tmName}" th:if="${tml.city == '서울'}" th:each="tml:${expTmlList}" th:value="${tml.tmId}" class="liTml"></li>
+	                        		</ul>
+
+	                        		<ul class="ulTml" id="in">
+	                        			<li th:text="${tml.tmName}" th:if="${tml.city == '인천/경기'}" th:each="tml:${expTmlList}" th:value="${tml.tmId}" class="liTml"></li>
+	                        		</ul>
+
+	                        		<ul class="ulTml" id="ka">
+	                        			<li th:text="${tml.tmName}" th:if="${tml.city == '강원'}" th:each="tml:${expTmlList}" th:value="${tml.tmId}" class="liTml"></li>
+	                        		</ul>
+
+	                        		<ul class="ulTml" id="de">
+	                        			<li th:each="tml:${expTmlList}" th:text="${tml.tmName}" th:if="${tml.city == '대전/충남'}" th:value="${tml.tmId}" class="liTml"></li>
+	                        		</ul>
+
+	                        		<ul class="ulTml" id="ch">
+	                        			<li th:each="tml:${expTmlList}" th:text="${tml.tmName}" th:if="${tml.city == '충북'}" th:value="${tml.tmId}" class="liTml"></li>
+	                        		</ul>
+
+	                        		<ul class="ulTml" id="kh">
+	                        			<li th:each="tml:${expTmlList}" th:text="${tml.tmName}" th:if="${tml.city == '광주/전남'}" th:value="${tml.tmId}" class="liTml"></li>
+	                        		</ul>
+
+	                        		<ul class="ulTml" id="jb">
+	                        			<li th:each="tml:${expTmlList}" th:text="${tml.tmName}" th:if="${tml.city == '전북'}" th:value="${tml.tmId}" class="liTml"></li>
+	                        		</ul>
+
+	                        		<ul class="ulTml" id="bu">
+	                        			<li th:each="tml:${expTmlList}" th:text="${tml.tmName}" th:if="${tml.city == '부산/경남'}" th:value="${tml.tmId}" class="liTml"></li>
+	                        		</ul>
+
+	                        		<ul class="ulTml" id="dk">
+	                        			<li th:each="tml:${expTmlList}" th:text="${tml.tmName}" th:if="${tml.city == '대구/경북'}" th:value="${tml.tmId}" class="liTml"></li>
+	                        		</ul>
+
+
+	                        	</div>
+	                        </div>
+
+                        </div>
+
+
+
+
+                        <button type="button" id="btnSearch" class="btn btn-primary" data-toggle="popover"
+                                data-placement="top">검색
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        
+        
+        
         <div class="map_wrap">
-            <div id="map" style="width:100%;height:500px;position:relative;overflow:hidden;"></div>
+            <div id="map" style="width:100%;height:500px;position:relative;overflow:hidden; margin-top: 2em;"></div>
 
             <div id="menu_wrap" class="bg_white">
                 <div class="option">

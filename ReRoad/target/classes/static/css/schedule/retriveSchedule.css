@@ -356,7 +356,7 @@ body{
 	top: 100%;
 	width: 100%;
 	background-color: white;
-	z-index: 1;
+	z-index: 99;
 	border:  3px solid #006480;
 	height: 45.5em;
 	display: none;
@@ -510,7 +510,7 @@ body{
 	top: 100%;
 	width: 100%;
 	height: 33em;
-	z-index: 1;
+	z-index: 99;
 	border:  3px solid teal;
 	background-color: white;
 	border-radius: 1%;

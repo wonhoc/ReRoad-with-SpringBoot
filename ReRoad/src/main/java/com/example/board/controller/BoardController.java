@@ -32,11 +32,16 @@ public class BoardController {
 
     @GetMapping("/boardList")
     public String boardList(@AuthenticationPrincipal User principle, Model model) {
-
+    	
+    	/*
         List<BoardVo> list = this.boardService.retrieveList();
 
-        model.addAttribute("boardList", list);
-        model.addAttribute("content","views/board/boardList");
+	
+		 * model.addAttribute("boardList", list);
+		 */
+    	
+		 model.addAttribute("content","views/board/boardList");
+		
 
         return "/templates";
     }

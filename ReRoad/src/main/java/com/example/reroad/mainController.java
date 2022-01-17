@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.example.domestic.service.DomesticService;
 
+import com.example.member.service.UserService;
 import com.example.member.vo.UserAccount;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -36,8 +37,8 @@ public class mainController {
     private DomesticService domesticService;
 
 
-    @GetMapping("/")
-    public String main(Model model, @AuthenticationPrincipal UserAccount user) throws Exception {
+    @GetMapping("/main")
+    public String main(Model model) throws Exception {
         List<NoticeVO> noticeList  = this.noticeService.retrieveLastNotices();
         model.addAttribute("noticeList", noticeList);
         //지역별 기차역리스트 add
@@ -45,7 +46,7 @@ public class mainController {
 
         List domestic = this.domesticService.boardMain();
 
-        System.out.println("List : " + domestic);
+
 
         model.addAttribute("domestic", domestic);
         model.addAttribute("content", "/main");

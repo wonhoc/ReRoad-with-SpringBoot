@@ -124,3 +124,15 @@
     border-color: #d58512;
     color: white;
 }
+
+/* 채팅 버튼 디자인 */
+#chatBtn {
+    font-weight: bolder;
+    border-color: teal;
+
+}
+#chatBtn:hover {
+    background-color: darkseagreen;
+    border-color: darkseagreen;
+    color: white;
+}

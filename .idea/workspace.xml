@@ -4,43 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="18869558-432e-4011-9d86-a59d03e83cff" name="Changes" comment="로그인 시 session 작업 변경">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/member/contorller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/member/contorller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/member/oauth/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/member/oauth/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/paper/controller/PaperController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/paper/controller/PaperController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/reroad/mainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/reroad/mainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/fragments/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/fragments/header.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/main.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/views/member/JoinUser.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/views/member/JoinUser.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/views/member/JoinUserSe.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/views/member/JoinUserSe.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/views/member/admin.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/views/member/forgetPwd.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/views/member/forgetPwd.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/views/member/forgetPwdSuccess.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/views/member/forgetPwdSuccess.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/views/member/joinSuccess.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/views/member/joinSuccess.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/views/member/loginForm.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/views/member/loginForm.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/views/member/loginSuccess.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/views/paper/receivePaper.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/views/paper/receivePaper.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/views/paper/sendPaper.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/views/paper/sendPaper.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/views/paper/sendPaperDetail.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/views/paper/sendPaperDetail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/views/paper/writePaper.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/views/paper/writePaper.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/target/classes/META-INF/spring-configuration-metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/classes/META-INF/spring-configuration-metadata.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/target/classes/mapper/paper-mapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/classes/mapper/paper-mapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/target/classes/templates/fragments/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/classes/templates/fragments/header.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/target/classes/templates/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/classes/templates/main.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/target/classes/templates/views/board/boardList.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/classes/templates/views/board/boardList.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/target/classes/templates/views/member/JoinUser.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/classes/templates/views/member/JoinUser.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/target/classes/templates/views/member/JoinUserSe.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/classes/templates/views/member/JoinUserSe.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/target/classes/templates/views/member/admin.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/target/classes/templates/views/member/forgetPwd.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/classes/templates/views/member/forgetPwd.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/target/classes/templates/views/member/forgetPwdSuccess.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/classes/templates/views/member/forgetPwdSuccess.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/target/classes/templates/views/member/joinSuccess.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/classes/templates/views/member/joinSuccess.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/target/classes/templates/views/member/loginForm.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/classes/templates/views/member/loginForm.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/target/classes/templates/views/member/loginSuccess.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/target/classes/templates/views/paper/sendPaper.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/classes/templates/views/paper/sendPaper.html" afterDir="false" />
-    </list>
+    <list default="true" id="18869558-432e-4011-9d86-a59d03e83cff" name="Changes" comment="로그인 시 session 작업 변경" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -132,6 +96,7 @@
       <workItem from="1642031133371" duration="1876000" />
       <workItem from="1642157204123" duration="19000" />
       <workItem from="1642248106347" duration="11003000" />
+      <workItem from="1642380110401" duration="23000" />
     </task>
     <task id="LOCAL-00001" summary="수정">
       <created>1641550413516</created>

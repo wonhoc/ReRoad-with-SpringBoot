@@ -1,14 +1,16 @@
 package com.example.chatting.web;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class ChatUserStorage {
     private static ChatUserStorage instance;
-    private Set<String> users;
+    private List<String> users;
 
     private ChatUserStorage() {
-        users = new HashSet<>();
+        users = new ArrayList<>();
     }
 
     public static synchronized ChatUserStorage getInstance() {
@@ -18,7 +20,7 @@ public class ChatUserStorage {
         return instance;
     }
 
-    public Set<String> getUsers() {
+    public List<String> getUsers() {
         return users;
     }
 
@@ -27,5 +29,9 @@ public class ChatUserStorage {
             users.add(userName);
         }
 
+    }
+
+    public void deleteUser(int i){
+        users.remove(i);
     }
 }

@@ -1,23 +1,20 @@
 package com.example.chatting.domain;
 
-/**
- * @author zacconding
- * @Date 2018-08-22
- * @GitHub : https://github.com/zacscoding
- */
+
 public class ChatResponse {
 
     private ResponseResult responseResult;
     private String chatRoomId;
     private String sessionId;
-
+    private String sendername;
     public ChatResponse() {
     }
 
-    public ChatResponse(ResponseResult responseResult, String chatRoomId, String sessionId) {
+    public ChatResponse(ResponseResult responseResult, String chatRoomId, String sessionId, String sendername) {
         this.responseResult = responseResult;
         this.chatRoomId = chatRoomId;
         this.sessionId = sessionId;
+        this.sendername = sendername;
     }
 
     public String getSessionId() {
@@ -44,9 +41,14 @@ public class ChatResponse {
         this.responseResult = responseResult;
     }
 
+    public String getSendername() {return sendername;}
+
+    public void setSendername(String sendername) {this.sendername = sendername;}
+
     @Override
     public String toString() {
-        return "ChatResponse{" + "responseResult=" + responseResult + ", chatRoomId='" + chatRoomId + '\'' + ", sessionId='" + sessionId + '\'' + '}';
+        return "ChatResponse{" + "responseResult=" + responseResult + ", chatRoomId='" + chatRoomId + '\'' + ", sessionId='" + sessionId + '\'' +
+                ", sendername='" + sendername + '\'' +'}';
     }
 
     public enum ResponseResult {

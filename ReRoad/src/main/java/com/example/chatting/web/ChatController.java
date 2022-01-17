@@ -7,6 +7,7 @@ import com.example.chatting.domain.ChatResponse;
 import com.example.chatting.domain.MessageType;
 import com.example.chatting.service.ChatService;
 import com.example.chatting.util.ServletUtil;
+import com.example.member.vo.UserAccount;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,17 +15,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.async.DeferredResult;
 
-/**
- * @author zacconding
- * @Date 2018-08-20
- * @GitHub : https://github.com/zacscoding
- */
+
 @RestController
 public class ChatController {
 
@@ -34,13 +32,14 @@ public class ChatController {
     private ChatService chatService;
 
     // tag :: async
-    @GetMapping("/join/join")
+    @GetMapping("/member/join")
     @ResponseBody
-    public DeferredResult<ChatResponse> joinRequest() {
+    public DeferredResult<ChatResponse> joinRequest(@AuthenticationPrincipal UserAccount nowuser) {
         String sessionId = ServletUtil.getSession().getId();
-        logger.info(">> Join request. session id : {}", sessionId);
+        String username = nowuser.getUser().getUserNick();
+        logger.info(">> Join request. session id : {}", sessionId, username);
 
-        final ChatRequest user = new ChatRequest(sessionId);
+        final ChatRequest user = new ChatRequest(sessionId, username);
         final DeferredResult<ChatResponse> deferredResult = new DeferredResult<>(null);
         chatService.joinChatRoom(user, deferredResult);
 
@@ -53,11 +52,12 @@ public class ChatController {
 
     @GetMapping("/cancel")
     @ResponseBody
-    public ResponseEntity<Void> cancelRequest() {
+    public ResponseEntity<Void> cancelRequest(@AuthenticationPrincipal UserAccount nowuser) {
         String sessionId = ServletUtil.getSession().getId();
-        logger.info(">> Cancel request. session id : {}", sessionId);
+        String username = nowuser.getUser().getUserNick();
+        logger.info(">> Cancel request. session id : {}", sessionId,username);
 
-        final ChatRequest user = new ChatRequest(sessionId);
+        final ChatRequest user = new ChatRequest(sessionId, username);
         chatService.cancelChatRoom(user);
 
         return ResponseEntity.ok().build();

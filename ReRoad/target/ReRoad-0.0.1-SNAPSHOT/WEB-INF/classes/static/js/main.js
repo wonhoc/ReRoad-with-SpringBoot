@@ -76,6 +76,7 @@ $(document).ready(function(){
 		}else {
 			$('#stListBox').hide(); 
 		}//if end
+
 		
 		//고속버스 출발지 선택
 		if ($('#TmlList').css('display') === 'none' &&  vehicl == "버스"){
@@ -100,6 +101,7 @@ $(document).ready(function(){
 				tripSel = $(this);
 			}else {
 				$('#stListBox').hide(); 
+
 		}//if end
 		
 		//고속버스 도착지 선택
@@ -111,6 +113,7 @@ $(document).ready(function(){
 			$('#TmlList').hide(); 
 		}//if end
 		
+
 	});
 	
 	//선택창 숨기기
@@ -120,12 +123,14 @@ $(document).ready(function(){
 	
 	$('.liTml').click(function(){
 		$('#TmlList').hide();
+
 	});
 	
 	$('#temptmep').click(function(){
 		$('#TmlList').hide();
 	});
 	
+
 	
 	
 	//역 선택 보여주기
@@ -136,6 +141,7 @@ $(document).ready(function(){
 		tripSel.children('.selLoName').val($(this).text());
 	});
 	
+
 	//선택한 터미널 보여주기
 	$('.liTml').click(function(){	
 		tripSel.children('.bodyTextdiv').text($(this).text());
@@ -144,6 +150,7 @@ $(document).ready(function(){
 		tripSel.children('.selLoName').val($(this).text());
 	});
 	
+
 	
 	//기차역 검색어 입력
 	$("#searchSt").on("keyup", function() {

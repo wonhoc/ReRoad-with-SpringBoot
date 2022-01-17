@@ -2,20 +2,16 @@ package com.example.chatting.domain;
 
 import java.util.Objects;
 
-/**
- * @author zacconding
- * @Date 2018-08-22
- * @GitHub : https://github.com/zacscoding
- */
 public class ChatRequest {
 
     private String sessionId;
+    private String username;
 
     public ChatRequest() {
     }
 
-    public ChatRequest(String sessionId) {
-        this.sessionId = sessionId;
+    public ChatRequest(String sessionId, String username) {
+        this.sessionId = sessionId; this.username = username;
     }
 
     public String getSessionId() {
@@ -26,6 +22,9 @@ public class ChatRequest {
         this.sessionId = sessionId;
     }
 
+    public String getUsername() { return username;}
+
+    public void setUsername(String username) { this.username = username; }
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -46,6 +45,6 @@ public class ChatRequest {
 
     @Override
     public String toString() {
-        return "ChatRequest{" + "sessionId='" + sessionId + '\'' + '}';
+        return "ChatRequest{" + "sessionId='" + sessionId + '\'' + "username='" + username + '\'' + '}';
     }
 }

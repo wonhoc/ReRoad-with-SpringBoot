@@ -1,20 +1,13 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="layout/defaultLayout">
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <th:block layout:fragment="css">
     <link rel="stylesheet" th:href="@{/css/member/listUser.css}">
 </th:block>
 
 <head>
-<!--    <meta name="_csrf" th:content="${_csrf.token}"/>-->
-<!--    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>-->
-
     <script>
-        // var token = $("meta[name='_csrf']").attr("content");
-        // var header = $("meta[name='_csrf_header']").attr("content");
-
         $(document).ready(function () {
             $.ajax({
                 url: '/admin/getList',
@@ -73,7 +66,6 @@
                             }
                             $("#userList").empty();
 
-                            //document.getElementById("userList").innerHTML(html);
                             $("tbody").html(html);
 
                         }
@@ -109,7 +101,11 @@
 
                 var list = $("input[name='rowCheck']:checked").length;
                 if (list == 0)  {
-                    alert("선택된 회원이 없습니다.");
+                    Swal.fire({
+                        icon: 'warning',
+                        title: '경고',
+                        text: '선택된 회원이 없습니다.'
+                    });
                     return;
                 }
                 var valueArr = [];
@@ -118,31 +114,32 @@
                     valueArr.push($(this).val());
                 });
                 console.log("valueArr " + valueArr);
+                Swal.fire({
+                    title: '회원을 탈퇴시키시겠습니까?',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: '탈퇴',
+                    cancelButtonText: '취소'
+                }).then((result) => {
+                    if (result.value) {
+                        $.ajax({
+                            url : "/admin/deleteUserList",
+                            method : "post",
+                            dataType: "json",
+                            data: JSON.stringify(valueArr),
+                            contentType: "application/json",
+                            success: function (data) {
+                                update(data.userList);
+                            },
+                            error: function (){
+                                console.log(error);
+                            }
+                        });
+                    }
+                })
 
-                var chk = confirm("정말 탈퇴시키시겠습니까?");
-
-                if (chk) {
-                    console.log("valueArr " + JSON.stringify(valueArr));
-
-                    $.ajax({
-                        url : "/admin/deleteUserList",
-                        method : "post",
-                        dataType: "json",
-                        data: JSON.stringify(valueArr),
-                        // beforeSend: function(xhr){
-                        //     xhr.setRequestHeader(header,token);
-                        // },
-                        contentType: "application/json",
-                        success: function (data) {
-                            update(data.userList);
-                        },
-                        error: function (){
-                            console.log(error);
-                        }
-
-
-                    });
-                }
             });
 
 
@@ -210,41 +207,39 @@
                     $("tbody").html(html);
                 }
             });
-     }
+        }
 
-</script>
+    </script>
 </head>
-<section layout:fragment="content">
-    <div class="container">
-        <input type="hidden" id="userList" th:value="${users}">
-        <div class="list_title_box">
-            <h1 class="list_title">사용자정보조회</h1>
-            <div class="list_devide"></div>
-            <h3 class="list_notice">회원 정보 목록을 조회합니다.</h3>
-        </div>
 
-        <div>
-            <table class="list_table">
-                <thead class="table_head">
-                <tr>
-                    <th><input id="allCheck" type="checkbox" name="allCheck"></th>
-                    <th>번호</th>
-                    <th>아이디</th>
-                    <th>닉네임</th>
-                    <th>신고횟수</th>
-                </tr>
-                </thead>
-                <tbody id="userList">
-                </tbody>
-            </table>
-            <input type="button" value="탈퇴" class="btn-outline-info" id="deleteBtn" >
-            <div id="page-content">
-                <div id="pagination-div"></div>
-            </div>
-        </div>
-
+<div class="container">
+    <input type="hidden" id="userList" th:value="${users}">
+    <div class="list_title_box">
+        <h1 class="list_title">사용자정보조회</h1>
+        <div class="list_devide"></div>
+        <h3 class="list_notice">회원 정보 목록을 조회합니다.</h3>
     </div>
 
-</section>
+    <div>
+        <table class="list_table">
+            <thead class="table_head">
+            <tr>
+                <th><input id="allCheck" type="checkbox" name="allCheck"></th>
+                <th>번호</th>
+                <th>아이디</th>
+                <th>닉네임</th>
+                <th>신고횟수</th>
+            </tr>
+            </thead>
+            <tbody id="userList">
+            </tbody>
+        </table>
+        <input type="button" value="탈퇴" class="btn-outline-info" id="deleteBtn" >
+        <div id="page-content">
+            <div id="pagination-div"></div>
+        </div>
+    </div>
+
+</div>
 
 </html>

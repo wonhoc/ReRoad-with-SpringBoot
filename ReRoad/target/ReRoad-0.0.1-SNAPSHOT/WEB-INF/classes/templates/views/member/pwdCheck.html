@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="layout/defaultLayout">
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <th:block layout:fragment="css">
     <link rel="stylesheet" th:href="@{/css/member/pwdCheck.css}">
 </th:block>
@@ -10,7 +9,7 @@
 </head>
 <script>
 </script>
-<section layout:fragment="content">
+<div class="container">
     <section class="pwd">
         <h1 class="pwd_title">Password 입력</h1>
         <div class="pwd_divide"></div>
@@ -28,11 +27,10 @@
             </div>
             <div class="pwdBtn_box">
                 <a th:href="@{/member/myPage}">
-                <button class="pwd_btn" type="button" >취소</button>
+                    <button class="pwd_btn" type="button" >취소</button>
                 </a>
                 <button class="pwd_btn" type="submit">확인</button>
             </div>
         </form>
     </section>
-</section>
 </html>

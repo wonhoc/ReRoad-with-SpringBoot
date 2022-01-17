@@ -3,7 +3,9 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <th:block layout:fragment="css">
-
+  <link rel="stylesheet" th:href="@{/css/chatting/chat.css}">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet"
+        type="text/css">
 </th:block>
 <th:block layout:fragment="script">
   <script th:src="@{/js/jquery-3.6.0.min.js}"></script>
@@ -12,32 +14,43 @@
   <script th:src="@{/js/stomp.min.js}"></script>
   <script th:src="@{/js/handlebars.min.js}"></script>
   <script th:src="@{/js/chatting/app.js}"></script>
+  <script th:src="@{/js/chatting/chatList.js}"></script>
 </th:block>
 <head>
   <title>Re Road Chatting :)</title>
+
 </head>
 <body>
-<input type="hidden" id="othername" th:value="${othername}">
-<div id="main-content" class="container">
-  <div class="row">
-    <textarea id="chat-content" rows="30" style="width:100%;" readonly></textarea>
+<div class="container">
+
+  <input type="hidden" id="myname" th:value="${myname}">
+  <div class="userList">
+
+    <div id="left_table">
+      <button id="refresh" onclick="fetchAll()">채팅 참여자 조회</button>
+      <ul class="list" id="usersList">
+      </ul>
+    </div>
   </div>
-  <div class="row" id="chat-action-div"></div>
+  <script id="wait-chat-template" type="text/x-handlebars-template">
+    <div class="input-group">
+      <button class="btn btn-outline-secondary" style="width:100%;" type="button" id="btnJoin">채팅 참여하기</button>
+    </div>
+  </script>
+  <div id="main-content">
+    <div class="row">
+      <textarea id="chat-content" cols="40" rows="20" readonly></textarea>
+    </div>
+    <div class="row" id="chat-action-div"></div>
+  </div>
+
+  <script id="send-chat-template" type="text/x-handlebars-template">
+    <div class="input-group">
+      <input type="text" id="chat-message-input" class="form-control custom-control">
+      <button class="input-group-addon btn btn-primary" id="btnSend" type="submit">Send</button>
+    </div>
+    <div id="isValid"></div>
+  </script>
 </div>
-
-
-<script id="wait-chat-template" type="text/x-handlebars-template">
-  <div class="input-group">
-    <button class="btn btn-outline-secondary" style="width:100%;" type="button" id="btnJoin">Join</button>
-  </div>
-</script>
-
-<script id="send-chat-template" type="text/x-handlebars-template">
-  <div class="input-group">
-    <textarea id="chat-message-input" class="form-control custom-control" rows="3" style="resize:none"></textarea>
-    <span class="input-group-addon btn btn-primary" id="btnSend">Send</span>
-  </div>
-</script>
-
 </body>
 </html>

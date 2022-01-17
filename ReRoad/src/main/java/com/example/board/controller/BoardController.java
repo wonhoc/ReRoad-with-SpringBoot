@@ -132,8 +132,8 @@ public class BoardController {
     public String reportList(@RequestParam String userId, Model model) {
         List<ReportVo> users = this.boardService.retrieveReportList(userId);
         model.addAttribute("users", users);
-        //System.out.println(users);
-        return "views/board/reportList";
+        model.addAttribute("content","views/board/reportList");
+        return "/templates";
     }
 
     // 사용자 정보 조회 ajax
@@ -150,8 +150,8 @@ public class BoardController {
         String userId = prin.getUsername();
         List<BoardVo> boards = this.boardService.retrieveUserBoardList(userId);
         model.addAttribute("boards", boards);
-
-        return "views/board/userBoardList";
+        model.addAttribute("content","views/board/userBoardList");
+        return "/templates";
     }
 
     @GetMapping("/member/listUserBoard")

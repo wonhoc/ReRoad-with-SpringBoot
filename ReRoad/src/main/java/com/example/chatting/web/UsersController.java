@@ -29,7 +29,7 @@ public class UsersController {
 
     @GetMapping("/disconnect/{username}")
     public ResponseEntity<Void> delete(@PathVariable String username) {
-        System.out.println("handling register user request: " + username);
+        
         try {
             List<String> users = ChatUserStorage.getInstance().getUsers();
             int i =0;

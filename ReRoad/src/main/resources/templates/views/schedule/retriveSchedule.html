@@ -306,12 +306,21 @@
 						</div>
 						
 					</div>
+					
+					<!--  페이징 -->
+					<th:block th:with="totalPage = ${#numbers.formatInteger(turnSc.totalCnt, 0)} / ${#numbers.formatInteger(turnSc.numOfRows, 0)} + 1">
+						<th:block th:each="num : ${#numbers.sequence(1, totalPage)}">
+							<span th:attr="class=${turnSc.pageNo == #strings.toString(num) ? 'tcPage' : 'tpage'}" th:text="${num}"></span>			
+						</th:block>
+					</th:block>  	
+										
 				</div>
 				
-	
+			
+					
+				</div>
 				
-		</div>
-		<!-- expbus turn -->	 	
+				<!-- expbus turn -->	 	
 		<div id="ArrscBoxWrapper" class="scBoxWrapper" th:if="${arrDate != 'none' && vehiclType == 'expBus'}">
 			<div id="arrScBox">
 					<div class="scNotinfo" th:if="${#lists.size(turnSc.ScList) == 0}">
@@ -341,13 +350,23 @@
 						</div>
 								
 					</div>
-						
+					
+					<!--  페이징 -->
+					<th:block th:with="totalPage = ${#numbers.formatInteger(turnSc.totalCnt, 0)} / ${#numbers.formatInteger(turnSc.numOfRows, 0)} + 1">
+						<th:block th:each="num : ${#numbers.sequence(1, totalPage)}">
+							<span th:attr="class=${turnSc.pageNo == #strings.toString(num) ? 'tcPage' : 'tpage'}" th:text="${num}"></span>			
+						</th:block>
+					</th:block>  		
 						
 						
 			</div>
 								
 		</div>
 			
+				
+				
+		</div>
+		
 	
 				
 

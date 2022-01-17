@@ -129,7 +129,7 @@ public class ExpBusScheduleServiceImpl implements ExpBusScheduleService{
 			//현재 페이지 번호 
 			expBusSc.setPageNo(responseEntity.getBody().getPageNo());
 			//전체 페이지 번호
-			expBusSc.setTotalCnt(responseEntity.getBody().getTotalCnt());
+			expBusSc.setNumOfRows(responseEntity.getBody().getNumOfRows());
 			
 			return expBusSc;
 		}//getExpBusSc() end

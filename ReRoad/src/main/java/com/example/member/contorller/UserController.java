@@ -62,7 +62,7 @@ public class UserController {
     //로그인 폼
     @GetMapping("/loginForm")
     public String login(Model model) {
-        model.addAttribute("content","/views/member/loginForm");
+        model.addAttribute("content","views/member/loginForm");
         return "/templates"; }
 
     // 로그인 성공
@@ -82,8 +82,10 @@ public class UserController {
     @PostMapping("/loginFail")
     public String forFailer(@RequestParam ("username") String userId,  Model model) {
         // 아이디를 입력하지 않았을 경우
-        if(userId.equals("") || userId == null){
-            model.addAttribute("loginFail", "아이디를 입력해주세요");
+
+        if(userId.equals("")){
+
+            model.addAttribute("failMessage", "아이디를 입력해주세요");
         } else {
             // 아이디를 입력했을 경우 입력한 ID 값을 가져와서 DB에서 중복 검사
             int checkNum = this.userService.checkId(userId);

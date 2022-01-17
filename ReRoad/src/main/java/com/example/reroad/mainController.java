@@ -19,6 +19,8 @@ import com.example.notice.vo.NoticeVO;
 import com.example.schedule.service.ExpBusScheduleService;
 import com.example.schedule.service.TrainScheduleService;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 public class mainController {
     @Autowired

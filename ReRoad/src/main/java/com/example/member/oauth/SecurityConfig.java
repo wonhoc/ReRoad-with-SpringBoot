@@ -5,15 +5,20 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
 import org.springframework.security.authentication.AuthenticationManager;
+
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
+
+import java.util.Collections;
 
 @Slf4j
 @Configuration
@@ -34,7 +39,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         //권한 설정
         http.authorizeRequests()
-                .antMatchers("/","/css/images/**","/js/**","/css/**","/templates/**").permitAll() //모든 사용자 권한으로 접근 가능
+                .antMatchers("/","/css/images/**","/js/**","/css/**","/templates/**","/main/**").permitAll() //모든 사용자 권한으로 접근 가능
                 .antMatchers("/member/**").authenticated() //회원 권한의 사용자일 경우 접속 가능한 경로
                 .antMatchers("/admin/**").hasRole("ADMIN") //ADMIN 권한의 사용자일 경우 접속 가능한 경로
                 .antMatchers("/JoinUser").anonymous();//회원가입은 로그인 안한 사용자만 접근 가능
@@ -51,11 +56,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.logout()
                 .logoutUrl("/logout")
                 .invalidateHttpSession(true)
-                .logoutSuccessUrl("/");
+                .logoutSuccessUrl("/main");
         //OAuth2 인증
         http.oauth2Login()
                 .loginPage("/loginForm")
-                .defaultSuccessUrl("/")
+                .defaultSuccessUrl("/main")
                 .userInfoEndpoint()
                 .userService(principalOauth2UserService);
 
@@ -65,7 +70,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(WebSecurity web) throws Exception {
         web.ignoring()
-                .antMatchers("/","/images/**","/css/**");
+                .antMatchers("/","/images/**","/css/**","/schedule/**","/chat/**");
     }
 
     @Bean

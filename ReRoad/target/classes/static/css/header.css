@@ -34,7 +34,7 @@
     margin-top: 20px;
     background-color: teal;
     border-color: teal;
-    font-weight: bolder;
+    font-weight: 600;
     color: white;
     margin-left: 3em;
 }
@@ -46,7 +46,7 @@
 }
 /*로그아웃 버튼 */
 #logoutBtn {
-    font-weight: bolder;
+    font-weight: 600;
     border-color: teal;
 }
 /* 로그아웃 버튼 마우스 오버시*/
@@ -66,6 +66,7 @@
     color: white;
     background-color: #27B8B9 ;
     border-color: #27B8B9;
+    font-weight: 600;
 }
 /* 마이페이지는 평상시 안보이도록 */
 #showMyPage {
@@ -104,6 +105,7 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+    font-weight: 600;
 }
 
 .ReRoad{
@@ -115,8 +117,8 @@
 
 /*쪽지 보내기 버튼 디자인 */
 #myPaperBtn {
-    font-weight: bolder;
     border-color: teal;
+    font-weight: 600;
 
 }
 #myPaperBtn:hover {

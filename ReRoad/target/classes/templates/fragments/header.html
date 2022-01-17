@@ -42,7 +42,9 @@
 					</span>
 					<!-- 회원의 프로필 사진 정보가 session에 있다면 -->
 					<span th:if="${#authentication.principal.getUser.getPhotoSys} != null" class = "photoSpan">
+
 						<img class= "showPho" th:src="@{'/upload/' + ${#authentication.principal.getUser.getPhotoSys}}">
+
 					</span>
 					
 

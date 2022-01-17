@@ -18,7 +18,7 @@ public class UsersController {
 
     @GetMapping("/registration/{username}")
     public ResponseEntity<Void> register(@PathVariable String username) {
-        System.out.println("handling register user request: " + username);
+
         try {
             ChatUserStorage.getInstance().setUser(username);
         } catch (Exception e) {

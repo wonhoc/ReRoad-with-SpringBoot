@@ -27,14 +27,11 @@ public class NoticeRestController {
     }
 
     // 게시글 검색 ajax
-    @GetMapping("/noticesearch")
+    @PostMapping("/noticesearch")
     @ResponseBody
-    public List<NoticeVO> searchNotice(@RequestParam String keyfield, @RequestParam String keyword) {
+    public List<NoticeVO> searchNotice(@RequestBody SearchVO search) {
 
-        SearchVO search = new SearchVO();
-        search.setKeyfield(keyfield);
-        search.setKeyword(keyword);
-        List<NoticeVO> list= this.noticeService.searchNotice(search);
+       List<NoticeVO> list= this.noticeService.searchNotice(search);
 
         return list;
     }

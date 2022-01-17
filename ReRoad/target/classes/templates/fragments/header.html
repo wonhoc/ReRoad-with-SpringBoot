@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
 		xmlns:th="https://www.thymeleaf.org/"
+	  	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 		xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<!--<th:block layout:fragment="script">-->
-<!--	<script th:src="@{/js/header.js}"></script>-->
-<!--</th:block>-->
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
 <head>
-	<meta charset="UTF-8">
+	<meta charset="UTF-8" />
+
 	<link rel="stylesheet" href="/css/header.css" />
 	<link rel="script" href="/js/header.js">
 	<script type="text/javascript" src="/js/message/chat.js"></script>
@@ -68,9 +67,9 @@
 									쪽지관리
 								</button>
 							</a>
-						<button class="btn btn-info" type="button" id="chatBtn" onclick="loadchat()">
-								채팅
-							</button>
+<!--						<button class="btn btn-info" type="button" id="chatBtn" onclick="loadchat()">-->
+<!--								채팅-->
+<!--							</button>-->
 							<a th:href="@{/logout}" style="text-decoration: none">
 								<button class="btn btn-default" type="button" id="logoutBtn">로그아웃</button>
 							</a>

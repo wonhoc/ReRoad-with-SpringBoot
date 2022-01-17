@@ -23,8 +23,9 @@ public class PaperController {
     
     // 쪽지 보내기 페이지로 이동
     @GetMapping("/writePaper")
-    public String goWritePaper() {
-        return "/views/paper/writePaper";
+    public String goWritePaper(Model model) {
+        model.addAttribute("content","/views/paper/writePaper");
+        return "/templates";
     }
 
     // 보낸 쪽지함 이동 시 리스트 수신
@@ -36,15 +37,17 @@ public class PaperController {
                 (ArrayList<SendPaperVo>) this.paperService.retrieveSendPaperList(senderNick);
 
         model.addAttribute("sendPaperList",sendPaperList);
+        model.addAttribute("content","/views/paper/sendPaper");
 
-        return "/views/paper/sendPaper";
+        return "/templates";
 
     }
 
 
     @GetMapping("/receivePaper")
-    public String goReceive() {
-        return "/views/paper/receivePaper";
+    public String goReceive(Model model) {
+        model.addAttribute("content","/views/paper/receivePaper");
+        return "/templates";
     }
 
 
@@ -52,9 +55,8 @@ public class PaperController {
     @PostMapping("/sendNewPaper")
     public String sendPaper(@RequestParam("receiveNick") String receiveNick,
                           @RequestParam("sendContent") String sendPaperContent,
-                          @AuthenticationPrincipal UserAccount user) {
+                          @AuthenticationPrincipal UserAccount user, Model model) {
         //SenderVo 채우기
-
         SendPaperVo sendPaperVo = new SendPaperVo();
         // 1.작성자 아이디,닉네임 받는 변수 만들기
         String senderId = user.getUser().getUserId();
@@ -98,13 +100,16 @@ public class PaperController {
         //DB에 전송
         this.paperService.registerPaper(sendPaperVo,receiverVos);
 
-        return "redirect:/paperPage";
+        model.addAttribute("content","redirect:/paperPage");
+
+        return "/templates";
     }
     @GetMapping("/sendPaperDetail/{sendPaperNo}")
     public String sendPaperDetail(@PathVariable int sendPaperNo, Model model) {
         SendPaperVo sendPaper = this.paperService.retrieveSendPaper(sendPaperNo);
         model.addAttribute("sendPaper",sendPaper);
-        return "/views/paper/sendPaperDetail";
+        model.addAttribute("content","/views/paper/sendPaperDetail");
+        return "/templates";
 
 
     }

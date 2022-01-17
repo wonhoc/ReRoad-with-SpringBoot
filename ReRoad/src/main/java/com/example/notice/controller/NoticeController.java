@@ -44,9 +44,12 @@ public class NoticeController {
 
     //공지 목록조회 페이지로 이동
     @GetMapping("/noticelist")
-    public String noticeList() {
+    public String noticeList(Model model) {
 
-        return "views/notice/noticeList.html";
+
+        model.addAttribute("content", "views/notice/noticeList.html");
+
+        return "/templates";
     }
 
     // 공지글 상세보기
@@ -58,7 +61,9 @@ public class NoticeController {
         //공지글번호에 맞는 공지사항 글 조회
         NoticeVO notice = this.noticeService.retrieveNotice(noticeNo);
         model.addAttribute("notice", notice);
-        return "views/notice/noticeDetail";
+        model.addAttribute("content", "views/notice/noticeDetail");
+
+        return "/templates";
     }
 
     // 공지글 수정
@@ -69,14 +74,16 @@ public class NoticeController {
         NoticeVO notice = this.noticeService.retrieveNotice(noticeNo);
         notice.setNoticeNo(noticeNo);
         model.addAttribute("notice", notice);
-        return "views/notice/noticeModifyForm";
+        model.addAttribute("content", "views/notice/noticeModifyForm");
+
+        return "/templates";
     }
 
     //공지사항 수정 처리
     @PostMapping("/admin/modifynotice")
     public String noticeModify(@Valid NoticeVO notice, @RequestParam int noticeNo,
                                @RequestPart(value = "noticeFileInput", required = false) List<MultipartFile> files,
-                               HttpServletRequest request) {
+                               HttpServletRequest request, Model model) {
         //수정한 공지글을 저장할 객체 생성
         NoticeVO newNotice = new NoticeVO();
 
@@ -101,6 +108,7 @@ public class NoticeController {
         }
         newNotice.setNoticeFileList(noticeFileVO);
         this.noticeService.modifyNotice(newNotice);
+        // model.addAttribute("content", "redirect:/noticelist");
 
         return "redirect:/noticelist";
     }
@@ -108,9 +116,10 @@ public class NoticeController {
     // 공지글 작성
     // 작성폼불러오기
     @GetMapping("/admin/noticewriteform")
-    public String noticeWriteForm() {
+    public String noticeWriteForm(Model model) {
+        model.addAttribute("content", "views/notice/noticeWriteForm");
 
-        return "views/notice/noticeWriteForm";
+        return "/templates";
     }
 
     //게시글 작성
@@ -118,7 +127,7 @@ public class NoticeController {
     public String noticeWrite(@Valid NoticeVO notice,
                               @AuthenticationPrincipal User principal,
                               @RequestPart(value = "noticeFileInput", required = false) List<MultipartFile> files,
-                              HttpServletRequest request) {
+                              HttpServletRequest request, Model model) {
         //작성할 공지글 객체를 담을 새 객체 생성
         NoticeVO newNotice = new NoticeVO();
         newNotice.setNoticeTitle(notice.getNoticeTitle());
@@ -143,6 +152,7 @@ public class NoticeController {
         }
         newNotice.setNoticeFileList(noticeFileVO);
         this.noticeService.createNotice(newNotice);
+        // model.addAttribute("content", "redirect:/noticelist");
 
         return "redirect:/noticelist";
     }
@@ -167,8 +177,10 @@ public class NoticeController {
 
     //공지사항 삭제
     @PostMapping("/admin/noticedelete/{noticeNo}")
-    public String deleteNotice(@PathVariable int noticeNo) {
+    public String deleteNotice(@PathVariable int noticeNo, Model model) {
         this.noticeService.removeNotice(noticeNo);
+        //   model.addAttribute("content", "redirect:/noticelist");
+
         return "redirect:/noticelist";
     }
 }

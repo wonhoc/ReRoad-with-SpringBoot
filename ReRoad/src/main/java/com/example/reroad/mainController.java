@@ -40,13 +40,16 @@ public class mainController {
 
 
     @GetMapping("/main")
-    public String main(Model model, @AuthenticationPrincipal UserAccount user) throws Exception {
+
+    public String main(Model model) throws Exception {
+
         List<NoticeVO> noticeList  = this.noticeService.retrieveLastNotices();
         model.addAttribute("noticeList", noticeList);
         //지역별 기차역리스트 add
         model.addAttribute("trainStList", trainScheduleService.retrieveTrainStinfo());
 
         List domestic = this.domesticService.boardMain();
+
 
         model.addAttribute("domestic", domestic);
         model.addAttribute("content", "/main");

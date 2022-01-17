@@ -5,11 +5,13 @@
   </component>
   <component name="ChangeListManager">
 
+
     <list default="true" id="18869558-432e-4011-9d86-a59d03e83cff" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ReRoad/target/classes/static/css/header.css" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/classes/static/css/header.css" afterDir="false" />
 
     </list>
+
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -102,7 +104,8 @@
       <workItem from="1642157204123" duration="19000" />
 
       <workItem from="1642248106347" duration="11003000" />
-      <workItem from="1642379873474" duration="4799000" />
+
+      <workItem from="1642380110401" duration="23000" />
 
     </task>
     <task id="LOCAL-00001" summary="수정">

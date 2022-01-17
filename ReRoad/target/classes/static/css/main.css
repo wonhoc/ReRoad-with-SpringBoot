@@ -65,6 +65,7 @@
 	width: 490px;
 	float: left;
 	margin-top: 60px;
+	text-align: left;
 }
 #notice_list{
 	line-height: 1.8;

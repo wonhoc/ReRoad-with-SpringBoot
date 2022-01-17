@@ -8,10 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-/** 이게 유저스토리지와동일기능
- * @author zaccoding
- * github : https://github.com/zacscoding
- */
 public class ServletUtil {
 
     // =================================

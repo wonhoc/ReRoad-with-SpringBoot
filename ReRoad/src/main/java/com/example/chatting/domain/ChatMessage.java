@@ -1,13 +1,9 @@
 package com.example.chatting.domain;
 
-/**
- * @author zacconding
- * @Date 2018-08-20
- * @GitHub : https://github.com/zacscoding
- */
 public class ChatMessage {
 
     private String senderSessionId;
+    private String username;
     private String message;
     private MessageType messageType;
 
@@ -35,8 +31,12 @@ public class ChatMessage {
         this.message = message;
     }
 
+    public String getUsername() { return username; }
+
+    public void setUsername(String username) {this.username = username;}
     @Override
     public String toString() {
-        return "ChatMessage{" + "senderSessionId='" + senderSessionId + '\'' + ", message='" + message + '\'' + ", messageType=" + messageType + '}';
+        return "ChatMessage{" + "senderSessionId='" + senderSessionId + '\'' + ", message='" + message + '\'' + ", messageType=" + messageType
+                + '\'' + ", username=" + username+ '}';
     }
 }

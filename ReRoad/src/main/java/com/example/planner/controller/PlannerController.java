@@ -24,8 +24,11 @@ public class PlannerController {
 
     //플랜 목록조회 페이지로 이동
     @GetMapping("/member/planlist")
-    public String planList() {
-        return "views/planner/planList.html";
+    public String planList(Model model) {
+
+        model.addAttribute("content", "views/planner/planList.html");
+
+        return "/templates";
     }
 
     // 플래너 상세보기
@@ -38,7 +41,9 @@ public class PlannerController {
         if (nowUser.equals(writeUser)) {
             PlannerVO plan = this.plannerService.retrievePlan(planNo);
             model.addAttribute("plan", plan);
-            return "views/planner/planDetail";
+            model.addAttribute("content", "views/planner/planDetail");
+
+            return "/templates";
         }
         //내 글을 조회하려는 유저가 다른 사람이면, 플랜 목록 조회 페이지로 이동
         else return "redirect:/member/planlist";
@@ -47,9 +52,11 @@ public class PlannerController {
     // 플랜 작성
     // 작성폼불러오기
     @GetMapping("/member/planwriteform")
-    public String noticeWriteForm() {
+    public String noticeWriteForm(Model model) {
 
-        return "views/planner/planWriteForm";
+        model.addAttribute("content", "views/planner/planWriteForm");
+
+        return "/templates";
     }
 
     //글 작성
@@ -94,7 +101,9 @@ public class PlannerController {
             PlannerVO plan = this.plannerService.retrievePlan(planNo);
             plan.setPlanNo(planNo);
             model.addAttribute("plan", plan);
-            return "views/planner/planModifyForm";
+            model.addAttribute("content", "views/planner/planModifyForm");
+
+            return "/templates";
         } else return "redirect:/member/planlist";
     }
 

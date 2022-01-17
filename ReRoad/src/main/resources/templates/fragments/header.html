@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-		xmlns:th="https://www.thymeleaf.org/"
-	  	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-		xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+	  xmlns:th="https://www.thymeleaf.org/"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
 	<meta charset="UTF-8" />
 
 	<link rel="stylesheet" href="/css/header.css" />
 	<link rel="script" href="/js/header.js">
-
-	<script>
+	<script src="/js/chatting/popupChat.js" type="text/javascript"></script>
+	<!--<script>
 		function loadchat(){
 			window.open("/chatting", "_blank", "toolbar=use, menubar=yes, width=800, height=900").focus();
 		}
-	</script>
+	</script>-->
 </head>
 
 <div class="header">
@@ -35,9 +35,9 @@
 					</a>
 				</div>
 				<!-- session에 로그인 유저 정보가 있다면 -->
-<!--				<div th:if="${session.loginUser != null}" class="showInfo">-->
-<!--				<div th:if="${#authentication}" class="showInfo">-->
-<!--				<div sec:authorize="isAuthenticated()" class="showInfo">-->
+				<!--				<div th:if="${session.loginUser != null}" class="showInfo">-->
+				<!--				<div th:if="${#authentication}" class="showInfo">-->
+				<!--				<div sec:authorize="isAuthenticated()" class="showInfo">-->
 				<div th:unless="${session.loginUser} == null" class="showInfo">
 					<!--프로필 사진 -->
 					<!-- 회원의 프로필 사진 정보가 session에 없다면 -> default 이미지 지정-->
@@ -48,7 +48,7 @@
 					<span th:unless="${photoSys} == null" class = "photoSpan">
 						<img class= "showPho" th:src="@{/images/member/user.png}">
 					</span>
-					
+
 
 					<span id="buttons">
 							<a th:href="@{/member/myPage}" style="text-decoration: none">
@@ -63,7 +63,7 @@
 									쪽지관리
 								</button>
 							</a>
-						<button class="btn btn-info" type="button" id="chatBtn" onclick="loadchat()">
+						<button class="btn btn-default" type="button" id="chatBtn" onclick="loadchat()">
 								채팅
 							</button>
 							<a th:href="@{/logout}" style="text-decoration: none">

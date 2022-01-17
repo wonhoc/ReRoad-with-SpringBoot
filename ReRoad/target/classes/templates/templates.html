@@ -5,7 +5,6 @@
 <th:block layout:fragment="head"><title>Spring Boot</title> <!--/* css */-->
 
     <th:block th:replace="config :: configFragment"></th:block>
-
     <script type="text/javascript" src="/js/message/chat.js"></script>
     <link th:href="@{/css/common.css}" rel="stylesheet" />
 
@@ -19,3 +18,4 @@
  <input type="hidden" id="username" th:value="${session.loginUser.getUserId()}">
 </body>
 </html>
+

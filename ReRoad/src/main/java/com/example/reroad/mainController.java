@@ -4,10 +4,11 @@ import java.util.List;
 
 import com.example.domestic.service.DomesticService;
 
+import com.example.member.service.UserService;
 import com.example.member.vo.UserAccount;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.parameters.P;
+
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,7 +37,7 @@ public class mainController {
     private DomesticService domesticService;
 
 
-    @GetMapping("/")
+    @GetMapping("/main")
     public String main(Model model, @AuthenticationPrincipal UserAccount user) throws Exception {
         List<NoticeVO> noticeList  = this.noticeService.retrieveLastNotices();
         model.addAttribute("noticeList", noticeList);
@@ -44,8 +45,6 @@ public class mainController {
         model.addAttribute("trainStList", trainScheduleService.retrieveTrainStinfo());
 
         List domestic = this.domesticService.boardMain();
-
-        System.out.println("List : " + domestic);
 
         model.addAttribute("domestic", domestic);
         model.addAttribute("content", "/main");

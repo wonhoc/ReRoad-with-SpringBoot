@@ -11,8 +11,11 @@ import com.example.member.vo.UserVo;
 import com.example.util.FileUploadService;
 import org.attoparser.IDocumentHandler;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.parameters.P;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -53,6 +56,9 @@ public class UserController {
     @Autowired
     public MailService mailService;
 
+    @Autowired
+    private AuthenticationManager authenticationManager;
+
     //로그인 폼
     @GetMapping("/loginForm")
     public String login(Model model) {
@@ -67,9 +73,9 @@ public class UserController {
 
         // 로그인 후 세션에 UserAccount(UserVo+Role) 객체 등록
         session.setAttribute("loginUser", userId);
-        model.addAttribute("content","/");
 
-        return "/templates";
+
+        return "redirect:/main";
     }
 
     //로그인이 실패했을 경우
@@ -238,7 +244,8 @@ public class UserController {
     public String listUser(Model model) {
         List<UserVo> users = this.userService.retrieveUserList();
         model.addAttribute("userList", users);
-        return "views/member/listUser";
+        model.addAttribute("content","views/member/listUser");
+        return "/templates";
     }
 
 
@@ -265,35 +272,29 @@ public class UserController {
 
     //비밀번호 일치 확인 후 삭제 페이지 이동
     @PostMapping("/member/pwdCheck")
-    public String pwdCheck(Authentication authentication,@Valid @RequestParam String userPwd) {
+    public String pwdCheck(Authentication authentication,@Valid @RequestParam String userPwd, Model model) {
         UserDetails userDetails = (UserDetails)authentication.getPrincipal();
         String userId = userDetails.getUsername();
 
         String checkPwd = this.userService.checkPwd(userId);
 
         boolean result = passwordEncoder.matches(userPwd, checkPwd);
+        model.addAttribute("result", result);
 
         if (result) {
-            return "views/member/deleteUser";
+            model.addAttribute("content","views/member/deleteUser");
+            return "/templates";
         } else {
-            return "views/member/pwdCheckFail";
+            model.addAttribute("content","views/member/pwdCheckFail");
+
+            return "/templates";
         }
     }
 
-    //비밀번호 일치하지 않을 시 경고창 띄워주기
-    @GetMapping("/pwdCheckFail")
-    public String loginFailOne() {
-        return "views/member/pwdCheckFail";
-    }
-
-    @GetMapping("/member/deleteUser")
-    public String deleteUser() {
-        return "views/member/deleteUser";
-    }
-
     @GetMapping("/member/exitUser")
-    public String exitUser() {
-        return "views/member/pwdCheck";
+    public String exitUser(Model model) {
+        model.addAttribute("content","views/member/pwdCheck");
+        return "/templates";
     }
 
 
@@ -318,7 +319,8 @@ public class UserController {
         UserVo user = this.userService.retrieveUser(userId);
 
         model.addAttribute("user", user);
-        return "views/member/modifyUser";
+        model.addAttribute("content","views/member/modifyUser");
+        return "/templates";
     }
 
     // 회원정보수정
@@ -337,7 +339,8 @@ public class UserController {
             UserVo user1 = this.userService.retrieveUser(userId);
 
             model.addAttribute("user", user1);
-            return "views/member/modifyUser";
+            model.addAttribute("content","views/member/modifyUser");
+            return "/templates";
         } else {
             UserVo modifyUser = new UserVo();
             modifyUser.setUserId(user.getUserId());
@@ -354,6 +357,9 @@ public class UserController {
             modifyUser.setPhotoSys(imgname);
 
             this.userService.modifyUser(modifyUser);
+
+            Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getUserId(), user.getUserPwd()));
+            SecurityContextHolder.getContext().setAuthentication(authentication);
 
 
 //            UserVo user2 = this.userService.getInfo(userId);
@@ -374,7 +380,8 @@ public class UserController {
             List<CommentVo> com = this.boardService.retrieveUserComList(userId);
             model.addAttribute("com", com);
 
-            return "views/member/myPage";
+            model.addAttribute("content","views/member/myPage");
+            return "/templates";
         }
     }
 
@@ -394,7 +401,8 @@ public class UserController {
         List<CommentVo> com = this.boardService.retrieveUserComList(userId);
         model.addAttribute("com", com);
 
-        return "views/member/myPage";
+        model.addAttribute("content","views/member/myPage");
+        return "/templates";
     }
 
     //관리자 마이페이지
@@ -413,6 +421,7 @@ public class UserController {
         List<CommentVo> com = this.boardService.retrieveUserComList(userId);
         model.addAttribute("com", com);
 
-        return "views/member/adminMyPage";
+        model.addAttribute("content","views/member/adminMyPage");
+        return "/templates";
     }
 }

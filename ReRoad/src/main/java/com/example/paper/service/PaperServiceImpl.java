@@ -63,4 +63,8 @@ public class PaperServiceImpl implements PaperService{
     public SendPaperVo retrieveSendPaper(int sendPaperNo) {
         return this.sendPaperDao.selectSendPaper(sendPaperNo);
     }
+
+    // 보낸 메시지 삭제
+    @Override
+    public void removeSendPaper(int[] sendPaperNoS) { this.sendPaperDao.deleteSendPaper(sendPaperNoS);};
 }

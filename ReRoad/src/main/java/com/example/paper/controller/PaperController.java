@@ -24,7 +24,7 @@ public class PaperController {
     // 쪽지 보내기 페이지로 이동
     @GetMapping("/writePaper")
     public String goWritePaper(Model model) {
-        model.addAttribute("content","/views/paper/writePaper");
+        model.addAttribute("content","views/paper/writePaper");
         return "/templates";
     }
 
@@ -37,7 +37,7 @@ public class PaperController {
                 (ArrayList<SendPaperVo>) this.paperService.retrieveSendPaperList(senderNick);
 
         model.addAttribute("sendPaperList",sendPaperList);
-        model.addAttribute("content","/views/paper/sendPaper");
+        model.addAttribute("content","views/paper/sendPaper");
 
         return "/templates";
 
@@ -46,7 +46,7 @@ public class PaperController {
 
     @GetMapping("/receivePaper")
     public String goReceive(Model model) {
-        model.addAttribute("content","/views/paper/receivePaper");
+        model.addAttribute("content","views/paper/receivePaper");
         return "/templates";
     }
 
@@ -100,7 +100,7 @@ public class PaperController {
         //DB에 전송
         this.paperService.registerPaper(sendPaperVo,receiverVos);
 
-        model.addAttribute("content","redirect:/paperPage");
+        model.addAttribute("content","views/paper/writePaper");
 
         return "/templates";
     }
@@ -108,10 +108,25 @@ public class PaperController {
     public String sendPaperDetail(@PathVariable int sendPaperNo, Model model) {
         SendPaperVo sendPaper = this.paperService.retrieveSendPaper(sendPaperNo);
         model.addAttribute("sendPaper",sendPaper);
-        model.addAttribute("content","/views/paper/sendPaperDetail");
+        model.addAttribute("content","redirect:/sendPaperDetail");
         return "/templates";
 
 
+    }
+    @PostMapping("/removeSendPaper")
+    public String removeSendPaper(@RequestParam int[] removeCheckBox, @AuthenticationPrincipal UserAccount user, Model model) {
+        // 체크박스 선택된 쪽지 삭제
+        this.paperService.removeSendPaper(removeCheckBox);
+
+        // 닉네임 값을 다시 받아와서 리스트 생성 후 페이지로 이동
+        String senderNick = user.getUser().getUserNick();
+        ArrayList<SendPaperVo> sendPaperList =
+                (ArrayList<SendPaperVo>) this.paperService.retrieveSendPaperList(senderNick);
+
+        model.addAttribute("sendPaperList",sendPaperList);
+        model.addAttribute("content","views/paper/sendPaper");
+
+        return "/templates";
     }
 
 

@@ -50,4 +50,12 @@ public class SendPaperDaoImpl implements SendPaperDao {
     public SendPaperVo selectSendPaper(int sendPaperNo) {
         return this.sqlSession.selectOne("Paper.selectSendPaper", sendPaperNo);
     }
+
+    @Override
+    public void deleteSendPaper(int[] sendPaperNoS) {
+        for (int sendPaperNo : sendPaperNoS) {
+            this.sqlSession.delete("Paper.deleteSendPaperNoS",sendPaperNo);
+        }
+
+    }
 }

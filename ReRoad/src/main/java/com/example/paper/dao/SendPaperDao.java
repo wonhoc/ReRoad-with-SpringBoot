@@ -9,4 +9,5 @@ public interface SendPaperDao {
     List<SendPaperVo> selectSendPaperList(String userNick);
     String getReceiverId(String receiveNick);
     SendPaperVo selectSendPaper(int sendPaperNo);
+    void deleteSendPaper(int[] sendPaperNo);
 }

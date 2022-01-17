@@ -90,7 +90,7 @@
                                         </span>
                                         <td th:text="${#strings.substring(sendPaper.sendDate, 0, 10)}"></td>
                                         <td>
-                                            <input type="checkbox" name="removeCheckBox" th:value="${sendPaper.sendPaperNo}">
+                                            <input type="checkbox" id="removeCheckBox" name="removeCheckBox" th:value="${sendPaper.sendPaperNo}">
                                         </td>
                                     </tr>
 
@@ -104,7 +104,7 @@
                             </div>
                             <!-- 삭제 버튼-->
                             <div th:if="${sendPaperList != null}">
-                                <button class="btn btn-default" type="submit" id="removeSendPaperBtn">삭제</button>
+                                <button class="btn btn-default deleteBtn" type="submit" id="removeSendPaperBtn">삭제</button>
 
                             </div>
                         </form>

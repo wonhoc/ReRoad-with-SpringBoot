@@ -57,6 +57,12 @@
         WHERE sendPaperNo = #{sendPaperNo}
     </select>
 
+    <!-- 보낸 메시지 리스트에서 메시지 삭제-->
+    <delete id="deleteSendPaperNoS" parameterType="int">
+        DELETE FROM send_paper
+        WHERE sendPaperNo = #{sendPaperNo}
+    </delete>
+
 
 
 </mapper>

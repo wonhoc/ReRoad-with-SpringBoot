@@ -12,5 +12,6 @@ public interface PaperService {
     List<SendPaperVo> retrieveSendPaperList(String userNick);
     String retrieveReceiveId(String receiveNick);
     SendPaperVo retrieveSendPaper(int sendPaperNo);
+    void removeSendPaper(int[] sendPaperNoS);
 
 }

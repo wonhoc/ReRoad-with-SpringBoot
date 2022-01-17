@@ -48,8 +48,8 @@ public class ScheduleController {
         model.addAttribute("depLoName", usrv.getDepLoName()); //출발지 이름
         model.addAttribute("arrLoName", usrv.getArrLoName()); //도착지 이름
         model.addAttribute("startDate", usrv.getStartDate()); //가는날 
-        model.addAttribute("arrDate", usrv.getArrDate()); //오는날4
-        model.addAttribute("vehiclType", usrv.getVehiclType());
+        model.addAttribute("arrDate", usrv.getArrDate()); //오는날
+        model.addAttribute("vehiclType", usrv.getVehiclType()); //교통수단
         
         System.out.println("dll : " + usrv.getDepLo());
         System.out.println("dll : " + usrv.getArrLo());

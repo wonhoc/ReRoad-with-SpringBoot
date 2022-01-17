@@ -26,7 +26,7 @@
 			<div id="searchBox" class="row text-center">
 				<!-- 헤드 -->
 				<div id="headWrapper">
-					<input type="hidden" id="vehiclType" name="vehiclType" value="train">
+					<input type="hidden" id="vehiclType" name="vehiclType" th:value="${vehiclType}">
 					<div class="searchBoxHead col-sm-6" id="headTrain">열차</div>	
 			        <div class="searchBoxHead col-sm-6" id="headBus">버스</div>
 			    </div>
@@ -250,6 +250,13 @@
 						</div>
 						
 					</div>
+					
+					<!--  페이징 -->
+					<th:block th:with="totalPage = ${#numbers.formatInteger(startSc.totalCnt, 0)} / ${#numbers.formatInteger(startSc.numOfRows, 0)} + 1">
+						<th:block th:each="num : ${#numbers.sequence(1, totalPage)}">
+							<span th:attr="class=${startSc.pageNo == #strings.toString(num) ? 'cPage' : 'page'}" th:text="${num}"></span>			
+						</th:block>
+					</th:block>  	
 				</div>
 				
 	

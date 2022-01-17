@@ -1,6 +1,6 @@
 $(document).ready(function(){	
-	var vehicl = "열차";
-	var tripType = "편도";
+	var vehicl;
+	var tripType;
 	var tripSel;
 	
 	//열차, 버스 선택

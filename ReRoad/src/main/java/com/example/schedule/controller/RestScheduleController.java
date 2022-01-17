@@ -6,11 +6,12 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.schedule.service.ExpBusScheduleService;
 import com.example.schedule.service.TrainScheduleService;
+import com.example.schedule.vo.expBus.ExpBusScVo;
+import com.example.schedule.vo.expBus.ExpBusSetInfoVo;
 import com.example.schedule.vo.train.TrainScVo;
 import com.example.schedule.vo.train.TrainSetInfoVo;
 
@@ -43,10 +44,20 @@ public class RestScheduleController {
 		 
 	  }//getTrainSchedule() end
 	
-
-	public Map getExpBusSchedule() {
+	//버스 스케줄 조회 Ajax 요청
+	@PostMapping("/getExpBusSchedule")
+	public Map getExpBusSchedule(@RequestBody ExpBusSetInfoVo setting) {
 		
-		return null;
+		System.out.println("setting" + setting.toString());
+		 Map result = new HashMap<String, Object>();
+		  
+		 ExpBusScVo scVo = this.expBusScheduleService.getExpBusSc(setting);
+		 
+		 System.out.println(scVo.toString());
+		 
+		 result.put("scList", scVo);
+		 
+		 return result;
 		
 	}//getExpBusSchedule() end
 

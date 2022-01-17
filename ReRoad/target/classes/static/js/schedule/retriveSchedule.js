@@ -6,7 +6,8 @@ $(document).ready(function(){
 	const depTime = $('#startDate').val();	//출발시간
 	const arrTime = $('#arrDate').val();	//돌아오는시간
 	const depLoName = $('#depLoName').val();
-	const arrLoName =$('#arrLoName').val();
+	const arrLoName = $('#arrLoName').val();
+	const vehiclType = $('vehiclType').val();
 	
 	//가는 스케줄 접기
 	$('#foldStartSc').click(function(){
@@ -55,19 +56,42 @@ $(document).ready(function(){
 
 
 	//페이징 처리
-$(document).on('click', $('.page'), function(){
-	//ajax통신
-	$.ajax({
-		url : '/getTrainSchedule',
-		method : 'POST',
-		dataType : 'json',
-		contentType: 'application/json;charset=utf-8',
-		data: JSON.stringify({
+$(document).on('click', '.page', function(){
+
+	//vehiclType에 따라서 url 달라지게 하기
+	let ajaxUrl = '';
+	let data;
+
+	//열차일때
+	if(vehiclType == 'train'){
+		ajaxUrl = '/getTrainSchedule';
+		
+		data = JSON.stringify({
 			"depPlaceId" : depLo,
 			"arrPlaceId" : arrLo,
 			"pageNo" : $(this).text(),
 			"depPlandTime" : depTime
-		}),	
+		});
+
+	}else{
+	//버스일때
+		ajaxUrl = '/getExpBusSchedule';
+
+		data = JSON.stringify({
+			"depTerminalId" : depLo,
+			"arrTerminalId" : arrLo,
+			"pageNo" : $(this).text(),
+			"depPlandTime" : depTime
+		});
+	}//if end
+
+	//ajax통신
+	$.ajax({
+		url : ajaxUrl,
+		method : 'POST',
+		dataType : 'json',
+		contentType: 'application/json;charset=utf-8',
+		data: data,	
 		success: function(data){
 		
 		//응답한 객체
@@ -81,34 +105,38 @@ $(document).on('click', $('.page'), function(){
 		
 		let html = '';
 		
-		for(let i = 0; i < scList.length; i++){
-		
-			html += '<div class="scInfo">';
+		//열차일때 
+		if(vehiclType == 'train'){
+			for(let i = 0; i < scList.length; i++){
 			
-			html += '<div class="scInfoEl timeAndAw">';
-			html += '<span class="time">' + timeSub(scList[i].depplandtime) + '</span>';
-			html += '<i class="fas fa-arrow-right fa-3x"></i>';
-			html += '<span class="time">' + timeSub(scList[i].arrplandtime) + '</span>';
-			html += '<div id="place"><div id="infoDepLoName">' + depLoName + '</div>'
-			html += '<div id="infoArrLoName">' + arrLoName + '</div></div>';
-			html += '</div>';
+				html += '<div class="scInfo">';
+				
+				html += '<div class="scInfoEl timeAndAw">';
+				html += '<span class="time">' + timeSub(scList[i].depplandtime) + '</span>';
+				html += '<i class="fas fa-arrow-right fa-3x"></i>';
+				html += '<span class="time">' + timeSub(scList[i].arrplandtime) + '</span>';
+				html += '<div id="place"><div id="infoDepLoName">' + depLoName + '</div>'
+				html += '<div id="infoArrLoName">' + arrLoName + '</div></div>';
+				html += '</div>';
 
-			html += '<div class="scInfoEl spanTimeBox">';
-			html += '<i class="far fa-clock"></i>';
-			html += '<span class="spanTime">' + scList[i].spenTime + '</span>';
-			html += '</div>';
+				html += '<div class="scInfoEl spanTimeBox">';
+				html += '<i class="far fa-clock"></i>';
+				html += '<span class="spanTime">' + scList[i].spenTime + '</span>';
+				html += '</div>';
 
-			html += '<div class="scInfoEl trainTypeNoBox">';
-			html += '<div class="trainType">' + scList[i].traingradename + '</div>';
-			html += '<div class="trainNo">' + scList[i].trainno + '</div>';
-			html += '</div>';
+				html += '<div class="scInfoEl trainTypeNoBox">';
+				html += '<div class="trainType">' + scList[i].traingradename + '</div>';
+				html += '<div class="trainNo">' + scList[i].trainno + '</div>';
+				html += '</div>';
 
-			html += '<div class="scInfoEl chargeBox">';
-			html += '<span>' + formatComa(scList[i].adultcharge) + '</span><span class="won">원</span>';
-			html += '</div>';
+				html += '<div class="scInfoEl chargeBox">';
+				html += '<span>' + formatComa(scList[i].adultcharge) + '</span><span class="won">원</span>';
+				html += '</div>';
 
-			html += '</div>';
-			
+				html += '</div>';
+					
+			}//for end
+
 			//페이징 처리
 			let totalPage = (parseInt(scLists.totalCnt) / parseInt(scLists.numOfRows)) + 1;
 
@@ -120,10 +148,56 @@ $(document).on('click', $('.page'), function(){
 				}else{
 					html += '<span class="page">' + i + '</span>';
 				}//if end
-
 			}//for end
-		
-		}//for end
+
+		}else{
+			//버스일때
+
+			for(let i = 0; i < scList.length; i++){
+			
+				html += '<div class="scInfo">';
+				
+				html += '<div class="scInfoEl timeAndAw">';
+				html += '<span class="time">' + timeSub(scList[i].depPlandTime) + '</span>';
+				html += '<i class="fas fa-arrow-right fa-3x"></i>';
+				html += '<span class="time">' + timeSub(scList[i].arrPlandTime) + '</span>';
+				html += '<div id="place"><div id="infoDepLoName">' + depLoName + '</div>'
+				html += '<div id="infoArrLoName">' + arrLoName + '</div></div>';
+				html += '</div>';
+
+				html += '<div class="scInfoEl spanTimeBox">';
+				html += '<i class="far fa-clock"></i>';
+				html += '<span class="spanTime">' + scList[i].spanTime + '</span>';
+				html += '</div>';
+
+				html += '<div class="scInfoEl trainTypeNoBox">';
+				html += '<div class="trainType">' + scList[i].gradeNm + '</div>';
+				html += '</div>';
+
+				html += '<div class="scInfoEl chargeBox">';
+				html += '<span>' + formatComa(scList[i].charge) + '</span><span class="won">원</span>';
+				html += '</div>';
+
+				html += '</div>';
+					
+			}//for end
+
+			//페이징 처리
+			let totalPage = (parseInt(scLists.totalCnt) / parseInt(scLists.numOfRows)) + 1;
+
+			for(let i = 1; i <= totalPage; i++){
+
+				//현제 페이지 번호 표시
+				if(parseInt(scLists.pageNo) == i){
+					html += '<span class="cPage">' + i + '</span>';
+				}else{
+					html += '<span class="page">' + i + '</span>';
+				}//if end
+			}//for end
+
+
+
+		}//if end
 
 		$('#scBox').html(html);
 

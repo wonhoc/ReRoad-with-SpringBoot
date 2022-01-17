@@ -355,11 +355,10 @@ body{
 	position: absolute;
 	top: 100%;
 	width: 100%;
-	height: auto;
 	background-color: white;
 	z-index: 1;
 	border:  3px solid #006480;
-	height: 45.3em;
+	height: 45.5em;
 	display: none;
 }
 
@@ -369,7 +368,7 @@ body{
 	width: 30%; 
 	background-color: teal;
 	color: white;
-	height: 42.5em;
+	height: 45.3em;
 	font-size: 1em;
 }
 
@@ -407,7 +406,7 @@ body{
 	float: left; 
 	width: 70%; 
 	background-color: white; 
-	height: 42.5em; 
+	height: 45.2em; 
 	overflow: auto;
 }
 

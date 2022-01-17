@@ -141,6 +141,7 @@ $(document).ready(function(){
 	//기차역 검색어 입력
 	$("#searchSt").on("keyup", function() {
 	    let searchKeyword = $(this).val().trim();
+	    $('.stNameWrapper').children('.ulSt').show();
 	    $(".stNameIn").filter(function() {
 	      $(this).toggle($(this).text().trim().indexOf(searchKeyword) > -1)
 	    });
@@ -200,6 +201,16 @@ $(document).ready(function(){
 			$('#bodyDateArr').attr("data-content","오는날을 선택 해주세요.");
 			$('#bodyDateArr').popover("show");
 			setTimeout(function() {$('#bodyDateArr').popover('hide');}, hideTime);
+			
+		}//if end
+		
+		//가는날 오는날 비교
+		if($('#dateArr').css('display') == 'block' && parseInt(letStartDate) >= parseInt(letArrDate)){
+			flag = false;
+			$('#btnSearch').attr("data-content","출발시간과 도착시간을 다시 확인해 주세요.");	
+			$('#btnSearch').popover("show");
+			$('#btnSearch').popover("disable");
+			setTimeout(function() {$('#btnSearch').popover('hide');}, hideTime);
 		}//if end
 		
 		

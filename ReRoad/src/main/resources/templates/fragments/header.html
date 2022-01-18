@@ -41,13 +41,11 @@
 				<!--				<div th:if="${session.loginUser != null}" class="showInfo">-->
 				<!--				<div th:if="${#authentication}" class="showInfo">-->
 				<!--				<div sec:authorize="isAuthenticated()" class="showInfo">-->
-				<div th:unless="${session.loginUser} == null" class="showInfo">
-					<!--프로필 사진 -->
-					<!-- 회원의 프로필 사진 정보가 session에 없다면 -> default 이미지 지정-->
+				 <div th:if="${session.loginUser} != null" class="showInfo">
 
-					<span th:if="${#authentication.principal.getUser.getPhotoSys} == null" class="photoSpan" >
+					 <p>안녕</p>
+				<!--	<span th:if="${#authentication.principal.getUser.getPhotoSys} == null" class="photoSpan" >
 						<img class= "showPho" th:src="@{/images/member/happy_default.jpg}"></span>
-                    </span>
 					<span th:if="${#authentication.principal.getUser.getPhotoSys} != null" class = "photoSpan">
 						<img class= "showPho" th:src="@{/images/member/user.png}">
 					</span>
@@ -74,10 +72,10 @@
 							<a th:href="@{/logout}" style="text-decoration: none">
 								<button class="btn btn-default" type="button" id="logoutBtn">로그아웃</button>
 							</a>
-					</span>
+					</span> -->
 
 
-                    </div> -->
+                    </div>
             </span>
         </div>
         <div id ="bar"></div>

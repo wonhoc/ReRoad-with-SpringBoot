@@ -11,6 +11,8 @@
   <component name="ChangeListManager">
     <list default="true" id="18869558-432e-4011-9d86-a59d03e83cff" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/reroad/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/reroad/GlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/views/error/exception.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/views/error/exception.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -213,7 +215,7 @@
       <workItem from="1642387819007" duration="25899000" />
       <workItem from="1642425689465" duration="1756000" />
       <workItem from="1642467236610" duration="1192000" />
-      <workItem from="1642474872977" duration="10537000" />
+      <workItem from="1642474872977" duration="11042000" />
     </task>
     <task id="LOCAL-00001" summary="수정">
       <created>1641550413516</created>

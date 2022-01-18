@@ -54,7 +54,7 @@
 					</span>
 
 
-					<input type="hidden" id="username" th:value="${#authentication.principal.getUser.getUserId}">
+					<input type="hidden" id="username" th:value="${session.loginUser.userId}">
 
 					<span id="buttons">
 
@@ -86,7 +86,7 @@
 							<a th:href="@{/logout}" style="text-decoration: none">
 								<button class="btn btn-default" type="button" id="logoutBtn">로그아웃</button>
 							</a>
-					</span> -->
+					</span>
 
 
                     </div>

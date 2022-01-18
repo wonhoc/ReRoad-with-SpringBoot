@@ -234,7 +234,7 @@
             </tr>
             <tr  class="domesticname">
                 <div th:each="city :${domestic}">
-                    <td><a th:href="@{/domestic/{domesticName}(domesticName=${city.domesticName})}"><p th:text="${city.domesticName}"></p></a></td>
+                    <td><a type="post" th:href="@{/domestic/{domesticName}(domesticName=${city.domesticName})}"><p th:text="${city.domesticName}"></p></a></td>
                     <td class="tableempty"><a th:href="@{/manageDomestic/{domesticName}(domesticName=${city.domesticName})}"><img class="manage" src="images/main/톱니바퀴.png" style="display: none"></a></td>
 
                 </div>

@@ -31,19 +31,32 @@
                     <button type="button" class="btn btn-default" id="receive" name="receive">받은 쪽지함</button>
                 </a>
             </div>
-        </div>
-        <div id="viewDetail" class="col-sm-9">
-            <form class="form-group" action="/removeReceivePaper" method="POST" id="viewDetailForm">
-                <div id="firstDiv">
-                    <div>
-                        <label for="receiveNick" class="receiverNick">보낸 사람</label>
-                        <div class="well well-sm" id="receiveNick">
-                            <span th:text="${}"
+
+            <div id="viewDetail" class="col-sm-9">
+                <form class="form-group" action="/removeReceivePaper" method="POST" id="viewDetailForm">
+                    <div id="firstDiv">
+                        <div>
+                            <label for="sendNick" class="receiverNick">보낸 사람</label>
+                            <div class="well well-sm" id="sendNick">
+                                <span th:text="${receivePaper.senderNick}" />
+                            </div>
                         </div>
                     </div>
-                </div>
-
-            </form>
+                    <div id="receiveDate">
+                        <label for="receivePaperDate" class="receiveDate">받은 시간</label>
+                        <div class="well well-sm" id="receivePaperDate">
+                            <span th:text="${receivePaper.sendDate}" />
+                        </div>
+                    </div>
+                    <div id="paperContent">
+                        <label for="paperContext" class="paperContext">내용</label>
+                        <div class="well well-lg" id="paperContext">
+                            <span th:text="${receivePaper.receivePaperContent}" />
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-default btn-lg btn-block" id="delBtn" style="text-decoration: none">삭제하기</button>
+                </form>
+            </div>
         </div>
     </div>
 </div>

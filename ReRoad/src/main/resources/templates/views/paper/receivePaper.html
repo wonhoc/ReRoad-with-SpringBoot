@@ -10,97 +10,97 @@
 </th:block>
 <head>
 </head>
-    <div class="container">
-        <div id="paperPageMain">
-            <div id="welcomeDiv">
-                <h1 id="welcome_paper">쪽지관리</h1>
-                <div id="title_devide"></div>
-                <div id="welcome_paper_text">
-                    닉네임을 통해 쪽지를 주고 받을 수 있습니다.<br>
-                    쪽지에 자신의 연락처, 이름 등 개인정보를 쓰지 않도록 주의해주십시오.<br>
-                    타인에 대한 비방이나 욕설, 광고 등 부적절한 내용의 쪽지를 보낼 경우 강제탈퇴될 수 있습니다.<br>
-                </div>
+<div class="container">
+    <div id="paperPageMain">
+        <div id="welcomeDiv">
+            <h1 id="welcome_paper">쪽지관리</h1>
+            <div id="title_devide"></div>
+            <div id="welcome_paper_text">
+                닉네임을 통해 쪽지를 주고 받을 수 있습니다.<br>
+                쪽지에 자신의 연락처, 이름 등 개인정보를 쓰지 않도록 주의해주십시오.<br>
+                타인에 대한 비방이나 욕설, 광고 등 부적절한 내용의 쪽지를 보낼 경우 강제탈퇴될 수 있습니다.<br>
             </div>
-            <div id="paperMain">
-                <div id="paperMenu" class="col-sm-3">
-                    <a th:href="@{writePaper}">
-                        <button type="button" class="btn btn-default" id="write" name="write">쪽지 보내기</button>
-                    </a>
-                    <a th:href="@{sendPaper}">
-                        <button type="button" class="btn btn-default" id="send" name="send">보낸 쪽지함</button>
-                    </a>
-                    <a th:href="@{receivePaper}">
-                        <button type="button" class="btn btn-default" id="receive" name="receive">받은 쪽지함</button>
-                    </a>
-                </div>
-                <div id="addressAndWrite" class="col-sm-9">
-                    <div id="sendPaper" name="sendPaper" class="paperDiv">
-                        <form class="form-group" action="/removeReceivePaper" method="POST" id="removeReceivePaperForm">
-                            <div>
-                                <table class="table table-hover">
-                                    <thead>
-                                    <tr>
-                                        <th>보낸사람</th>
-                                        <th>작성내용</th>
-                                        <th>작성시간</th>
-                                        <div th:if ="${#lists.size(receivePaperList) > 0}">
-                                            <th>
-                                                <input type="checkbox" id="allChecked">
-                                            </th>
+        </div>
+        <div id="paperMain">
+            <div id="paperMenu" class="col-sm-3">
+                <a th:href="@{writePaper}">
+                    <button type="button" class="btn btn-default" id="write" name="write">쪽지 보내기</button>
+                </a>
+                <a th:href="@{sendPaper}">
+                    <button type="button" class="btn btn-default" id="send" name="send">보낸 쪽지함</button>
+                </a>
+                <a th:href="@{receivePaper}">
+                    <button type="button" class="btn btn-default" id="receive" name="receive">받은 쪽지함</button>
+                </a>
+            </div>
+            <div id="addressAndWrite" class="col-sm-9">
+                <div id="sendPaper" name="sendPaper" class="paperDiv">
+                    <form class="form-group" action="/removeReceivePaper" method="POST" id="removeReceivePaperForm">
+                        <div>
+                            <table class="table table-hover">
+                                <thead>
+                                <tr>
+                                    <th>보낸사람</th>
+                                    <th>작성내용</th>
+                                    <th>작성시간</th>
+                                    <div th:if ="${#lists.size(receivePaperList) > 0}">
+                                        <th>
+                                            <input type="checkbox" id="allChecked">
+                                        </th>
 
-                                        </div>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <!-- 보낸 쪽지가 없다면-->
-                                    <div th:if="${#lists.size(receivePaperList) == 0}">
-                                        <tr>
-                                            <td>받은 쪽지가 없습니다.</td>
-                                        </tr>
                                     </div>
-                                    <!-- 보낸 쪽지가 있다면 -->
-                                    <div th:if="${#lists.size(receivePaperList) > 0}">
-                                        <tr th:each="receivePaper:${receivePaperList}">
-                                            <td>
-                                                <span th:text="${receivePaper.senderNick}"/>
-                                            </td>
-                                            <!-- 받는 내용이 10글자가 넘으면 -->
-                                            <span th:if="${#strings.length(receivePaper.receivePaperContent) > 10}">
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <!-- 보낸 쪽지가 없다면-->
+                                <div th:if="${#lists.size(receivePaperList) == 0}">
+                                    <tr>
+                                        <td>받은 쪽지가 없습니다.</td>
+                                    </tr>
+                                </div>
+                                <!-- 보낸 쪽지가 있다면 -->
+                                <div th:if="${#lists.size(receivePaperList) > 0}">
+                                    <tr th:each="receivePaper:${receivePaperList}">
+                                        <td>
+                                            <span th:text="${receivePaper.senderNick}"/>
+                                        </td>
+                                        <!-- 받는 내용이 10글자가 넘으면 -->
+                                        <span th:if="${#strings.length(receivePaper.receivePaperContent) > 10}">
                                             <td>
                                                 <a th:text="${#strings.substring(receivePaper.receivePaperContent, 0, 10) + '...'}"
                                                    th:href="@{/receivePaperDetail/{receivePaperNo}/{isRead}(receivePaperNo=${receivePaper.receivePaperNo}, (isRead= ${receivePaper.isRead}))}"/>
                                             </td>
                                         </span>
-                                            <!-- 받는 내용이 10글자가 넘지 않을 경우-->
-                                            <span th:if="${#strings.length(receivePaper.receivePaperContent) <= 10}">
+                                        <!-- 받는 내용이 10글자가 넘지 않을 경우-->
+                                        <span th:if="${#strings.length(receivePaper.receivePaperContent) <= 10}">
                                             <td>
                                                 <a th:text="${receivePaper.receivePaperContent}"
                                                    th:href="@{/receivePaperDetail/{receivePaperNo}/{isRead}(receivePaperNo=${receivePaper.receivePaperNo}, (isRead= ${receivePaper.isRead}))}" />
                                             </td>
                                         </span>
-                                            <td th:text="${#strings.substring(receivePaper.sendDate, 0, 10)}"></td>
-                                            <td>
-                                                <input type="checkbox" id="removeCheckBox" name="removeCheckBox" th:value="${receivePaper.receivePaperNo + ','+receivePaper.isRead}">
-                                            </td>
-                                        </tr>
+                                        <td th:text="${#strings.substring(receivePaper.sendDate, 0, 10)}"></td>
+                                        <td>
+                                            <input type="checkbox" id="removeCheckBox" name="removeCheckBox" th:value="${receivePaper.receivePaperNo + ','+receivePaper.isRead}">
+                                        </td>
+                                    </tr>
 
-                                    </div>
-                                    <div >
+                                </div>
+                                <div >
 
-                                    </div>
+                                </div>
 
-                                    </tbody>
-                                </table>
-                            </div>
-                            <!-- 삭제 버튼-->
-                            <div th:if="${#lists.size(receivePaperList) > 0}">
-                                <button class="btn btn-default deleteBtn" type="submit" id="removeSendPaperBtn">삭제</button>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- 삭제 버튼-->
+                        <div th:if="${#lists.size(receivePaperList) > 0}">
+                            <button class="btn btn-default deleteBtn" type="submit" id="removeSendPaperBtn">삭제</button>
 
-                            </div>
-                        </form>
-                    </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
+</div>
 </html>

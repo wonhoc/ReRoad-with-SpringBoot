@@ -8,6 +8,8 @@ import com.example.paper.vo.ReceivePaperVo;
 import com.example.paper.vo.SendPaperVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.TransactionException;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -73,4 +75,33 @@ public class PaperServiceImpl implements PaperService{
     public List<ReceivePaperVo> retrieveReceivePaperList(String receiveId) {
         return this.receivePaperDao.selectReceivePaperList(receiveId);
     }
+
+    // 받는 쪽지 상세 보기
+    @Override
+    public ReceivePaperVo retrieveReceivePaper(HashMap<String,Object> map) {
+        return this.receivePaperDao.selectReceivePaper(map);
+    }
+    //읽음 상태 업데이트
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void updateRead(int receivePaperNo, String receiveId) throws TransactionException  {
+        //map
+        HashMap<String,Object> updateMap = new HashMap<String,Object>();
+
+        //업데이트 할 정보
+        updateMap.put("receivePaperNo", receivePaperNo);
+        updateMap.put("receiveId",receiveId);
+
+        //쪽지 수신과 연관된 테이블로 읽음 상태 전달
+        this.receivePaperDao.updateReceiveRead(updateMap);
+        this.addressDao.updateAddressRead(updateMap);
+
+    }
+
+    //받는 메시지 삭제
+    @Override
+    public void removeReceivePaper(HashMap<String,Object> map) {
+        this.receivePaperDao.deleteReceivePaper(map);
+    }
+
 }

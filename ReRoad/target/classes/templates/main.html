@@ -235,13 +235,13 @@
             <tr  class="domesticname">
                 <div th:each="city :${domestic}">
                     <td><a type="post" th:href="@{/domestic/{domesticName}(domesticName=${city.domesticName})}"><p th:text="${city.domesticName}"></p></a></td>
-                    <td class="tableempty"><a th:href="@{/manageDomestic/{domesticName}(domesticName=${city.domesticName})}"><img class="manage" src="images/main/톱니바퀴.png" style="display: none"></a></td>
+                    <td class="tableempty"><a th:href="@{/admin/manageDomestic/{domesticName}(domesticName=${city.domesticName})}"><img class="manage" src="images/main/톱니바퀴.png" style="display: none"></a></td>
 
                 </div>
             </tr>
 
         </table>
-        <button sec:authorize="hasRole('ROLE_ADMIN')" style="width: 100px;" id="setting" class="btn btn-primary">관리</button>
+        <button sec:authorize="hasRole('ROLE_MEMBER')" style="width: 100px;" id="setting" class="btn btn-primary">관리</button>
     </div>
 
 </html>

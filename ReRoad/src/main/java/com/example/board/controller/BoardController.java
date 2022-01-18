@@ -73,7 +73,7 @@ public class BoardController {
         return "/templates";
     }
 
-    @GetMapping("/deleteBoard/{boardNo}")
+    @GetMapping("/member/deleteBoard/{boardNo}")
     public String boardDelete(@PathVariable int boardNo) {
 
         this.boardService.remove(boardNo);
@@ -81,7 +81,7 @@ public class BoardController {
         return "redirect:/boardList";
     }
 
-    @GetMapping("/modifyBoardForm/{boardNo}")
+    @GetMapping("/member/modifyBoardForm/{boardNo}")
     public String boardModifyForm(@PathVariable int boardNo, Model model, @AuthenticationPrincipal User principal) {
 
         BoardVo board = boardService.retrieveDetail(boardNo);
@@ -90,7 +90,7 @@ public class BoardController {
         return "/templates";
     }
 
-    @PostMapping("/modifyboard")
+    @PostMapping("/member/modifyboard")
     public String boardModify(@ModelAttribute("board") @Valid BoardVo board,
                               BindingResult bindingResult, Model model,
                               RedirectAttributes attributes) throws Exception {
@@ -111,7 +111,7 @@ public class BoardController {
         return "redirect:/member/detailBoard/" + boardNo;
     }
 
-    @GetMapping("/writeboardForm")
+    @GetMapping("/member/writeboardForm")
     public String boardWriteForm(Model model) {
 
         model.addAttribute("content","views/board/boardWrite");
@@ -120,7 +120,7 @@ public class BoardController {
         return "/templates";
     }
 
-    @PostMapping("/boardWrite")
+    @PostMapping("/member/boardWrite")
     public String boardWrtie(@ModelAttribute("board") @Valid BoardVo board,
                              BindingResult bindingResult, Model model,
                              RedirectAttributes attributes, @AuthenticationPrincipal User principal) throws Exception {

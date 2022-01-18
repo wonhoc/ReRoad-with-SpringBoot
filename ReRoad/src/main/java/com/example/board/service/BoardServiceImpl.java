@@ -158,7 +158,7 @@ public class BoardServiceImpl implements BoardService{
     }
 
     @Override
-    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = RuntimeException.class)
     public void modifyBoard(BoardVo board) {
         this.boardDao.updateBoard(board);
 
@@ -177,7 +177,7 @@ public class BoardServiceImpl implements BoardService{
     }
 
     @Override
-    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = RuntimeException.class)
     public void registerBoard(BoardVo board) {
         this.boardDao.insertBoard(board);
         int no = this.boardDao.lastId();
@@ -197,19 +197,19 @@ public class BoardServiceImpl implements BoardService{
     }
 
     @Override
-    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = RuntimeException.class)
     public void registerComment(CommentVo comment) {
         this.boardDao.insertCom(comment);
     }
 
     @Override
-    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = RuntimeException.class)
     public void modifyComment(CommentVo comment) {
         this.boardDao.updateCom(comment);
     }
 
     @Override
-    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = RuntimeException.class)
     public void removeComment(int comNo) {
         this.boardDao.deleteCom(comNo);
     }
@@ -220,7 +220,7 @@ public class BoardServiceImpl implements BoardService{
     }
 
     @Override
-    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = RuntimeException.class)
     public void registerRecom(RecomVo recom) {
         this.boardDao.insertRecom(recom);
     }
@@ -231,7 +231,7 @@ public class BoardServiceImpl implements BoardService{
     }
 
     @Override
-    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = RuntimeException.class)
     public void removeRecom(RecomVo recom) {
         this.boardDao.deleteRecom(recom);
     }
@@ -242,7 +242,7 @@ public class BoardServiceImpl implements BoardService{
     }
 
     @Override
-    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = RuntimeException.class)
     public void registerReport(ReportVo report) {
         this.boardDao.insertReport(report);
     }

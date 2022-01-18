@@ -40,9 +40,9 @@
 
 
             <input type="hidden" name="boardNo" th:value="${board.boardNo}" id="boardNo">
-        <form method="post" th:action="@{/deleteBoard/{boardNo}(boardNo=${board.boardNo})}">
+        <form method="post" th:action="@{/member/deleteBoard/{boardNo}(boardNo=${board.boardNo})}">
         <div th:if="${user.userNick == board.userNick || user.role == 'ROLE_ADMIN'}">
-            <a  th:href="@{/modifyBoardForm/{boardNo}(boardNo=${boardNo})}"  id ="modiBtn" class="btn btn-outline-warning">수정</a>
+            <a  th:href="@{/member/modifyBoardForm/{boardNo}(boardNo=${boardNo})}"  id ="modiBtn" class="btn btn-outline-warning">수정</a>
             <button type="button" id="deleteBtn" class="btn btn-outline-secondary">삭제</button>
         </div>
             <div id="main">
@@ -64,7 +64,7 @@
 
         </form>
         <button type="button" class="btn btn-primary" id="recomBtn">추천</button>
-        <button type="button" class="btn btn-danger" id="reportBtn">신고</button>
+        <button th:if="${board.userId != user.userId}" type="button" class="btn btn-danger" id="reportBtn">신고</button>
 
 
 

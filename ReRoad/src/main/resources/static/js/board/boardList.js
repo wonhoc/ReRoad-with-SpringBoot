@@ -61,17 +61,21 @@ $(document).ready(function() {
                                 html += '<img src="/upload/' + data[i].boardFiles[0].systemFileName +'" class="thumnail"></a></td>';
                             }else{
                                 //없다면 기본 이미지로 표시
-                                html += '<img src="/images/board/king.png" class="thumnail"></a></td>';
+                                html += '<img src="/images/board/noImage.png" class="thumnail"></a></td>';
                             }//if end
                             //제목
                             html += '<td width="210px;" id="title" colspan="3"><a href="/member/detailBoard/' + data[i].boardNo + '">';
                             html += '<p>' + data[i].boardTitle + '</p></a></td></tr>';
-
+                            console.log(data[i].length)
                             //닉네임
                             html += '<tr id="Nick"><td colsapn="2"><img class="boardImg" src="/images/board/user.png"><span id="font">' + data[i].userNick + '</span></td>';
                             html += '<td><img class="boardImg" src="/images/board/views.png"><span>' + data[i].boardCount + '</span></td></tr>';
                             html += '<tr><td colspan="3">' + data[i].boardWdate + '</td></tr>';
-                            html += '<tr id="imgs"><td height="50px"; id="content" colspan="5">' + data[i].boardContent + '</td></tr>';
+                            if(data[i].boardContent.length > 34){
+                                html += '<tr id="imgs"><td height="50px"; id="content" colspan="5">' + data[i].boardContent.substring(0,34) + ' ...</td></tr>';
+                            }else {
+                                html += '<tr id="imgs"><td height="50px"; id="content" colspan="5">' + data[i].boardContent + '</td></tr>';
+                            }
 
 
                             html += '</table>';
@@ -182,7 +186,7 @@ $(document).ready(function() {
                                     html += '<img src="/upload/' + searchRst[i].boardFiles[0].systemFileName +'" class="thumnail"></a></td>';
                                 }else{
                                     //없다면 기본 이미지로 표시
-                                    html += '<img src="/images/board/king.png" class="thumnail"></a></td>';
+                                    html += '<img src="/images/board/noImage.png" class="thumnail"></a></td>';
                                 }//if end
                                 //제목
                                 html += '<td width="210px;" id="title" colspan="3"><a href="/member/detailBoard/' + searchRst[i].boardNo + '">';
@@ -192,8 +196,11 @@ $(document).ready(function() {
                                 html += '<tr id="Nick"><td colsapn="2"><img class="boardImg" src="/images/board/user.png"><span id="font">' + searchRst[i].userNick + '</span></td>';
                                 html += '<td><img class="boardImg" src="/images/board/views.png"><span>' + searchRst[i].boardCount + '</span></td></tr>';
                                 html += '<tr><td colspan="3">' + searchRst[i].boardWdate + '</td></tr>';
-                                html += '<tr id="imgs"><td height="50px"; id="content" colspan="5">' + searchRst[i].boardContent + '</td></tr>';
-
+                                if(searchRst[i].boardContent.length > 34){
+                                    html += '<tr id="imgs"><td height="50px"; id="content" colspan="5">' + searchRst[i].boardContent.substring(0,34) + '...</td></tr>';
+                                }else {
+                                    html += '<tr id="imgs"><td height="50px"; id="content" colspan="5">' + searchRst[i].boardContent + '</td></tr>';
+                                }
 
                                 html += '</table>';
 

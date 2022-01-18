@@ -66,7 +66,7 @@ public class DomesticController {
         return "/templates";
     }
 
-    @GetMapping("/manageDomestic/{domesticName}")
+    @GetMapping("/admin/manageDomestic/{domesticName}")
     public String manageDomestic(@PathVariable String domesticName, Model model) throws Exception{
 
         List entireList = this.domesticService.boardmanageList();
@@ -83,7 +83,7 @@ public class DomesticController {
 
     }
 
-    @PostMapping("/settingDomestic")
+    @PostMapping("/admin/settingDomestic")
     public String settingDomestic(DomesticVo domestic, @RequestPart(value = "boardFileInput", required = false) List<MultipartFile> File,
                                   BindingResult bindingResult, Model model,
                                   RedirectAttributes attributes, @AuthenticationPrincipal User principal) throws Exception {

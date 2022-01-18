@@ -15,7 +15,7 @@ $(document).ready(function() {
         }).then((result) => {
             if (result.isConfirmed) {
                 var boardNo = $('#boardNo').val();
-                location.href = '/deleteBoard/'+boardNo;
+                location.href = '/member/deleteBoard/'+boardNo;
             }
         })
     })

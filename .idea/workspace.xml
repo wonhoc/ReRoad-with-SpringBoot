@@ -11,8 +11,17 @@
   <component name="ChangeListManager">
     <list default="true" id="18869558-432e-4011-9d86-a59d03e83cff" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/member/contorller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/member/contorller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/board/controller/BoardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/board/controller/BoardController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/board/service/BoardServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/board/service/BoardServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/domestic/controller/DomesticController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/domestic/controller/DomesticController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/resources/static/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/static/css/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/resources/static/js/board/boardList.js" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/static/js/board/boardList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/resources/static/js/board/detailBoard.js" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/static/js/board/detailBoard.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/fragments/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/fragments/header.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/main.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/views/board/detailBoard.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/views/board/detailBoard.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/views/board/modifyBoard.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/views/board/modifyBoard.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/views/domestic/manageDomestic.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/views/domestic/manageDomestic.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ReRoad/target/classes/templates/fragments/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/classes/templates/fragments/header.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -96,7 +105,7 @@
       <recent name="C:\Users\MZC\git\ReRoad-with-SpringBoot\ReRoad\src\main\resources\templates\views\error" />
     </key>
   </component>
-  <component name="RunManager" selected="Tomcat Server.Tomcat 9.0.56">
+  <component name="RunManager" selected="Spring Boot.ReRoadApplication">
     <configuration name="ReRoadApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="ReRoad" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.reroad.ReRoadApplication" />

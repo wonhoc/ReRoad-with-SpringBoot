@@ -50,7 +50,7 @@
 					</span>
 					<!-- 회원의 프로필 사진 정보가 session에 있다면 -->
 					<span th:if="${session.loginUser.photoSys} != null" class = "photoSpan">
-						<img class= "showPho" th:src="@{/images/member/user.png}">
+						<img class= "showPho" th:src="'/upload/'+${session.loginUser.photoSys}">
 					</span>
 
 

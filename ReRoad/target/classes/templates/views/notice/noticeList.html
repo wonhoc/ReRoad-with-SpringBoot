@@ -17,7 +17,7 @@
 <body>
 <div  class="container">
     <nav class="navbar navbar-default navBox">
-        <div class="container-fluid">
+        <div class="fluid">
                 <select id="keyfield" name="keyfield">
                     <option value="all">제목+내용</option>
                     <option value="noticeTitle">제목</option>
@@ -41,7 +41,7 @@
             </div>
         </div>
         <div sec:authorize="hasRole('ROLE_ADMIN')">
-            <a class="btn btn-primary waves-effect waves-light" th:href="@{/admin/noticewriteform}">
+            <a id="writeBtn" class="btn btn-primary waves-effect waves-light" th:href="@{/admin/noticewriteform}">
                 글작성
             </a>
         </div>

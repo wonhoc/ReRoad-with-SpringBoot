@@ -2,6 +2,7 @@ package com.example.notice.controller;
 
 import com.example.common.FileVO;
 import com.example.member.vo.UserAccount;
+import com.example.notice.dao.NoticeDao;
 import com.example.notice.service.NoticeService;
 import com.example.notice.vo.NoticeVO;
 import com.example.util.FileUploadService;
@@ -36,6 +37,10 @@ import java.util.List;
 public class NoticeController {
     @Autowired
     private NoticeService noticeService;
+
+    @Autowired
+    private NoticeDao noticeDao;
+
     //파일이 저장되어있는 경로
     private String savePath = "/upload/";
 
@@ -81,7 +86,7 @@ public class NoticeController {
 
     //공지사항 수정 처리
     @PostMapping("/admin/modifynotice")
-    public String noticeModify(@Valid NoticeVO notice, @RequestParam int noticeNo,
+    public String noticeModify(@Valid NoticeVO notice, @RequestParam int noticeNo, @RequestParam int[] fileNo,
                                @RequestPart(value = "noticeFileInput", required = false) List<MultipartFile> files,
                                HttpServletRequest request, Model model) {
         //수정한 공지글을 저장할 객체 생성
@@ -90,6 +95,13 @@ public class NoticeController {
         newNotice.setNoticeTitle(notice.getNoticeTitle());
         newNotice.setNoticeContent(notice.getNoticeContent());
         newNotice.setNoticeNo(noticeNo);
+
+        //수정하며 삭제한 파일 들
+        if (fileNo != null) {
+            for (int deletefileNo : fileNo) {
+                this.noticeDao.deleteOnlyNoticeFile(deletefileNo);
+            }
+        }
 
         //수정하며 새로 첨부한 파일을 저장할 파일리스트 생성
         List<FileVO> noticeFileVO = new ArrayList<FileVO>();

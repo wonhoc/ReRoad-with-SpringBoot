@@ -6,7 +6,8 @@
 </th:block>
 <th:block layout:fragment="script">
   <script th:src="@{/js/notice/noticeModify.js}"></script>
-  <script th:src="@{/js/notice/noticeFileDelete.js}"></script>
+  <!--<script th:src="@{/js/notice/noticeFileDelete.js}"></script>-->
+  <script th:src="@{/js/notice/noticeModiFileDelete.js}"></script>
 </th:block>
 
 <head>
@@ -31,22 +32,42 @@
     <span th:if="${(notice.getNoticeFileList().isEmpty())}">
         <input type="hidden" name="originFileSize" id="originFileSize" th:value=0>
       </span>
-    <h5 th:if="${!(notice.getNoticeFileList().isEmpty())}" id="existFileTitle"> 기존 파일 목록</h5>
+    <!--<h5 th:if="${!(notice.getNoticeFileList().isEmpty())}" id="existFileTitle"> 기존 파일 목록</h5>-->
     <input type="hidden" name="originFileSize" id="originFileSize"
            th:value="${notice.getNoticeFileList().size()}">
+
+    <div id="hiddenRoom">
+
+    </div>
+   <!-- <div id="noticeFile" th:if="${!(notice.getNoticeFileList().isEmpty())}">
+      <div style="color: teal; margin-left: 16px; margin-top: 7px;">기존 파일</div>
+      <span class="prevName" th:id="${file.fileNo}" th:each="file : ${notice.getNoticeFileList()}">
+        <table>
+        <tr>
+          <td><input type="checkbox" name="prevName" th:value="${file.fileNo}"> </td>
+                <td class="names" th:if="${#strings.length(file.fileOrigin) < 20}" class="list_title" th:text="${file.fileOrigin }"/>
+                  <td readonly th:if="${#strings.length(file.fileOrigin) >= 20}" class="list_title"
+                      th:text="${#strings.substring(file.fileOrigin,0,20)} + ... +
+                  ${#strings.substring(file.fileOrigin,#strings.length(file.fileOrigin)-3,#strings.length(file.fileOrigin))}" />
+        <td th:text="${file.fileSize}+bytes"></td>
+        </tr>
+      </table>
+      </span>
+    </div>-->
+    <!--<button id="removeFileBtn" type="button">이미지 삭제</button>-->
     <table id ="files">
       <tbody id="originFileList" th:each="file : ${notice.getNoticeFileList()}">
       <tr class="origintr" th:id="${file.fileNo}">
+        <td><input type="checkbox" name="origintr" th:value="${file.fileNo}"></td>
         <td th:if="${#strings.length(file.fileOrigin) < 20}" class="list_title" th:text="${file.fileOrigin }" />
         <td th:if="${#strings.length(file.fileOrigin) >= 20}" class="list_title"
             th:text="${#strings.substring(file.fileOrigin,0,20)} + ... +
                   ${#strings.substring(file.fileOrigin,#strings.length(file.fileOrigin)-3,#strings.length(file.fileOrigin))}" />
         <td th:text="${file.fileSize}+bytes"></td>
-        <td><button type="button"  id="removeFileBtn">파일 삭제</button></td>
       </tr>
       </tbody>
     </table>
-
+    <button type="button"  id="removeFileBtn">파일 삭제</button>
     <div class="fileBox">
       <div class="form_imgBtn">
         <label for="noticeFileInput">파일 첨부</label>

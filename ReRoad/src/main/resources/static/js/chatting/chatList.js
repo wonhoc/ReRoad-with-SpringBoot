@@ -1,5 +1,5 @@
 function fetchAll() {
-    const chaturl = 'ec2-54-180-31-9.ap-northeast-2.compute.amazonaws.com';
+    const chaturl = 'ec2-3-35-233-53.ap-northeast-2.compute.amazonaws.com';
     const myname = $('#myname').val();
     $('#refresh').hide();
     $.get("/fetchAllUsers", function (response) {

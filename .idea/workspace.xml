@@ -11,11 +11,8 @@
   <component name="ChangeListManager">
     <list default="true" id="18869558-432e-4011-9d86-a59d03e83cff" name="Changes" comment="쪽지 기능">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/target/classes/mapper/paper-mapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/classes/mapper/paper-mapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/target/classes/static/js/chatting/chatList.js" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/classes/static/js/chatting/chatList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/target/classes/static/js/message/chat.js" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/classes/static/js/message/chat.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/resources/static/js/board/boardList.js" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/static/js/board/boardList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/views/board/boardWrite.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/views/board/boardWrite.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -226,7 +223,7 @@
       <workItem from="1642486566584" duration="197000" />
       <workItem from="1642505679771" duration="1245000" />
       <workItem from="1642518925799" duration="192000" />
-      <workItem from="1642547424130" duration="300000" />
+      <workItem from="1642547424130" duration="1855000" />
     </task>
     <task id="LOCAL-00001" summary="수정">
       <created>1641550413516</created>

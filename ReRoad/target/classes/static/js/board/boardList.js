@@ -99,7 +99,7 @@ $(document).ready(function() {
 
     $(document).on('click', '#writeBtn', function(){
 
-        location.href='/writeboardForm';
+        location.href='/member/writeboardForm';
 
     });
 

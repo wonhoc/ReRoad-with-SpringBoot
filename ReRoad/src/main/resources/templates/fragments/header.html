@@ -41,12 +41,15 @@
 				<!--				<div th:if="${session.loginUser != null}" class="showInfo">-->
 				<!--				<div th:if="${#authentication}" class="showInfo">-->
 				<!--				<div sec:authorize="isAuthenticated()" class="showInfo">-->
-				 <div th:if="${session.loginUser} != null" class="showInfo">
 
-					 <p>안녕</p>
-				<!--	<span th:if="${#authentication.principal.getUser.getPhotoSys} == null" class="photoSpan" >
-						<img class= "showPho" th:src="@{/images/member/happy_default.jpg}"></span>
-					<span th:if="${#authentication.principal.getUser.getPhotoSys} != null" class = "photoSpan">
+				<div th:unless="${session.loginUser} == null" class="showInfo">
+					<!--프로필 사진 -->
+					<!-- 회원의 프로필 사진 정보가 session에 없다면 -> default 이미지 지정-->
+					<span th:if="${session.loginUser.photoSys} == null" class="photoSpan" >
+						<img class= "showPho" th:src="@{/images/member/happy_default.jpg}">
+					</span>
+					<!-- 회원의 프로필 사진 정보가 session에 있다면 -->
+					<span th:if="${session.loginUser.photoSys} != null" class = "photoSpan">
 						<img class= "showPho" th:src="@{/images/member/user.png}">
 					</span>
 
@@ -54,12 +57,23 @@
 					<input type="hidden" id="username" th:value="${#authentication.principal.getUser.getUserId}">
 
 					<span id="buttons">
-							<a th:href="@{/member/myPage}" style="text-decoration: none">
+
+							<a th:if="${session.loginUser.role} == 'ROLE_ADMIN'" th:href="@{/admin/myPage}" style="text-decoration: none">
 							<button class="btn btn-default" type="button" id="myPageBtn" >
 								<span id="showMyPage">마이페이지</span>
-								<span th:text="${#authentication.principal.getUser.userNick}" id="showNick" />
+								<span th:text="${session.loginUser.userNick}" id="showNick" />
 							</button>
 							</a>
+							<a th:if="${session.loginUser.role} != 'ROLE_ADMIN'" th:href="@{/member/myPage}" style="text-decoration: none">
+							<button class="btn btn-default" type="button" id="myPageBtn" >
+								<span id="showMyPage">마이페이지</span>
+								<span th:text="${session.loginUser.userNick}" id="showNick" />
+							</button>
+							</a>
+
+
+
+
 
 							<a th:href="@{/writePaper}" style="text-decoration: none">
 								<button class="btn btn-default" type="button" id="myPaperBtn">

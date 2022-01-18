@@ -10,34 +10,34 @@
 </th:block>
 <head>
 </head>
-    <div class="container">
-        <div id="paperPageMain">
-            <div id="welcomeDiv">
-                <h1 id="welcome_paper">쪽지관리</h1>
-                <div id="title_devide"></div>
-                <div id="welcome_paper_text">
-                    닉네임을 통해 쪽지를 주고 받을 수 있습니다.<br>
-                    쪽지에 자신의 연락처, 이름 등 개인정보를 쓰지 않도록 주의해주십시오.<br>
-                    타인에 대한 비방이나 욕설, 광고 등 부적절한 내용의 쪽지를 보낼 경우 강제탈퇴될 수 있습니다.<br>
-                </div>
+<div class="container">
+    <div id="paperPageMain">
+        <div id="welcomeDiv">
+            <h1 id="welcome_paper">쪽지관리</h1>
+            <div id="title_devide"></div>
+            <div id="welcome_paper_text">
+                닉네임을 통해 쪽지를 주고 받을 수 있습니다.<br>
+                쪽지에 자신의 연락처, 이름 등 개인정보를 쓰지 않도록 주의해주십시오.<br>
+                타인에 대한 비방이나 욕설, 광고 등 부적절한 내용의 쪽지를 보낼 경우 강제탈퇴될 수 있습니다.<br>
             </div>
-            <div id="paperMain">
-                <div id="paperMenu" class="col-sm-3">
-                    <a th:href="@{/writePaper}">
-                        <button type="button" class="btn btn-default" id="write" name="write">쪽지 보내기</button>
-                    </a>
-                    <a th:href="@{/sendPaper}">
-                        <button type="button" class="btn btn-default" id="send" name="send">보낸 쪽지함</button>
-                    </a>
-                    <a th:href="@{/receivePaper}">
-                        <button type="button" class="btn btn-default" id="receive" name="receive">받은 쪽지함</button>
-                    </a>
-                </div>
-                <div id="addressAndWrite" class="col-sm-9">
-                    <div id="sendPaper" name="sendPaper" class="paperDiv">
-                        <form class="form-group" action="/removeSendPaper" method="POST" id="removeSendPaperForm">
-                            <div>
-                                <table class="table table-hover">
+        </div>
+        <div id="paperMain">
+            <div id="paperMenu" class="col-sm-3">
+                <a th:href="@{/writePaper}">
+                    <button type="button" class="btn btn-default" id="write" name="write">쪽지 보내기</button>
+                </a>
+                <a th:href="@{/sendPaper}">
+                    <button type="button" class="btn btn-default" id="send" name="send">보낸 쪽지함</button>
+                </a>
+                <a th:href="@{/receivePaper}">
+                    <button type="button" class="btn btn-default" id="receive" name="receive">받은 쪽지함</button>
+                </a>
+            </div>
+            <div id="addressAndWrite" class="col-sm-9">
+                <div id="sendPaper" name="sendPaper" class="paperDiv">
+                    <form class="form-group" action="/removeSendPaper" method="POST" id="removeSendPaperForm">
+                        <div>
+                            <table class="table table-hover">
                                 <thead>
                                 <tr>
                                     <th>받은사람</th>
@@ -52,13 +52,13 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                    <!-- 보낸 쪽지가 없다면-->
-                                    <div th:if="${#lists.size(sendPaperList) == 0}">
-                                        <tr>
-                                            <td>보낸 쪽지가 없습니다.</td>
-                                        </tr>
-                                    </div>
-                                    <!-- 보낸 쪽지가 있다면 -->
+                                <!-- 보낸 쪽지가 없다면-->
+                                <div th:if="${#lists.size(sendPaperList) == 0}">
+                                    <tr>
+                                        <td>보낸 쪽지가 없습니다.</td>
+                                    </tr>
+                                </div>
+                                <!-- 보낸 쪽지가 있다면 -->
                                 <div th:if="${#lists.size(sendPaperList) > 0}">
                                     <tr th:each="sendPaper:${sendPaperList}">
                                         <!-- 받는 사람이 1명일 경우 -->
@@ -90,7 +90,7 @@
                                         </span>
                                         <td th:text="${#strings.substring(sendPaper.sendDate, 0, 10)}"></td>
                                         <td>
-                                            <input type="checkbox" name="removeCheckBox" th:value="${sendPaper.sendPaperNo}">
+                                            <input type="checkbox" id="removeCheckBox" name="removeCheckBox" th:value="${sendPaper.sendPaperNo}">
                                         </td>
                                     </tr>
 
@@ -101,16 +101,16 @@
 
                                 </tbody>
                             </table>
-                            </div>
-                            <!-- 삭제 버튼-->
-                            <div th:if="${sendPaperList != null}">
-                                <button class="btn btn-default" type="submit" id="removeSendPaperBtn">삭제</button>
+                        </div>
+                        <!-- 삭제 버튼-->
+                        <div th:if="${sendPaperList != null}">
+                            <button class="btn btn-default deleteBtn" type="submit" id="removeSendPaperBtn">삭제</button>
 
-                            </div>
-                        </form>
-                    </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
+</div>
 </html>

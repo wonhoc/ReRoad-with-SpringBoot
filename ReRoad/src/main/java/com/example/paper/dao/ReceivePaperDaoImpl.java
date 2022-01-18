@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 @Repository("receivePaperDao")
 public class ReceivePaperDaoImpl implements ReceivePaperDao{
@@ -19,6 +21,22 @@ public class ReceivePaperDaoImpl implements ReceivePaperDao{
             this.sqlSession.insert("Paper.insertReceivePaper",receivePaper);
         }
 
+    }
+    @Override
+    public List<ReceivePaperVo> selectReceivePaperList(String receiveId) {
+        return this.sqlSession.selectList("Paper.selectReceivePaperList",receiveId);
+    }
+    @Override
+    public ReceivePaperVo selectReceivePaper(HashMap<String, Object> receivePaperMap) {
+        return this.sqlSession.selectOne("Paper.selectReceivePaper", receivePaperMap);
+    }
+    @Override
+    public void updateReceiveRead(HashMap<String,Object> updateMap) {
+        this.sqlSession.update("Paper.updateAddressRead",updateMap);
+    }
+    @Override
+    public void deleteReceivePaper(HashMap<String,Object> map) {
+        this.sqlSession.delete("Paper.deleteReceivePaper",map);
     }
 
 }

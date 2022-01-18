@@ -9,92 +9,39 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="18869558-432e-4011-9d86-a59d03e83cff" name="Changes" comment="로그인 시 session 작업 변경">
-      <change afterPath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/schedule/controller/RestScheduleController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/static/css/board/modifyBoard.css" afterDir="false" />
+
+    <list default="true" id="18869558-432e-4011-9d86-a59d03e83cff" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/static/js/paper/writePaper.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/board/controller/BoardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/board/controller/BoardController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/board/controller/BoardRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/board/controller/BoardRestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/board/dao/BoardDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/board/dao/BoardDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/board/dao/BoardDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/board/dao/BoardDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/board/service/BoardService.java" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/board/service/BoardService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/board/service/BoardServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/board/service/BoardServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/board/vo/BoardVo.java" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/board/vo/BoardVo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/domestic/controller/DomesticController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/domestic/controller/DomesticController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/domestic/service/DomesticService.java" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/domestic/service/DomesticService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/member/contorller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/member/contorller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/reroad/mainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/reroad/mainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/schedule/controller/ScheduleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/schedule/controller/ScheduleController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/schedule/service/ExpBusScheduleServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/schedule/service/ExpBusScheduleServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/schedule/service/TrainScheduleServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/schedule/service/TrainScheduleServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/schedule/vo/ApiResponseObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/schedule/vo/ApiResponseObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/resources/mapper/board-mapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/mapper/board-mapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/resources/static/css/board/boardModify.css" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/static/css/board/boardModify.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/resources/static/css/schedule/retriveSchedule.css" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/static/css/schedule/retriveSchedule.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/resources/static/js/board/boardList.js" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/static/js/board/boardList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/resources/static/js/board/modifyBoard.js" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/static/js/board/modifyBoard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/resources/static/js/schedule/retriveSchedule.js" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/static/js/schedule/retriveSchedule.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/member/oauth/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/member/oauth/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/paper/controller/PaperController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/paper/controller/PaperController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/paper/dao/AddressDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/paper/dao/AddressDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/paper/dao/AddressDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/paper/dao/AddressDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/paper/dao/ReceivePaperDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/paper/dao/ReceivePaperDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/paper/dao/ReceivePaperDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/paper/dao/ReceivePaperDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/paper/service/PaperService.java" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/paper/service/PaperService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/paper/service/PaperServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/paper/service/PaperServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/resources/mapper/paper-mapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/mapper/paper-mapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/resources/static/css/paper/sendPaper.css" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/static/css/paper/sendPaper.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/resources/static/js/paper/sendPaperDetail.js" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/static/js/paper/sendPaperDetail.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/fragments/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/fragments/header.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/main.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/templates.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/templates.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/views/board/boardList.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/views/board/boardList.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/views/board/boardWrite.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/views/board/boardWrite.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/views/board/detailBoard.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/views/board/detailBoard.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/views/board/modifyBoard.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/views/board/modifyBoard.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/views/domestic/domestic.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/views/domestic/domestic.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/views/schedule/retriveSchedule.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/views/schedule/retriveSchedule.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/target/ReRoad-0.0.1-SNAPSHOT/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/ReRoad-0.0.1-SNAPSHOT/META-INF/MANIFEST.MF" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/target/ReRoad-0.0.1-SNAPSHOT/WEB-INF/classes/mapper/board-mapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/ReRoad-0.0.1-SNAPSHOT/WEB-INF/classes/mapper/board-mapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/target/ReRoad-0.0.1-SNAPSHOT/WEB-INF/classes/static/css/board/boardDetail.css" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/ReRoad-0.0.1-SNAPSHOT/WEB-INF/classes/static/css/board/boardDetail.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/target/ReRoad-0.0.1-SNAPSHOT/WEB-INF/classes/static/css/board/boardModify.css" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/ReRoad-0.0.1-SNAPSHOT/WEB-INF/classes/static/css/board/boardModify.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/target/ReRoad-0.0.1-SNAPSHOT/WEB-INF/classes/static/css/chatting/chat.css" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/ReRoad-0.0.1-SNAPSHOT/WEB-INF/classes/static/css/chatting/chat.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/target/ReRoad-0.0.1-SNAPSHOT/WEB-INF/classes/static/css/domestic/domesticManage.css" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/ReRoad-0.0.1-SNAPSHOT/WEB-INF/classes/static/css/domestic/domesticManage.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/target/ReRoad-0.0.1-SNAPSHOT/WEB-INF/classes/static/css/notice/noticeList.css" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/ReRoad-0.0.1-SNAPSHOT/WEB-INF/classes/static/css/notice/noticeList.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/target/ReRoad-0.0.1-SNAPSHOT/WEB-INF/classes/static/css/schedule/retriveSchedule.css" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/ReRoad-0.0.1-SNAPSHOT/WEB-INF/classes/static/css/schedule/retriveSchedule.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/target/ReRoad-0.0.1-SNAPSHOT/WEB-INF/classes/static/js/board/boardList.js" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/ReRoad-0.0.1-SNAPSHOT/WEB-INF/classes/static/js/board/boardList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/target/ReRoad-0.0.1-SNAPSHOT/WEB-INF/classes/static/js/board/detailBoard.js" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/ReRoad-0.0.1-SNAPSHOT/WEB-INF/classes/static/js/board/detailBoard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/target/ReRoad-0.0.1-SNAPSHOT/WEB-INF/classes/static/js/board/modifyBoard.js" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/ReRoad-0.0.1-SNAPSHOT/WEB-INF/classes/static/js/board/modifyBoard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/target/ReRoad-0.0.1-SNAPSHOT/WEB-INF/classes/static/js/chatting/chatList.js" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/ReRoad-0.0.1-SNAPSHOT/WEB-INF/classes/static/js/chatting/chatList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/target/ReRoad-0.0.1-SNAPSHOT/WEB-INF/classes/static/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/ReRoad-0.0.1-SNAPSHOT/WEB-INF/classes/static/js/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/target/ReRoad-0.0.1-SNAPSHOT/WEB-INF/classes/static/js/notice/noticeList.js" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/ReRoad-0.0.1-SNAPSHOT/WEB-INF/classes/static/js/notice/noticeList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/target/ReRoad-0.0.1-SNAPSHOT/WEB-INF/classes/static/js/notice/noticeSearch.js" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/ReRoad-0.0.1-SNAPSHOT/WEB-INF/classes/static/js/notice/noticeSearch.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/target/ReRoad-0.0.1-SNAPSHOT/WEB-INF/classes/static/js/schedule/retriveSchedule.js" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/ReRoad-0.0.1-SNAPSHOT/WEB-INF/classes/static/js/schedule/retriveSchedule.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/target/ReRoad-0.0.1-SNAPSHOT/WEB-INF/classes/templates/fragments/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/ReRoad-0.0.1-SNAPSHOT/WEB-INF/classes/templates/fragments/header.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/target/ReRoad-0.0.1-SNAPSHOT/WEB-INF/classes/templates/templates.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/ReRoad-0.0.1-SNAPSHOT/WEB-INF/classes/templates/templates.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/target/ReRoad-0.0.1-SNAPSHOT/WEB-INF/classes/templates/views/Schedule/retriveSchedule.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/ReRoad-0.0.1-SNAPSHOT/WEB-INF/classes/templates/views/Schedule/retriveSchedule.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/target/ReRoad-0.0.1-SNAPSHOT/WEB-INF/classes/templates/views/board/boardList.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/ReRoad-0.0.1-SNAPSHOT/WEB-INF/classes/templates/views/board/boardList.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/target/ReRoad-0.0.1-SNAPSHOT/WEB-INF/classes/templates/views/board/boardWrite.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/ReRoad-0.0.1-SNAPSHOT/WEB-INF/classes/templates/views/board/boardWrite.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/target/ReRoad-0.0.1-SNAPSHOT/WEB-INF/classes/templates/views/board/detailBoard.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/ReRoad-0.0.1-SNAPSHOT/WEB-INF/classes/templates/views/board/detailBoard.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/target/ReRoad-0.0.1-SNAPSHOT/WEB-INF/classes/templates/views/board/modifyBoard.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/ReRoad-0.0.1-SNAPSHOT/WEB-INF/classes/templates/views/board/modifyBoard.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/target/ReRoad-0.0.1-SNAPSHOT/WEB-INF/classes/templates/views/board/reportList.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/ReRoad-0.0.1-SNAPSHOT/WEB-INF/classes/templates/views/board/reportList.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/target/ReRoad-0.0.1-SNAPSHOT/WEB-INF/classes/templates/views/board/userBoardList.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/ReRoad-0.0.1-SNAPSHOT/WEB-INF/classes/templates/views/board/userBoardList.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/target/ReRoad-0.0.1-SNAPSHOT/WEB-INF/classes/templates/views/chatting/chatUserList.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/target/ReRoad-0.0.1-SNAPSHOT/WEB-INF/classes/templates/views/chatting/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/ReRoad-0.0.1-SNAPSHOT/WEB-INF/classes/templates/views/chatting/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/target/ReRoad-0.0.1-SNAPSHOT/WEB-INF/classes/templates/views/domestic/domestic.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/ReRoad-0.0.1-SNAPSHOT/WEB-INF/classes/templates/views/domestic/domestic.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/target/ReRoad-0.0.1-SNAPSHOT/WEB-INF/classes/templates/views/domestic/manageDomestic.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/ReRoad-0.0.1-SNAPSHOT/WEB-INF/classes/templates/views/domestic/manageDomestic.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/target/ReRoad-0.0.1-SNAPSHOT/WEB-INF/classes/templates/views/member/JoinUser.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/ReRoad-0.0.1-SNAPSHOT/WEB-INF/classes/templates/views/member/JoinUser.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/target/ReRoad-0.0.1-SNAPSHOT/WEB-INF/classes/templates/views/member/adminMyPage.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/ReRoad-0.0.1-SNAPSHOT/WEB-INF/classes/templates/views/member/adminMyPage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/target/ReRoad-0.0.1-SNAPSHOT/WEB-INF/classes/templates/views/member/listUser.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/ReRoad-0.0.1-SNAPSHOT/WEB-INF/classes/templates/views/member/listUser.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/target/ReRoad-0.0.1-SNAPSHOT/WEB-INF/classes/templates/views/member/loginForm.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/ReRoad-0.0.1-SNAPSHOT/WEB-INF/classes/templates/views/member/loginForm.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/target/ReRoad-0.0.1-SNAPSHOT/WEB-INF/classes/templates/views/member/modifyUser.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/ReRoad-0.0.1-SNAPSHOT/WEB-INF/classes/templates/views/member/modifyUser.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/target/ReRoad-0.0.1-SNAPSHOT/WEB-INF/classes/templates/views/member/pwdCheck.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/ReRoad-0.0.1-SNAPSHOT/WEB-INF/classes/templates/views/member/pwdCheck.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/target/ReRoad-0.0.1-SNAPSHOT/WEB-INF/classes/templates/views/notice/noticeList.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/ReRoad-0.0.1-SNAPSHOT/WEB-INF/classes/templates/views/notice/noticeList.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/target/classes/mapper/board-mapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/classes/mapper/board-mapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/target/classes/static/css/board/boardModify.css" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/classes/static/css/board/boardModify.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/views/paper/receivePaper.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/views/paper/receivePaper.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/views/paper/receivePaperDetail.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/views/paper/receivePaperDetail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/views/paper/sendPaper.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/views/paper/sendPaper.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/views/paper/sendPaperDetail.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/views/paper/sendPaperDetail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/views/paper/writePaper.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/views/paper/writePaper.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/target/classes/META-INF/spring-configuration-metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/classes/META-INF/spring-configuration-metadata.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/target/classes/mapper/paper-mapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/classes/mapper/paper-mapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ReRoad/target/classes/static/css/chatting/chat.css" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/classes/static/css/chatting/chat.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/target/classes/static/css/schedule/retriveSchedule.css" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/classes/static/css/schedule/retriveSchedule.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/target/classes/static/js/board/boardList.js" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/classes/static/js/board/boardList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/target/classes/static/js/board/modifyBoard.js" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/classes/static/js/board/modifyBoard.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ReRoad/target/classes/static/js/chatting/chatList.js" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/classes/static/js/chatting/chatList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/target/classes/static/js/schedule/retriveSchedule.js" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/classes/static/js/schedule/retriveSchedule.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/target/classes/static/js/paper/sendPaperDetail.js" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/classes/static/js/paper/sendPaperDetail.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ReRoad/target/classes/templates/fragments/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/classes/templates/fragments/header.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ReRoad/target/classes/templates/templates.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/classes/templates/templates.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/target/classes/templates/views/board/boardList.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/classes/templates/views/board/boardList.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/target/classes/templates/views/board/boardWrite.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/classes/templates/views/board/boardWrite.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/target/classes/templates/views/board/detailBoard.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/classes/templates/views/board/detailBoard.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/target/classes/templates/views/board/modifyBoard.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/classes/templates/views/board/modifyBoard.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/target/classes/templates/views/domestic/domestic.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/classes/templates/views/domestic/domestic.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/target/classes/templates/views/schedule/retriveSchedule.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/classes/templates/views/schedule/retriveSchedule.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/target/classes/templates/views/paper/receivePaper.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/classes/templates/views/paper/receivePaper.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/target/classes/templates/views/paper/sendPaper.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/classes/templates/views/paper/sendPaper.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/target/classes/templates/views/paper/sendPaperDetail.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/classes/templates/views/paper/sendPaperDetail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/target/classes/templates/views/paper/writePaper.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/classes/templates/views/paper/writePaper.html" afterDir="false" />
+
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -109,9 +56,12 @@
         <option value="Interface" />
         <option value="JavaScript File" />
         <option value="Kotlin Script" />
+        <option value="JavaScript File" />
+        <option value="CSS File" />
         <option value="HTML File" />
         <option value="Class" />
         <option value="CSS File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -164,7 +114,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="D:/spring-websocket-chat-master (2)" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../spring-websocket-chat-master (2)" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
@@ -293,14 +243,12 @@
       <workItem from="1642157204123" duration="19000" />
       <workItem from="1642248106347" duration="11003000" />
       <workItem from="1642380110401" duration="23000" />
-      <workItem from="1642387201575" duration="34000" />
-      <workItem from="1642416390566" duration="786000" />
-      <workItem from="1642420924214" duration="15758000" />
-      <workItem from="1642436940856" duration="6707000" />
-      <workItem from="1642444962955" duration="1188000" />
-      <workItem from="1642462824606" duration="465000" />
-      <workItem from="1642463327699" duration="5076000" />
-      <workItem from="1642468480553" duration="156000" />
+      <workItem from="1642387152104" duration="337000" />
+      <workItem from="1642387524176" duration="268000" />
+      <workItem from="1642387819007" duration="25899000" />
+      <workItem from="1642425689465" duration="1756000" />
+      <workItem from="1642467236610" duration="1192000" />
+
     </task>
     <task id="LOCAL-00001" summary="수정">
       <created>1641550413516</created>
@@ -372,7 +320,14 @@
       <option name="project" value="LOCAL" />
       <updated>1642383682751</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="쪽지 보내기, 보낸 쪽지함 삭제, 전체 삭제 기능">
+      <created>1642398641386</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1642398641386</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -398,7 +353,8 @@
     <MESSAGE value="Header 정보 표시 방식 변경" />
     <MESSAGE value="Header 정보 표시 방식 변경 / 쪽지 송수신에 UserId 추가" />
     <MESSAGE value="로그인 시 session 작업 변경" />
-    <option name="LAST_COMMIT_MESSAGE" value="로그인 시 session 작업 변경" />
+    <MESSAGE value="쪽지 보내기, 보낸 쪽지함 삭제, 전체 삭제 기능" />
+    <option name="LAST_COMMIT_MESSAGE" value="쪽지 보내기, 보낸 쪽지함 삭제, 전체 삭제 기능" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

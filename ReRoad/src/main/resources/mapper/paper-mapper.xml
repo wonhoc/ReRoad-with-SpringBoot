@@ -5,7 +5,7 @@
 <mapper namespace="Paper">
     <!--Send Paper 저장 -->
     <insert id="insertSendPaper" parameterType="hashMap" statementType="PREPARED" useGeneratedKeys="true" keyProperty="sendPaperNo">
-        INSERT INTO send_paper(writeUserId, writeNick, sendPaperContent, sendDate)
+        INSERT INTO send_paper(writeUserId, writeNick, sendPaperContent,sendDate)
         VALUES (#{senderId}, #{senderNick}, #{sendPaperContent}, NOW())
     </insert>
 
@@ -26,11 +26,11 @@
         <result property="sendPaperNo" javaType="int" jdbcType="INTEGER" column="sendPaperNo" />
         <result property="paperContent" javaType="string" jdbcType="VARCHAR" column="sendPaperContent"/>
         <result property="sendDate" javaType="string" jdbcType="VARCHAR" column="sendDate"/>
-            <collection property="receiveInfo" ofType="addressVo">
-                <result property="receiveNick" javaType="string" jdbcType="VARCHAR" column="receiveNick"/>
-                <result property="isRead" javaType="int" jdbcType="INTEGER" column="isRead" />
-                <result property="receiveId" javaType="string" jdbcType="VARCHAR" column="receiveUserId" />
-            </collection>
+        <collection property="receiveInfo" ofType="addressVo">
+            <result property="receiveNick" javaType="string" jdbcType="VARCHAR" column="receiveNick"/>
+            <result property="isRead" javaType="int" jdbcType="INTEGER" column="isRead" />
+            <result property="receiveId" javaType="string" jdbcType="VARCHAR" column="receiveUserId" />
+        </collection>
 
     </resultMap>
 
@@ -49,13 +49,65 @@
         FROM user_info
         WHERE userNick = #{receiveNick}
     </select>
-    
+
     <!--  보낸 메시지의 리스트에서 상세 보기 요청-->
     <select id="selectSendPaper" parameterType="int" resultMap="sendPaperList">
         SELECT s.sendPaperNo, s.sendPaperContent, s.sendDate, a.receiveNick as receiveNick, a.isRead
         FROM send_paper s INNER JOIN address a USING (sendPaperNo)
         WHERE sendPaperNo = #{sendPaperNo}
     </select>
+
+    <!-- 보낸 메시지 리스트에서 메시지 삭제-->
+    <delete id="deleteSendPaperNoS" parameterType="int">
+        DELETE FROM send_paper
+        WHERE sendPaperNo = #{sendPaperNo}
+    </delete>
+
+    <!--  받은 쪽지 리스트 -->
+    <resultMap id="receivePaperList" type="receivePaperVo">
+        <result property="senderNick" javaType="string" jdbcType="VARCHAR" column="writeNick" />
+        <result property="receivePaperContent" javaType="string" jdbcType="VARCHAR" column="receivePaperContent" />
+        <result property="receivePaperNo" javaType="int" jdbcType="INTEGER" column="receivePaperNo" />
+        <result property="isRead" javaType="int" jdbcType="INTEGER" column="isRead" />
+        <result property="sendDate" javaType="string" jdbcType="VARCHAR" column="receiveDate" />
+    </resultMap>
+
+    <!-- receivePaper 리스트 요청 -->
+    <select id="selectReceivePaperList" parameterType="string" resultMap="receivePaperList">
+        SELECT writeNick, receivePaperContent, receivePaperNo, isRead, receiveDate
+        FROM receive_paper
+        WHERE receiveId = #{receiveId}
+        ORDER BY receiveDate DESC
+
+    </select>
+
+    <!-- 받은 쪽지 상세 조회-->
+    <select id="selectReceivePaper" parameterType="hashMap" resultMap="receivePaperList">
+        SELECT writeNick, receivePaperContent, receiveDate, receiveDate, isRead
+        FROM receive_paper
+        WHERE receivePaperNo = #{receivePaperNo} AND receiveId = #{receiveId}
+    </select>
+
+    <!-- receivePaper 테이블에서의 읽음 상태 업데이트-->
+    <update id="updateReceiveRead" parameterType="hashMap">
+        UPDATE receive_paper
+        SET isRead = true
+        WHERE receivePaperNo = #{receivePaperNO} AND receiveId = #{receiveId}
+    </update>
+
+    <!-- address 테이블에서의 읽음상태 업데이트-->
+    <update id="updateAddressRead" parameterType="hashMap">
+        UPDATE address
+        SET isRead = true
+        WHERE sendPaperNo = #{receivePaperNo} AND receiveUserId = #{receiveId}
+    </update>
+
+    <!-- 받은 메시지 삭제 -->
+    <delete id="deleteReceivePaper" parameterType="hashMap">
+        DELETE FROM receive_paper
+        WHERE receiveId = #{receiveId} AND receivePaperNo = #{receivePaperNo}
+    </delete>
+
 
 
 

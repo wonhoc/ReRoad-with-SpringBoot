@@ -67,15 +67,13 @@ public class UserController {
 
     // 로그인 성공
     @PostMapping("/loginOk")
-    public String loginSuccess(@AuthenticationPrincipal UserAccount prin, Model model) {
+    public String loginSuccess(@AuthenticationPrincipal UserAccount prin) {
 
         String userId = prin.getUsername();
 
         System.out.println("userId : " +userId);
         // 로그인 후 세션에 UserAccount(UserVo+Role) 객체 등록
         session.setAttribute("loginUser", userId);
-
-
         return "redirect:/main";
     }
 

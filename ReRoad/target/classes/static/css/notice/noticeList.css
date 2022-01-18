@@ -18,7 +18,7 @@ thead{
     width:100px; height: 40px; float:left;
 }
 #keyword{
-    height: 40px; width: 700px; float:left;
+    height: 40px; width: 700px; float:left; margin-left: 10px;
 }
 #searchBtn{
     height: 40px;
@@ -43,7 +43,7 @@ select{
     margin-right: 10px;
     height: 30px;
 }
-.btn-success{
+#writeBtn{
     margin-top: -5px;
 }
 input.form-control{

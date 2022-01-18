@@ -25,7 +25,6 @@
 
 				<!-- session에 로그인 유저 정보가 없다면 -->
 				<div th:if="${session.loginUser} == null">
-<!--				<div sec:authorize="!isAuthenticated()">-->
 					<a th:href="@{/loginForm}" style="text-decoration: none">
 						<button class="btn btn-default" id="loginBtn">로그인/회원가입</button>
 					</a>
@@ -37,22 +36,33 @@
 				<div th:unless="${session.loginUser} == null" class="showInfo">
 					<!--프로필 사진 -->
 					<!-- 회원의 프로필 사진 정보가 session에 없다면 -> default 이미지 지정-->
-					<span th:if="${#authentication.principal.getUser.getPhotoSys} == null" class="photoSpan" >
+					<span th:if="${session.loginUser.photoSys} == null" class="photoSpan" >
 						<img class= "showPho" th:src="@{/images/member/happy_default.jpg}">
 					</span>
 					<!-- 회원의 프로필 사진 정보가 session에 있다면 -->
-					<span th:if="${#authentication.principal.getUser.getPhotoSys} != null" class = "photoSpan">
+					<span th:if="${session.loginUser.photoSys} != null" class = "photoSpan">
 						<img class= "showPho" th:src="@{/images/member/user.png}">
 					</span>
 
 
 					<span id="buttons">
-							<a th:href="@{/member/myPage}" style="text-decoration: none">
+
+							<a th:if="${session.loginUser.role} == 'ROLE_ADMIN'" th:href="@{/admin/myPage}" style="text-decoration: none">
 							<button class="btn btn-default" type="button" id="myPageBtn" >
 								<span id="showMyPage">마이페이지</span>
-								<span th:text="${#authentication.principal.getUser.userNick}" id="showNick" />
+								<span th:text="${session.loginUser.userNick}" id="showNick" />
 							</button>
 							</a>
+							<a th:if="${session.loginUser.role} != 'ROLE_ADMIN'" th:href="@{/member/myPage}" style="text-decoration: none">
+							<button class="btn btn-default" type="button" id="myPageBtn" >
+								<span id="showMyPage">마이페이지</span>
+								<span th:text="${session.loginUser.userNick}" id="showNick" />
+							</button>
+							</a>
+
+
+
+
 
 							<a th:href="@{/writePaper}" style="text-decoration: none">
 								<button class="btn btn-default" type="button" id="myPaperBtn">

@@ -67,13 +67,17 @@ public class UserController {
 
     // 로그인 성공
     @PostMapping("/loginOk")
-    public String loginSuccess(@AuthenticationPrincipal UserAccount prin) {
+    public String loginSuccess(@AuthenticationPrincipal UserAccount prin, Model model) {
 
-        String userId = prin.getUsername();
+        String userId = prin.getUser().getUserId();
+        UserVo user = this.userService.getInfo(userId);
+
 
         // 로그인 후 세션에 UserAccount(UserVo+Role) 객체 등록
-        session.setAttribute("loginUser", userId);
-        return "redirect:/main";
+        session.setAttribute("loginUser", user);
+        model.addAttribute("content","/main");
+
+        return "/templates";
     }
 
     //로그인이 실패했을 경우
@@ -358,8 +362,13 @@ public class UserController {
 
             this.userService.modifyUser(modifyUser);
 
-            Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getUserId(), user.getUserPwd()));
-            SecurityContextHolder.getContext().setAuthentication(authentication);
+            //Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getUserId(), user.getUserPwd()));
+            //SecurityContextHolder.getContext().setAuthentication(authentication);
+            String userId = prin.getUsername();
+            UserVo user1 = this.userService.getInfo(userId);
+
+            session.setAttribute("loginUser", user1);
+
 
 
 //            UserVo user2 = this.userService.getInfo(userId);
@@ -369,7 +378,6 @@ public class UserController {
 //            session.setAttribute("loginUser", prin.getUser().getUserNick());
 //            session.setAttribute("loginUser", prin.getUser().getPhotoSys());
 
-            String userId = prin.getUsername();
 
             UserVo user2 = this.userService.retrieveUser(userId);
             model.addAttribute("user", user2);

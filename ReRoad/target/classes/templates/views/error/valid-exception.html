@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="layout/defaultLayout">
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <th:block layout:fragment="css">
 
     <link rel="stylesheet" th:href="@{/css/error/validException.css}">
@@ -10,7 +9,7 @@
 </th:block>
 <head>
 </head>
-<section layout:fragment="content">
+<section>
     <div class="container">
         <table id="errTable">
             <tr><td id="errTitle">ERR발생!</td></tr>

@@ -86,7 +86,7 @@ public class NoticeController {
 
     //공지사항 수정 처리
     @PostMapping("/admin/modifynotice")
-    public String noticeModify(@Valid NoticeVO notice, @RequestParam int noticeNo, @RequestParam int[] fileNo,
+    public String noticeModify(@Valid NoticeVO notice, @RequestParam int noticeNo, @RequestParam(value = "fileNo", required=false) int[] fileNo,
                                @RequestPart(value = "noticeFileInput", required = false) List<MultipartFile> files,
                                HttpServletRequest request, Model model) {
         //수정한 공지글을 저장할 객체 생성

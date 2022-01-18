@@ -52,7 +52,7 @@
             <div style="color: teal; margin-left: 16px; margin-top: 7px;">기존 파일</div>
             <span class="previmage" th:id="${boardFile.fileNo}" th:each="boardFile : ${board.boardFiles}">
                 <input type="checkbox" name="prevImage" th:value="${boardFile.fileNo}">
-                <img class="img" th:src="@{'/upload/'+${boardFile.systemFileName}}">
+                <img class="img" th:src="'/upload/'+${boardFile.systemFileName}">
             </span>
         </div>
         <button id="removeFileBtn" type="button">이미지 삭제</button>

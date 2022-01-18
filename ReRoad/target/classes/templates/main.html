@@ -228,7 +228,7 @@
             <tr>
                 <div th:each="city :${domestic}">
                     <td><a th:href="@{/domestic/{domesticName}(domesticName=${city.domesticName})}"><img class="domestic" th:if="${city.thumbnailSystem == null}" src="images/noImage.png">
-                        <img class="domestic" th:if="${city.thumbnailSystem != null}" th:src="@{'/upload/' + ${city.thumbnailSystem}}"></a></td>
+                        <img class="domestic" th:if="${city.thumbnailSystem != null}" th:src="'/upload/' + ${city.thumbnailSystem}"></a></td>
                     <td class="tableempty"></td>
                 </div>
             </tr>

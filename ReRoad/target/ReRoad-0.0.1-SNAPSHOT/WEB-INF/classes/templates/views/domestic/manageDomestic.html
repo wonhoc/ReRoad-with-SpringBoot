@@ -28,7 +28,7 @@
         <div id="images">
             <div id="thumb">
                 <img th:if="${domestic.thumbnailSystem == ''}" class = "thumnail" src="/images/noImage.png">
-                <img th:if="${domestic.thumbnailSystem != ''}" class="thumnail" th:src="@{'/upload/'+${domestic.thumbnailSystem}}">
+                <img th:if="${domestic.thumbnailSystem != ''}" class="thumnail" th:src="'/upload/'+${domestic.thumbnailSystem}">
             </div>
 
             <div id="imgViewArea" style="margin-top:10px; display:none;">

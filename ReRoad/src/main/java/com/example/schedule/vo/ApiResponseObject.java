@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 /*
- 	API에서 응답한 entity객체
+    API에서 응답한 entity객체
  */
 @Getter
 @Setter
@@ -21,7 +21,8 @@ public class ApiResponseObject {
 	private LinkedHashMap _links;
 	private String pageNo;
 	private String totalCnt;
+	private String numOfRows;
 	private Object scList;
-	
-	
+
+
 }//class end

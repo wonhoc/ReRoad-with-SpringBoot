@@ -1,50 +1,57 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-	  xmlns:th="https://www.thymeleaf.org/"
-	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+      xmlns:th="https://www.thymeleaf.org/"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
-	<meta charset="UTF-8" />
 
-	<link rel="stylesheet" href="/css/header.css" />
-	<link rel="script" href="/js/header.js">
-	<script src="/js/chatting/popupChat.js" type="text/javascript"></script>
+    <th:block>
+        <script src="/js/message/chat.js"></script>
+    </th:block>
+    <meta charset="UTF-8" />
+
+    <link rel="stylesheet" href="/css/header.css" />
+    <link rel="script" href="/js/header.js">
+    <script src="/js/chatting/popupChat.js" type="text/javascript"></script>
+
 
 </head>
 
 <div class="header">
-	<div class="container" id="headerContainer">
-		<div id="wrapper">
+    <div class="container" id="headerContainer">
+        <div id="wrapper">
 			<span class="header_logo">
 				<a th:href="@{/main}">
 					<img id="logo" src="/images/mainLogo.png">
 				</a>
 			</span>
-			<span class="loginAndInfo">
+            <span class="loginAndInfo">
 
 				<!-- session에 로그인 유저 정보가 없다면 -->
 				<div th:if="${session.loginUser} == null">
-<!--				<div sec:authorize="!isAuthenticated()">-->
+
 					<a th:href="@{/loginForm}" style="text-decoration: none">
 						<button class="btn btn-default" id="loginBtn">로그인/회원가입</button>
 					</a>
 				</div>
+
 				<!-- session에 로그인 유저 정보가 있다면 -->
 				<!--				<div th:if="${session.loginUser != null}" class="showInfo">-->
 				<!--				<div th:if="${#authentication}" class="showInfo">-->
 				<!--				<div sec:authorize="isAuthenticated()" class="showInfo">-->
-				<div th:unless="${session.loginUser} == null" class="showInfo">
-					<!--프로필 사진 -->
-					<!-- 회원의 프로필 사진 정보가 session에 없다면 -> default 이미지 지정-->
-					<span th:if="${#authentication.principal.getUser.getPhotoSys} == null" class="photoSpan" >
-						<img class= "showPho" th:src="@{/images/member/happy_default.jpg}">
-					</span>
-					<!-- 회원의 프로필 사진 정보가 session에 있다면 -->
+				 <div th:if="${session.loginUser} != null" class="showInfo">
+
+					 <p>안녕</p>
+				<!--	<span th:if="${#authentication.principal.getUser.getPhotoSys} == null" class="photoSpan" >
+						<img class= "showPho" th:src="@{/images/member/happy_default.jpg}"></span>
 					<span th:if="${#authentication.principal.getUser.getPhotoSys} != null" class = "photoSpan">
 						<img class= "showPho" th:src="@{/images/member/user.png}">
 					</span>
 
+
+					<input type="hidden" id="username" th:value="${#authentication.principal.getUser.getUserId}">
 
 					<span id="buttons">
 							<a th:href="@{/member/myPage}" style="text-decoration: none">
@@ -65,12 +72,13 @@
 							<a th:href="@{/logout}" style="text-decoration: none">
 								<button class="btn btn-default" type="button" id="logoutBtn">로그아웃</button>
 							</a>
-					</span>
-				</div>
-			</span>
+					</span> -->
 
-		</div>
-		<div id ="bar"></div>
-	</div>
+
+                    </div>
+            </span>
+        </div>
+        <div id ="bar"></div>
+    </div>
 </div>
 </html>

@@ -42,3 +42,25 @@
 #listBtn{
     height: 35px;
 }
+#image{
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+    margin-left: 134px;
+}
+.img{ width:150px;
+    height:120px;
+}
+#att_zone {
+    width: 835px;
+    min-height: 150px;
+    padding: 10px;
+    border: 1px dotted teal;
+    margin-left: 33px;
+}
+
+#att_zone:empty:before {
+    content: attr(data-placeholder);
+    color: teal;
+    font-size: .9em;
+}

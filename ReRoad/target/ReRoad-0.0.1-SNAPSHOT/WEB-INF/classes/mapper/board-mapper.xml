@@ -36,7 +36,7 @@
 
 
     <resultMap id="resultMapFileList" type="BoardFileVo">
-        <result property="fileNo" javaType="int" column="fileNo" jdbcType="INTEGER" />
+        <result property="fileNo" javaType="int" column="boardfileNo" jdbcType="INTEGER" />
         <result property="originalFileName" javaType="string" column="originalFileName" jdbcType="VARCHAR" />
         <result property="systemFileName" javaType="string" column="systemFileName" jdbcType="VARCHAR" />
         <result property="fileSize" javaType="int" column="fileSize" jdbcType="INTEGER" />
@@ -124,6 +124,10 @@
         <parameter property="boardNo" javaType="int"  jdbcType="INTEGER" mode="IN" />
     </parameterMap>
 
+    <!-- 파일 삭제 -->
+    <parameterMap id="paramFileDelete" type="int">
+        <parameter property="fileNo" javaType="int" jdbcType="INTEGER" />
+    </parameterMap>
 
     <!--게시글 수정 -->
     <parameterMap type="BoardVo" id="paramMapUpdateboard">
@@ -272,6 +276,12 @@
     <select id="boardFileThumnail" statementType="CALLABLE"  resultMap="resultMapFileList">
         { call sp_board_boardThumnailSelect() }
     </select>
+
+    <!-- 파일 삭제 -->
+    <delete id="boardFileDelete" statementType="CALLABLE" parameterType="int" parameterMap="paramFileDelete">
+        { call sp_board_boardFileDelete(?) }
+    </delete>
+
 
     <!-- 라스트아이디 -->
     <select id="lastId" statementType="CALLABLE" resultType="int">

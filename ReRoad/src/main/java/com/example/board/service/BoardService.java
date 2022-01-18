@@ -26,7 +26,6 @@ public interface BoardService {
     void registerBoard(BoardVo board);//
 
 
-
     //댓글
     List retrieveComList(int boardNo);//
     void registerComment(CommentVo comment);//

@@ -25,7 +25,7 @@
             <div id="margin">
             <div id="slideShow">
                 <ul class="slides">
-                    <li th:each="boardfile : ${board.boardFiles}"><img class="boardImg" th:src="@{'/upload/'+${boardfile.systemFileName}}" alt=""></li>
+                    <li th:each="boardfile : ${board.boardFiles}"><img class="boardImg" th:src="'/upload/'+${boardfile.systemFileName}" alt=""></li>
                 </ul>
 
 
@@ -37,15 +37,6 @@
             </div>
         </div>
 
-
-           <!-- <div class="album">
-                <div class="fileimage" th:each="boardfile : ${board.boardFiles}">
-                    <img class="boardImg" th:src="@{'/upload/'+${boardfile.systemFileName}}">
-                </div>
-            </div>
-
-            <button class="prev">PREV</button>
-            <button class="next">NEXT</button> -->
 
             <input type="hidden" name="boardNo" th:value="${board.boardNo}" id="boardNo">
         <form method="post" th:action="@{/deleteBoard/{boardNo}(boardNo=${board.boardNo})}">

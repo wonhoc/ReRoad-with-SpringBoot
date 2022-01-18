@@ -52,6 +52,7 @@ $(document).ready(function () {
         $('#selected').html(str);
         $('#'+currentRegion).show();
 
+        console.log($('#selected').html())
         let length = $('#search').children().length
 
         for (let i = 0 ; i<length ; i++){

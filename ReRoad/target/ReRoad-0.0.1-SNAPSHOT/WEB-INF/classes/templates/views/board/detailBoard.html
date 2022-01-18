@@ -21,11 +21,11 @@
 
     <div class="container">
         <div id = "boardMain">
-
+        <div th:if="${#lists.size(board.boardFiles) != 0}">
             <div id="margin">
             <div id="slideShow">
                 <ul class="slides">
-                    <li th:each="boardfile : ${board.boardFiles}"><img class="boardImg" th:src="@{'/upload/'+${boardfile.systemFileName}}" alt=""></li>
+                    <li th:each="boardfile : ${board.boardFiles}"><img class="boardImg" th:src="'/upload/'+${boardfile.systemFileName}" alt=""></li>
                 </ul>
 
 
@@ -35,23 +35,14 @@
                 </p>
             </div>
             </div>
+        </div>
 
-
-
-           <!-- <div class="album">
-                <div class="fileimage" th:each="boardfile : ${board.boardFiles}">
-                    <img class="boardImg" th:src="@{'/upload/'+${boardfile.systemFileName}}">
-                </div>
-            </div>
-
-            <button class="prev">PREV</button>
-            <button class="next">NEXT</button> -->
 
             <input type="hidden" name="boardNo" th:value="${board.boardNo}" id="boardNo">
         <form method="post" th:action="@{/deleteBoard/{boardNo}(boardNo=${board.boardNo})}">
         <div th:if="${user.userNick == board.userNick || user.role == 'ROLE_ADMIN'}">
             <a  th:href="@{/modifyBoardForm/{boardNo}(boardNo=${boardNo})}"  id ="modiBtn" class="btn btn-outline-warning">수정</a>
-            <button id="deleteBtn" class="btn btn-outline-secondary">삭제</button>
+            <button type="button" id="deleteBtn" class="btn btn-outline-secondary">삭제</button>
         </div>
             <div id="main">
 

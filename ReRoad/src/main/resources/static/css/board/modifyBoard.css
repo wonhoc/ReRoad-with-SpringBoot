@@ -1,0 +1,72 @@
+#bar2{
+    background-color: teal;
+    height: 5px;
+    width: 158px;
+    margin-left: 134px;
+}
+
+#write{
+    font-size: 30px;
+    margin-bottom: 0px;
+    color: teal;
+
+    margin-left: 134px;
+}
+
+#boardTitle{
+    margin-left: 134px;
+    width: 634px;
+    border: 2px solid teal;
+    margin-top: 30px
+}
+
+#boardContent{
+    height: 300px;
+    width: 634px;
+    margin-left: 134px;
+    margin-top: 18px;
+    border: 2px solid;
+}
+#main{
+    background-color: rgb(233,233,233);
+    border-radius: 3%;
+    margin-top: 73px;
+    width: 891px;
+
+    margin-left: 152px;
+}
+#saveBtn{
+    margin-left: 743px;
+    height: 35px;
+}
+#listBtn{
+    height: 35px;
+}
+#image{
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+    margin-left: 134px;
+}
+.img{ width:150px;
+    height:120px;
+}
+#att_zone {
+    width: 846px;
+    min-height: 150px;
+    padding: 10px;
+    border: 1px dotted teal;
+    margin-left: 24px;
+}
+
+#att_zone:empty:before {
+    content: attr(data-placeholder);
+    color: teal;
+    font-size: .9em;
+}
+#boardFile{
+    width: 845px;
+    border: 1px dotted teal;
+    margin-left: 24px;
+    margin-top: 26px;
+}

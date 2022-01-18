@@ -36,7 +36,7 @@ public class NoticeRestController {
         return list;
     }
 
-    //파일만 삭제(글 수정중 기존 파일 삭제할 경우)
+    /*//파일만 삭제(글 수정중 기존 파일 삭제할 경우)
     @DeleteMapping("/removeNoticeFile/{fileNo}/{noticeNo}")
     public List<FileVO> deleteOnlyFile(@PathVariable int fileNo, @PathVariable int noticeNo) {
 
@@ -45,5 +45,5 @@ public class NoticeRestController {
         NoticeVO notice = this.noticeService.retrieveNotice(noticeNo);
         List<FileVO> files = notice.getNoticeFileList();
         return files;
-    }
+    }*/
 }

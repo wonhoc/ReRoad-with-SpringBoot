@@ -50,6 +50,18 @@ public class BoardRestController {
         return map;
     }
 
+
+    //Ajax 페이징 처리
+    @GetMapping("/getBoardList")
+    public List<BoardVo> getBoardList(){
+
+        List<BoardVo>  boardList = this.boardService.retrieveList();
+
+        return boardList;
+
+    }//getBoardList() end
+
+
     @PostMapping("/createComment")
     public Map createComment(@RequestBody CommentVo comment, @AuthenticationPrincipal UserAccount user){
         HashMap<String, Object> map = new HashMap<String, Object>();

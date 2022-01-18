@@ -6,6 +6,7 @@ import com.example.domestic.service.DomesticService;
 
 import com.example.member.service.UserService;
 import com.example.member.vo.UserAccount;
+import com.example.member.vo.UserVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 
@@ -40,8 +41,19 @@ public class mainController {
 
 
     @GetMapping("/main")
-    public String main(Model model) throws Exception {
+    public String main(Model model, @AuthenticationPrincipal UserAccount user) throws Exception {
 
+        if(user != null) {
+            UserVo currentUser = new UserVo();
+            String userNcik = user.getUser().getUserNick();
+            String userId = user.getUser().getUserId();
+            String photoSys = user.getUser().getPhotoSys();
+
+            currentUser.setUserNick(userNcik);
+            currentUser.setUserId(userId);
+            currentUser.setPhotoSys(photoSys);
+            model.addAttribute("currentUser",currentUser);
+        }
 
         List<NoticeVO> noticeList  = this.noticeService.retrieveLastNotices();
         model.addAttribute("noticeList", noticeList);
@@ -50,9 +62,13 @@ public class mainController {
 
         List domestic = this.domesticService.boardMain();
 
-
+        System.out.println("domestic  : "  + domestic);
         model.addAttribute("domestic", domestic);
+
+
         model.addAttribute("content", "/main");
+
+
 
         return "/templates";
     }

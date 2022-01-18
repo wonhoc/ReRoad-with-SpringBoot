@@ -10,7 +10,6 @@
     margin : 5em auto 0 auto;
 
 }
-
 /* 쪽지 관리 텍스트+설명글 div*/
 #welcomeDiv {
     margin-right:1em;
@@ -35,6 +34,7 @@
     font-size: small;
     margin-bottom: 1em;
 }
+
 /* 하단 메뉴 + 작성부분 div*/
 #paperMain {
     margin-top: 4em;
@@ -45,6 +45,38 @@
     float: left;
 }
 /* 우측 본 내용 div*/
-#viewDetail {
+#addressAndWrite {
     float: left;
 }
+/* input 창 */
+#receiveNick {
+    margin-bottom: 2em;
+}
+/* textarea*/
+#sendContent {
+    resize: none;
+    height: 200px;
+    margin-bottom: 2em;
+
+}
+/* input, textarea 상단 제목*/
+.upperInputText {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: bold;
+    font-size: large;
+}
+
+/* 보내기 버튼 */
+#sendBtn {
+    background-color: #d58512;
+    color: white;
+    border-color: #d58512;
+    font-weight: bolder;
+
+}
+/* 보내기 버튼 마우스 오버시 */
+#sendBtn:hover {
+    background-color: #f1a534;
+    border-color: #f1a534;
+}
+

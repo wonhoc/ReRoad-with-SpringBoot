@@ -73,6 +73,7 @@ public class UserController {
         UserVo user = this.userService.getInfo(userId);
 
 
+        System.out.println("userId : " +userId);
         // 로그인 후 세션에 UserAccount(UserVo+Role) 객체 등록
         session.setAttribute("loginUser", user);
         model.addAttribute("content","/main");

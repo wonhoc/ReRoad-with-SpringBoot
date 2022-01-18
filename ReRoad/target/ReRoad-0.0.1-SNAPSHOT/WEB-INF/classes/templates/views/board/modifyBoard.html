@@ -3,7 +3,7 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <th:block layout:fragment="css">
-    <link rel="stylesheet" th:href="@{/css/board/boardModify.css}">
+    <link rel="stylesheet" th:href="@{/css/board/modifyBoard.css}">
 </th:block>
 <th:block layout:fragment="script">
     <script th:src="@{/js/board/modifyBoard.js}"></script>
@@ -14,26 +14,48 @@
     <div class="container">
 
     <div id="main">
-        <form name="form" id="form" role="form" method="post" th:action="@{/modifyboard}">
+        <form name="form" id="form" role="form" method="post" th:action="@{/modifyboard}" enctype="multipart/form-data">
             <input type="hidden" name="boardNo" id="boardNo" th:value="${board.boardNo}">
 
 
             <strong id ="write">게시글 수정</strong>
             <div id="bar2"></div>
+
+            <button type="submit" class="btn btn-sm btn-primary" id="saveBtn">수정</button>
+            <a class="btn btn-default waves-effect waves-light" th:href="@{/boardList}">목록</a>
             <div class="mb-3">
                 <input type="text" class="form-control" name="boardTitle" id="boardTitle"  th:value="${board.boardTitle}">
             </div>
 
             <div class="mb-3">
-                <textarea class="form-control" name="boardContent" id="boardContent" th:value="${board.boardContent}"></textarea>
+                <input class="form-control" name="boardContent" id="boardContent" th:value="${board.boardContent}">
             </div>
 
-            <div>
-                <button type="submit" class="btn btn-sm btn-primary" id="saveBtn">수정</button>
-                <a class="btn btn-default waves-effect waves-light" th:href="@{/boardList}">목록</a>
+            <div id='image_preview'>
+                <label for="fileList">
+                    <img id="image" src="/images/board/image.png">
+                </label>
+                <input type='file' accept="image/*" id='fileList' name="fileList" style="display: none" multiple='multiple' />
+                <div id='att_zone'
+                     data-placeholder='이미지를 첨부 하려면 카메라 이미지 클릭하거나 이미지를 드래그앤드롭 하세요'></div>
             </div>
+
+            <div id="hiddenRoom">
+
+            </div>
+
+
+
         </form>
 
+        <div id="boardFile" th:if="${#lists.size(board.boardFiles) != 0}">
+            <div style="color: teal; margin-left: 16px; margin-top: 7px;">기존 파일</div>
+            <span class="previmage" th:id="${boardFile.fileNo}" th:each="boardFile : ${board.boardFiles}">
+                <input type="checkbox" name="prevImage" th:value="${boardFile.fileNo}">
+                <img class="img" th:src="'/upload/'+${boardFile.systemFileName}">
+            </span>
+        </div>
+        <button id="removeFileBtn" type="button">이미지 삭제</button>
     </div>
     </div>
 </html>

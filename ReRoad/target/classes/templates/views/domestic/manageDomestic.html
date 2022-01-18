@@ -18,7 +18,7 @@
 
         <div id="search" style="display: none" >
             <div class="entireDomesticName" th:each="list : ${entireList}" >
-                <span th:id="${list.domesticName}" class="name" th:text="${list.domesticName + '&nbsp;&nbsp;&nbsp;'}"></span>
+                <span th:id="${list.domesticName}" class="name" th:text="${list.domesticName}"></span>
             </div>
         </div>
 
@@ -28,7 +28,7 @@
         <div id="images">
             <div id="thumb">
                 <img th:if="${domestic.thumbnailSystem == ''}" class = "thumnail" src="/images/noImage.png">
-                <img th:if="${domestic.thumbnailSystem != ''}" class="thumnail" th:src="@{'/upload/'+${domestic.thumbnailSystem}}">
+                <img th:if="${domestic.thumbnailSystem != ''}" class="thumnail" th:src="'/upload/'+${domestic.thumbnailSystem}">
             </div>
 
             <div id="imgViewArea" style="margin-top:10px; display:none;">

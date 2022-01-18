@@ -43,9 +43,9 @@ public class DomesticService {
 
 
 
-        cal.add(Calendar.DATE, -1);
+        cal.add(Calendar.DATE, 0);
 
-        String currentDate = df.format(cal.getTime()) + "1800";
+        String currentDate = df.format(cal.getTime()) + "0600";
 
 
         List list = new ArrayList();

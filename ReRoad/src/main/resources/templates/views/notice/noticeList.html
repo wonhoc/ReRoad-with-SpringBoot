@@ -41,7 +41,7 @@
             </div>
         </div>
         <div sec:authorize="hasRole('ROLE_ADMIN')">
-            <a class="btn btn-primary waves-effect waves-light" th:href="@{/admin/noticewriteform}">
+            <a id="writeBtn" class="btn btn-primary waves-effect waves-light" th:href="@{/admin/noticewriteform}">
                 글작성
             </a>
         </div>

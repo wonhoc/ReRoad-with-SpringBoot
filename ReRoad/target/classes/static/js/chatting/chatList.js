@@ -1,8 +1,8 @@
 function fetchAll() {
-    const chaturl = 'http://localhost:8080';
+    const chaturl = 'ec2-54-180-31-9.ap-northeast-2.compute.amazonaws.com';
     const myname = $('#myname').val();
     $('#refresh').hide();
-    $.get(chaturl + "/fetchAllUsers", function (response) {
+    $.get("/fetchAllUsers", function (response) {
         let users = response;
         let usersTemplateHTML = "<button id=\"hideuser\" onclick=\"hide()\">유저 목록 숨기기</button>";
 

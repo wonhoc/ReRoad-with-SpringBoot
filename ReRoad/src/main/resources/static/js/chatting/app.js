@@ -175,11 +175,11 @@ $(document).ready(function () {
           }
           message += result.message + '\n';
         } else if (result.messageType == 'DISCONNECTED') {
-          const chaturl = 'http://localhost:8080';
+          const chaturl = 'ec2-54-180-31-9.ap-northeast-2.compute.amazonaws.com';
           const disconName = result.username;
           message = '>> ' + disconName + ' 님이 퇴장하셨습니다 :(\n';
           $.ajax({
-            url: chaturl + "/disconnect/" + result.username,
+            url: "/disconnect/" + result.username,
             success: function (response) {
               console.log(`response : ${response}`);
             }
@@ -230,10 +230,10 @@ $(document).ready(function () {
   $(document).on('click', '#btnJoin', function () {
 
     let username = $('#myname').val();
-    const chaturl = 'http://localhost:8080';
+    const chaturl = 'ec2-54-180-31-9.ap-northeast-2.compute.amazonaws.com';
 
     $.ajax({
-      url: chaturl + "/registration/" + username,
+      url: "/registration/" + username,
       success: function (response) {
         console.log(`response : ${response}`);
 

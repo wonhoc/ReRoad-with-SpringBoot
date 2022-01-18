@@ -81,7 +81,8 @@ $(document).ready(function () {
         var regex = / /gi;
         var $fileUpload = $("input[type='file']");
         const originFile = parseInt($('#originFileSize').val());
-
+        let willdelete = $("input[name='fileNo']").length;
+        console.log(willdelete);
         if (noticeTitle == "" || noticeTitle.replace(regex, '') == "") {
             $('#Isvalid').text('제목을 입력하세요');
             $('#Isvalid').css('color', 'red');
@@ -90,7 +91,7 @@ $(document).ready(function () {
             $('#Isvalid').text('본문을 입력하세요');
             $('#Isvalid').css('color', 'red');
             $('#saveBtn').attr("disabled", true);
-        } else if (parseInt($fileUpload.get(0).files.length)+originFile>5){
+        } else if (parseInt($fileUpload.get(0).files.length)+originFile-parseInt(willdelete)>5){
             $('#Isvalid').text('파일은 최대 5개까지만 첨부 가능합니다.');
             $('#Isvalid').css('color', 'red');
             $('#saveBtn').attr("disabled", true);

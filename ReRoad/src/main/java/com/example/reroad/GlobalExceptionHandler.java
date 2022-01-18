@@ -27,7 +27,7 @@ public class GlobalExceptionHandler {
         ModelAndView model = new ModelAndView();
 
         model.addObject("exception",e2);
-        model.setViewName("views/error/exception");
+        model.setViewName("views/error/error");
 
         return model;
     }

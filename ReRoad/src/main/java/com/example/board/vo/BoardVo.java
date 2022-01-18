@@ -26,6 +26,7 @@ public class BoardVo {
     private int recomCount;
     private int commentCount;
     private String userNick;
+    private int[] fileNo;
 
     private MultipartFile file;
     private List<MultipartFile> fileList;

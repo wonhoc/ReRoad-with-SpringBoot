@@ -95,6 +95,11 @@ public class BoardDaoImpl implements BoardDao {
     }
 
     @Override
+    public void deleteBoardFile(int boardFileNo) {
+        this.sqlSession.delete("Board.boardFileDelete", boardFileNo);
+    }
+
+    @Override
     public List selectComList(int boardNo) {
         List<CommentVo> list = this.sqlSession.selectList("Board.commmentList",boardNo);
         return list;

@@ -8,6 +8,8 @@ import com.example.domestic.vo.DomesticVo;
 import com.example.domestic.vo.WeatherVo;
 
 import com.example.domestic.vo.WeatherVo2;
+import com.example.schedule.service.ExpBusScheduleService;
+import com.example.schedule.service.TrainScheduleService;
 import com.example.util.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -31,6 +33,12 @@ import java.util.List;
 public class DomesticController {
 
     @Autowired
+    private TrainScheduleService trainScheduleService;
+
+    @Autowired
+    private ExpBusScheduleService expBusScheduleService;
+
+    @Autowired
     private DomesticService domesticService;
 
     @GetMapping("/domestic/{domesticName}")
@@ -41,6 +49,15 @@ public class DomesticController {
         DomesticVo domestic = this.domesticService.manageDomestic(domesticName);
 
         System.out.println(weatherVo);
+
+        model.addAttribute("domestic",domestic);
+        //지역별 기차역리스트 add
+        model.addAttribute("trainStList", trainScheduleService.retrieveTrainStinfo());
+        //고속버스 터미널 리스트 add
+        model.addAttribute("expTmlList", this.expBusScheduleService.getTmlInfo());
+        //선택한 지역이름
+        model.addAttribute("domesticName",domesticName);
+
 
         model.addAttribute("weather",weatherVo);
         model.addAttribute("domestic",domestic);

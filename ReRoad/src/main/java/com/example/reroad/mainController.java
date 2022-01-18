@@ -60,14 +60,15 @@ public class mainController {
         //지역별 기차역리스트 add
         model.addAttribute("trainStList", trainScheduleService.retrieveTrainStinfo());
 
+
         List domestic = this.domesticService.boardMain();
+
 
         System.out.println("domestic  : "  + domestic);
         model.addAttribute("domestic", domestic);
 
 
         model.addAttribute("content", "/main");
-
 
 
         return "/templates";

@@ -3,332 +3,512 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <th:block layout:fragment="css">
+    <link rel="stylesheet" th:href="@{/css/schedule/retriveSchedule.css}">
+    <link rel="stylesheet" th:href="@{/css/jquery-ui.min.css}" />
     <link rel="stylesheet" th:href="@{/css/domestic/domestic.css}">
 </th:block>
 <th:block layout:fragment="script">
+    <script th:src="@{/js/main.js}"></script>
+    <script th:src="@{/js/schedule/retriveSchedule.js}"></script>
+    <script th:src="@{/js/jquery-ui.min.js}"></script>
+    <script th:src="@{/js/tooltip.js}"></script>
+    <script th:src="@{/js/popover.js}"></script>
+    <script th:src="@{/js/popper.min.js}"></script>
     <script th:src="@{/js/domestic/domestic.js}"></script>
 </th:block>
 <head>
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9a78a37acbaa267bade844724b94c806&libraries=services"></script>
 </head>
 
-    <div class="container">
-            <img th:if="${domestic.thumbnailSystem != null}" th:src="@{'/upload/' + ${domestic.thumbnailSystem}}" alt="image" class="mainImage">
-            <img th:if="${domestic.thumbnailSystem == null}" src="/images/메인페이지버스.png" alt="image" class="mainImage">
-        <div class="map_wrap">
-            <div id="map" style="width:100%;height:500px;position:relative;overflow:hidden;"></div>
+<div class="container">
 
-            <div id="menu_wrap" class="bg_white">
-                <div class="option">
-                    <div>
-                        <form onsubmit="searchPlaces(); return false;">
-                            <input type="hidden" th:value="${domestic.domesticName}" id="keyword" size="15">
-                        </form>
-                    </div>
+    <!--  검색 -->
+    <div id="mainwrapper">
+        <img th:if="${domestic.thumbnailSystem != null}" th:src="@{'/upload/' + ${domestic.thumbnailSystem}}" alt="image" class="mainImage">
+        <img th:if="${domestic.thumbnailSystem == null}" src="/images/메인페이지버스.png" alt="image" class="mainImage">
+        <form action="/retriveSchedule" method="POST" id="ScSelectForm">
+            <input type="hidden" id="pageNo" name="pageNo" value="1">
+            <div id="searchBox" class="row text-center">
+                <!-- 헤드 -->
+                <div id="headWrapper">
+                    <input type="hidden" id="vehiclType" name="vehiclType" value="train">
+                    <div class="searchBoxHead col-sm-6" id="headTrain">열차</div>
+                    <div class="searchBoxHead col-sm-6" id="headBus">버스</div>
                 </div>
-                <hr>
-                <ul id="placesList"></ul>
-                <div id="pagination"></div>
+                <div class="tempWrapper">
+                    <!-- 왕복 -->
+                    <div id="selWrapper">
+                        <div id="selOneway" class="col-sm-6 tripType">
+                            <div class="selTextdiv">편도</div>
+                        </div>
+                        <div id="selTurn" class="col-sm-6 tripType">
+                            <div class="selTextdiv">왕복</div>
+                        </div>
+                    </div>
+
+                    <!-- 바디 -->
+                    <div id="bodyWrapper">
+                        <div id="dep" class="searchBody">
+
+                            <div class="bodyTextdiv" id="bodyDep" data-toggle="popover" data-placement="top">출발지
+                            </div>
+                            <input type="hidden" class="selLo" id="depLo" name="depLo">
+                            <input type="hidden" id="depLoName" name="depLoName" class="selLoName">
+                        </div>
+
+                        <div id="arr" class="searchBody bush">
+                            <div class="bodyTextdiv" id="bodyArr" data-toggle="popover" data-placement="top" th:text="${domesticName}">도착지</div>
+                            <th:block th:each="trainSt:${trainStList}">
+                                <th:block th:each="cityInfo:${trainSt.trainStInfo}" th:if="${cityInfo.trainStName == domesticName}">
+                                    <input type="hidden" class="selLo" id="arrLo" name="arrLo" th:value="${cityInfo.trainStId}">
+                                    <input type="hidden" id="arrLoName" name="arrLoName" class="selLoName" th:value="${cityInfo.trainStName}">
+                                </th:block>
+                            </th:block>
+                        </div>
+
+                        <div id="date" class="searchBody">
+                            <div class="bodyTextDatediv" id="bodyDate" data-toggle="popover" data-placement="top">
+                                날짜
+                            </div>
+                            <input type="text" id="inputDatepicker" class="datePikcer">
+                            <input type="hidden" id="startDate" name="startDate">
+
+                        </div>
+
+                        <div id="dateArr" class="searchBodyDate">
+                            <div class="bodyTextDatediv" id="bodyDateArr" data-toggle="popover"
+                                 data-placement="top">오는날
+                            </div>
+                            <input type="text" id="inputDatepickerArr" class="datePikcer">
+                            <input type="hidden" id="arrDate" name="arrDate" value="none">
+                        </div>
+
+
+
+                        <div id="stListBox">
+
+                            <div id="cityNameBox">
+                                <input class="form-control" id="searchSt" type="text" placeholder="역 검색..">
+                                <ul class="cityName">
+                                    <li id="showAllSt">전체</li>
+                                    <li class="showSt" th:each="cityName:${trainStList}" th:text="${cityName.cityName}"></li>
+                                </ul>
+                            </div>
+
+                            <div class="stNameWrapper">
+                                <ul class="ulSt" th:each="trainSts:${trainStList}" th:id="${trainSts.cityName}">
+                                    <li class="stNameIn" th:each="trainStInfo:${trainSts.trainStInfo}" th:text="${trainStInfo.trainStName}" th:value="${trainStInfo.trainStId}"></li>
+                                </ul>
+                            </div>
+
+                        </div>
+
+
+                        <div id="TmlList">
+                            <input class="form-control" id="searchTml" type="text" placeholder="터미널 검색..">
+                            <ul id="showCityBox">
+                                <li class="showCity" id="showAllTml">
+                                    전체
+                                </li>
+                                <li class="showCity" id="showSe">
+                                    서울
+                                </li>
+                                <li class="showCity" id="showIn">
+                                    인천/경기
+                                </li>
+                                <li class="showCity" id="showKa">
+                                    강원
+                                </li>
+                                <li class="showCity" id="showDe">
+                                    대전/충남
+                                </li>
+                                <li class="showCity" id="showCh">
+                                    충북
+                                </li>
+                                <li class="showCity" id="showKh">
+                                    광주/전남
+                                </li>
+                                <li class="showCity"id="showJb">
+                                    전북
+                                </li>
+                                <li class="showCity" id="showBu">
+                                    부산/경남
+                                </li>
+                                <li class="showCity" id="showDk">
+                                    대구/경북
+                                </li>
+
+                            </ul>
+                            <div id="temptmep">
+                                <ul  class="ulTml" id="se">
+                                    <li th:text="${tml.tmName}" th:if="${tml.city == '서울'}" th:each="tml:${expTmlList}" th:value="${tml.tmId}" class="liTml"></li>
+                                </ul>
+
+                                <ul class="ulTml" id="in">
+                                    <li th:text="${tml.tmName}" th:if="${tml.city == '인천/경기'}" th:each="tml:${expTmlList}" th:value="${tml.tmId}" class="liTml"></li>
+                                </ul>
+
+                                <ul class="ulTml" id="ka">
+                                    <li th:text="${tml.tmName}" th:if="${tml.city == '강원'}" th:each="tml:${expTmlList}" th:value="${tml.tmId}" class="liTml"></li>
+                                </ul>
+
+                                <ul class="ulTml" id="de">
+                                    <li th:each="tml:${expTmlList}" th:text="${tml.tmName}" th:if="${tml.city == '대전/충남'}" th:value="${tml.tmId}" class="liTml"></li>
+                                </ul>
+
+                                <ul class="ulTml" id="ch">
+                                    <li th:each="tml:${expTmlList}" th:text="${tml.tmName}" th:if="${tml.city == '충북'}" th:value="${tml.tmId}" class="liTml"></li>
+                                </ul>
+
+                                <ul class="ulTml" id="kh">
+                                    <li th:each="tml:${expTmlList}" th:text="${tml.tmName}" th:if="${tml.city == '광주/전남'}" th:value="${tml.tmId}" class="liTml"></li>
+                                </ul>
+
+                                <ul class="ulTml" id="jb">
+                                    <li th:each="tml:${expTmlList}" th:text="${tml.tmName}" th:if="${tml.city == '전북'}" th:value="${tml.tmId}" class="liTml"></li>
+                                </ul>
+
+                                <ul class="ulTml" id="bu">
+                                    <li th:each="tml:${expTmlList}" th:text="${tml.tmName}" th:if="${tml.city == '부산/경남'}" th:value="${tml.tmId}" class="liTml"></li>
+                                </ul>
+
+                                <ul class="ulTml" id="dk">
+                                    <li th:each="tml:${expTmlList}" th:text="${tml.tmName}" th:if="${tml.city == '대구/경북'}" th:value="${tml.tmId}" class="liTml"></li>
+                                </ul>
+
+
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+
+                    <button type="button" id="btnSearch" class="btn btn-primary" data-toggle="popover"
+                            data-placement="top">검색
+                    </button>
+                </div>
             </div>
+        </form>
+    </div>
 
 
-            <table th:each="weather : ${weather}" id ="table">
-                <tr class="temp" >
-                    <td class="date" colspan="4" th:text="${weather.date}"></td>
-                </tr>
-                <tr class="temp" >
-                    <td class="time" colspan="2">오전</td>
-                    <td colspan="2">오후</td>
-                </tr>
-                <tr class="status">
-                    <td th:if="${weather.wfAm} == '구름많음'"><img  class="img" src="/images/weather/구름.png"></td>
-                    <td th:if="${weather.wfAm} == '맑음'"><img class="img" src="/images/weather/태양.png"></td>
-                    <td th:if="${weather.wfAm} == '흐리고 비/눈'"><img class="img" src="/images/weather/눈.png"></td>
-                    <td th:if="${weather.wfAm} == '구름많고 비/눈'"><img class="img" src="/images/weather/눈.png"></td>
-                    <td th:if="${weather.wfAm} == '흐림'"><img class="img" src="/images/weather/흐림.png"></td>
-                    <td th:if="${weather.wfAm} == '흐리고 비'"><img class="img" src="/images/weather/비.png"></td>
-                    <td><img class="water" src="/images/weather/물방울.png"><span th:text="${weather.rnStAM}"></span></td>
 
-                    <td th:if="${weather.wfPm} == '구름많음'"><img  class="img" src="/images/weather/구름.png"></td>
-                    <td th:if="${weather.wfPm} == '맑음'"><img class="img" src="/images/weather/태양.png"></td>
-                    <td th:if="${weather.wfPm} == '흐리고 비/눈'"><img class="img" src="/images/weather/눈.png"></td>
-                    <td th:if="${weather.wfPm} == '구름많고 비/눈'"><img class="img" src="/images/weather/눈.png"></td>
-                    <td th:if="${weather.wfPm} == '흐림'"><img class="img" src="/images/weather/흐림.png"></td>
-                    <td th:if="${weather.wfPm} == '흐리고 비'"><img class="img" src="/images/weather/비.png"></td>
-                    <td><img class="water" src="/images/weather/물방울.png"><span th:text="${weather.rnStPM}"></span></td>
+    <div class="map_wrap">
+        <div id="map" style="width:100%;height:500px;position:relative;overflow:hidden; margin-top: 2em;"></div>
 
-                </tr>
-                <tr class="temp" style="border-bottom: 2px solid #337ab7">
-                    <td colspan="4" th:text="${weather.taMin}+ '℃ ~ ' + ${weather.taMax} + '℃' "></td>
-
-                </tr>
-                <tr class="temp" >
-                    <td class="date" colspan="4" th:text="${weather.date2}"></td>
-                </tr>
-                <tr class="temp">
-                    <td class="time" colspan="2">오전</td>
-                    <td colspan="2">오후</td>
-                </tr>
-                <tr class="status">
-                    <td th:if="${weather.wfAm2} == '구름많음'"><img  class="img" src="/images/weather/구름.png"></td>
-                    <td th:if="${weather.wfAm2} == '맑음'"><img class="img" src="/images/weather/태양.png"></td>
-                    <td th:if="${weather.wfAm2} == '흐리고 비/눈'"><img class="img" src="/images/weather/눈.png"></td>
-                    <td th:if="${weather.wfAm2} == '구름많고 비/눈'"><img class="img" src="/images/weather/눈.png"></td>
-                    <td th:if="${weather.wfAm2} == '흐림'"><img class="img" src="/images/weather/흐림.png"></td>
-                    <td th:if="${weather.wfAm2} == '흐리고 비'"><img class="img" src="/images/weather/비.png"></td>
-                    <td><img class="water" src="/images/weather/물방울.png"><span th:text="${weather.rnStAM2}"></span></td>
-
-                    <td th:if="${weather.wfPm2} == '구름많음'"><img  class="img" src="/images/weather/구름.png"></td>
-                    <td th:if="${weather.wfPm2} == '맑음'"><img class="img" src="/images/weather/태양.png"></td>
-                    <td th:if="${weather.wfPm2} == '흐리고 비/눈'"><img class="img" src="/images/weather/눈.png"></td>
-                    <td th:if="${weather.wfPm2} == '구름많고 비/눈'"><img class="img" src="/images/weather/눈.png"></td>
-                    <td th:if="${weather.wfPm2} == '흐림'"><img class="img" src="/images/weather/흐림.png"></td>
-                    <td th:if="${weather.wfPm2} == '흐리고 비'"><img class="img" src="/images/weather/비.png"></td>
-                    <td><img class="water" src="/images/weather/물방울.png"><span th:text="${weather.rnStPM2}"></span></td>
-
-                </tr>
-                <tr class="temp" >
-                    <td colspan="4" th:text="${weather.taMin2}+ '℃ ~ ' + ${weather.taMax2} + '℃' "></td>
-
-                </tr>
-            </table>
-
-
-            <div id="roadview" style="position: relative; width:400px;height:400px;"></div>
+        <div id="menu_wrap" class="bg_white">
+            <div class="option">
+                <div>
+                    <form onsubmit="searchPlaces(); return false;">
+                        <input type="hidden" th:value="${domestic.domesticName}" id="keyword" size="15">
+                    </form>
+                </div>
+            </div>
+            <hr>
+            <ul id="placesList"></ul>
+            <div id="pagination"></div>
         </div>
 
-        <script>
-            // 마커를 담을 배열입니다
-            var markers = [];
 
-            var mapContainer = document.getElementById('map'), // 지도를 표시할 div
-                mapOption = {
-                    center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
-                    level: 3 // 지도의 확대 레벨
-                };
+        <table th:each="weather : ${weather}" id ="table">
+            <tr class="temp" >
+                <td class="date" colspan="4" th:text="${weather.date}"></td>
+            </tr>
+            <tr class="temp" >
+                <td class="time" colspan="2">오전</td>
+                <td colspan="2">오후</td>
+            </tr>
+            <tr class="status">
+                <td th:if="${weather.wfAm} == '구름많음'"><img  class="img" src="/images/weather/구름.png"></td>
+                <td th:if="${weather.wfAm} == '맑음'"><img class="img" src="/images/weather/태양.png"></td>
+                <td th:if="${weather.wfAm} == '흐리고 비/눈'"><img class="img" src="/images/weather/눈.png"></td>
+                <td th:if="${weather.wfAm} == '구름많고 비/눈'"><img class="img" src="/images/weather/눈.png"></td>
+                <td th:if="${weather.wfAm} == '흐림'"><img class="img" src="/images/weather/흐림.png"></td>
+                <td th:if="${weather.wfAm} == '흐리고 비'"><img class="img" src="/images/weather/비.png"></td>
+                <td><img class="water" src="/images/weather/물방울.png"><span th:text="${weather.rnStAM}"></span></td>
 
-            // 지도를 생성합니다
-            var map = new kakao.maps.Map(mapContainer, mapOption);
+                <td th:if="${weather.wfPm} == '구름많음'"><img  class="img" src="/images/weather/구름.png"></td>
+                <td th:if="${weather.wfPm} == '맑음'"><img class="img" src="/images/weather/태양.png"></td>
+                <td th:if="${weather.wfPm} == '흐리고 비/눈'"><img class="img" src="/images/weather/눈.png"></td>
+                <td th:if="${weather.wfPm} == '구름많고 비/눈'"><img class="img" src="/images/weather/눈.png"></td>
+                <td th:if="${weather.wfPm} == '흐림'"><img class="img" src="/images/weather/흐림.png"></td>
+                <td th:if="${weather.wfPm} == '흐리고 비'"><img class="img" src="/images/weather/비.png"></td>
+                <td><img class="water" src="/images/weather/물방울.png"><span th:text="${weather.rnStPM}"></span></td>
 
-            // 장소 검색 객체를 생성합니다
-            var ps = new kakao.maps.services.Places();
+            </tr>
+            <tr class="temp" style="border-bottom: 2px solid #337ab7">
+                <td colspan="4" th:text="${weather.taMin}+ '℃ ~ ' + ${weather.taMax} + '℃' "></td>
 
-            // 검색 결과 목록이나 마커를 클릭했을 때 장소명을 표출할 인포윈도우를 생성합니다
-            var infowindow = new kakao.maps.InfoWindow({zIndex:1});
+            </tr>
+            <tr class="temp" >
+                <td class="date" colspan="4" th:text="${weather.date2}"></td>
+            </tr>
+            <tr class="temp">
+                <td class="time" colspan="2">오전</td>
+                <td colspan="2">오후</td>
+            </tr>
+            <tr class="status">
+                <td th:if="${weather.wfAm2} == '구름많음'"><img  class="img" src="/images/weather/구름.png"></td>
+                <td th:if="${weather.wfAm2} == '맑음'"><img class="img" src="/images/weather/태양.png"></td>
+                <td th:if="${weather.wfAm2} == '흐리고 비/눈'"><img class="img" src="/images/weather/눈.png"></td>
+                <td th:if="${weather.wfAm2} == '구름많고 비/눈'"><img class="img" src="/images/weather/눈.png"></td>
+                <td th:if="${weather.wfAm2} == '흐림'"><img class="img" src="/images/weather/흐림.png"></td>
+                <td th:if="${weather.wfAm2} == '흐리고 비'"><img class="img" src="/images/weather/비.png"></td>
+                <td><img class="water" src="/images/weather/물방울.png"><span th:text="${weather.rnStAM2}"></span></td>
 
-            // 키워드로 장소를 검색합니다
-            searchPlaces();
+                <td th:if="${weather.wfPm2} == '구름많음'"><img  class="img" src="/images/weather/구름.png"></td>
+                <td th:if="${weather.wfPm2} == '맑음'"><img class="img" src="/images/weather/태양.png"></td>
+                <td th:if="${weather.wfPm2} == '흐리고 비/눈'"><img class="img" src="/images/weather/눈.png"></td>
+                <td th:if="${weather.wfPm2} == '구름많고 비/눈'"><img class="img" src="/images/weather/눈.png"></td>
+                <td th:if="${weather.wfPm2} == '흐림'"><img class="img" src="/images/weather/흐림.png"></td>
+                <td th:if="${weather.wfPm2} == '흐리고 비'"><img class="img" src="/images/weather/비.png"></td>
+                <td><img class="water" src="/images/weather/물방울.png"><span th:text="${weather.rnStPM2}"></span></td>
 
-            // 키워드 검색을 요청하는 함수입니다
-            function searchPlaces() {
+            </tr>
+            <tr class="temp" >
+                <td colspan="4" th:text="${weather.taMin2}+ '℃ ~ ' + ${weather.taMax2} + '℃' "></td>
 
-                var keyword = document.getElementById('keyword').value;
+            </tr>
+        </table>
 
-                if (!keyword.replace(/^\s+|\s+$/g, '')) {
-                    alert('키워드를 입력해주세요!');
-                    return false;
-                }
 
-                // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
-                ps.keywordSearch( keyword, placesSearchCB);
+        <div id="roadview" style="position: relative; width:400px;height:400px;"></div>
+    </div>
+
+    <script>
+        // 마커를 담을 배열입니다
+        var markers = [];
+
+        var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+            mapOption = {
+                center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
+                level: 3 // 지도의 확대 레벨
+            };
+
+        // 지도를 생성합니다
+        var map = new kakao.maps.Map(mapContainer, mapOption);
+
+        // 장소 검색 객체를 생성합니다
+        var ps = new kakao.maps.services.Places();
+
+        // 검색 결과 목록이나 마커를 클릭했을 때 장소명을 표출할 인포윈도우를 생성합니다
+        var infowindow = new kakao.maps.InfoWindow({zIndex:1});
+
+        // 키워드로 장소를 검색합니다
+        searchPlaces();
+
+        // 키워드 검색을 요청하는 함수입니다
+        function searchPlaces() {
+
+            var keyword = document.getElementById('keyword').value;
+
+            if (!keyword.replace(/^\s+|\s+$/g, '')) {
+                alert('키워드를 입력해주세요!');
+                return false;
             }
 
-            // 장소검색이 완료됐을 때 호출되는 콜백함수 입니다
-            function placesSearchCB(data, status, pagination) {
-                if (status === kakao.maps.services.Status.OK) {
+            // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
+            ps.keywordSearch( keyword, placesSearchCB);
+        }
 
-                    // 정상적으로 검색이 완료됐으면
-                    // 검색 목록과 마커를 표출합니다
-                    displayPlaces(data);
+        // 장소검색이 완료됐을 때 호출되는 콜백함수 입니다
+        function placesSearchCB(data, status, pagination) {
+            if (status === kakao.maps.services.Status.OK) {
 
-                    // 페이지 번호를 표출합니다
-                    displayPagination(pagination);
+                // 정상적으로 검색이 완료됐으면
+                // 검색 목록과 마커를 표출합니다
+                displayPlaces(data);
 
-                } else if (status === kakao.maps.services.Status.ZERO_RESULT) {
+                // 페이지 번호를 표출합니다
+                displayPagination(pagination);
 
-                    alert('검색 결과가 존재하지 않습니다.');
-                    return;
+            } else if (status === kakao.maps.services.Status.ZERO_RESULT) {
 
-                } else if (status === kakao.maps.services.Status.ERROR) {
+                alert('검색 결과가 존재하지 않습니다.');
+                return;
 
-                    alert('검색 결과 중 오류가 발생했습니다.');
-                    return;
+            } else if (status === kakao.maps.services.Status.ERROR) {
 
-                }
+                alert('검색 결과 중 오류가 발생했습니다.');
+                return;
+
             }
+        }
 
-            // 검색 결과 목록과 마커를 표출하는 함수입니다
-            function displayPlaces(places) {
+        // 검색 결과 목록과 마커를 표출하는 함수입니다
+        function displayPlaces(places) {
 
-                var listEl = document.getElementById('placesList'),
-                    menuEl = document.getElementById('menu_wrap'),
-                    fragment = document.createDocumentFragment(),
-                    bounds = new kakao.maps.LatLngBounds(),
-                    listStr = '';
+            var listEl = document.getElementById('placesList'),
+                menuEl = document.getElementById('menu_wrap'),
+                fragment = document.createDocumentFragment(),
+                bounds = new kakao.maps.LatLngBounds(),
+                listStr = '';
 
-                // 검색 결과 목록에 추가된 항목들을 제거합니다
-                removeAllChildNods(listEl);
+            // 검색 결과 목록에 추가된 항목들을 제거합니다
+            removeAllChildNods(listEl);
 
-                // 지도에 표시되고 있는 마커를 제거합니다
-                removeMarker();
+            // 지도에 표시되고 있는 마커를 제거합니다
+            removeMarker();
 
-                for ( var i=0; i<places.length; i++ ) {
+            for ( var i=0; i<places.length; i++ ) {
 
-                    // 마커를 생성하고 지도에 표시합니다
-                    var placePosition = new kakao.maps.LatLng(places[i].y, places[i].x),
-                        marker = addMarker(placePosition, i),
-                        itemEl = getListItem(i, places[i]); // 검색 결과 항목 Element를 생성합니다
+                // 마커를 생성하고 지도에 표시합니다
+                var placePosition = new kakao.maps.LatLng(places[i].y, places[i].x),
+                    marker = addMarker(placePosition, i),
+                    itemEl = getListItem(i, places[i]); // 검색 결과 항목 Element를 생성합니다
 
-                    let y = places[i].y;
-                    let x = places[i].x;
-                    // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
-                    // LatLngBounds 객체에 좌표를 추가합니다
-                    bounds.extend(placePosition);
+                let y = places[i].y;
+                let x = places[i].x;
+                // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
+                // LatLngBounds 객체에 좌표를 추가합니다
+                bounds.extend(placePosition);
 
-                    // 마커와 검색결과 항목에 mouseover 했을때
-                    // 해당 장소에 인포윈도우에 장소명을 표시합니다
-                    // mouseout 했을 때는 인포윈도우를 닫습니다
-                    (function(marker, title) {
-                        kakao.maps.event.addListener(marker, 'click', function() {
-                            displayInfowindow(marker, title);
+                // 마커와 검색결과 항목에 mouseover 했을때
+                // 해당 장소에 인포윈도우에 장소명을 표시합니다
+                // mouseout 했을 때는 인포윈도우를 닫습니다
+                (function(marker, title) {
+                    kakao.maps.event.addListener(marker, 'click', function() {
+                        displayInfowindow(marker, title);
 
-                            var roadviewContainer = document.getElementById('roadview'); //로드뷰를 표시할 div
-                            var roadview = new kakao.maps.Roadview(roadviewContainer); //로드뷰 객체
-                            var roadviewClient = new kakao.maps.RoadviewClient(); //좌표로부터 로드뷰 파노ID를 가져올 로드뷰 helper객체
+                        var roadviewContainer = document.getElementById('roadview'); //로드뷰를 표시할 div
+                        var roadview = new kakao.maps.Roadview(roadviewContainer); //로드뷰 객체
+                        var roadviewClient = new kakao.maps.RoadviewClient(); //좌표로부터 로드뷰 파노ID를 가져올 로드뷰 helper객체
 
-                            var position = new kakao.maps.LatLng(y, x);
+                        var position = new kakao.maps.LatLng(y, x);
 
 
-                            roadviewClient.getNearestPanoId(position, 50, function(panoId) {
-                                roadview.setPanoId(panoId, position); //panoId와 중심좌표를 통해 로드뷰 실행
-                            });
-
+                        roadviewClient.getNearestPanoId(position, 50, function(panoId) {
+                            roadview.setPanoId(panoId, position); //panoId와 중심좌표를 통해 로드뷰 실행
                         });
 
-                        kakao.maps.event.addListener(marker, 'mouseout', function() {
-                            infowindow.close();
-                        });
-
-                        itemEl.onmouseover =  function () {
-                            displayInfowindow(marker, title);
-                        };
-
-                        itemEl.onmouseout =  function () {
-                            infowindow.close();
-                        };
-                    })(marker, places[i].place_name);
-
-                    fragment.appendChild(itemEl);
-                }
-
-                // 검색결과 항목들을 검색결과 목록 Elemnet에 추가합니다
-                listEl.appendChild(fragment);
-                menuEl.scrollTop = 0;
-
-                // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
-                map.setBounds(bounds);
-            }
-
-            // 검색결과 항목을 Element로 반환하는 함수입니다
-            function getListItem(index, places) {
-
-                var el = document.createElement('li'),
-                    itemStr = '<span class="markerbg marker_' + (index+1) + '"></span>' +
-                        '<div class="info">' +
-                        '   <h5>' + places.place_name + '</h5>';
-
-                if (places.road_address_name) {
-                    itemStr += '    <span>' + places.road_address_name + '</span>' +
-                        '   <span class="jibun gray">' +  places.address_name  + '</span>';
-                } else {
-                    itemStr += '    <span>' +  places.address_name  + '</span>';
-                }
-
-                itemStr += '  <span class="tel">' + places.phone  + '</span>' +
-                    '</div>';
-
-                el.innerHTML = itemStr;
-                el.className = 'item';
-
-                return el;
-            }
-
-            // 마커를 생성하고 지도 위에 마커를 표시하는 함수입니다
-            function addMarker(position, idx, title) {
-                var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png', // 마커 이미지 url, 스프라이트 이미지를 씁니다
-                    imageSize = new kakao.maps.Size(36, 37),  // 마커 이미지의 크기
-                    imgOptions =  {
-                        spriteSize : new kakao.maps.Size(36, 691), // 스프라이트 이미지의 크기
-                        spriteOrigin : new kakao.maps.Point(0, (idx*46)+10), // 스프라이트 이미지 중 사용할 영역의 좌상단 좌표
-                        offset: new kakao.maps.Point(13, 37) // 마커 좌표에 일치시킬 이미지 내에서의 좌표
-                    },
-                    markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imgOptions),
-                    marker = new kakao.maps.Marker({
-                        position: position, // 마커의 위치
-                        image: markerImage
                     });
 
-                marker.setMap(map); // 지도 위에 마커를 표출합니다
-                markers.push(marker);  // 배열에 생성된 마커를 추가합니다
+                    kakao.maps.event.addListener(marker, 'mouseout', function() {
+                        infowindow.close();
+                    });
 
-                return marker;
+                    itemEl.onmouseover =  function () {
+                        displayInfowindow(marker, title);
+                    };
+
+                    itemEl.onmouseout =  function () {
+                        infowindow.close();
+                    };
+                })(marker, places[i].place_name);
+
+                fragment.appendChild(itemEl);
             }
 
-            // 지도 위에 표시되고 있는 마커를 모두 제거합니다
-            function removeMarker() {
-                for ( var i = 0; i < markers.length; i++ ) {
-                    markers[i].setMap(null);
+            // 검색결과 항목들을 검색결과 목록 Elemnet에 추가합니다
+            listEl.appendChild(fragment);
+            menuEl.scrollTop = 0;
+
+            // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
+            map.setBounds(bounds);
+        }
+
+        // 검색결과 항목을 Element로 반환하는 함수입니다
+        function getListItem(index, places) {
+
+            var el = document.createElement('li'),
+                itemStr = '<span class="markerbg marker_' + (index+1) + '"></span>' +
+                    '<div class="info">' +
+                    '   <h5>' + places.place_name + '</h5>';
+
+            if (places.road_address_name) {
+                itemStr += '    <span>' + places.road_address_name + '</span>' +
+                    '   <span class="jibun gray">' +  places.address_name  + '</span>';
+            } else {
+                itemStr += '    <span>' +  places.address_name  + '</span>';
+            }
+
+            itemStr += '  <span class="tel">' + places.phone  + '</span>' +
+                '</div>';
+
+            el.innerHTML = itemStr;
+            el.className = 'item';
+
+            return el;
+        }
+
+        // 마커를 생성하고 지도 위에 마커를 표시하는 함수입니다
+        function addMarker(position, idx, title) {
+            var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png', // 마커 이미지 url, 스프라이트 이미지를 씁니다
+                imageSize = new kakao.maps.Size(36, 37),  // 마커 이미지의 크기
+                imgOptions =  {
+                    spriteSize : new kakao.maps.Size(36, 691), // 스프라이트 이미지의 크기
+                    spriteOrigin : new kakao.maps.Point(0, (idx*46)+10), // 스프라이트 이미지 중 사용할 영역의 좌상단 좌표
+                    offset: new kakao.maps.Point(13, 37) // 마커 좌표에 일치시킬 이미지 내에서의 좌표
+                },
+                markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imgOptions),
+                marker = new kakao.maps.Marker({
+                    position: position, // 마커의 위치
+                    image: markerImage
+                });
+
+            marker.setMap(map); // 지도 위에 마커를 표출합니다
+            markers.push(marker);  // 배열에 생성된 마커를 추가합니다
+
+            return marker;
+        }
+
+        // 지도 위에 표시되고 있는 마커를 모두 제거합니다
+        function removeMarker() {
+            for ( var i = 0; i < markers.length; i++ ) {
+                markers[i].setMap(null);
+            }
+            markers = [];
+        }
+
+        // 검색결과 목록 하단에 페이지번호를 표시는 함수입니다
+        function displayPagination(pagination) {
+            var paginationEl = document.getElementById('pagination'),
+                fragment = document.createDocumentFragment(),
+                i;
+
+            // 기존에 추가된 페이지번호를 삭제합니다
+            while (paginationEl.hasChildNodes()) {
+                paginationEl.removeChild (paginationEl.lastChild);
+            }
+
+            for (i=1; i<=pagination.last; i++) {
+                var el = document.createElement('a');
+                el.href = "#";
+                el.innerHTML = i;
+
+                if (i===pagination.current) {
+                    el.className = 'on';
+                } else {
+                    el.onclick = (function(i) {
+                        return function() {
+                            pagination.gotoPage(i);
+                        }
+                    })(i);
                 }
-                markers = [];
+
+                fragment.appendChild(el);
             }
+            paginationEl.appendChild(fragment);
+        }
 
-            // 검색결과 목록 하단에 페이지번호를 표시는 함수입니다
-            function displayPagination(pagination) {
-                var paginationEl = document.getElementById('pagination'),
-                    fragment = document.createDocumentFragment(),
-                    i;
+        // 검색결과 목록 또는 마커를 클릭했을 때 호출되는 함수입니다
+        // 인포윈도우에 장소명을 표시합니다
+        function displayInfowindow(marker, title) {
+            var content = '<div style="padding:5px;z-index:1;">' + title + '</div>';
 
-                // 기존에 추가된 페이지번호를 삭제합니다
-                while (paginationEl.hasChildNodes()) {
-                    paginationEl.removeChild (paginationEl.lastChild);
-                }
+            infowindow.setContent(content);
+            infowindow.open(map, marker);
+        }
 
-                for (i=1; i<=pagination.last; i++) {
-                    var el = document.createElement('a');
-                    el.href = "#";
-                    el.innerHTML = i;
-
-                    if (i===pagination.current) {
-                        el.className = 'on';
-                    } else {
-                        el.onclick = (function(i) {
-                            return function() {
-                                pagination.gotoPage(i);
-                            }
-                        })(i);
-                    }
-
-                    fragment.appendChild(el);
-                }
-                paginationEl.appendChild(fragment);
+        // 검색결과 목록의 자식 Element를 제거하는 함수입니다
+        function removeAllChildNods(el) {
+            while (el.hasChildNodes()) {
+                el.removeChild (el.lastChild);
             }
-
-            // 검색결과 목록 또는 마커를 클릭했을 때 호출되는 함수입니다
-            // 인포윈도우에 장소명을 표시합니다
-            function displayInfowindow(marker, title) {
-                var content = '<div style="padding:5px;z-index:1;">' + title + '</div>';
-
-                infowindow.setContent(content);
-                infowindow.open(map, marker);
-            }
-
-            // 검색결과 목록의 자식 Element를 제거하는 함수입니다
-            function removeAllChildNods(el) {
-                while (el.hasChildNodes()) {
-                    el.removeChild (el.lastChild);
-                }
-            }
-        </script>
-    </div>
+        }
+    </script>
+</div>
 
 </html>

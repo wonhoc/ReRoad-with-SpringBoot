@@ -161,6 +161,19 @@ public class BoardServiceImpl implements BoardService{
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public void modifyBoard(BoardVo board) {
         this.boardDao.updateBoard(board);
+
+        int[] files = board.getFileNo();
+        if (files != null) {
+            for (int deletefile : files) {
+                this.boardDao.deleteBoardFile(deletefile);
+            }
+        }
+        int boardNo = board.getBoardNo();
+        for (BoardFileVo file : board.getBoardFiles()) {
+            file.setBoardNo(boardNo);
+            this.boardDao.insertBoardFile(file);
+        }
+
     }
 
     @Override

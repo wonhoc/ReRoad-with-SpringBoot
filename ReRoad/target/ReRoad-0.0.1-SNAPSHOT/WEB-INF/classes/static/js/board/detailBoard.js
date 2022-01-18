@@ -1,14 +1,32 @@
+
+
 $(document).ready(function() {
 
-    $(document).on('click','#deleteBtn', function (){
-        confirm("정말 삭제하시겠습니까?");
+    $('#deleteBtn').on('click', function (){
+        Swal.fire({
+            title: '정말로 그렇게 하시겠습니까?',
+            text: "다시 되돌릴 수 없습니다. 신중하세요.",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: '승인',
+            cancelButtonText: '취소'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                var boardNo = $('#boardNo').val();
+                location.href = '/deleteBoard/'+boardNo;
+            }
+        })
     })
 
     $(document).on('click', '.modifyComReqBtn', function (){
        $(this).parents('tbody').children('.modi').show()
     })
 
-
+    $(document).on('click','.cancel', function (){
+        $(this).parents('tbody').children('.modi').hide()
+    })
 
     //댓글 취소
     $('#cancel').on('click', function() {
@@ -54,33 +72,33 @@ $(document).ready(function() {
 
                 let str = "";
                 for (let i = 0; i < comment.length; i++) {
-                    if(comment == null){
-                        str = '<tbody><tr><td colspan="5">등록된 댓글이 없습니다.</td></tr></tbody>'
-                    }else {
-                        str += '<tbody id = "' + comment[i].comNo + '">'
-                            + '<tr>'
-                            + '<td id="comNick" >'
-                            + comment[i].userNick
-                            + '</td>'
-                            + '<td id="comWdate" >'
-                            + comment[i].comWdate
-                            + '</td>'
-                            + '<td id="com" class="comContent">'
-                            + comment[i].comContent
-                            + '</td>';
-                            if(currnetUser.userNick == comment[i].userNick || currnetUser.role == "ROLE_ADMIN"){
-                                str += '<td><button class="modifyComReqBtn" type="button">수정</button></td>';
-                            }else{
-                                str += '<td></td>'
-                            }
-                            if(currnetUser.userNick == comment[i].userNick || currnetUser.role == "ROLE_ADMIN"){
-                                str += '<td><button class="removeBtn">삭제</button></td>';
-                            }else{
-                                str += '<td></td>';
-                            }
-                            str += '</tr>';
-                        str += '</tbody>';
+                    str += '<tbody id = "' + comment[i].comNo + '">'
+                        + '<tr>'
+                        + '<td id="comNick" >'
+                        + comment[i].userNick
+                        + '</td>'
+                        + '<td id="comWdate" >'
+                        + comment[i].comWdate
+                        + '</td>'
+                        + '<td id="com" class="comContent">'
+                        + comment[i].comContent
+                        + '</td>';
+                    if(currnetUser.userNick == comment[i].userNick || currnetUser.role == "ROLE_ADMIN"){
+                        str += '<td><button style="width: 68px;" class="modifyComReqBtn" type="button">수정</button></td>';
+                    }else{
+                        str += '<td style="width: 68px;"></td>'
                     }
+                    if(currnetUser.userNick == comment[i].userNick || currnetUser.role == "ROLE_ADMIN"){
+                        str += '<td><button style="width: 68px;" class="removeBtn">삭제</button></td>';
+                    }else{
+                        str += '<td style="width: 68px;"></td>';
+                    }
+                    str += '</tr>';
+                    str += '<tr class="modi" style="display: none">' +
+                        '<td class="modifyForm" colspan="3"><input style="width: 500px" class="modifyComContent" value="' + comment[i].comContent + '"></td>'+
+                        '<td><button style="width: 68px;" class="modifyComBtn">수정하기</button></td>'+
+                        '<td><button style="width: 68px;" class="cancel">취소</button></td></tr>'
+                    str += '</tbody>';
                 }
                 $("#listComment").html(str);
 
@@ -102,7 +120,7 @@ $(document).ready(function() {
 
     $(document).on('click','.modifyComBtn', function (){
         let comNo = $(this).parents('tbody').attr('id');
-        let comContent = $(this).val();
+        let comContent = $(this).parent().prev().children().val();
         console.log(comContent);
         $.ajax({
             url: '/modityComment',
@@ -112,15 +130,14 @@ $(document).ready(function() {
             data: JSON.stringify({
                 "boardNo" : $('#boardNo').val(),
                 "comNo" : comNo,
-                "comContent" : comContent,
-                "userId" : $('#userId').val()
+                "comContent" : comContent
             }),
             success : function (data){
-
-
+                let currnetUser = data.currnetUser;
                 let comment = data.results;
                 $("#listComment").html("");
-                let str = '<thead><tr><td align="center" >작성자</td><td align="center" >날짜</td><td align="center" >내용</td><td></td><td></td></tr><thead>';
+
+                let str = "";
                 for (let i = 0; i < comment.length; i++) {
                     str += '<tbody id = "' + comment[i].comNo + '">'
                         + '<tr>'
@@ -134,19 +151,23 @@ $(document).ready(function() {
                         + comment[i].comContent
                         + '</td>';
                     if(currnetUser.userNick == comment[i].userNick || currnetUser.role == "ROLE_ADMIN"){
-                        str += '<td><button class="modifyComReqBtn" type="button">수정</button></td>';
+                        str += '<td><button style="width: 68px;" class="modifyComReqBtn" type="button">수정</button></td>';
                     }else{
-                        str += '<td></td>'
+                        str += '<td style="width: 68px;"></td>'
                     }
                     if(currnetUser.userNick == comment[i].userNick || currnetUser.role == "ROLE_ADMIN"){
-                        str += '<td><button class="removeBtn">삭제</button></td>';
+                        str += '<td><button style="width: 68px;" class="removeBtn">삭제</button></td>';
                     }else{
-                        str += '<td></td>';
+                        str += '<td style="width: 68px;"></td>';
                     }
                     str += '</tr>';
+                    str += '<tr class="modi" style="display: none">' +
+                        '<td class="modifyForm" colspan="3"><input style="width: 500px" class="modifyComContent" value="' + comment[i].comContent + '"></td>'+
+                        '<td><button style="width: 68px;" class="modifyComBtn">수정하기</button></td>'+
+                        '<td><button style="width: 68px;" class="cancel">취소</button></td></tr>'
                     str += '</tbody>';
                 }
-                $("#listComment").html(str);
+            $("#listComment").html(str);
 
             },
             error : function (err){
@@ -184,9 +205,9 @@ $(document).ready(function() {
                 let str='';
 
                 for (let i = 0; i < comment.length; i++) {
-                    if(comment[i].userNick == null){
+                    if (comment[i].userNick == null) {
                         str += '<tbody><tr><td colspan="5">등록된 댓글이 없습니다.</td></tr></tbody>'
-                    }else {
+                    } else {
                         str += '<tbody id = "' + comment[i].comNo + '">'
                             + '<tr>'
                             + '<td id="comNick" >'
@@ -198,21 +219,25 @@ $(document).ready(function() {
                             + '<td id="com" class="comContent">'
                             + comment[i].comContent
                             + '</td>';
-                        if(currnetUser.userNick == comment[i].userNick || currnetUser.role == "ROLE_ADMIN"){
-                            str += '<td><button class="modifyComReqBtn" type="button">수정</button></td>';
-                        }else{
-                            str += '<td></td>'
+                        if (currnetUser.userNick == comment[i].userNick || currnetUser.role == "ROLE_ADMIN") {
+                            str += '<td><button style="width: 68px;" class="modifyComReqBtn" type="button">수정</button></td>';
+                        } else {
+                            str += '<td style="width: 68px;"></td>'
                         }
-                        if(currnetUser.userNick == comment[i].userNick || currnetUser.role == "ROLE_ADMIN"){
-                            str += '<td><button class="removeBtn">삭제</button></td>';
-                        }else{
-                            str += '<td></td>';
+                        if (currnetUser.userNick == comment[i].userNick || currnetUser.role == "ROLE_ADMIN") {
+                            str += '<td><button style="width: 68px;" class="removeBtn">삭제</button></td>';
+                        } else {
+                            str += '<td style="width: 68px;"></td>';
                         }
                         str += '</tr>';
+                        str += '<tr class="modi" style="display: none">' +
+                            '<td class="modifyForm" colspan="3"><input style="width: 500px" class="modifyComContent" value="' + comment[i].comContent + '"></td>' +
+                            '<td><button style="width: 68px;" class="modifyComBtn">수정하기</button></td>' +
+                            '<td><button style="width: 68px;" class="cancel">취소</button></td></tr>'
                         str += '</tbody>';
                     }
                 }
-                $("#listComment").html(str);
+                    $("#listComment").html(str);
 
             },
             error : function (err) {
@@ -261,8 +286,7 @@ $(document).ready(function() {
             }),
             success: function (data){
                 let result = data.results;
-
-                alert(result);
+                Swal.fire({ icon: 'warning', title: '경고', text: result ,});
 
             },
             error: function (err){

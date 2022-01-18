@@ -3,304 +3,344 @@
 @import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
 
 body{
-	cursor: default;
-	text-align: center;
-	font-family: 'DoHyeon', sans-serif;
-	font-weight: 700; 
+    cursor: default;
+    text-align: center;
+    font-family: 'DoHyeon', sans-serif;
+    font-weight: 700;
 }
 
 
+.cPage{
+
+    margin-right: 1em;
+    margin-left: 1em;
+    color : teal;
+}
+
+.page{
+
+    margin-right: 1em;
+    margin-left: 1em;
+    cursor: pointer;
+}
+
+.tcPage{
+
+    margin-right: 1em;
+    margin-left: 1em;
+    color : teal;
+}
+
+.tpage{
+
+    margin-right: 1em;
+    margin-left: 1em;
+    cursor: pointer;
+}
 
 .unFoldSc{
-	
-	display: none;
+
+    display: none;
 }
 
 .ftRight:hover{
-	
-	color: teal;
+
+    color: teal;
 }
 
 .ftRight{
-	
-	float: right;
-	cursor: pointer;
+
+    float: right;
+    cursor: pointer;
 }
 
 .infoPlace{
-	margin-top: 5%;
-	font-size: 1.5em;
-	background-color: rgb(242,242,242);
-	
+    margin-top: 5%;
+    font-size: 1.5em;
+    background-color: rgb(242,242,242);
+
 }
 
 .catImg{
-	height: 30em;
-	display: inline;
-	border-radius: 1%;
+    height: 30em;
+    display: inline;
+    border-radius: 1%;
 }
 
 .noSearchdata{
-	
-	font-size: 1.5em;
+
+    font-size: 1.5em;
 }
 
 .scNotinfo{
-	
-	border: 2px solid teal;
-	border-radius: 1%;
+
+    border: 2px solid teal;
+    border-radius: 1%;
 }
 
 .scBoxWrapper{
-	
-	margin-top: 3%;
+
+    margin-top: 3%;
 }
 
 .timeAndAw{
-	
-	margin-left: 5%;
-	height: auto;
-	
+
+    margin-left: 5%;
+    height: auto;
+
 }
 
 
 .time{
-	font-size: 3em;
+    font-size: 3em;
 }
 
 #infoDepLoName{
-	
-	width: 50%;
-	text-align: left;
-	float: left;
+
+    width: 50%;
+    text-align: left;
+    float: left;
 }
 
 #infoArrLoName{
-	
-	width: 50%;
-	text-align: right;
-	float: left;
+
+    width: 50%;
+    text-align: right;
+    float: left;
+}
+
+
+.infoTotal{
+
+    margin-left: 1em;
+
+
+}
+
+.total{
+
+    color: teal;
 }
 
 .scInfoEl{
-	
-	
-	float: left;
-	height: 50px;
-	
+
+
+    float: left;
+    height: 50px;
+
 }
 
 
 
 .chargeBox{
-	
-	margin-top: 1%;
-	margin-left: 10%;
-	font-size: 3em;
-	height: auto;
-	color: teal;	
+
+    margin-top: 1%;
+    margin-left: 10%;
+    font-size: 3em;
+    height: auto;
+    color: teal;
 }
 
 .won{
-	
-	font-size: 0.3em;
+
+    font-size: 0.3em;
 }
 
 .trainTypeNoBox{
-	
-	
-	margin-top: 2%;
-	margin-left: 5%;
-	width: 10%;
+
+
+    margin-top: 2%;
+    margin-left: 5%;
+    width: 10%;
 }
 
 .trainType{
-	font-weight: 700;
-	font-size: 1em;
+    font-weight: 700;
+    font-size: 1em;
 }
 
 .trainNo{
-	
-	font-size: 1em;
+
+    font-size: 1em;
 }
 
 
 .spanTimeBox{
-	margin-top: 2%;
-	margin-left: 5%;
-	padding-top : 1%;
+    margin-top: 2%;
+    margin-left: 5%;
+    padding-top : 1%;
 }
 
 .scInfo{
-	
-	background-color: #F2F2F2;
-	height:	8em;
-	text-align: center;
-	padding-top: 2%;
-	margin-bottom: 3%;
-	border-radius: 1%;
+
+    background-color: #F2F2F2;
+    height:   8em;
+    text-align: center;
+    padding-top: 2%;
+    margin-bottom: 3%;
+    border-radius: 1%;
 }
 
 .scInfo:hover{
 
-	box-shadow: 1px 1px 1px 1px black;
+    box-shadow: 1px 1px 1px 1px black;
 }
- 
+
 
 
 
 #mainwrapper{
-	 width: 100%;
+    width: 100%;
     height: 400px;
     position: relative;
     font-family: 'DoHyeon', sans-serif;
 }
 
 #searchBox{
-	width: 80%;
-	height: 300px;
-	background-color: rgb(242,242,242);
-	position: absolute;
-	left: 110px;
-	bottom: 10px;
-	border-radius: 15px;
+    width: 80%;
+    height: 300px;
+    background-color: rgb(242,242,242);
+    position: absolute;
+    left: 110px;
+    bottom: 10px;
+    border-radius: 15px;
 }
 
 .tempWrapper{
-	
-	border-radius: 15px;
-	background-color: rgb(233,233,233);
-	width: 90%;
-	height: 80%;
-	position: absolute;
-	left: 5%;
-	top:20%;
-	padding: 0;
+
+    border-radius: 15px;
+    background-color: rgb(233,233,233);
+    width: 90%;
+    height: 80%;
+    position: absolute;
+    left: 5%;
+    top:20%;
+    padding: 0;
 }
 
 #headWrapper{
-	height: 10%;
-	padding: 0;
+    height: 10%;
+    padding: 0;
 }
 
 .searchBoxHead{
-	font-weight: 900;
-	height: 100%;
-	cursor: pointer;
+    font-weight: 900;
+    height: 100%;
+    cursor: pointer;
 }
 
 .searchBoxHead:hover{
-	box-shadow: 2px 2px 2px 2px gray;
+    box-shadow: 2px 2px 2px 2px gray;
 }
 
 #headTrain{
-	border-top-left-radius: 15px;
-	background-color: rgb(242,242,242);
-	
+    border-top-left-radius: 15px;
+    background-color: rgb(242,242,242);
+
 }
 
 #headBus{
-	border-top-right-radius: 15px;
-	background-color:  teal;
-	
+    border-top-right-radius: 15px;
+    background-color:  teal;
+
 }
 
 #selWrapper{
-	position: absolute;
-	width: 100%;
-	height: 13%;
+    position: absolute;
+    width: 100%;
+    height: 13%;
 }
 
 .tripType:hover{
-	box-shadow: 2px 2px 2px 2px gray;
+    box-shadow: 2px 2px 2px 2px gray;
 }
 
 .selTextdiv{
-	font-weight: 700;
-	padding-top: 2%;
-	display: inline-block;
+    font-weight: 700;
+    padding-top: 2%;
+    display: inline-block;
 }
 
 #selOneway{
-	background-color: rgb(233,233,233);
-	height: 100%;
-	border-top-left-radius: 15px;
-	padding: 0;
-	cursor: pointer;
-	
+    background-color: rgb(233,233,233);
+    height: 100%;
+    border-top-left-radius: 15px;
+    padding: 0;
+    cursor: pointer;
+
 }
 
 #selTurn{
-	background-color: teal;
-	height: 100%;
-	border-top-right-radius: 15px;
-	cursor: pointer;
+    background-color: teal;
+    height: 100%;
+    border-top-right-radius: 15px;
+    cursor: pointer;
 }
 
 #bodyWrapper{
-	
-	left: 5%;
-	top: 20%;
-	width: 99%;
-	position: absolute;
-	height: 40%;
-	
+
+    left: 5%;
+    top: 20%;
+    width: 99%;
+    position: absolute;
+    height: 40%;
+
 }
 
 .searchBody{
-	
-	 float: left;
-     width:30%;
-     box-sizing: border-box;
-     left: 1px;
-     height: 100%;
-     color: white;
-     border: 3px solid rgb(233,233,233);
-     background-color: teal;
-	
+
+    float: left;
+    width:30%;
+    box-sizing: border-box;
+    left: 1px;
+    height: 100%;
+    color: white;
+    border: 3px solid rgb(233,233,233);
+    background-color: teal;
+
 }
 
 .searchBody:hover{
-	
-	color: #ff7f7f;
-	cursor: pointer;
+
+    color: #ff7f7f;
+    cursor: pointer;
 }
 
 .searchBodyDate{
-	
-	 float: left;
-     width:18%;
-     box-sizing: border-box;
-     left: 1px;
-     height: 100%;
-     color: white;
-     border: 3px solid rgb(233,233,233);
-     background-color: teal;
-     
+
+    float: left;
+    width:18%;
+    box-sizing: border-box;
+    left: 1px;
+    height: 100%;
+    color: white;
+    border: 3px solid rgb(233,233,233);
+    background-color: teal;
+
 }
 
 .searchBodyDate:hover{
-	
-	color: #ff7f7f;
-	cursor: pointer;
+
+    color: #ff7f7f;
+    cursor: pointer;
 }
 
 .datePikcer{
-	margin-top: 40%;
-	right: 65%;
-	position: absolute;
-	padding: 0;
-	border: 0;
-	width: 0;
-	height: 0;
+    margin-top: 40%;
+    right: 65%;
+    position: absolute;
+    padding: 0;
+    border: 0;
+    width: 0;
+    height: 0;
 }
 
 #btnSearch{
-	height : 15%;
-	z-index: 0;
-	position: absolute;
-	top: 90%;
-	right: 25%;
+    height : 15%;
+    z-index: 0;
+    position: absolute;
+    top: 90%;
+    right: 25%;
 }
 
 .btn-primary {
@@ -312,28 +352,28 @@ body{
 
 
 .bodyTextdiv{
-	font-size: 30px;
-	font-weight: 700;
-	padding-top: 15%;
-	display: inline-block;
-	background-color: tear;
+    font-size: 30px;
+    font-weight: 700;
+    padding-top: 15%;
+    display: inline-block;
+    background-color: tear;
 }
 
 .bodyTextDatediv{
-	font-size: 30px;
-	font-weight: 700;
-	padding-top: 15%;
-	display: inline-block;
-	background-color: tear;
+    font-size: 30px;
+    font-weight: 700;
+    padding-top: 15%;
+    display: inline-block;
+    background-color: tear;
 }
 
 #dateArr{
-	
-	display: none;
+
+    display: none;
 }
 
 /*
-	datapicker zindex setting
+   datapicker zindex setting
 */
 .hasDatepicker {
     position: relative;
@@ -341,180 +381,179 @@ body{
 }
 
 /*
-	팝오버 설정
+   팝오버 설정
 */
 
 .popover-content{
-	font-size: 10px;
-	color: black;
+    font-size: 10px;
+    color: black;
 }
 
 
 #stListBox{
-	
-	position: absolute;
-	top: 100%;
-	width: 100%;
-	background-color: white;
-	z-index: 1;
-	border:  3px solid #006480;
-	height: 45.5em;
-	display: none;
+
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    background-color: white;
+    z-index: 99;
+    border:  3px solid #006480;
+    height: 45.5em;
+    display: none;
 }
 
 #cityNameBox{
-	
-	float: left; 
-	width: 30%; 
-	background-color: teal;
-	color: white;
-	height: 45.3em;
-	font-size: 1em;
+
+    float: left;
+    width: 30%;
+    background-color: teal;
+    color: white;
+    height: 45.3em;
+    font-size: 1em;
 }
 
 .cityName{
-	font-weight: 700;
-	font-size: 150%;
-	list-style: none;
-	padding: 0;		
+    font-weight: 700;
+    font-size: 150%;
+    list-style: none;
+    padding: 0;
 }
 
 #showAllSt{
-	
-	cursor: pointer;
-	margin: 2% 0 0 0
+
+    cursor: pointer;
+    margin: 2% 0 0 0
 }
 
 #showAllSt:hover{
-	
-	color: #ff7f7f;
+
+    color: #ff7f7f;
 }
 
 .showSt{
-	
-	cursor: pointer;
-	margin: 2% 0 0 0;
+
+    cursor: pointer;
+    margin: 2% 0 0 0;
 }
 
 .showSt:hover{
 
-	color: #ff7f7f;
+    color: #ff7f7f;
 }
 
 .stNameWrapper{
-	
-	float: left; 
-	width: 70%; 
-	background-color: white; 
-	height: 45.2em; 
-	overflow: auto;
+
+    float: left;
+    width: 70%;
+    background-color: white;
+    height: 45.2em;
+    overflow: auto;
 }
 
 .stNameWrapper::-webkit-scrollbar{
-	
-	width: 0px;
+
+    width: 0px;
 }
 
 
 .ulSt{
-	
-	list-style: none;
-	padding: 0;
-	height: 30em;
-	height: auto;
+
+    list-style: none;
+    padding: 0;
+    height: 30em;
+    height: auto;
 }
 
 .stNameIn{
-	
-	margin: 2%;
-	float: left;
-	font-size: 1.5em;
-	cursor: pointer;
-	
+
+    margin: 2%;
+    float: left;
+    font-size: 1.5em;
+    cursor: pointer;
+
 }
 
 .stNameIn:hover{
-	
-	color: #ff7f7f;
+
+    color: #ff7f7f;
 }
 
 
 #showCityBox{
-	width: 20%;
-	float: left;
-	height: 28.5em;
-	margin-bottom: 0;
-	padding: 0;
-	
+    width: 20%;
+    float: left;
+    height: 28.5em;
+    margin-bottom: 0;
+    padding: 0;
+
 }
 
 .showCity{
-	cursor: pointer;
-	list-style: none;
-	background-color: teal;
-	color : white;
-	margin: 1% 1% 1% 1%;
-	font-size: 2em;
-	width: auto;
-	
+    cursor: pointer;
+    list-style: none;
+    background-color: teal;
+    color : white;
+    margin: 1% 1% 1% 1%;
+    font-size: 2em;
+    width: auto;
+
 }
 
 .showCity:hover{
-	
-	color: #ff7f7f;
+
+    color: #ff7f7f;
 }
 
 #temptmep{
-	overflow: auto;
-	float: left;
-	height: 28.5em;
-	width: 80%;
-	padding: 1% 1% 1% 1%;
-	background-color: white;
-	
+    overflow: auto;
+    float: left;
+    height: 28.5em;
+    width: 80%;
+    padding: 1% 1% 1% 1%;
+    background-color: white;
+
 }
 
 #temptmep::-webkit-scrollbar{
-	
-	width: 0px;
+
+    width: 0px;
 }
 
 .showAllTml{
-	
-	list-style: none;
+
+    list-style: none;
 }
 
 .ulTml{
-	list-style: none;
+    list-style: none;
 }
 
 
 .liTml{
-	
-	margin: 1% 1% 1% 1%;
-	float: left;
-	font-size: 1.5em;
-	cursor: pointer;
+
+    margin: 1% 1% 1% 1%;
+    float: left;
+    font-size: 1.5em;
+    cursor: pointer;
 }
 
 .liTml:hover{
-	
-	color: #ff7f7f;
+
+    color: #ff7f7f;
 }
 
 
 #TmlList{
-	font-family: 'DoHyeon', sans-serif;
-	font-weight: 700;
-	position: absolute;
-	top: 100%;
-	width: 100%;
-	height: 33em;
-	z-index: 1;
-	border:  3px solid teal;
-	background-color: white;
-	border-radius: 1%;
-	display: none;
+    font-family: 'DoHyeon', sans-serif;
+    font-weight: 700;
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    height: 33em;
+    z-index: 99;
+    border:  3px solid teal;
+    background-color: white;
+    border-radius: 1%;
+    display: none;
 }
-
 

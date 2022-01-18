@@ -16,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
@@ -90,11 +91,24 @@ public class BoardController {
     }
 
     @PostMapping("/modifyboard")
-    public String boardModify(BoardVo board) {
+    public String boardModify(@ModelAttribute("board") @Valid BoardVo board,
+                              BindingResult bindingResult, Model model,
+                              RedirectAttributes attributes) throws Exception {
+
         int boardNo = board.getBoardNo();
 
+
+        if (!board.getFileList().isEmpty()) {
+
+            List<BoardFileVo> boardFile = FileUtils.uploadFiles(board.getFileList());
+
+            board.setBoardFiles(boardFile);
+
+        }
+
+
         this.boardService.modifyBoard(board);
-        return "redirect:/detailBoard/" + boardNo;
+        return "redirect:/member/detailBoard/" + boardNo;
     }
 
     @GetMapping("/writeboardForm")

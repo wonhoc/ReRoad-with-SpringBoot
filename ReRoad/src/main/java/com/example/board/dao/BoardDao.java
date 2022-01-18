@@ -25,6 +25,7 @@ public interface BoardDao {
     void insertBoardFile(BoardFileVo boardFile);//
     int lastId();
     List<BoardFileVo> thumnail();//
+    void deleteBoardFile(int boardFileNo);
 
     //댓글
     List selectComList(int boardNo);//

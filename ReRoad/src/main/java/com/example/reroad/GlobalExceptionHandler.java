@@ -21,11 +21,15 @@ import java.util.List;
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(RuntimeException.class)
-    public String handleRuntimeException(final RuntimeException e) {
+    public ModelAndView handleRuntimeException(final RuntimeException e) {
         Exception e2 = e;
         e2.printStackTrace();
+        ModelAndView model = new ModelAndView();
 
-        return "views/error/exception";
+        model.addObject("exception",e2);
+        model.setViewName("views/error/exception");
+
+        return model;
     }
 
     // 유효성 검증 실패시 예외처리(메시지출력)

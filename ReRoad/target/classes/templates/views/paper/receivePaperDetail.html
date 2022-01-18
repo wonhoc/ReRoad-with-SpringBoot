@@ -33,7 +33,7 @@
             </div>
 
             <div id="viewDetail" class="col-sm-9">
-                <form class="form-group" action="/removeReceivePaper" method="POST" id="viewDetailForm">
+                <form class="form-group" action="/removeReceivePaperDetail" method="POST" id="viewDetailForm">
                     <div id="firstDiv">
                         <div>
                             <label for="sendNick" class="receiverNick">보낸 사람</label>
@@ -54,7 +54,8 @@
                             <span th:text="${receivePaper.receivePaperContent}" />
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-default btn-lg btn-block" id="delBtn" style="text-decoration: none">삭제하기</button>
+                    <!--                    <input type="hidden" id="receivePaperNo" name="receivePaperNo" th:value="${receivePaper.receivePaperNo}">-->
+                    <!--                    <button type="submit" class="btn btn-default btn-lg btn-block" id="delBtn" style="text-decoration: none">삭제하기</button>-->
                 </form>
             </div>
         </div>

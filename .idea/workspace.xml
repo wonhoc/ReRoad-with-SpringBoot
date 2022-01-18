@@ -10,7 +10,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="18869558-432e-4011-9d86-a59d03e83cff" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/main.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/paper/controller/PaperController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/paper/controller/PaperController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/paper/dao/SendPaperDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/paper/dao/SendPaperDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/paper/service/PaperServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/paper/service/PaperServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/resources/mapper/paper-mapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/mapper/paper-mapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/resources/static/css/paper/paperDetail.css" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/static/css/paper/paperDetail.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/resources/static/css/paper/receivePaper.css" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/static/css/paper/receivePaper.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/resources/static/css/paper/sendPaper.css" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/static/css/paper/sendPaper.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/resources/static/js/paper/writePaper.js" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/static/js/paper/writePaper.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/views/paper/receivePaperDetail.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/views/paper/receivePaperDetail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/views/paper/sendPaperDetail.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/views/paper/sendPaperDetail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/target/classes/META-INF/spring-configuration-metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/classes/META-INF/spring-configuration-metadata.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/target/classes/static/css/paper/paperDetail.css" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/classes/static/css/paper/paperDetail.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/target/classes/static/css/paper/receivePaper.css" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/classes/static/css/paper/receivePaper.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/target/classes/static/css/paper/sendPaper.css" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/classes/static/css/paper/sendPaper.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/target/classes/static/js/paper/writePaper.js" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/classes/static/js/paper/writePaper.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/target/classes/templates/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/classes/templates/main.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/target/classes/templates/views/paper/receivePaperDetail.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/classes/templates/views/paper/receivePaperDetail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/target/classes/templates/views/paper/sendPaperDetail.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/classes/templates/views/paper/sendPaperDetail.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -219,6 +239,7 @@
       <workItem from="1642467236610" duration="1192000" />
       <workItem from="1642474872977" duration="11042000" />
       <workItem from="1642486566584" duration="197000" />
+      <workItem from="1642505679771" duration="1245000" />
     </task>
     <task id="LOCAL-00001" summary="수정">
       <created>1641550413516</created>

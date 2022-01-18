@@ -50,8 +50,8 @@ public class PaperServiceImpl implements PaperService{
     }
     // 보낸 쪽지 리스트 가져오기
     @Override
-    public List<SendPaperVo> retrieveSendPaperList(String userNick) {
-        return this.sendPaperDao.selectSendPaperList(userNick);
+    public List<SendPaperVo> retrieveSendPaperList(String userId) {
+        return this.sendPaperDao.selectSendPaperList(userId);
     }
 
     // 받는 회원의 닉네임으로 아이디 가져오기

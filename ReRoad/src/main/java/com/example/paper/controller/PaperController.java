@@ -1,18 +1,21 @@
 package com.example.paper.controller;
 
 import com.example.member.vo.UserAccount;
+import com.example.member.vo.UserVo;
 import com.example.paper.dao.SendPaperDao;
 import com.example.paper.service.PaperService;
 import com.example.paper.vo.AddressVo;
 import com.example.paper.vo.ReceivePaperVo;
 import com.example.paper.vo.SendPaperVo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -35,9 +38,9 @@ public class PaperController {
     @GetMapping("/sendPaper")
     public String sendPaperList(Model model, @AuthenticationPrincipal UserAccount user) {
 
-        String senderNick = user.getUser().getUserNick();
+        String senderId = user.getUser().getUserId();
         ArrayList<SendPaperVo> sendPaperList =
-                (ArrayList<SendPaperVo>) this.paperService.retrieveSendPaperList(senderNick);
+                (ArrayList<SendPaperVo>) this.paperService.retrieveSendPaperList(senderId);
 
         model.addAttribute("sendPaperList",sendPaperList);
         model.addAttribute("content","views/paper/sendPaper");
@@ -62,7 +65,7 @@ public class PaperController {
     // 작성한 쪽지 내용 저장
     @PostMapping("/sendNewPaper")
     public String sendPaper(@RequestParam("receiveNick") String receiveNick,
-                            @RequestParam("sendContent") String sendPaperContent,
+                            @RequestParam("sendPaperContent") String sendPaperContent,
                             @AuthenticationPrincipal UserAccount user, Model model) {
         //SenderVo 채우기
         SendPaperVo sendPaperVo = new SendPaperVo();
@@ -95,7 +98,7 @@ public class PaperController {
             ReceivePaperVo receivePaperVo = new ReceivePaperVo();
             receivePaperVo.setSenderId(senderId);
             receivePaperVo.setSenderNick(senderNick);
-            receivePaperVo.setReceivePaperContent(sendPaperContent);
+            receivePaperVo.setReceivePaperContent(sendContent);
             receivePaperVo.setReceiveId(tempReceiverId);
             receivePaperVo.setReceiveNick(tempReceiver);
             receiverVos.add(receivePaperVo);
@@ -129,7 +132,6 @@ public class PaperController {
         HashMap<String,Object> receivePaperMap = new HashMap<String,Object>();
         String userId = user.getUser().getUserId();
 
-
         receivePaperMap.put("receiveId",userId);
         receivePaperMap.put("receivePaperNo",receivePaperNo);
         ReceivePaperVo receivePaper = this.paperService.retrieveReceivePaper(receivePaperMap);
@@ -149,6 +151,7 @@ public class PaperController {
         this.paperService.removeSendPaper(removeCheckBox);
 
         // 닉네임 값을 다시 받아와서 리스트 생성 후 페이지로 이동
+        String senderId = user.getUser().getUserId();
         String senderNick = user.getUser().getUserNick();
         ArrayList<SendPaperVo> sendPaperList =
                 (ArrayList<SendPaperVo>) this.paperService.retrieveSendPaperList(senderNick);
@@ -213,12 +216,12 @@ public class PaperController {
     @PostMapping("/removeReceivePaperDetail")
     public String removeDetailReceivePaper (@RequestParam int receivePaperNo,@AuthenticationPrincipal UserAccount user, Model model) {
         HashMap<String,Object> deleteMap = new HashMap<String,Object>();
-        String userId = user.getUser().getUserId();
 
+        String userId = user.getUser().getUserId();
         deleteMap.put("receiveId", userId);
         deleteMap.put("receivePaperNo", receivePaperNo);
 
-        this.paperService.retrieveReceivePaper(deleteMap);
+        this.paperService.removeReceivePaper(deleteMap);
 
         // 받은 메시지 다시 받은 후 화면 전환
         List<ReceivePaperVo> receivePaperList = this.paperService.retrieveReceivePaperList(userId);

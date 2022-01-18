@@ -10,8 +10,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="18869558-432e-4011-9d86-a59d03e83cff" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/ReRoad/src/main/java/com/example/reroad/WebConf.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReRoad/target/ReRoad-0.0.1-SNAPSHOT/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/ReRoad-0.0.1-SNAPSHOT/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/main.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/views/board/detailBoard.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/views/board/detailBoard.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/views/board/modifyBoard.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/views/board/modifyBoard.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/views/domestic/manageDomestic.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/templates/views/domestic/manageDomestic.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/target/ReRoad-0.0.1-SNAPSHOT/WEB-INF/classes/static/js/message/chat.js" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/ReRoad-0.0.1-SNAPSHOT/WEB-INF/classes/static/js/message/chat.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/target/classes/static/js/message/chat.js" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/classes/static/js/message/chat.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/target/classes/templates/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/target/classes/templates/main.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,9 +36,9 @@
         <option value="JavaScript File" />
         <option value="CSS File" />
         <option value="HTML File" />
-        <option value="Class" />
         <option value="CSS File" />
         <option value="JavaScript File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -84,12 +91,13 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$USER_HOME$/spring-websocket-chat-master (2)" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="web.server" />
   </component>
-  <component name="RunManager" selected="Spring Boot.ReRoadApplication">
+  <component name="RunManager" selected="Tomcat Server.Tomcat 9.0.56">
     <configuration name="ReRoadApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="ReRoad" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.reroad.ReRoadApplication" />
@@ -98,19 +106,14 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Tomcat 9.0.53" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.53" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
+    <configuration name="Tomcat 9.0.56" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.56" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
         <artifact name="ReRoad:war exploded">
           <settings>
-            <option name="CONTEXT_PATH" value="/main" />
+            <option name="CONTEXT_PATH" value="/" />
           </settings>
         </artifact>
-        <file path="$PROJECT_DIR$/../../../../upload">
-          <settings>
-            <option name="CONTEXT_PATH" value="/upload" />
-          </settings>
-        </file>
       </deployment>
       <server-settings>
         <option name="BASE_DIRECTORY_NAME" value="3218f655-9f71-4096-ac9c-857de7595251" />
@@ -192,7 +195,7 @@
     </configuration>
     <list>
       <item itemvalue="Spring Boot.ReRoadApplication" />
-      <item itemvalue="Tomcat Server.Tomcat 9.0.53" />
+      <item itemvalue="Tomcat Server.Tomcat 9.0.56" />
     </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -218,7 +221,7 @@
       <workItem from="1642387819007" duration="25899000" />
       <workItem from="1642425689465" duration="1756000" />
       <workItem from="1642467236610" duration="1192000" />
-      <workItem from="1642474872977" duration="3411000" />
+      <workItem from="1642474872977" duration="8088000" />
     </task>
     <task id="LOCAL-00001" summary="수정">
       <created>1641550413516</created>

@@ -37,8 +37,8 @@ public class SendPaperDaoImpl implements SendPaperDao {
     }
     //보낸 쪽지 리스트
     @Override
-    public List<SendPaperVo> selectSendPaperList(String userNick) {
-        return this.sqlSession.selectList("Paper.selectSendPaperList", userNick);
+    public List<SendPaperVo> selectSendPaperList(String userId) {
+        return this.sqlSession.selectList("Paper.selectSendPaperList", userId);
     }
     // 닉네임으로 아이디 조회하기
     @Override

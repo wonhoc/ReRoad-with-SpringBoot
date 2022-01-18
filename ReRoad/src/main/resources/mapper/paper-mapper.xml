@@ -38,7 +38,7 @@
     <select id="selectSendPaperList" parameterType="string"  resultType="sendPaperVo" resultMap="sendPaperList">
         SELECT s.sendPaperNo, s.sendPaperContent, s.sendDate, a.receiveNick as receiveNick
         FROM send_paper s INNER JOIN address a USING(sendPaperNo)
-        WHERE writeNick = #{userNick}
+        WHERE writeUserId = #{userId}
         ORDER BY sendDate DESC
 
     </select>

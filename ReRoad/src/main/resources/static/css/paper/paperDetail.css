@@ -91,3 +91,17 @@
     background-color: #f1a534;
     border-color: #f1a534;
 }
+
+/* 좌측 버튼 디자인 */
+#write, #send, #receive {
+    background-color: #d58512;
+    color: white;
+    border-color: #d58512;
+    font-weight: 600;
+    margin-bottom: 1em;
+
+}
+#write:hover, #send:hover, #receive:hover {
+    background-color: #f1a534;
+    border-color: #f1a534;
+}

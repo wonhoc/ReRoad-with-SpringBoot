@@ -1,6 +1,6 @@
 $(document).ready(function() {
     // 쪽지의 글자수 100자 제한
-    $('#sendContent').on('keyup',function() {
+    $('#sendPaperContent').on('keyup',function() {
         $('#checkResult').html($(this).val().length);
 
         if($(this).val().length > 100) {

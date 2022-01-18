@@ -9,7 +9,7 @@ function fetchAll() {
        if(users.length == 0) {
            usersTemplateHTML = usersTemplateHTML  +
                '<li class="clearfix">' +
-               '                  <div id="nobody">이럴수가 ! 현재 채팅방에 아무도 없네요 :-(</div>\n' +
+               '                  <div id="nobody"><h5 id="noone">이럴수가 ! 현재 채팅방에 아무도 없네요 :-(</h5></div>\n' +
                '            </li>';
            $('#usersList').html(usersTemplateHTML);
        }else {

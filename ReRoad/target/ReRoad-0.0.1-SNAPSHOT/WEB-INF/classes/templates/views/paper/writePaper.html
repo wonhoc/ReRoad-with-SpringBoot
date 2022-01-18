@@ -6,51 +6,51 @@
     <link rel="stylesheet" th:href="@{css/paper/sendPaper.css}">
 </th:block>
 <th:block layout:fragment="script">
-    <script th:src="@{/js/paper/sendPaper.js}"></script>
+    <script th:src="@{/js/paper/writePaper.js}"></script>
 </th:block>
 <head>
 </head>
-    <div class="container">
-        <div id="paperPageMain">
-            <div id="welcomeDiv">
-                <h1 id="welcome_paper">쪽지관리</h1>
-                <div id="title_devide"></div>
-                <div id="welcome_paper_text">
-                    닉네임을 통해 쪽지를 주고 받을 수 있습니다.<br>
-                    쪽지에 자신의 연락처, 이름 등 개인정보를 쓰지 않도록 주의해주십시오.<br>
-                    타인에 대한 비방이나 욕설, 광고 등 부적절한 내용의 쪽지를 보낼 경우 강제탈퇴될 수 있습니다.<br>
-                </div>
+<div class="container">
+    <div id="paperPageMain">
+        <div id="welcomeDiv">
+            <h1 id="welcome_paper">쪽지관리</h1>
+            <div id="title_devide"></div>
+            <div id="welcome_paper_text">
+                닉네임을 통해 쪽지를 주고 받을 수 있습니다.<br>
+                쪽지에 자신의 연락처, 이름 등 개인정보를 쓰지 않도록 주의해주십시오.<br>
+                타인에 대한 비방이나 욕설, 광고 등 부적절한 내용의 쪽지를 보낼 경우 강제탈퇴될 수 있습니다.<br>
             </div>
-            <div id="paperMain">
-                <div id="paperMenu" class="col-sm-3">
-                    <a th:href="@{writePaper}">
-                        <button type="button" class="btn btn-default" id="write" name="write">쪽지 보내기</button>
-                    </a>
-                    <a th:href="@{sendPaper}">
-                        <button type="button" class="btn btn-default" id="send" name="send">보낸 쪽지함</button>
-                    </a>
-                    <a th:href="@{receivePaper}">
-                        <button type="button" class="btn btn-default" id="receive" name="receive">받은 쪽지함</button>
-                    </a>
-                </div>
-                <div id="addressAndWrite" class="col-sm-9">
-                    <div id="writePaper" name="writePaper" class="paperDiv">
-                        <form class="form-group" action="/sendNewPaper" method="POST">
-                            <div id="address">
-                                <label for="receiveNick" class="upperInputText">받는 사람</label>
-                                <input type="text" class="form-control" id="receiveNick" name="receiveNick" placeholder="닉네임을 입력하세요">
-                            </div>
+        </div>
+        <div id="paperMain">
+            <div id="paperMenu" class="col-sm-3">
+                <a th:href="@{writePaper}">
+                    <button type="button" class="btn btn-default" id="write" name="write">쪽지 보내기</button>
+                </a>
+                <a th:href="@{sendPaper}">
+                    <button type="button" class="btn btn-default" id="send" name="send">보낸 쪽지함</button>
+                </a>
+                <a th:href="@{receivePaper}">
+                    <button type="button" class="btn btn-default" id="receive" name="receive">받은 쪽지함</button>
+                </a>
+            </div>
+            <div id="addressAndWrite" class="col-sm-9">
+                <div id="writePaper" name="writePaper" class="paperDiv">
+                    <form class="form-group" action="/sendNewPaper" method="POST">
+                        <div id="address">
+                            <label for="receiveNick" class="upperInputText">받는 사람</label>
+                            <input type="text" class="form-control" id="receiveNick" name="receiveNick" placeholder="닉네임을 입력하세요">
+                        </div>
 
-                            <div id="context">
-                                <label for="sendContent" class="upperInputText">내용</label>
-                                <textarea class="form-control" row="20" id="sendContent" name="sendContent" placeholder="내용을 입력하세요"></textarea>
+                        <div id="context">
+                            <label for="sendPaperContent" class="upperInputText">내용 </label> (<span id="checkResult">0</span> / 100자)
+                            <textarea class="form-control" row="20" id="sendPaperContent" name="sendPaperContent" placeholder="내용을 입력하세요"></textarea>
 
-                            </div>
-                            <button type="submit" class="btn btn-default btn-lg btn-block" id="sendBtn" style="text-decoration: none">보내기</button>
-                        </form>
-                    </div>
+                        </div>
+                        <button type="submit" class="btn btn-default btn-lg btn-block" id="sendBtn" style="text-decoration: none">보내기</button>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
+</div>
 </html>

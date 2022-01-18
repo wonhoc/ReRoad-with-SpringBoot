@@ -17,7 +17,7 @@ import java.util.UUID;
 
 public class FileUtils {
 
-    public static final String UPLOAD_PATH = "C:\\upload/";
+    public static final String UPLOAD_PATH = "/upload";
 
     public static List uploadFiles(List<MultipartFile> filelist) throws Exception {
 

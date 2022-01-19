@@ -1,18 +1,23 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<th:block layout:fragment="css">
+
+    <link rel="stylesheet" th:href="@{/css/error/fileException.css}">
+
+</th:block>
 <head>
-    <meta charset="UTF-8">
-    <title>Error</title>
 </head>
-<body>
-
-Error : <br>
-[[${exception.getMessage()}]] <br>
-
-<ul>
-    <th:block th:each="stack : ${exception.getStackTrace()}">
-        <li th:text="${stack}"></li>
-    </th:block>
-</ul>
-</body>
+<section>
+    <div class="container">
+        <table id="errTable">
+            <tr><td id="errTitle">ERR발생!!</td></tr>
+            <tr><td id="infoTxt">Runtime Exception..</td></tr>
+            <tr><td id="mainBtn"><a th:href="@{/main}">메인 페이지로 돌아가기..</a></td></tr>
+        </table>
+        <h4>에러 상세 보기</h4>
+        <p th:text="${exception}"></p>
+    </div>
+</section>
 </html>

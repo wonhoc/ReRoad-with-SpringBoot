@@ -21,15 +21,15 @@ import java.util.List;
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(RuntimeException.class)
-    public ModelAndView handleRuntimeException(final RuntimeException e) {
+    public String handleRuntimeException(Model model ,final RuntimeException e) {
         Exception e2 = e;
         e2.printStackTrace();
-        ModelAndView model = new ModelAndView();
 
-        model.addObject("exception",e2);
-        model.setViewName("views/error/error");
 
-        return model;
+        model.addAttribute("exception",e2);
+        //model.addObject("example", "에러가 났어요");
+        model.addAttribute("content","views/error/error");
+        return "/templates";
     }
 
     // 유효성 검증 실패시 예외처리(메시지출력)
@@ -45,14 +45,17 @@ public class GlobalExceptionHandler {
             err.setRejectedValue(fieldError.getRejectedValue().toString());
             fieldErrorList.add(err);
         }
+
         model.addAttribute("fieldErrorList",fieldErrorList);
-        return "views/error/valid-exception";
+        model.addAttribute("content","views/error/valid-exception");
+        return "/templates";
     }
 
     //파일 업로드 예외처리(파일 최대 사이즈 초과!)
     @ExceptionHandler({MaxUploadSizeExceededException.class})
-    public String handleMaxUploadSizeExceededException(){
+    public String handleMaxUploadSizeExceededException(Model model){
 
-        return "views/error/fileException";
+        model.addAttribute("content","views/error/fileException");
+        return "/templates";
     }
 }

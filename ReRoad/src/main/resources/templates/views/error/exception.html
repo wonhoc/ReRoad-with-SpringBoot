@@ -1,10 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<th:block layout:fragment="css">
+
+    <link rel="stylesheet" th:href="@{/css/error/fileException.css}">
+
+</th:block>
 <head>
-    <meta charset="UTF-8">
-    <title>Exception</title>
 </head>
-<body>
-<h1 th:text ="${exception}"></h1>
-</body>
+<section>
+    <div class="container">
+        <table id="errTable">
+            <tr><td id="errTitle">ERR발생!!</td></tr>
+            <tr><td id="mainBtn"><a th:href="@{/main}">메인 페이지로 돌아가기..</a></td></tr>
+        </table>
+    </div>
+</section>
 </html>

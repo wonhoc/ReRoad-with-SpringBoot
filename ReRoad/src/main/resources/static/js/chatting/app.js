@@ -175,7 +175,7 @@ $(document).ready(function () {
           }
           message += result.message + '\n';
         } else if (result.messageType == 'DISCONNECTED') {
-          const chaturl = 'ec2-54-180-31-9.ap-northeast-2.compute.amazonaws.com';
+          const chaturl = 'ec2-13-125-26-218.ap-northeast-2.compute.amazonaws.com';
           const disconName = result.username;
           message = '>> ' + disconName + ' 님이 퇴장하셨습니다 :(\n';
           $.ajax({
@@ -230,7 +230,7 @@ $(document).ready(function () {
   $(document).on('click', '#btnJoin', function () {
 
     let username = $('#myname').val();
-    const chaturl = 'ec2-54-180-31-9.ap-northeast-2.compute.amazonaws.com';
+    const chaturl = 'ec2-13-125-26-218.ap-northeast-2.compute.amazonaws.com';
 
     $.ajax({
       url: "/registration/" + username,

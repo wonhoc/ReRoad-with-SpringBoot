@@ -59,7 +59,8 @@ public class mainController {
         model.addAttribute("noticeList", noticeList);
         //지역별 기차역리스트 add
         model.addAttribute("trainStList", trainScheduleService.retrieveTrainStinfo());
-
+        //고속버스 터미널 리스트 add
+        model.addAttribute("expTmlList", this.expBusScheduleService.getTmlInfo());
 
         List domestic = this.domesticService.boardMain();
 

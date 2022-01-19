@@ -9,7 +9,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="18869558-432e-4011-9d86-a59d03e83cff" name="Changes" comment="쪽지 기능" />
+    <list default="true" id="18869558-432e-4011-9d86-a59d03e83cff" name="Changes" comment="쪽지 기능">
+      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/resources/static/images/schedule/cat1.png" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/static/images/schedule/cat1.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/src/main/resources/static/images/schedule/cat2.png" beforeDir="false" afterPath="$PROJECT_DIR$/ReRoad/src/main/resources/static/images/schedule/cat2.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/target/classes/static/images/schedule/cat.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReRoad/target/classes/static/images/schedule/cat2.jpg" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -80,7 +85,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/ReRoad/src/main/resources/templates/views/error" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/ReRoad/src/main/resources/static/images/schedule" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
@@ -219,7 +224,7 @@
       <workItem from="1642486566584" duration="197000" />
       <workItem from="1642505679771" duration="1245000" />
       <workItem from="1642518925799" duration="192000" />
-      <workItem from="1642547424130" duration="11597000" />
+      <workItem from="1642547424130" duration="11903000" />
     </task>
     <task id="LOCAL-00001" summary="수정">
       <created>1641550413516</created>

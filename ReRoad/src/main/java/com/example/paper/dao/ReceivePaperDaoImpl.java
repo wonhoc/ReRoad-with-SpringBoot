@@ -32,7 +32,13 @@ public class ReceivePaperDaoImpl implements ReceivePaperDao{
     }
     @Override
     public void updateReceiveRead(HashMap<String,Object> updateMap) {
-        this.sqlSession.update("Paper.updateAddressRead",updateMap);
+
+        System.out.println("u" + updateMap.toString());
+
+        this.sqlSession.update("Paper.updateReceiveRead",updateMap);
+
+        System.out.println("end");
+
     }
     @Override
     public void deleteReceivePaper(HashMap<String,Object> map) {

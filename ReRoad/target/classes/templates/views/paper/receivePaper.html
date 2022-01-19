@@ -60,7 +60,7 @@
                                 </div>
                                 <!-- 보낸 쪽지가 있다면 -->
                                 <div th:if="${#lists.size(receivePaperList) > 0}">
-                                    <tr th:each="receivePaper:${receivePaperList}">
+                                    <tr th:each="receivePaper:${receivePaperList}" th:attr="class=${receivePaper.isRead == 0 ? 'nonread' : 'read'}">
                                         <td>
                                             <span th:text="${receivePaper.senderNick}"/>
                                         </td>

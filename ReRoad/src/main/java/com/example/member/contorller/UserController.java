@@ -122,7 +122,7 @@ public class UserController {
         String checkResult = "";
         // 중복된 아이디는 1 = 가입 불가
         // 없는 아이디는 0 = 가입 가능
-        if (checkNum == 1) {
+        if (checkNum > 0) {
             checkResult = "false";
         } else if (checkNum == 0) {
             checkResult = "true";
@@ -138,7 +138,7 @@ public class UserController {
         String nickResult = "";
         // 중복된 닉네임은 1 = 가입 불가
         // 없는 닉네임은 0 = 가입 가능
-        if (checkNick == 1) {
+        if (checkNick > 0) {
             nickResult = "false";
         } else if (checkNick == 0) {
             nickResult = "true";

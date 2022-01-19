@@ -10,7 +10,7 @@
 </th:block>
 <head>
 </head>
-    <form class="form-signin" method="POST" action="/joinUserRequest" modelAttribute="UserVo">
+    <form class="form-signin" method="POST" action="/joinUserRequest" modelAttribute="UserVo" id="joinFormSe">
         <div id = "joinFormTwo" class="joinUserContainerSe" >
             <div class="welcome_join_Text_Se">
                 <h1 class="joinText2">회원가입</h1>
@@ -40,7 +40,7 @@
                 <div id="checkNick">
                     <span th:style="${'color:red;'}" th:text="${valid_userNick}"></span>
                 </div>
-                <button class="btn btn-primary btn-lg btn-block" type="submit" id="joinButton" name="joinButton">회원가입</button>
+                <button class="btn btn-primary btn-lg btn-block" type="button" id="joinButton" name="joinButton">회원가입</button>
                 <a th:href="@{joinUser}" style="text-decoration: none">
                     <button class="btn btn-default btn-lg btn-block" type="button" id="backButton" name="backButton"> 뒤로 </button>
                 </a>

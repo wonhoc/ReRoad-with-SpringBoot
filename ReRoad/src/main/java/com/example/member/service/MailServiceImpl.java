@@ -25,7 +25,7 @@ public class MailServiceImpl implements MailService{
             message.setSubject(mail.getTitle());
             message.setText(mail.getMessage());
 
-//            javamailSender.send(message);
+            javamailSender.send(message);
             result = 1;
         } catch(MailException e) {
             e.printStackTrace();

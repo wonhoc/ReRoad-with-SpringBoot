@@ -92,7 +92,7 @@
     <update id="updateReceiveRead" parameterType="hashMap">
         UPDATE receive_paper
         SET isRead = true
-        WHERE receivePaperNo = #{receivePaperNO} AND receiveId = #{receiveId}
+        WHERE receivePaperNo = #{receivePaperNo} AND receiveId = #{receiveId}
     </update>
 
     <!-- address 테이블에서의 읽음상태 업데이트-->

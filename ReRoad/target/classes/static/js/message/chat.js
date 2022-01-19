@@ -1,4 +1,4 @@
-const url = 'http://ec2-3-35-233-53.ap-northeast-2.compute.amazonaws.com';
+const url = 'ec2-3-35-233-53.ap-northeast-2.compute.amazonaws.com';
 let stompClient;
 let username = $('#username').val();
 let newMessage = new Map();

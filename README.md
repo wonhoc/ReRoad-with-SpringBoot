@@ -14,10 +14,10 @@ RE Road
 
 
 내가 한 것
-1. 여행리뷰 게시판 구현
+1. 여행리뷰 게시판 구현(수정, 삭제, 작성, 댓글)
 ![image](https://user-images.githubusercontent.com/92851140/150689583-df3c447e-3510-410a-9b86-ba9c7d904119.png)
 
-2. 댓글시 웹소켓을 이용한 실시간 알림
+2. 댓글시 Stomp를 활용한 웹소켓을 이용하여 실시간 알림 구현
 ![image](https://user-images.githubusercontent.com/92851140/150689559-084a8db9-acc3-4d3d-9610-d600d6425d7f.png)
 
 3. 메인페이지 하단 국내여행지(지도, 해당지역 날씨정보)

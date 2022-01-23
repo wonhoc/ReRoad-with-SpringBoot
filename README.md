@@ -13,7 +13,7 @@ RE Road
 또한 게시글의 댓글 기능과 채팅, 쪽지 기능을 추가하여 사용자들 간의 원활한 소통으로 보다 쉽게 정보를 공유하고 얻을 수 있도록 하였다.
 
 
-내가 한 것
+
 1. 여행리뷰 게시판 구현(수정, 삭제, 작성, 댓글)
  <img style="width : 500px; height: 700px;" src= "https://user-images.githubusercontent.com/92851140/150689583-df3c447e-3510-410a-9b86-ba9c7d904119.png" >
 

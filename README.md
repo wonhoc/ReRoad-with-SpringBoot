@@ -21,4 +21,5 @@ RE Road
 ![image](https://user-images.githubusercontent.com/92851140/150689559-084a8db9-acc3-4d3d-9610-d600d6425d7f.png)
 
 3. 메인페이지 하단 국내여행지(지도, 해당지역 날씨정보)
-![image](https://user-images.githubusercontent.com/92851140/150690541-0e5b033c-7c84-4b90-b4e3-dbfd30d19010.png)
+![image]()
+<img src= "https://user-images.githubusercontent.com/92851140/150690541-0e5b033c-7c84-4b90-b4e3-dbfd30d19010.png" >

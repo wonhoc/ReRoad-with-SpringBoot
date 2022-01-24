@@ -12,6 +12,9 @@ RE Road
 여행을 계획하는데 필요한 정보들을 모두 모아 볼 수 있는 웹페이지이며 본인만의 플래너를 만들어 반드시 주의해야 할 사항 또는 잊지 않고 챙겨야할 체크리스트를 만들어 유용성을 더했다. 
 또한 게시글의 댓글 기능과 채팅, 쪽지 기능을 추가하여 사용자들 간의 원활한 소통으로 보다 쉽게 정보를 공유하고 얻을 수 있도록 하였다.
 
+![image](https://user-images.githubusercontent.com/92851140/150704833-73df31e0-4269-49d4-8ce0-cc62012c01a8.png)
+
+
 
 1. 여행리뷰 게시판 구현(수정, 삭제, 작성, 댓글)
  <img style="width : 500px; height: 700px;" src= "https://user-images.githubusercontent.com/92851140/150690952-5851ee80-b013-4c12-bdaf-611f4ab95855.png" >
